@@ -28,14 +28,12 @@ export default function StaffPage() {
         <div className="px-8 pt-3 pb-1 flex items-center gap-4 text-xs font-semibold uppercase tracking-wide text-[#9490AA]">
           <div className="w-9 flex-shrink-0" />
           <div className="flex-1">Staff Member</div>
-          <div className="flex-shrink-0">Status</div>
-          <div className="flex-shrink-0 w-24 text-right">Commission</div>
-          <div className="flex-shrink-0 w-8 text-right">Rank</div>
-          <div className="flex-shrink-0 w-14" />
+          <div className="w-28 flex-shrink-0">Status</div>
+          <div className="w-28 flex-shrink-0 text-right">Commission</div>
         </div>
         <div className="p-4 space-y-3">
           {sorted.map((staff, i) => (
-            <StaffRow key={staff.id} staff={staff} rank={i + 1} />
+            <StaffRow key={staff.id} staff={staff} />
           ))}
         </div>
       </div>
