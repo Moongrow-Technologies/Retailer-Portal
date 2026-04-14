@@ -58,7 +58,7 @@ export default function Bonuses() {
       </div>
 
       {/* Info bar */}
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 rounded-full bg-[#F0EEF9] border border-[#E2E0ED] text-xs text-[#7A7893]">
+      <div className="inline-flex items-center gap-2 px-4 py-2 mb-5 rounded-full bg-[#F0EEF9] border border-[#E2E0ED] text-sm text-[#7A7893]">
         <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
         <span>€450 committed to bonuses</span>
         <span className="text-[#C8C5D8]">·</span>
