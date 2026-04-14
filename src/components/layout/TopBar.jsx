@@ -4,6 +4,7 @@ import { Bell, HelpCircle } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import NotificationDropdown from './NotificationDropdown';
+import HelpDropdown from './HelpDropdown';
 
 const routeLabels = {
   '/': 'Dashboard',
@@ -36,6 +37,7 @@ export default function TopBar() {
   const section = getSection(location.pathname);
   const label = getPageLabel(location.pathname);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const { data: user } = useQuery({
     queryKey: ['me'],
@@ -63,9 +65,16 @@ export default function TopBar() {
 
       {/* Right side */}
       <div className="flex items-center gap-3">
-        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors">
-          <HelpCircle className="w-5 h-5" />
-        </button>
+        <div className="relative">
+          <button
+            id="help-button"
+            onClick={() => setShowHelp(v => !v)}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors"
+          >
+            <HelpCircle className="w-5 h-5" />
+          </button>
+          {showHelp && <HelpDropdown onClose={() => setShowHelp(false)} />}
+        </div>
         <div className="relative">
           <button
             id="notification-bell"
