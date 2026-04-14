@@ -1,0 +1,42 @@
+{
+  "name": "Activity",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "sale",
+        "campaign_created",
+        "campaign_paused",
+        "campaign_resumed",
+        "bonus_created",
+        "bonus_completed",
+        "staff_joined",
+        "top_up",
+        "payout"
+      ],
+      "description": "Activity type"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable activity message"
+    },
+    "actor": {
+      "type": "string",
+      "description": "Name of person/system that performed action"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "staff_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "message"
+  ]
+}

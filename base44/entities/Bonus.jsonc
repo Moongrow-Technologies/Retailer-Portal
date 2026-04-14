@@ -1,0 +1,111 @@
+{
+  "name": "Bonus",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Bonus competition name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ranked",
+        "threshold",
+        "sprint"
+      ],
+      "description": "Bonus type"
+    },
+    "metric": {
+      "type": "string",
+      "enum": [
+        "commission_earned",
+        "units_sold"
+      ],
+      "description": "Ranking metric"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Specific product if applicable"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "store",
+        "chain"
+      ],
+      "default": "chain"
+    },
+    "store": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "completed"
+      ],
+      "default": "active"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "prize_pool": {
+      "type": "number",
+      "description": "Total prize pool in EURC"
+    },
+    "prizes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "threshold_target": {
+      "type": "number"
+    },
+    "threshold_prize": {
+      "type": "number"
+    },
+    "tiebreaker": {
+      "type": "string",
+      "enum": [
+        "first_to_reach",
+        "higher_revenue"
+      ],
+      "default": "first_to_reach"
+    },
+    "winner_name": {
+      "type": "string"
+    },
+    "winner_payout": {
+      "type": "number"
+    },
+    "participants": {
+      "type": "number",
+      "default": 0
+    },
+    "current_leader": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "metric"
+  ]
+}

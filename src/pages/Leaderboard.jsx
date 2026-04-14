@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PageHeader from '@/components/shared/PageHeader';
+import EmptyState from '@/components/shared/EmptyState';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Download, Trophy, Medal } from 'lucide-react';
+import { STAFF, CAMPAIGNS, STORE } from '@/lib/sampleData';
+import { cn } from '@/lib/utils';
+
+export default function Leaderboard() {
+  const [metric, setMetric] = useState('commission');
+  const [campaign, setCampaign] = useState('all');
+  const [store, setStore] = useState('all');
+
+  const activeStaff = STAFF.filter(s => s.status === 'active');
+  const sorted = [...activeStaff].sort((a, b) => {
+    if (metric === 'commission') return b.total_commissions - a.total_commissions;
+    return b.total_units_sold - a.total_units_sold;
+  });
+
+  const rankColors = ['bg-amber-50 border-amber-200', 'bg-slate-50 border-slate-200', 'bg-orange-50 border-orange-200'];
+  const rankIcons = ['🥇', '🥈', '🥉'];
+
+  if (activeStaff.length === 0) {
+    return (
+      <div>
+        <PageHeader title="Leaderboard" description="Staff rankings across all campaigns" />
+        <EmptyState icon={Trophy} title="No staff yet" description="Invite your team to start tracking performance." actionLabel="Invite Staff" onAction={() => window.location.href = '/staff'} />
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <PageHeader title="Leaderboard" description="Staff rankings across all campaigns">
+        <Button variant="outline" className="gap-2"><Download className="w-4 h-4" /> Export</Button>
+      </PageHeader>
+
+      <div className="flex items-center justify-between mb-6">
+        <Tabs value={metric} onValueChange={setMetric}>
+          <TabsList className="bg-muted">
+            <TabsTrigger value="commission" className="gap-1.5">
+              <span className="text-xs">€</span> Commission Earned
+            </TabsTrigger>
+            <TabsTrigger value="units" className="gap-1.5">
+              <span className="text-xs">#</span> Units Sold
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+
+        <div className="flex gap-3">
+          <Select value={campaign} onValueChange={setCampaign}>
+            <SelectTrigger className="w-[200px]"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Campaigns</SelectItem>
+              {CAMPAIGNS.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+            </SelectContent>
+          </Select>
+          <Select value={store} onValueChange={setStore}>
+            <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Stores</SelectItem>
+              {STORE.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        {sorted.map((staff, i) => (
+          <Link to={`/staff/${staff.id}`} key={staff.id}>
+            <div className={cn(
+              "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md",
+              i < 3 ? rankColors[i] : "bg-card border-border hover:border-primary/20"
+            )}>
+              <div className="w-10 text-center">
+                {i < 3 ? (
+                  <span className="text-xl">{rankIcons[i]}</span>
+                ) : (
+                  <span className="text-lg font-bold text-muted-foreground">{i + 1}</span>
+                )}
+              </div>
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
+                {staff.name.charAt(0)}
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold">{staff.name}</p>
+                <p className="text-sm text-muted-foreground">{staff.role} · {staff.store}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-bold">
+                  {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
+                </p>
+              </div>
+              {staff.bonus_wins > 0 && (
+                <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1">
+                  <Medal className="w-3.5 h-3.5 text-amber-600" />
+                  <span className="text-xs font-medium text-amber-700">{staff.bonus_wins} wins</span>
+                </div>
+              )}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

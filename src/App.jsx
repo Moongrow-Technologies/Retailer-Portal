@@ -5,7 +5,21 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-// Add page imports here
+
+import AppLayout from '@/components/layout/AppLayout';
+import Dashboard from '@/pages/Dashboard';
+import WalletPage from '@/pages/WalletPage';
+import Campaigns from '@/pages/Campaigns';
+import CreateCampaign from '@/pages/CreateCampaign';
+import CampaignDetail from '@/pages/CampaignDetail';
+import Analytics from '@/pages/Analytics';
+import Leaderboard from '@/pages/Leaderboard';
+import Bonuses from '@/pages/Bonuses';
+import CreateBonus from '@/pages/CreateBonus';
+import StaffPage from '@/pages/StaffPage';
+import StaffDetail from '@/pages/StaffDetail';
+import Settings from '@/pages/Settings';
+import Onboarding from '@/pages/Onboarding';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -33,7 +47,21 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
+      <Route path="/onboarding" element={<Onboarding />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/wallet" element={<WalletPage />} />
+        <Route path="/campaigns" element={<Campaigns />} />
+        <Route path="/campaigns/new" element={<CreateCampaign />} />
+        <Route path="/campaigns/:id" element={<CampaignDetail />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/bonuses" element={<Bonuses />} />
+        <Route path="/bonuses/new" element={<CreateBonus />} />
+        <Route path="/staff" element={<StaffPage />} />
+        <Route path="/staff/:id" element={<StaffDetail />} />
+        <Route path="/settings" element={<Settings />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

@@ -1,0 +1,27 @@
+{
+  "name": "Wallet",
+  "type": "object",
+  "properties": {
+    "total_balance": {
+      "type": "number",
+      "default": 0,
+      "description": "Total EURC balance"
+    },
+    "committed_campaigns": {
+      "type": "number",
+      "default": 0,
+      "description": "Committed to active campaigns"
+    },
+    "committed_bonuses": {
+      "type": "number",
+      "default": 0,
+      "description": "Committed to active bonuses"
+    },
+    "available": {
+      "type": "number",
+      "default": 0,
+      "description": "Available for new commitments"
+    }
+  },
+  "required": []
+}

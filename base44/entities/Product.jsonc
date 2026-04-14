@@ -1,0 +1,37 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "sku": {
+      "type": "string",
+      "description": "SKU or barcode"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "description": "Retail price in EUR"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "pos",
+        "manual"
+      ],
+      "default": "manual"
+    },
+    "store_id": {
+      "type": "string",
+      "description": "Associated store"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

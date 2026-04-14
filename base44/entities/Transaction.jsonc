@@ -1,0 +1,40 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "commission",
+        "bonus_payout",
+        "top_up",
+        "budget_commit",
+        "budget_release"
+      ],
+      "description": "Transaction type"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount in EURC"
+    },
+    "description": {
+      "type": "string"
+    },
+    "staff_name": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "bonus_name": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "amount"
+  ]
+}

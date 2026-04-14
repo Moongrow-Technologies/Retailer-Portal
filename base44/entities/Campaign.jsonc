@@ -1,0 +1,74 @@
+{
+  "name": "Campaign",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Campaign name"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Product reference"
+    },
+    "stores": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Store names"
+    },
+    "commission_rate": {
+      "type": "number",
+      "description": "EURC per unit sold"
+    },
+    "budget": {
+      "type": "number",
+      "description": "Total budget in EURC"
+    },
+    "spent": {
+      "type": "number",
+      "description": "Amount spent so far",
+      "default": 0
+    },
+    "units_sold": {
+      "type": "number",
+      "description": "Total units sold",
+      "default": 0
+    },
+    "target_units": {
+      "type": "number",
+      "description": "Target units"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused_manual",
+        "paused_budget",
+        "completed"
+      ],
+      "default": "active"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "duration_days": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "name",
+    "product_name",
+    "commission_rate",
+    "budget"
+  ]
+}

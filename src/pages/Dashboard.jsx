@@ -1,0 +1,61 @@
+import React from 'react';
+import PageHeader from '@/components/shared/PageHeader';
+import StatCard from '@/components/shared/StatCard';
+import WalletSummary from '@/components/dashboard/WalletSummary';
+import QuickActions from '@/components/dashboard/QuickActions';
+import ActivityFeed from '@/components/dashboard/ActivityFeed';
+import { Megaphone, Award, TrendingUp, Star, AlertTriangle } from 'lucide-react';
+import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData';
+
+export default function Dashboard() {
+  const wallet = WALLET;
+  const activeCampaigns = CAMPAIGNS.filter(c => c.status === 'active');
+  const activeBonuses = BONUSES.filter(b => b.status === 'active');
+  const topStaff = [...STAFF].sort((a, b) => b.total_commissions - a.total_commissions)[0];
+  const commissionToday = 6.50;
+  const zeroBalance = wallet.total_balance === 0;
+
+  return (
+    <div>
+      <PageHeader title="Dashboard" description="De Groene Hoek — Amsterdam">
+        <QuickActions />
+      </PageHeader>
+
+      {zeroBalance && (
+        <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
+          <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-semibold text-red-700">All campaigns auto-paused</p>
+            <p className="text-xs text-red-600">Your wallet balance has hit zero. Top up to resume campaigns.</p>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-12 gap-6">
+        {/* Wallet summary - spans full width */}
+        <div className="col-span-12">
+          <WalletSummary wallet={wallet} />
+        </div>
+
+        {/* Stats row */}
+        <div className="col-span-3">
+          <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp />
+        </div>
+        <div className="col-span-3">
+          <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" />
+        </div>
+        <div className="col-span-3">
+          <StatCard label="Commission Spend Today" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp />
+        </div>
+        <div className="col-span-3">
+          <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} />
+        </div>
+
+        {/* Activity feed */}
+        <div className="col-span-12">
+          <ActivityFeed activities={ACTIVITIES} />
+        </div>
+      </div>
+    </div>
+  );
+}

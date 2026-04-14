@@ -1,0 +1,55 @@
+{
+  "name": "Staff",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "budtender",
+        "manager",
+        "lead"
+      ],
+      "default": "budtender"
+    },
+    "store": {
+      "type": "string",
+      "description": "Store name"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "pending",
+        "deactivated"
+      ],
+      "default": "pending"
+    },
+    "total_commissions": {
+      "type": "number",
+      "default": 0
+    },
+    "total_units_sold": {
+      "type": "number",
+      "default": 0
+    },
+    "bonus_wins": {
+      "type": "number",
+      "default": 0
+    },
+    "avatar_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}
