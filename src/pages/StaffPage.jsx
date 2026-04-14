@@ -21,10 +21,15 @@ export default function StaffPage() {
         </Button>
       </div>
 
-      <div className="space-y-2">
-        {sorted.map((staff, i) => (
-          <StaffRow key={staff.id} staff={staff} rank={i + 1} />
-        ))}
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
+        <div className="px-6 py-4 border-b border-[#EBEBF0]">
+          <h3 className="text-base font-semibold text-[#0E0D1E]">Team Members</h3>
+        </div>
+        <div className="p-4 space-y-2">
+          {sorted.map((staff, i) => (
+            <StaffRow key={staff.id} staff={staff} rank={i + 1} />
+          ))}
+        </div>
       </div>
 
       <InviteStaffModal open={showInvite} onClose={() => setShowInvite(false)} />
