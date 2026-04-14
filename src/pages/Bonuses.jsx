@@ -18,11 +18,9 @@ const TABS = [
 ];
 
 function getTarget(bonus) {
-  if (bonus.threshold_target) return `Sell ${bonus.threshold_target} units`;
-  if (bonus.prizes && bonus.prizes.length) {
-    const top = bonus.prizes[0];
-    return `Top ${bonus.prizes.length} sellers`;
-  }
+  if (bonus.type === 'sprint') return `First to ${bonus.threshold_target || '?'} units`;
+  if (bonus.type === 'threshold') return `Sell ${bonus.threshold_target} units`;
+  if (bonus.type === 'ranked') return `Most ${bonus.metric === 'units_sold' ? 'units sold' : 'commission earned'}`;
   return '—';
 }
 
@@ -121,8 +119,17 @@ export default function Bonuses() {
 
                   {/* End date */}
                   <div className="w-28 flex-shrink-0 text-right">
-                    <p className="text-xs text-[#9490AA]">Ends</p>
-                    <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
+                    {bonus.type === 'sprint' ? (
+                      <>
+                        <p className="text-xs text-[#9490AA]">Ends</p>
+                        <p className="text-sm font-medium text-[#9490AA] italic">On completion</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-xs text-[#9490AA]">Ends</p>
+                        <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </Link>

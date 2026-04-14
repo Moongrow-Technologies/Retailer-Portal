@@ -46,8 +46,8 @@ export const BONUSES = [
   },
   {
     id: 'b2', name: 'Amnesia Haze Sprint', type: 'sprint', metric: 'units_sold', product_name: 'Amnesia Haze',
-    scope: 'chain', status: 'active', start_date: '2026-04-14', end_date: '2026-04-19',
-    prize_pool: 50, prizes: [{ position: 1, amount: 50, label: 'Winner' }],
+    scope: 'chain', status: 'active', start_date: '2026-04-14', end_date: null,
+    threshold_target: 30, prize_pool: 50, prizes: [{ position: 1, amount: 50, label: 'Winner' }],
     participants: 3, current_leader: 'Ahmed R.', leader_score: 28,
     leaderboard: [
       { rank: 1, name: 'Ahmed R.', score: 28, store: 'Centrum', prize: 50 },
