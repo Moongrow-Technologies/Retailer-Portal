@@ -22,6 +22,7 @@ import StaffDetail from '@/pages/StaffDetail';
 import Settings from '@/pages/Settings';
 import Onboarding from '@/pages/Onboarding';
 import Notifications from '@/pages/Notifications';
+import Profile from '@/pages/Profile';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -65,6 +66,7 @@ const AuthenticatedApp = () => {
         <Route path="/staff/:id" element={<StaffDetail />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
