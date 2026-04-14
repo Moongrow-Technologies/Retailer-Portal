@@ -45,8 +45,8 @@ export default function Leaderboard() {
         <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
-      <div className="flex items-center justify-between mb-6">
-         <div className="flex gap-2">
+      <div className="flex items-center gap-4 mb-6">
+         <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0]">
            {['Today', 'This Week', 'This Month'].map((period, idx) => {
              const periodKey = ['today', 'week', 'month'][idx];
              return (
@@ -54,10 +54,10 @@ export default function Leaderboard() {
                  key={periodKey}
                  onClick={() => setTimePeriod(periodKey)}
                  className={cn(
-                   "px-3 py-1.5 rounded-md text-sm font-medium transition-all",
+                   "px-4 py-2 rounded-lg text-sm font-medium transition-all",
                    timePeriod === periodKey
-                     ? "bg-[#EDE9F8] text-[#5C51A6]"
-                     : "text-[#9490AA] hover:text-[#0E0D1E]"
+                     ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]"
+                     : "text-[#7A7893] hover:text-[#796EB2]"
                  )}
                >
                  {period}
@@ -66,24 +66,24 @@ export default function Leaderboard() {
            })}
          </div>
 
-         <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1">
-           {['commission', 'units'].map(m => (
-             <button
-               key={m}
-               onClick={() => setMetric(m)}
-               className={cn(
-                 "px-4 py-1.5 rounded-md text-sm font-medium transition-all",
-                 metric === m
-                   ? "bg-[#EDE9F8] text-[#5C51A6]"
-                   : "text-[#9490AA] hover:text-[#0E0D1E]"
-               )}
-             >
-               {m === 'commission' ? '€ Commission Earned' : '# Units Sold'}
-             </button>
-           ))}
-         </div>
+         <div className="flex items-center gap-3 ml-auto">
+           <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1">
+             {['commission', 'units'].map(m => (
+               <button
+                 key={m}
+                 onClick={() => setMetric(m)}
+                 className={cn(
+                   "px-4 py-1.5 rounded-md text-sm font-medium transition-all",
+                   metric === m
+                     ? "bg-[#EDE9F8] text-[#5C51A6]"
+                     : "text-[#9490AA] hover:text-[#0E0D1E]"
+                 )}
+               >
+                 {m === 'commission' ? '€ Commission Earned' : '# Units Sold'}
+               </button>
+             ))}
+           </div>
 
-         <div className="flex gap-3">
            <Select value={campaign} onValueChange={setCampaign}>
              <SelectTrigger className="w-[200px]"><SelectValue /></SelectTrigger>
              <SelectContent>
