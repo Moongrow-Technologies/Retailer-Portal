@@ -3,6 +3,7 @@ import StatCard from '@/components/shared/StatCard';
 import WalletSummary from '@/components/dashboard/WalletSummary';
 import QuickActions from '@/components/dashboard/QuickActions';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
+import TopBudtenders from '@/components/dashboard/TopBudtenders';
 import { Megaphone, Award, TrendingUp, Star, AlertTriangle } from 'lucide-react';
 import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData';
 
@@ -11,6 +12,7 @@ export default function Dashboard() {
   const activeCampaigns = CAMPAIGNS.filter(c => c.status === 'active');
   const activeBonuses = BONUSES.filter(b => b.status === 'active');
   const topStaff = [...STAFF].sort((a, b) => b.total_commissions - a.total_commissions)[0];
+  const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
   const commissionToday = 6.50;
   const zeroBalance = wallet.total_balance === 0;
 
@@ -54,9 +56,12 @@ export default function Dashboard() {
           <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} />
         </div>
 
-        {/* Activity feed */}
-        <div className="col-span-12">
+        {/* Activity feed + Top Budtenders */}
+        <div className="col-span-8">
           <ActivityFeed activities={ACTIVITIES} />
+        </div>
+        <div className="col-span-4">
+          <TopBudtenders staff={topBudtenders} />
         </div>
       </div>
     </div>
