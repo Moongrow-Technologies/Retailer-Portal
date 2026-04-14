@@ -106,7 +106,7 @@ export default function Leaderboard() {
            {sorted.map((staff, i) => (
              <Link to={`/staff/${staff.id}`} key={staff.id}>
                <div className={cn(
-                 "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md bg-[#F8F7FC] border-[#E2E0ED]"
+                 "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md bg-[#F8F7FC] border-[#E2E0ED] mb-3"
                )}>
                  <div className="w-10 text-center">
                    {i < 3 ? (
