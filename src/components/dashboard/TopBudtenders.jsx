@@ -12,7 +12,7 @@ const rankConfig = [
 export default function TopBudtenders({ staff }) {
   return (
     <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 h-full">
-      <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Top Performers</h3>
+      <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Top Budtenders</h3>
       <div className="space-y-3">
         {staff.map((member, i) => {
           const cfg = rankConfig[i];
