@@ -25,7 +25,7 @@ export default function StaffPage() {
         <div className="px-6 py-4 border-b border-[#EBEBF0]">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Team Members</h3>
         </div>
-        <div className="p-4 space-y-2">
+        <div className="p-4 space-y-3">
           {sorted.map((staff, i) => (
             <StaffRow key={staff.id} staff={staff} rank={i + 1} />
           ))}
