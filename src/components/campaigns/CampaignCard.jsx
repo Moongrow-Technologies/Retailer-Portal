@@ -1,12 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
-import { Trash2 } from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 
 export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
+  const navigate = useNavigate();
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const isActive = campaign.status === 'active';
 
@@ -26,15 +33,21 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
               className="data-[state=checked]:bg-primary"
             />
           )}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onDelete?.(campaign);
-            }}
-            className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors">
+                <MoreVertical className="w-4 h-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onDelete?.(campaign)} className="text-destructive">
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
