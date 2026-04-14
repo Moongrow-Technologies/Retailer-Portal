@@ -90,7 +90,7 @@ export default function Bonuses() {
           )}
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="flex flex-col gap-3">
           {filtered.map(bonus => {
             const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
             return (
