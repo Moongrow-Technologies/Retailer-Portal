@@ -14,6 +14,9 @@ export default function Profile() {
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -87,6 +90,45 @@ export default function Profile() {
             <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
               Save Changes
             </Button>
+          </div>
+
+          <div className="border-t border-[#EBEBF0] mt-6 pt-6">
+            <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Change Password</h3>
+            <div className="flex flex-col gap-3">
+              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Current Password</p>
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  value={currentPassword}
+                  onChange={e => setCurrentPassword(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
+                />
+              </div>
+              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">New Password</p>
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
+                />
+              </div>
+              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Confirm New Password</p>
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
+                />
+              </div>
+              <Button variant="outline" className="w-full border-[#796EB2] text-[#796EB2] hover:bg-[#F8F7FC] font-semibold mt-1">
+                Update Password
+              </Button>
+            </div>
           </div>
         </div>
 
