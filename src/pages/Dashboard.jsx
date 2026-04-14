@@ -44,16 +44,16 @@ export default function Dashboard() {
 
         {/* Stats row */}
         <div className="col-span-3">
-          <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp />
+          <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
         </div>
         <div className="col-span-3">
-          <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" />
+          <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" to="/bonuses" />
         </div>
         <div className="col-span-3">
-          <StatCard label="Commission Spend Today" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp />
+          <StatCard label="Commission Spend Today" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp to="/analytics" />
         </div>
         <div className="col-span-3">
-          <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} />
+          <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} to="/leaderboard" />
         </div>
 
         {/* Activity feed + Top Budtenders */}

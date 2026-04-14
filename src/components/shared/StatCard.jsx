@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
-export default function StatCard({ label, value, sublabel, icon: Icon, trend, trendUp, className }) {
-  return (
-    <div className={cn("bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5", className)}>
+export default function StatCard({ label, value, sublabel, icon: Icon, trend, trendUp, className, to }) {
+  const content = (
+    <div>
       <div className="flex items-start justify-between">
         <div className="space-y-1">
           <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">{label}</p>
@@ -25,4 +26,12 @@ export default function StatCard({ label, value, sublabel, icon: Icon, trend, tr
       )}
     </div>
   );
+
+  const element = (
+    <div className={cn("bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5 cursor-pointer hover:shadow-md transition-shadow", className)}>
+      {content}
+    </div>
+  );
+
+  return to ? <Link to={to}>{element}</Link> : element;
 }
