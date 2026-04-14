@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageHeader from '@/components/shared/PageHeader';
 import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Download, Trophy, Medal } from 'lucide-react';
 import { STAFF, CAMPAIGNS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -26,7 +24,12 @@ export default function Leaderboard() {
   if (activeStaff.length === 0) {
     return (
       <div>
-        <PageHeader title="Leaderboard" description="Staff rankings across all campaigns" />
+        <div className="flex items-start justify-between mb-6">
+          <div>
+            <h1 className="text-2xl font-bold text-[#0E0D1E]">Leaderboard</h1>
+            <p className="text-sm text-[#7A7893] mt-1">Staff rankings across all campaigns.</p>
+          </div>
+        </div>
         <EmptyState icon={Trophy} title="No staff yet" description="Invite your team to start tracking performance." actionLabel="Invite Staff" onAction={() => window.location.href = '/staff'} />
       </div>
     );
@@ -34,21 +37,31 @@ export default function Leaderboard() {
 
   return (
     <div>
-      <PageHeader title="Leaderboard" description="Staff rankings across all campaigns">
-        <Button variant="outline" className="gap-2"><Download className="w-4 h-4" /> Export</Button>
-      </PageHeader>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Leaderboard</h1>
+          <p className="text-sm text-[#7A7893] mt-1">Staff rankings across all campaigns.</p>
+        </div>
+        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
+      </div>
 
       <div className="flex items-center justify-between mb-6">
-        <Tabs value={metric} onValueChange={setMetric}>
-          <TabsList className="bg-muted">
-            <TabsTrigger value="commission" className="gap-1.5">
-              <span className="text-xs">€</span> Commission Earned
-            </TabsTrigger>
-            <TabsTrigger value="units" className="gap-1.5">
-              <span className="text-xs">#</span> Units Sold
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1">
+          {['commission', 'units'].map(m => (
+            <button
+              key={m}
+              onClick={() => setMetric(m)}
+              className={cn(
+                "px-4 py-1.5 rounded-md text-sm font-medium transition-all",
+                metric === m
+                  ? "bg-[#EDE9F8] text-[#5C51A6]"
+                  : "text-[#9490AA] hover:text-[#0E0D1E]"
+              )}
+            >
+              {m === 'commission' ? '€ Commission Earned' : '# Units Sold'}
+            </button>
+          ))}
+        </div>
 
         <div className="flex gap-3">
           <Select value={campaign} onValueChange={setCampaign}>
@@ -73,27 +86,27 @@ export default function Leaderboard() {
           <Link to={`/staff/${staff.id}`} key={staff.id}>
             <div className={cn(
               "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md",
-              i < 3 ? rankColors[i] : "bg-card border-border hover:border-primary/20"
+              i < 3 ? rankColors[i] : "bg-white border-[#EBEBF0] hover:border-[#C8C3E8]"
             )}>
               <div className="w-10 text-center">
                 {i < 3 ? (
                   <span className="text-xl">{rankIcons[i]}</span>
                 ) : (
-                  <span className="text-lg font-bold text-muted-foreground">{i + 1}</span>
+                  <span className="text-lg font-bold text-[#9490AA]">{i + 1}</span>
                 )}
               </div>
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
+              <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
                 {staff.name.charAt(0)}
               </div>
               <div className="flex-1">
-                <p className="font-semibold">{staff.name}</p>
-                <p className="text-sm text-muted-foreground">{staff.role} · {staff.store}</p>
+                <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
+                <p className="text-sm text-[#9490AA]">{staff.role} · {staff.store}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold">
+                <p className="text-lg font-bold text-[#0E0D1E]">
                   {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-[#9490AA]">
                   {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
                 </p>
               </div>

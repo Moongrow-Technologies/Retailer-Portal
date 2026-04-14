@@ -117,10 +117,10 @@ export default function Analytics() {
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).map((s, i) => (
               <div key={s.id} className="flex items-center gap-3">
-                <span className="w-5 text-sm font-bold text-muted-foreground">{i + 1}</span>
-                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-xs font-semibold text-primary">{s.name[0]}</div>
-                <p className="flex-1 text-sm font-medium">{s.name}</p>
-                <p className="text-sm font-semibold">€{s.total_commissions.toFixed(2)}</p>
+                <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
+                <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
+                <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
+                <p className="text-sm font-semibold text-[#0E0D1E]">€{s.total_commissions.toFixed(2)}</p>
               </div>
             ))}
           </div>
@@ -130,10 +130,10 @@ export default function Analytics() {
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_units_sold - a.total_units_sold).map((s, i) => (
               <div key={s.id} className="flex items-center gap-3">
-                <span className="w-5 text-sm font-bold text-muted-foreground">{i + 1}</span>
-                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-xs font-semibold text-primary">{s.name[0]}</div>
-                <p className="flex-1 text-sm font-medium">{s.name}</p>
-                <p className="text-sm font-semibold">{s.total_units_sold} units</p>
+                <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
+                <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
+                <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
+                <p className="text-sm font-semibold text-[#0E0D1E]">{s.total_units_sold} units</p>
               </div>
             ))}
           </div>
