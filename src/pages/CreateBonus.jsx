@@ -293,7 +293,7 @@ export default function CreateBonus() {
                 { label: 'Scope', value: data.scope === 'chain' ? 'Chain-wide' : data.scope },
                 { label: 'Duration', value: (data.customStart && data.customEnd) ? `${data.customStart} → ${data.customEnd}` : data.customStart || data.customEnd || '—' },
               ].map(row => (
-                <div key={row.label} className="bg-[#F8F7FC] rounded-xl p-3 border border-[#E2E0ED]">
+                <div key={row.label} className="bg-[#F8F7FC] rounded-xl p-3 border border-[#E2E0ED] rounded-xl">
                   <p className="text-[11px] text-[#9490AA] uppercase tracking-wide">{row.label}</p>
                   <p className="font-semibold text-sm text-[#0E0D1E] mt-0.5">{row.value || '—'}</p>
                 </div>

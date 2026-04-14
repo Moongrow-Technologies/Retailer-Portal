@@ -158,29 +158,31 @@ export default function CreateCampaign() {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Review Campaign</h3>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground">Product</p>
-                <p className="font-medium">{data.product}</p>
+              <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Product</p>
+                <p className="font-medium text-[#0E0D1E]">{data.product}</p>
               </div>
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground">Commission</p>
-                <p className="font-medium">€{Number(data.commission_rate).toFixed(2)} / unit</p>
+              <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Commission</p>
+                <p className="font-medium text-[#0E0D1E]">€{Number(data.commission_rate).toFixed(2)} / unit</p>
               </div>
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground">Budget</p>
-                <p className="font-medium">€{Number(data.budget).toFixed(2)}</p>
+              <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Budget</p>
+                <p className="font-medium text-[#0E0D1E]">€{Number(data.budget).toFixed(2)}</p>
               </div>
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground">Duration</p>
-                <p className="font-medium">{data.start_date} → {data.end_date}</p>
+              <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Duration</p>
+                <p className="font-medium text-[#0E0D1E]">{data.start_date} → {data.end_date}</p>
               </div>
-              <div className="col-span-2 p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground">Stores</p>
-                <p className="font-medium">{data.stores.join(', ')}</p>
+              <div className="col-span-2 p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Stores</p>
+                <p className="font-medium text-[#0E0D1E]">{data.stores.join(', ')}</p>
               </div>
             </div>
-            <div className="p-3 bg-primary/5 border border-primary/20 rounded-lg">
-              <p className="text-sm font-medium">€{Number(data.budget).toFixed(2)} will be committed from your wallet upon launch.</p>
+            <div className="p-4 bg-[#EDE9F8] border border-[#C8C3E0] rounded-xl">
+              <p className="text-xs font-semibold text-[#796EB2] uppercase tracking-wide mb-1">Financial Commitment</p>
+              <p className="text-2xl font-bold text-[#0E0D1E]">€{Number(data.budget).toFixed(2)}</p>
+              <p className="text-xs text-[#796EB2] mt-0.5">will be locked from your wallet upon launch</p>
             </div>
           </div>
         )}
