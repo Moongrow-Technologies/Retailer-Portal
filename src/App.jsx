@@ -16,6 +16,7 @@ import Analytics from '@/pages/Analytics';
 import Leaderboard from '@/pages/Leaderboard';
 import Bonuses from '@/pages/Bonuses';
 import CreateBonus from '@/pages/CreateBonus';
+import BonusDetail from '@/pages/BonusDetail';
 import StaffPage from '@/pages/StaffPage';
 import StaffDetail from '@/pages/StaffDetail';
 import Settings from '@/pages/Settings';
@@ -58,6 +59,7 @@ const AuthenticatedApp = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/bonuses" element={<Bonuses />} />
         <Route path="/bonuses/new" element={<CreateBonus />} />
+        <Route path="/bonuses/:id" element={<BonusDetail />} />
         <Route path="/staff" element={<StaffPage />} />
         <Route path="/staff/:id" element={<StaffDetail />} />
         <Route path="/settings" element={<Settings />} />

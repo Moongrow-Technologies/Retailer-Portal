@@ -1,37 +1,95 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageHeader from '@/components/shared/PageHeader';
-import BonusCard from '@/components/bonuses/BonusCard';
-import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Award } from 'lucide-react';
-import { BONUSES } from '@/lib/sampleData';
+import BonusCard from '@/components/bonuses/BonusCard';
+import { Plus, Wallet, Lock } from 'lucide-react';
+import { BONUSES, WALLET } from '@/lib/sampleData';
+
+const TABS = [
+  { key: 'active', label: 'Active' },
+  { key: 'scheduled', label: 'Scheduled' },
+  { key: 'completed', label: 'Completed' },
+];
 
 export default function Bonuses() {
-  const [tab, setTab] = useState('all');
-  const filtered = tab === 'all' ? BONUSES : BONUSES.filter(b => b.status === tab);
+  const [tab, setTab] = useState('active');
+
+  const filtered = tab === 'scheduled'
+    ? []
+    : BONUSES.filter(b => b.status === tab);
+
+  const activeBonuses = BONUSES.filter(b => b.status === 'active');
+  const committedBonuses = activeBonuses.reduce((s, b) => s + b.prize_pool, 0);
 
   return (
-    <div>
-      <PageHeader title="Bonuses & Achievements" description="Run competitions to boost staff performance">
+    <div className="max-w-5xl">
+      {/* Page header */}
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Bonuses</h1>
+          <p className="text-sm text-[#7A7893] mt-1">Run competitions and reward your top performers.</p>
+        </div>
         <Link to="/bonuses/new">
-          <Button className="bg-primary hover:bg-primary/90 gap-2">
-            <Plus className="w-4 h-4" /> Create Bonus
+          <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+            <Plus className="w-4 h-4" /> Create New Bonus
           </Button>
         </Link>
-      </PageHeader>
+      </div>
 
-      <Tabs value={tab} onValueChange={setTab} className="mb-6">
-        <TabsList className="bg-muted">
-          <TabsTrigger value="all">All ({BONUSES.length})</TabsTrigger>
-          <TabsTrigger value="active">Active ({BONUSES.filter(b => b.status === 'active').length})</TabsTrigger>
-          <TabsTrigger value="completed">Completed ({BONUSES.filter(b => b.status === 'completed').length})</TabsTrigger>
-        </TabsList>
-      </Tabs>
+      {/* Wallet summary bar */}
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-4 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
+            <Wallet className="w-5 h-5 text-[#796EB2]" />
+          </div>
+          <div>
+            <p className="text-xs text-[#9490AA]">Available Balance</p>
+            <p className="text-lg font-bold text-[#0E0D1E]">€{WALLET.available.toFixed(2)}</p>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-4 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
+            <Lock className="w-5 h-5 text-amber-600" />
+          </div>
+          <div>
+            <p className="text-xs text-[#9490AA]">Committed to Active Bonuses</p>
+            <p className="text-lg font-bold text-[#0E0D1E]">€{committedBonuses.toFixed(2)}</p>
+          </div>
+        </div>
+      </div>
 
+      {/* Tabs */}
+      <div className="flex items-center gap-1 mb-6 bg-[#F8F7FC] rounded-xl p-1 w-fit border border-[#EBEBF0]">
+        {TABS.map(t => (
+          <button
+            key={t.key}
+            onClick={() => setTab(t.key)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              tab === t.key
+                ? 'bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]'
+                : 'text-[#7A7893] hover:text-[#796EB2]'
+            }`}
+          >
+            {t.label}
+            {t.key !== 'scheduled' && (
+              <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${tab === t.key ? 'bg-[#EDE9F8] text-[#796EB2]' : 'bg-[#EBEBF0] text-[#9490AA]'}`}>
+                {BONUSES.filter(b => b.status === t.key).length}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Cards */}
       {filtered.length === 0 ? (
-        <EmptyState icon={Award} title="No bonuses yet" description="Create a bonus competition to motivate your team." actionLabel="Create Bonus" onAction={() => window.location.href = '/bonuses/new'} />
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-12 text-center">
+          <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
+          {tab === 'active' && (
+            <Link to="/bonuses/new">
+              <Button className="mt-4 bg-[#796EB2] hover:bg-[#6A5FA3] text-white">Create your first bonus</Button>
+            </Link>
+          )}
+        </div>
       ) : (
         <div className="grid grid-cols-2 gap-4">
           {filtered.map(bonus => <BonusCard key={bonus.id} bonus={bonus} />)}

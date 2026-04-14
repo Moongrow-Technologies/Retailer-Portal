@@ -31,9 +31,43 @@ export const CAMPAIGNS = [
 ];
 
 export const BONUSES = [
-  { id: 'b1', name: 'Top Seller April', type: 'ranked', metric: 'units_sold', product_name: 'All Products', scope: 'chain', status: 'active', start_date: '2026-04-01', end_date: '2026-04-30', prize_pool: 150, prizes: [{ position: 1, amount: 75, label: '1st' }, { position: 2, amount: 50, label: '2nd' }, { position: 3, amount: 25, label: '3rd' }], participants: 4, current_leader: 'Lisa V.' },
-  { id: 'b2', name: 'Haze Master', type: 'threshold', metric: 'units_sold', product_name: 'Amnesia Haze', scope: 'chain', status: 'active', start_date: '2026-04-01', end_date: '2026-04-30', prize_pool: 200, threshold_target: 50, threshold_prize: 50, participants: 3, current_leader: 'Ahmed R.' },
-  { id: 'b3', name: 'Weekend Sprint', type: 'sprint', metric: 'commission_earned', product_name: 'All Products', scope: 'store', store: 'De Groene Hoek — Centrum', status: 'completed', start_date: '2026-04-05', end_date: '2026-04-07', prize_pool: 100, prizes: [{ position: 1, amount: 100, label: 'Winner' }], participants: 3, current_leader: 'Lisa V.', winner_name: 'Lisa V.', winner_payout: 100 },
+  {
+    id: 'b1', name: 'Top Seller Week 17', type: 'ranked', metric: 'units_sold', product_name: 'All Products',
+    scope: 'chain', status: 'active', start_date: '2026-04-14', end_date: '2026-04-21',
+    prize_pool: 175, prizes: [{ position: 1, amount: 100, label: '1st' }, { position: 2, amount: 50, label: '2nd' }, { position: 3, amount: 25, label: '3rd' }],
+    participants: 4, current_leader: 'Lisa V.', leader_score: 42,
+    leaderboard: [
+      { rank: 1, name: 'Lisa V.', score: 42, store: 'Centrum', prize: 100 },
+      { rank: 2, name: 'Ahmed R.', score: 35, store: 'Centrum', prize: 50 },
+      { rank: 3, name: 'Sarah K.', score: 28, store: 'Oost', prize: 25 },
+      { rank: 4, name: 'Tom B.', score: 19, store: 'Zuid', prize: null },
+    ],
+    hours_left: 86, // 3 days 14h
+  },
+  {
+    id: 'b2', name: 'Amnesia Haze Sprint', type: 'sprint', metric: 'units_sold', product_name: 'Amnesia Haze',
+    scope: 'chain', status: 'active', start_date: '2026-04-14', end_date: '2026-04-19',
+    prize_pool: 50, prizes: [{ position: 1, amount: 50, label: 'Winner' }],
+    participants: 3, current_leader: 'Ahmed R.', leader_score: 28,
+    leaderboard: [
+      { rank: 1, name: 'Ahmed R.', score: 28, store: 'Centrum', prize: 50 },
+      { rank: 2, name: 'Lisa V.', score: 21, store: 'Centrum', prize: null },
+      { rank: 3, name: 'Sarah K.', score: 17, store: 'Oost', prize: null },
+    ],
+    hours_left: 120, // 5 days
+  },
+  {
+    id: 'b3', name: 'March Top Seller', type: 'ranked', metric: 'units_sold', product_name: 'All Products',
+    scope: 'chain', status: 'completed', start_date: '2026-03-01', end_date: '2026-03-31',
+    prize_pool: 175, prizes: [{ position: 1, amount: 100, label: '1st' }, { position: 2, amount: 50, label: '2nd' }, { position: 3, amount: 25, label: '3rd' }],
+    participants: 4, winner_name: 'Lisa V.', winner_payout: 100,
+    leaderboard: [
+      { rank: 1, name: 'Lisa V.', score: 187, store: 'Centrum', prize: 100 },
+      { rank: 2, name: 'Ahmed R.', score: 162, store: 'Centrum', prize: 50 },
+      { rank: 3, name: 'Sarah K.', score: 148, store: 'Oost', prize: 25 },
+      { rank: 4, name: 'Tom B.', score: 103, store: 'Zuid', prize: null },
+    ],
+  },
 ];
 
 export const WALLET = {
