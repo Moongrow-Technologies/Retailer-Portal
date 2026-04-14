@@ -30,6 +30,7 @@ export default function StaffPage() {
           <div className="flex-1">Staff Member</div>
           <div className="w-28 flex-shrink-0">Status</div>
           <div className="w-28 flex-shrink-0 text-right">Commission</div>
+          <div className="w-24 flex-shrink-0 text-right">Units Sold</div>
         </div>
         <div className="p-4 space-y-3">
           {sorted.map((staff, i) => (

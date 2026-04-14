@@ -33,7 +33,10 @@ export default function StaffRow({ staff }) {
         </div>
         <div className="w-28 text-right flex-shrink-0">
           <p className="text-sm font-semibold text-[#0E0D1E] tabular-nums">€{staff.total_commissions.toFixed(2)}</p>
-          <p className="text-xs text-[#9490AA]">{staff.total_units_sold} units</p>
+        </div>
+        <div className="w-24 text-right flex-shrink-0">
+          <p className="text-sm font-semibold text-[#0E0D1E] tabular-nums">{staff.total_units_sold}</p>
+          <p className="text-xs text-[#9490AA]">units</p>
         </div>
       </div>
     </Link>
