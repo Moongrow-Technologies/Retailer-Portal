@@ -16,7 +16,7 @@ export default function CreateCampaign() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [data, setData] = useState({
-    product: '', stores: [], commission_rate: '', budget: '', duration: '', name: ''
+    product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: ''
   });
 
   const product = PRODUCTS.find(p => p.name === data.product);
@@ -26,7 +26,7 @@ export default function CreateCampaign() {
     if (step === 0) return !!data.product;
     if (step === 1) return data.stores.length > 0;
     if (step === 2) return data.commission_rate && Number(data.commission_rate) > 0;
-    if (step === 3) return data.budget && data.duration && Number(data.budget) > 0;
+    if (step === 3) return data.budget && data.start_date && data.end_date && Number(data.budget) > 0;
     return true;
   };
 
@@ -141,9 +141,15 @@ export default function CreateCampaign() {
                 Available: €{WALLET.available.toFixed(2)}. This amount will be committed from your wallet.
               </p>
             </div>
-            <div>
-              <Label>Duration (days)</Label>
-              <Input type="number" placeholder="e.g. 30" value={data.duration} onChange={e => setData({ ...data, duration: e.target.value })} className="mt-1.5" />
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label>Start Date</Label>
+                <Input type="date" value={data.start_date} onChange={e => setData({ ...data, start_date: e.target.value })} className="mt-1.5" />
+              </div>
+              <div>
+                <Label>End Date</Label>
+                <Input type="date" value={data.end_date} onChange={e => setData({ ...data, end_date: e.target.value })} className="mt-1.5" />
+              </div>
             </div>
           </div>
         )}
@@ -166,7 +172,7 @@ export default function CreateCampaign() {
               </div>
               <div className="p-3 bg-muted/50 rounded-lg">
                 <p className="text-xs text-muted-foreground">Duration</p>
-                <p className="font-medium">{data.duration} days</p>
+                <p className="font-medium">{data.start_date} → {data.end_date}</p>
               </div>
               <div className="col-span-2 p-3 bg-muted/50 rounded-lg">
                 <p className="text-xs text-muted-foreground">Stores</p>
