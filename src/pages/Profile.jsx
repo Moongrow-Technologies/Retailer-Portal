@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Camera } from 'lucide-react';
+import { Camera, CheckCircle2 } from 'lucide-react';
 import { STORE } from '@/lib/sampleData';
 
 export default function Profile() {
@@ -18,7 +18,13 @@ export default function Profile() {
   const [newEmail, setNewEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const fileInputRef = useRef(null);
+
+  const handleSave = () => {
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
 
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0];
@@ -109,7 +115,7 @@ export default function Profile() {
               <p className="text-sm font-medium text-[#0E0D1E]">{STORE.city}, Netherlands</p>
             </div>
 
-            <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
+            <Button onClick={handleSave} className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
               Save Changes
             </Button>
           </div>
@@ -117,6 +123,14 @@ export default function Profile() {
 
       </div>
     </div>
+
+      {/* Success Toast */}
+      {showToast && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-white border border-emerald-200 shadow-lg rounded-xl px-4 py-3">
+          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+          <p className="text-sm font-medium text-[#0E0D1E]">Profile updated successfully.</p>
+        </div>
+      )}
 
       {/* Change Email Modal */}
 
