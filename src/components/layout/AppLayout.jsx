@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { cn } from '@/lib/utils';
+import TopBar from './TopBar';
 
 export default function AppLayout() {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
-    <div className="min-h-screen bg-background">
-      <Sidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} />
-      <main className={cn(
-        "transition-all duration-300 min-h-screen",
-        collapsed ? "ml-[72px]" : "ml-[240px]"
-      )}>
+    <div className="min-h-screen bg-[#F0F0F5]">
+      <Sidebar />
+      <TopBar />
+      <main className="ml-[220px] pt-14 min-h-screen">
         <div className="p-8">
           <Outlet />
         </div>

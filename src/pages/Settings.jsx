@@ -1,173 +1,181 @@
 import React, { useState } from 'react';
-import PageHeader from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Building2, Link2, Bell, CreditCard, Shield, Check, Upload } from 'lucide-react';
-import { STORE } from '@/lib/sampleData';
+import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock } from 'lucide-react';
 
 export default function Settings() {
-  const [tab, setTab] = useState('business');
+  const [notifications, setNotifications] = useState({
+    newSales: true,
+    budgetWarnings: true,
+    bonusCompletions: false,
+  });
+
+  const toggle = (key) => setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
 
   return (
-    <div>
-      <PageHeader title="Settings" description="Manage your account and preferences" />
+    <div className="max-w-4xl">
+      {/* Page Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-[#0E0D1E]">Settings</h1>
+        <p className="text-sm text-[#7A7893] mt-1">Manage your business profile, integrations, and account security preferences.</p>
+      </div>
 
-      <div className="flex gap-8">
-        <Tabs value={tab} onValueChange={setTab} orientation="vertical" className="w-full flex gap-8">
-          <TabsList className="flex flex-col h-auto bg-transparent gap-1 w-[200px] flex-shrink-0">
-            {[
-              { value: 'business', icon: Building2, label: 'Business Profile' },
-              { value: 'pos', icon: Link2, label: 'POS Integration' },
-              { value: 'notifications', icon: Bell, label: 'Notifications' },
-              { value: 'billing', icon: CreditCard, label: 'Billing' },
-              { value: 'security', icon: Shield, label: 'Security' },
-            ].map(item => (
-              <TabsTrigger key={item.value} value={item.value}
-                className="justify-start gap-2 px-3 py-2.5 text-sm data-[state=active]:bg-primary/10 data-[state=active]:text-primary w-full">
-                <item.icon className="w-4 h-4" /> {item.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          <div className="flex-1">
-            <TabsContent value="business" className="mt-0">
-              <div className="bg-card rounded-xl border border-border p-6 space-y-5">
-                <h3 className="font-semibold">Business Profile</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label>Store Name</Label>
-                    <Input defaultValue={STORE.name} className="mt-1.5" />
-                  </div>
-                  <div>
-                    <Label>City</Label>
-                    <Input defaultValue={STORE.city} className="mt-1.5" />
-                  </div>
-                </div>
-                <div>
-                  <Label>Locations</Label>
-                  <div className="mt-1.5 space-y-2">
-                    {STORE.locations.map(l => (
-                      <div key={l} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-                        <span className="text-sm">{l}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <Label>Logo</Label>
-                  <div className="mt-1.5 border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/30 transition-colors cursor-pointer">
-                    <Upload className="w-6 h-6 mx-auto text-muted-foreground mb-2" />
-                    <p className="text-sm text-muted-foreground">Click to upload your logo</p>
-                  </div>
-                </div>
-                <Button className="bg-primary hover:bg-primary/90">Save Changes</Button>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="pos" className="mt-0">
-              <div className="bg-card rounded-xl border border-border p-6 space-y-5">
-                <h3 className="font-semibold">POS Integration</h3>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
-                      <Check className="w-5 h-5 text-emerald-600" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Lightspeed POS</p>
-                      <p className="text-sm text-muted-foreground">Connected · Last sync 2 min ago</p>
-                    </div>
-                  </div>
-                  <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200">Connected</Badge>
-                </div>
-                <div className="p-4 bg-muted/50 rounded-lg">
-                  <p className="text-sm font-medium mb-1">Setup Guide</p>
-                  <p className="text-xs text-muted-foreground">Your Lightspeed POS is connected. Sales data syncs in real-time. Commission settlements happen instantly when a qualifying sale is recorded.</p>
-                </div>
-                <Button variant="outline" className="text-destructive hover:text-destructive">Disconnect POS</Button>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="notifications" className="mt-0">
-              <div className="bg-card rounded-xl border border-border p-6 space-y-4">
-                <h3 className="font-semibold">Notification Preferences</h3>
-                {[
-                  { label: 'New sales', desc: 'Get notified when staff make qualifying sales', default: true },
-                  { label: 'Budget warnings', desc: 'Alert when campaign budget is running low', default: true },
-                  { label: 'Bonus completions', desc: 'Notify when a bonus competition ends', default: true },
-                  { label: 'Staff activity', desc: 'Alert when staff join or leave', default: false },
-                  { label: 'Weekly digest', desc: 'Summary of all activity every Monday', default: true },
-                ].map(n => (
-                  <div key={n.label} className="flex items-center justify-between py-3 border-b border-border last:border-0">
-                    <div>
-                      <p className="text-sm font-medium">{n.label}</p>
-                      <p className="text-xs text-muted-foreground">{n.desc}</p>
-                    </div>
-                    <Switch defaultChecked={n.default} />
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="billing" className="mt-0">
-              <div className="bg-card rounded-xl border border-border p-6 space-y-5">
-                <h3 className="font-semibold">Billing & Subscription</h3>
-                <div className="p-5 border rounded-xl bg-primary/5 border-primary/20">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-lg">Growth Plan</p>
-                      <p className="text-sm text-muted-foreground">€149/month · Renews May 14, 2026</p>
-                    </div>
-                    <Badge className="bg-primary text-primary-foreground">Current Plan</Badge>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="outline">Change Plan</Button>
-                  <Button variant="outline">View Invoices</Button>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium">Recent Invoices</h4>
-                  {['Apr 14, 2026', 'Mar 14, 2026', 'Feb 14, 2026'].map(date => (
-                    <div key={date} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-                      <span className="text-sm">{date}</span>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-medium">€149.00</span>
-                        <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs">Paid</Badge>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="security" className="mt-0">
-              <div className="bg-card rounded-xl border border-border p-6 space-y-5">
-                <h3 className="font-semibold">Security</h3>
-                <div>
-                  <Label>Change Password</Label>
-                  <div className="grid gap-3 mt-1.5">
-                    <Input type="password" placeholder="Current password" />
-                    <Input type="password" placeholder="New password" />
-                    <Input type="password" placeholder="Confirm new password" />
-                  </div>
-                  <Button className="mt-3 bg-primary hover:bg-primary/90">Update Password</Button>
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium">Two-Factor Authentication</p>
-                      <p className="text-xs text-muted-foreground">Add an extra layer of security to your account</p>
-                    </div>
-                    <Switch />
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
+      <div className="space-y-6">
+        {/* Business Profile */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <h2 className="text-base font-semibold text-[#0E0D1E]">Business Profile</h2>
+              <p className="text-sm text-[#7A7893] mt-0.5">Update your store information and brand identity.</p>
+            </div>
+            <button className="text-sm text-[#796EB2] font-medium hover:underline">Save Changes</button>
           </div>
-        </Tabs>
+
+          <div className="flex gap-6">
+            <div className="flex-1 space-y-4">
+              <div>
+                <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Business Name</Label>
+                <Input defaultValue="Barney's Coffeeshop" className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" />
+              </div>
+              <div>
+                <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Primary Location</Label>
+                <div className="relative mt-1.5">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9490AA]" />
+                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="pl-9 bg-[#F8F7FC] border-[#E2E0ED]" />
+                </div>
+              </div>
+              <button className="text-sm text-[#796EB2] font-medium flex items-center gap-1 hover:underline">
+                <Plus className="w-3.5 h-3.5" /> Add Location
+              </button>
+            </div>
+
+            <div className="w-[180px] flex-shrink-0">
+              <div className="border border-dashed border-[#C8C3E0] rounded-xl p-5 flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-xl bg-[#EDE9F8] flex items-center justify-center mb-3">
+                  <Building2 className="w-6 h-6 text-[#796EB2]" />
+                </div>
+                <p className="text-xs font-semibold text-[#0E0D1E] mb-0.5">Store Logo</p>
+                <p className="text-[11px] text-[#9490AA] mb-3">SVG, PNG, or JPG (max. 2MB)</p>
+                <button className="text-xs text-[#796EB2] font-medium border border-[#C8C3E0] rounded-lg px-3 py-1.5 hover:bg-[#EDE9F8] transition-colors">
+                  Upload Logo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* POS Integration */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+          <div className="mb-5">
+            <h2 className="text-base font-semibold text-[#0E0D1E]">POS Integration</h2>
+            <p className="text-sm text-[#7A7893] mt-0.5">Sync your sales data and inventory directly from your POS.</p>
+          </div>
+
+          <div className="flex items-center justify-between p-4 bg-[#F8F7FC] rounded-xl border border-[#E2E0ED]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E0ED] flex items-center justify-center shadow-sm">
+                <Zap className="w-5 h-5 text-[#796EB2]" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-[#0E0D1E]">Lightspeed POS</span>
+                  <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[11px] font-semibold px-2 py-0">CONNECTED</Badge>
+                </div>
+                <p className="text-xs text-[#9490AA]">Last synced: 4 minutes ago</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="text-sm text-[#796EB2] font-medium hover:underline">View Setup Guide</button>
+              <Button variant="outline" size="sm" className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600">
+                Disconnect
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Notifications + Billing side by side */}
+        <div className="grid grid-cols-2 gap-6">
+          {/* Notifications */}
+          <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+            <div className="mb-5">
+              <h2 className="text-base font-semibold text-[#0E0D1E]">Notifications</h2>
+              <p className="text-sm text-[#7A7893] mt-0.5">Manage how you receive updates.</p>
+            </div>
+            <div className="space-y-4">
+              {[
+                { key: 'newSales', label: 'New Sales', desc: 'Daily summary of new store sales.' },
+                { key: 'budgetWarnings', label: 'Budget Warnings', desc: 'Alerts when campaign budgets are low.' },
+                { key: 'bonusCompletions', label: 'Bonus Completions', desc: 'When staff hit their reward targets.' },
+              ].map(n => (
+                <div key={n.key} className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-[#0E0D1E]">{n.label}</p>
+                    <p className="text-xs text-[#9490AA]">{n.desc}</p>
+                  </div>
+                  <Switch
+                    checked={notifications[n.key]}
+                    onCheckedChange={() => toggle(n.key)}
+                    className="data-[state=checked]:bg-[#796EB2]"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Billing */}
+          <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+            <div className="mb-5">
+              <h2 className="text-base font-semibold text-[#0E0D1E]">Billing &amp; Subscription</h2>
+              <p className="text-sm text-[#7A7893] mt-0.5">Review and manage your current plan.</p>
+            </div>
+            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl p-4 mb-4">
+              <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-1">Current Plan</p>
+              <p className="text-xl font-bold text-[#0E0D1E]">Growth Plan</p>
+              <p className="text-sm text-[#9490AA]">€149/month · billed monthly</p>
+              <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E2E0ED]">
+                <p className="text-xs text-[#7A7893]">Renewal Date: <span className="font-semibold text-[#0E0D1E]">May 1, 2026</span></p>
+                <button className="text-xs text-[#796EB2] font-medium hover:underline">View Invoice History</button>
+              </div>
+            </div>
+            <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold">
+              Change Plan
+            </Button>
+          </div>
+        </div>
+
+        {/* Security */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+          <div className="mb-5">
+            <h2 className="text-base font-semibold text-[#0E0D1E]">Security</h2>
+            <p className="text-sm text-[#7A7893] mt-0.5">Control your account access and protection levels.</p>
+          </div>
+          <div className="flex items-center justify-between p-4 bg-[#F8F7FC] rounded-xl border border-[#E2E0ED]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
+                <Shield className="w-5 h-5 text-[#796EB2]" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#0E0D1E]">Account Authentication</p>
+                <p className="text-xs text-[#9490AA]">Update your password or enable 2FA protection.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-[#7A7893] font-medium">2FA Enabled</span>
+                <Switch defaultChecked className="data-[state=checked]:bg-[#796EB2]" />
+              </div>
+              <Button variant="outline" size="sm" className="flex items-center gap-1.5 border-[#E2E0ED] text-[#0E0D1E]">
+                <Lock className="w-3.5 h-3.5" /> Change Password
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-center text-xs text-[#9490AA] py-4">© 2026 Moongrow Technologies. All rights reserved.</p>
       </div>
     </div>
   );
