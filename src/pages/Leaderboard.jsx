@@ -46,7 +46,7 @@ export default function Leaderboard() {
       </div>
 
       <div className="flex items-center gap-4 mb-6">
-         <div className="flex items-center gap-1 bg-white rounded-xl p-1.5 border border-[#EBEBF0]">
+         <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0]">
            {['Today', 'This Week', 'This Month'].map((period, idx) => {
              const periodKey = ['today', 'week', 'month'][idx];
              return (
@@ -56,7 +56,7 @@ export default function Leaderboard() {
                  className={cn(
                    "px-4 py-2 rounded-lg text-sm font-medium transition-all",
                    timePeriod === periodKey
-                     ? "bg-[#EDE9F8] text-[#796EB2]"
+                     ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]"
                      : "text-[#7A7893] hover:text-[#796EB2]"
                  )}
                >
@@ -64,10 +64,10 @@ export default function Leaderboard() {
                </button>
              );
            })}
+         </div>
 
-           <div className="w-px h-6 bg-[#EBEBF0] mx-1" />
-
-           <div className="flex gap-1">
+         <div className="flex items-center gap-3 ml-auto">
+           <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1">
              {['commission', 'units'].map(m => (
                <button
                  key={m}
@@ -83,9 +83,7 @@ export default function Leaderboard() {
                </button>
              ))}
            </div>
-         </div>
 
-         <div className="flex items-center gap-3 ml-auto">
            <Select value={campaign} onValueChange={setCampaign}>
              <SelectTrigger className="w-[200px]"><SelectValue /></SelectTrigger>
              <SelectContent>
