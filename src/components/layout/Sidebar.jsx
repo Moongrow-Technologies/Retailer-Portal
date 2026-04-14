@@ -10,6 +10,7 @@ import { base44 } from '@/api/base44Client';
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
   { icon: Megaphone, label: 'Campaigns', path: '/campaigns' },
+  { icon: Award, label: 'Bonuses', path: '/bonuses', indent: true },
   { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
   { icon: BarChart3, label: 'Analytics', path: '/analytics' },
   { icon: Wallet, label: 'Wallet', path: '/wallet' },
@@ -50,6 +51,7 @@ export default function Sidebar() {
               to={item.path}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
+                item.indent && "ml-5 text-[13px]",
                 active
                   ? "bg-[#EDE9F8] text-[#796EB2]"
                   : "text-[#4A4761] hover:bg-[#F5F3FC] hover:text-[#796EB2]"
