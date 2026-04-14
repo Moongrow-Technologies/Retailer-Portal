@@ -3,7 +3,7 @@ import WalletBreakdown from '@/components/shared/WalletBreakdown';
 import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import { Button } from '@/components/ui/button';
-import { Plus, AlertTriangle } from 'lucide-react';
+import { Plus, ArrowUpFromLine, AlertTriangle } from 'lucide-react';
 import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
 
 export default function WalletPage() {
@@ -18,9 +18,14 @@ export default function WalletPage() {
           <h1 className="text-2xl font-bold text-[#0E0D1E]">Wallet</h1>
           <p className="text-sm text-[#7A7893] mt-1">Manage your EURC funds and transaction history.</p>
         </div>
-        <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
-          <Plus className="w-4 h-4" /> Top Up
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E]">
+            <ArrowUpFromLine className="w-4 h-4" /> Withdraw
+          </Button>
+          <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+            <Plus className="w-4 h-4" /> Top Up
+          </Button>
+        </div>
       </div>
 
       {zeroBalance && (
