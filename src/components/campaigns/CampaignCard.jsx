@@ -3,36 +3,40 @@ import { Link } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
+import { Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function CampaignCard({ campaign, onTogglePause }) {
+export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const isActive = campaign.status === 'active';
-  const isPaused = campaign.status === 'paused_manual' || campaign.status === 'paused_budget';
 
   return (
-    <Link to={`/campaigns/${campaign.id}`} className="block">
-      <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors">
-        <div className="flex items-start justify-between mb-3">
-          <div>
-            <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
-            <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <StatusBadge status={campaign.status} />
-            {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && (
-              <Switch
-                checked={isActive}
-                onCheckedChange={(e) => {
-                  e.preventDefault();
-                  onTogglePause?.(campaign);
-                }}
-                onClick={(e) => e.preventDefault()}
-                className="data-[state=checked]:bg-primary"
-              />
-            )}
-          </div>
+    <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors">
+      <div className="flex items-start justify-between mb-3">
+        <Link to={`/campaigns/${campaign.id}`} className="block flex-1">
+          <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
+          <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
+        </Link>
+        <div className="flex items-center gap-3 ml-3">
+          <StatusBadge status={campaign.status} />
+          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && (
+            <Switch
+              checked={isActive}
+              onCheckedChange={() => onTogglePause?.(campaign)}
+              className="data-[state=checked]:bg-primary"
+            />
+          )}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onDelete?.(campaign);
+            }}
+            className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
         </div>
+      </div>
 
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
@@ -49,7 +53,6 @@ export default function CampaignCard({ campaign, onTogglePause }) {
           <span>·</span>
           <span>{campaign.duration_days}d duration</span>
         </div>
-      </div>
-    </Link>
+    </div>
   );
 }

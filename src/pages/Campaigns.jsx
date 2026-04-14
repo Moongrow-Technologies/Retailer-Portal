@@ -15,8 +15,9 @@ const TABS = [
 
 export default function Campaigns() {
   const [tab, setTab] = useState('all');
+  const [campaigns, setCampaigns] = useState(CAMPAIGNS);
 
-  const filtered = tab === 'all' ? CAMPAIGNS : CAMPAIGNS.filter(c => {
+  const filtered = tab === 'all' ? campaigns : campaigns.filter(c => {
     if (tab === 'active') return c.status === 'active';
     if (tab === 'paused') return c.status === 'paused_manual' || c.status === 'paused_budget';
     if (tab === 'completed') return c.status === 'completed';
@@ -24,9 +25,18 @@ export default function Campaigns() {
   });
 
   const count = (key) => {
-    if (key === 'all') return CAMPAIGNS.length;
-    if (key === 'paused') return CAMPAIGNS.filter(c => c.status.startsWith('paused')).length;
-    return CAMPAIGNS.filter(c => c.status === key).length;
+    if (key === 'all') return campaigns.length;
+    if (key === 'paused') return campaigns.filter(c => c.status.startsWith('paused')).length;
+    return campaigns.filter(c => c.status === key).length;
+  };
+
+  const handleTogglePause = (campaign) => {
+    const newStatus = campaign.status === 'active' ? 'paused_manual' : 'active';
+    setCampaigns(campaigns.map(c => c.id === campaign.id ? { ...c, status: newStatus } : c));
+  };
+
+  const handleDelete = (campaign) => {
+    setCampaigns(campaigns.filter(c => c.id !== campaign.id));
   };
 
   return (
@@ -72,7 +82,7 @@ export default function Campaigns() {
           </div>
         ) : (
           <div className="p-4 flex flex-col gap-3">
-            {filtered.map(campaign => <CampaignCard key={campaign.id} campaign={campaign} />)}
+            {filtered.map(campaign => <CampaignCard key={campaign.id} campaign={campaign} onTogglePause={handleTogglePause} onDelete={handleDelete} />)}
           </div>
         )}
       </div>
