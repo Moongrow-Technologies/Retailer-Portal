@@ -16,11 +16,6 @@ export default function QuickActions() {
           <Award className="w-4 h-4" /> Create Bonus
         </Button>
       </Link>
-      <Link to="/wallet">
-        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E] hover:bg-[#F5F4FA]">
-          <Plus className="w-4 h-4" /> Top Up Wallet
-        </Button>
-      </Link>
     </div>
   );
 }
