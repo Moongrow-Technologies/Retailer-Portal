@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PageHeader from '@/components/shared/PageHeader';
 import WalletBreakdown from '@/components/shared/WalletBreakdown';
 import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
@@ -13,12 +12,16 @@ export default function WalletPage() {
   const zeroBalance = wallet.total_balance === 0;
 
   return (
-    <div>
-      <PageHeader title="Wallet" description="Manage your EURC funds">
-        <Button onClick={() => setShowTopUp(true)} className="bg-primary hover:bg-primary/90 gap-2">
+    <div className="max-w-4xl">
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Wallet</h1>
+          <p className="text-sm text-[#7A7893] mt-1">Manage your EURC funds and transaction history.</p>
+        </div>
+        <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
           <Plus className="w-4 h-4" /> Top Up
         </Button>
-      </PageHeader>
+      </div>
 
       {zeroBalance && (
         <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
