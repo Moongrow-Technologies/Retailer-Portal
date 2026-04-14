@@ -174,10 +174,10 @@ export default function CreateBonus() {
             </div>
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Duration</Label>
-              {data.type === 'sprint' ? (
+              {data.type === 'sprint' || data.type === 'threshold' ? (
                 <div className="p-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
                   <p className="text-sm font-medium text-[#0E0D1E]">Ends on completion</p>
-                  <p className="text-xs text-[#9490AA] mt-1">Sprint bonuses end when the target is reached</p>
+                  <p className="text-xs text-[#9490AA] mt-1">{data.type === 'sprint' ? 'Sprint' : 'Threshold'} bonuses end when the target is reached</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-3">
