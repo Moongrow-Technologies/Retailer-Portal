@@ -62,7 +62,7 @@ export default function Campaigns() {
           <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] p-4 space-y-3">
           {filtered.map(campaign => <CampaignCard key={campaign.id} campaign={campaign} />)}
         </div>
       )}

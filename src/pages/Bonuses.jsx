@@ -91,7 +91,7 @@ export default function Bonuses() {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] p-4 grid grid-cols-2 gap-4">
           {filtered.map(bonus => <BonusCard key={bonus.id} bonus={bonus} />)}
         </div>
       )}
