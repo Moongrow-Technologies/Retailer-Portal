@@ -300,7 +300,7 @@ export default function CreateBonus() {
                 { label: 'Metric', value: data.metric === 'units_sold' ? 'Units Sold' : 'Commission Earned' },
                 { label: 'Product', value: data.product || 'All Products' },
                 { label: 'Scope', value: data.scope === 'chain' ? 'Chain-wide' : data.scope },
-                { label: 'Duration', value: (data.customStart && data.customEnd) ? `${data.customStart} → ${data.customEnd}` : data.customStart || data.customEnd || '—' },
+                { label: 'Duration', value: data.type === 'sprint' || data.type === 'threshold' ? 'Ends on completion' : (data.customStart && data.customEnd) ? `${data.customStart} → ${data.customEnd}` : data.customStart || data.customEnd || '—' },
               ].map(row => (
                 <div key={row.label} className="bg-[#F8F7FC] rounded-xl p-3 border border-[#E2E0ED] rounded-xl">
                   <p className="text-[11px] text-[#9490AA] uppercase tracking-wide">{row.label}</p>
