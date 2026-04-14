@@ -27,7 +27,8 @@ export default function StaffPage() {
         </div>
         <div className="px-4 pt-3 pb-1 flex items-center gap-4 text-xs font-semibold uppercase tracking-wide text-[#9490AA]">
           <div className="w-9 flex-shrink-0" />
-          <div className="flex-1 pl-0">Staff Member</div>
+          <div className="w-40 flex-shrink-0">Staff Member</div>
+          <div className="flex-1">Location</div>
           <div className="w-28 flex-shrink-0">Status</div>
           <div className="w-28 flex-shrink-0 text-right">Commission</div>
           <div className="w-24 flex-shrink-0 text-right">Units Sold</div>

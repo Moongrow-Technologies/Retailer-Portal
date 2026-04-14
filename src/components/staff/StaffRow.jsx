@@ -22,9 +22,12 @@ export default function StaffRow({ staff }) {
         <div className="w-9 h-9 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-bold text-[#796EB2] flex-shrink-0">
           {staff.name.charAt(0)}
         </div>
-        <div className="flex-1 min-w-0">
+        <div className="w-40 flex-shrink-0 min-w-0">
           <p className="text-sm font-medium text-[#0E0D1E] truncate">{staff.name}</p>
-          <p className="text-xs text-[#9490AA] mt-0.5">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)} · {staff.store}</p>
+          <p className="text-xs text-[#9490AA] mt-0.5">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)}</p>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm text-[#9490AA] truncate">{staff.store}</p>
         </div>
         <div className="w-28 flex-shrink-0">
           <Badge variant="outline" className={cn("text-xs", statusColors[staff.status])}>
