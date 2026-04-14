@@ -129,13 +129,7 @@ export default function Leaderboard() {
                   {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
                 </p>
               </div>
-              {staff.bonus_wins > 0 && (
-                <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1">
-                  <Medal className="w-3.5 h-3.5 text-amber-600" />
-                  <span className="text-xs font-medium text-amber-700">{staff.bonus_wins} wins</span>
-                </div>
-              )}
-            </div>
+              </div>
           </Link>
         ))}
       </div>
