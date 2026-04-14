@@ -29,7 +29,7 @@ export default function StaffRow({ staff }) {
         <div className="flex-1 min-w-0">
           <p className="text-sm text-[#9490AA] truncate">{staff.store}</p>
         </div>
-        <div className="w-28 flex-shrink-0 flex items-center">
+        <div className="w-28 flex-shrink-0">
           <Badge variant="outline" className={cn("text-xs", statusColors[staff.status])}>
             {statusLabels[staff.status]}
           </Badge>
