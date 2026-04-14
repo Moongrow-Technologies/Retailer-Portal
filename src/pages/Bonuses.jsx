@@ -1,61 +1,62 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import BonusCard from '@/components/bonuses/BonusCard';
-import { Plus, Wallet, Lock } from 'lucide-react';
-import { BONUSES, WALLET } from '@/lib/sampleData';
+import { Plus } from 'lucide-react';
+import { BONUSES } from '@/lib/sampleData';
+import { format } from 'date-fns';
+
+const TYPE_STYLES = {
+  sprint:    { label: 'Sprint',    className: 'bg-blue-50 text-blue-600 border-blue-200' },
+  threshold: { label: 'Threshold', className: 'bg-amber-50 text-amber-600 border-amber-200' },
+  ranked:    { label: 'Ranked',    className: 'bg-purple-50 text-purple-600 border-purple-200' },
+};
 
 const TABS = [
-  { key: 'active', label: 'Active' },
+  { key: 'active',    label: 'Active' },
   { key: 'scheduled', label: 'Scheduled' },
   { key: 'completed', label: 'Completed' },
 ];
 
+function getTarget(bonus) {
+  if (bonus.threshold_target) return `Sell ${bonus.threshold_target} units`;
+  if (bonus.prizes && bonus.prizes.length) {
+    const top = bonus.prizes[0];
+    return `Top ${bonus.prizes.length} sellers`;
+  }
+  return '—';
+}
+
+function getPrize(bonus) {
+  if (bonus.threshold_prize) return `€${bonus.threshold_prize}`;
+  if (bonus.prizes && bonus.prizes.length) return `€${bonus.prizes[0].amount}`;
+  if (bonus.prize_pool) return `€${bonus.prize_pool}`;
+  return '—';
+}
+
 export default function Bonuses() {
   const [tab, setTab] = useState('active');
 
-  const filtered = tab === 'scheduled'
-    ? []
-    : BONUSES.filter(b => b.status === tab);
+  const counts = {
+    active:    BONUSES.filter(b => b.status === 'active').length,
+    scheduled: 0,
+    completed: BONUSES.filter(b => b.status === 'completed').length,
+  };
 
-  const activeBonuses = BONUSES.filter(b => b.status === 'active');
-  const committedBonuses = activeBonuses.reduce((s, b) => s + b.prize_pool, 0);
+  const filtered = tab === 'scheduled' ? [] : BONUSES.filter(b => b.status === tab);
 
   return (
-    <div className="max-w-5xl">
-      {/* Page header */}
+    <div className="max-w-4xl">
+      {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0E0D1E]">Bonuses</h1>
-          <p className="text-sm text-[#7A7893] mt-1">Run competitions and reward your top performers.</p>
+          <p className="text-sm text-[#7A7893] mt-1">Run competitions and reward your team.</p>
         </div>
         <Link to="/bonuses/new">
           <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
             <Plus className="w-4 h-4" /> Create New Bonus
           </Button>
         </Link>
-      </div>
-
-      {/* Wallet summary bar */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-[#EBEBF0] p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
-            <Wallet className="w-5 h-5 text-[#796EB2]" />
-          </div>
-          <div>
-            <p className="text-xs text-[#9490AA]">Available Balance</p>
-            <p className="text-lg font-bold text-[#0E0D1E]">€{WALLET.available.toFixed(2)}</p>
-          </div>
-        </div>
-        <div className="bg-white rounded-xl border border-[#EBEBF0] p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
-            <Lock className="w-5 h-5 text-amber-600" />
-          </div>
-          <div>
-            <p className="text-xs text-[#9490AA]">Committed to Active Bonuses</p>
-            <p className="text-lg font-bold text-[#0E0D1E]">€{committedBonuses.toFixed(2)}</p>
-          </div>
-        </div>
       </div>
 
       {/* Tabs */}
@@ -71,16 +72,14 @@ export default function Bonuses() {
             }`}
           >
             {t.label}
-            {t.key !== 'scheduled' && (
-              <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${tab === t.key ? 'bg-[#EDE9F8] text-[#796EB2]' : 'bg-[#EBEBF0] text-[#9490AA]'}`}>
-                {BONUSES.filter(b => b.status === t.key).length}
-              </span>
-            )}
+            <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${tab === t.key ? 'bg-[#EDE9F8] text-[#796EB2]' : 'bg-[#EBEBF0] text-[#9490AA]'}`}>
+              {counts[t.key]}
+            </span>
           </button>
         ))}
       </div>
 
-      {/* Cards */}
+      {/* Bonus list */}
       {filtered.length === 0 ? (
         <div className="bg-white rounded-xl border border-[#EBEBF0] p-12 text-center">
           <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
@@ -91,8 +90,44 @@ export default function Bonuses() {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
-          {filtered.map(bonus => <BonusCard key={bonus.id} bonus={bonus} />)}
+        <div className="space-y-3">
+          {filtered.map(bonus => {
+            const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
+            return (
+              <Link key={bonus.id} to={`/bonuses/${bonus.id}`}>
+                <div className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors">
+                  {/* Type badge */}
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
+                    {typeStyle.label}
+                  </span>
+
+                  {/* Name + product */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-[#0E0D1E] truncate">{bonus.name}</p>
+                    <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name}</p>
+                  </div>
+
+                  {/* Target */}
+                  <div className="w-32 flex-shrink-0">
+                    <p className="text-xs text-[#9490AA]">Target</p>
+                    <p className="text-sm font-medium text-[#0E0D1E]">{getTarget(bonus)}</p>
+                  </div>
+
+                  {/* Prize */}
+                  <div className="w-24 flex-shrink-0">
+                    <p className="text-xs text-[#9490AA]">Prize</p>
+                    <p className="text-sm font-semibold text-[#0E0D1E]">{getPrize(bonus)}</p>
+                  </div>
+
+                  {/* End date */}
+                  <div className="w-28 flex-shrink-0 text-right">
+                    <p className="text-xs text-[#9490AA]">Ends</p>
+                    <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>
