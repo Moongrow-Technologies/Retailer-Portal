@@ -26,10 +26,10 @@ export default function StaffRow({ staff }) {
           <p className="text-sm font-medium text-[#0E0D1E] truncate">{staff.name}</p>
           <p className="text-xs text-[#9490AA] mt-0.5">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)}</p>
         </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm text-[#9490AA] truncate">{staff.store}</p>
+        <div className="flex-1">
+          <p className="text-sm text-[#9490AA]">{staff.store}</p>
         </div>
-        <div className="w-28 flex-shrink-0">
+        <div className="w-36 flex-shrink-0 flex justify-center">
           <Badge variant="outline" className={cn("text-xs", statusColors[staff.status])}>
             {statusLabels[staff.status]}
           </Badge>
