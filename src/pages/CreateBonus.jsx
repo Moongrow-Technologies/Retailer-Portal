@@ -174,16 +174,23 @@ export default function CreateBonus() {
             </div>
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Duration</Label>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label className="text-xs text-[#7A7893]">Start Date</Label>
-                  <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+              {data.type === 'sprint' ? (
+                <div className="p-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                  <p className="text-sm font-medium text-[#0E0D1E]">Ends on completion</p>
+                  <p className="text-xs text-[#9490AA] mt-1">Sprint bonuses end when the target is reached</p>
                 </div>
-                <div>
-                  <Label className="text-xs text-[#7A7893]">End Date</Label>
-                  <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+              ) : (
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <Label className="text-xs text-[#7A7893]">Start Date</Label>
+                    <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-[#7A7893]">End Date</Label>
+                    <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
