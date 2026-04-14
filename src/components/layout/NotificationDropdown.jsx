@@ -10,7 +10,12 @@ export default function NotificationDropdown({ onClose }) {
 
   useEffect(() => {
     function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) onClose();
+      if (ref.current && !ref.current.contains(e.target)) {
+        // Check if click was on the bell button (its parent div handles toggle)
+        const bellBtn = document.getElementById('notification-bell');
+        if (bellBtn && bellBtn.contains(e.target)) return;
+        onClose();
+      }
     }
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);

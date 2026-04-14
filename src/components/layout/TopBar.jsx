@@ -68,6 +68,7 @@ export default function TopBar() {
         </button>
         <div className="relative">
           <button
+            id="notification-bell"
             onClick={() => setShowNotifications(v => !v)}
             className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors relative"
           >
