@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Wallet, Megaphone, BarChart3, Trophy,
-  Award, Users, Settings, LogOut, Sparkles
+  Gift, Users, Settings, LogOut, Sparkles
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { base44 } from '@/api/base44Client';
@@ -10,7 +10,7 @@ import { base44 } from '@/api/base44Client';
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
   { icon: Megaphone, label: 'Campaigns', path: '/campaigns' },
-  { icon: Award, label: 'Bonuses', path: '/bonuses', sub: true },
+  { icon: Gift, label: 'Bonuses', path: '/bonuses', sub: true },
   { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
   { icon: BarChart3, label: 'Analytics', path: '/analytics' },
   { icon: Wallet, label: 'Wallet', path: '/wallet' },
