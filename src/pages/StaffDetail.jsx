@@ -87,6 +87,41 @@ export default function StaffDetail() {
         </div>
       </div>
 
+      {/* Commission history */}
+      <div className="bg-card rounded-xl border border-border p-5 mt-6">
+        <h3 className="text-sm font-semibold mb-4">Commission History</h3>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+            <div>
+              <p className="text-sm font-medium">OG Kush Sales</p>
+              <p className="text-xs text-muted-foreground">15 units sold</p>
+            </div>
+            <p className="text-sm font-semibold text-emerald-600">+€120.00</p>
+          </div>
+          <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+            <div>
+              <p className="text-sm font-medium">Blue Dream Sales</p>
+              <p className="text-xs text-muted-foreground">12 units sold</p>
+            </div>
+            <p className="text-sm font-semibold text-emerald-600">+€85.00</p>
+          </div>
+          <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+            <div>
+              <p className="text-sm font-medium">Amnesia Haze Sales</p>
+              <p className="text-xs text-muted-foreground">10 units sold</p>
+            </div>
+            <p className="text-sm font-semibold text-emerald-600">+€72.00</p>
+          </div>
+          <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+            <div>
+              <p className="text-sm font-medium">White Widow Sales</p>
+              <p className="text-xs text-muted-foreground">7 units sold</p>
+            </div>
+            <p className="text-sm font-semibold text-emerald-600">+€45.00</p>
+          </div>
+        </div>
+      </div>
+
       {/* Bonus history */}
       <div className="bg-card rounded-xl border border-border p-5 mt-6">
         <h3 className="text-sm font-semibold mb-4">Bonus History</h3>
