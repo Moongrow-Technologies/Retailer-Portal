@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import StatCard from '@/components/shared/StatCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -116,12 +117,14 @@ export default function Analytics() {
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Commission</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).map((s, i) => (
-              <div key={s.id} className="flex items-center gap-3">
-                <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
-                <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
-                <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
-                <p className="text-sm font-semibold text-[#0E0D1E]">€{s.total_commissions.toFixed(2)}</p>
-              </div>
+              <Link to={`/staff/${s.id}`} key={s.id}>
+                <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
+                  <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
+                  <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
+                  <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
+                  <p className="text-sm font-semibold text-[#0E0D1E]">€{s.total_commissions.toFixed(2)}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -129,12 +132,14 @@ export default function Analytics() {
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Units</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_units_sold - a.total_units_sold).map((s, i) => (
-              <div key={s.id} className="flex items-center gap-3">
-                <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
-                <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
-                <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
-                <p className="text-sm font-semibold text-[#0E0D1E]">{s.total_units_sold} units</p>
-              </div>
+              <Link to={`/staff/${s.id}`} key={s.id}>
+                <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
+                  <span className="w-5 text-sm font-bold text-[#9490AA]">{i + 1}</span>
+                  <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2]">{s.name[0]}</div>
+                  <p className="flex-1 text-sm font-medium text-[#0E0D1E]">{s.name}</p>
+                  <p className="text-sm font-semibold text-[#0E0D1E]">{s.total_units_sold} units</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
