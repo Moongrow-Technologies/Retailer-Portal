@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Camera } from 'lucide-react';
 import { STORE } from '@/lib/sampleData';
 
@@ -28,60 +27,69 @@ export default function Profile() {
     : 'U';
 
   return (
-    <div className="max-w-lg">
+    <div className="max-w-4xl">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#0E0D1E]">My Profile</h1>
         <p className="text-sm text-[#7A7893] mt-1">Manage your personal details.</p>
       </div>
 
-      {/* Avatar */}
-      <div className="flex flex-col items-center mb-6">
-        <div className="w-20 h-20 rounded-full bg-[#EDE9F8] flex items-center justify-center text-2xl font-bold text-[#796EB2] mb-3">
-          {initials}
+      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5">
+
+        {/* Left card — identity */}
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 flex flex-col items-center text-center">
+          <div className="w-24 h-24 rounded-full bg-[#EDE9F8] flex items-center justify-center text-3xl font-bold text-[#796EB2] mb-3">
+            {initials}
+          </div>
+          <button className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors mb-5">
+            <Camera className="w-3.5 h-3.5" />
+            Upload Photo
+          </button>
+          <h2 className="text-lg font-bold text-[#0E0D1E] leading-tight">{fullName || 'User'}</h2>
+          <span className="mt-2 inline-block px-3 py-1 bg-[#EDE9F8] text-[#796EB2] text-xs font-semibold rounded-full capitalize">
+            {user?.role || 'Admin'}
+          </span>
+          <p className="mt-2 text-sm text-[#9490AA]">{STORE.city}, Netherlands</p>
         </div>
-        <button className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors">
-          <Camera className="w-3.5 h-3.5" />
-          Upload Photo
-        </button>
-      </div>
 
-      {/* Card */}
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
-        <div className="flex flex-col gap-4">
+        {/* Right card — personal details */}
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Personal Details</h3>
 
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
-            <Label className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Full Name</Label>
-            <Input
-              value={fullName}
-              onChange={e => setFullName(e.target.value)}
-              className="mt-1 border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
-            />
+          <div className="flex flex-col gap-3">
+            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Full Name</p>
+              <Input
+                value={fullName}
+                onChange={e => setFullName(e.target.value)}
+                className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
+              />
+            </div>
+
+            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Email Address</p>
+              <Input
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
+              />
+            </div>
+
+            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Role</p>
+              <p className="text-sm font-medium text-[#0E0D1E] capitalize">{user?.role || 'Admin'}</p>
+            </div>
+
+            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Location</p>
+              <p className="text-sm font-medium text-[#0E0D1E]">{STORE.city}, Netherlands</p>
+            </div>
+
+            <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
+              Save Changes
+            </Button>
           </div>
-
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
-            <Label className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Email Address</Label>
-            <Input
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="mt-1 border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
-            />
-          </div>
-
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
-            <Label className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Role</Label>
-            <p className="mt-1 text-sm font-medium text-[#0E0D1E] capitalize">{user?.role || 'Store Manager'}</p>
-          </div>
-
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
-            <Label className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Location</Label>
-            <p className="mt-1 text-sm font-medium text-[#0E0D1E]">{STORE.city}, Netherlands</p>
-          </div>
-
-          <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
-            Save Changes
-          </Button>
-
         </div>
+
       </div>
     </div>
   );
