@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
-import { Trophy, Target, Zap, Clock, Crown, Medal, Award } from 'lucide-react';
+import { Trophy, Target, Zap, Clock, Crown, Medal, Award, MoreVertical } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
+import EditBonusModal from './EditBonusModal';
+import DeleteBonusModal from './DeleteBonusModal';
 
 const typeConfig = {
   ranked: { icon: Trophy, label: 'Ranked', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', badgeBg: 'bg-amber-50 text-amber-700 border-amber-200' },
@@ -19,20 +27,23 @@ function formatTimeLeft(hours) {
 
 const rankIcons = [Crown, Medal, Award];
 
-export default function BonusCard({ bonus }) {
+export default function BonusCard({ bonus, onEdit, onDelete }) {
   const cfg = typeConfig[bonus.type] || typeConfig.ranked;
   const Icon = cfg.icon;
   const isActive = bonus.status === 'active';
+  const isCompleted = bonus.status === 'completed';
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   return (
-    <Link to={`/bonuses/${bonus.id}`} className="block">
+    <>
       <div className={cn(
         "bg-white rounded-xl border p-5 transition-all hover:shadow-md",
         isActive ? "border-[#EBEBF0] hover:border-[#C8C3E0]" : "border-[#EBEBF0] opacity-80"
       )}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-3">
+          <Link to={`/bonuses/${bonus.id}`} className="flex items-center gap-3 flex-1">
             <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", cfg.bg)}>
               <Icon className={cn("w-5 h-5", cfg.text)} />
             </div>
@@ -40,10 +51,29 @@ export default function BonusCard({ bonus }) {
               <h3 className="font-semibold text-[#0E0D1E] text-sm">{bonus.name}</h3>
               <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name} · {bonus.scope === 'chain' ? 'Chain-wide' : bonus.store}</p>
             </div>
+          </Link>
+          <div className="flex items-center gap-3 ml-3">
+            <Badge variant="outline" className={cn("text-xs font-semibold", cfg.badgeBg)}>
+              {cfg.label}
+            </Badge>
+            {!isCompleted && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-[#F8F7FC] rounded-lg transition-colors">
+                    <MoreVertical className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setEditOpen(true)}>
+                    Edit
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setDeleteOpen(true)} className="text-destructive">
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
-          <Badge variant="outline" className={cn("text-xs font-semibold", cfg.badgeBg)}>
-            {cfg.label}
-          </Badge>
         </div>
 
         {isActive ? (
@@ -110,6 +140,21 @@ export default function BonusCard({ bonus }) {
           </div>
         )}
       </div>
-    </Link>
+
+      <EditBonusModal
+        bonus={bonus}
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        onSave={onEdit}
+      />
+
+      <DeleteBonusModal
+        bonus={bonus}
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        onConfirm={onDelete}
+        isActive={isActive}
+      />
+    </>
   );
 }
