@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,15 @@ export default function Profile() {
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [newEmail, setNewEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const fileInputRef = useRef(null);
+
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    setAvatarUrl(file_url);
+  };
 
   useEffect(() => {
     if (user) {
@@ -41,10 +50,16 @@ export default function Profile() {
 
         {/* Left card — identity */}
         <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 flex flex-col items-center text-center">
-          <div className="w-24 h-24 rounded-full bg-[#EDE9F8] flex items-center justify-center text-3xl font-bold text-[#796EB2] mb-3">
-            {initials}
+          <div className="w-24 h-24 rounded-full bg-[#EDE9F8] flex items-center justify-center text-3xl font-bold text-[#796EB2] mb-3 overflow-hidden">
+            {avatarUrl
+              ? <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" />
+              : initials}
           </div>
-          <button className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors mb-5">
+          <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
+          <button
+            onClick={() => fileInputRef.current.click()}
+            className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors mb-5"
+          >
             <Camera className="w-3.5 h-3.5" />
             Upload Photo
           </button>
