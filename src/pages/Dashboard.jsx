@@ -1,5 +1,4 @@
 import React from 'react';
-import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
 import WalletSummary from '@/components/dashboard/WalletSummary';
 import QuickActions from '@/components/dashboard/QuickActions';
@@ -17,9 +16,13 @@ export default function Dashboard() {
 
   return (
     <div>
-      <PageHeader title="Dashboard" description="De Groene Hoek — Amsterdam">
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Dashboard</h1>
+          <p className="text-sm text-[#7A7893] mt-1">De Groene Hoek — Amsterdam</p>
+        </div>
         <QuickActions />
-      </PageHeader>
+      </div>
 
       {zeroBalance && (
         <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">

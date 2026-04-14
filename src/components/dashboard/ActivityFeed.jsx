@@ -27,19 +27,19 @@ const colorMap = {
 
 export default function ActivityFeed({ activities }) {
   return (
-    <div className="bg-card rounded-xl border border-border p-5">
-      <h3 className="text-sm font-semibold mb-4">Recent Activity</h3>
-      <div className="space-y-3">
+    <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6">
+      <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Recent Activity</h3>
+      <div className="space-y-4">
         {activities.map((activity, i) => {
           const Icon = iconMap[activity.type] || ShoppingCart;
           return (
             <div key={i} className="flex items-start gap-3">
-              <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-muted text-muted-foreground')}>
+              <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-[#EDE9F8] text-[#796EB2]')}>
                 <Icon className="w-4 h-4" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-foreground leading-snug">{activity.message}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">
+              <div className="flex-1 min-w-0 pt-0.5">
+                <p className="text-sm text-[#0E0D1E] leading-snug">{activity.message}</p>
+                <p className="text-xs text-[#9490AA] mt-0.5">
                   {format(new Date(activity.created_date), 'MMM d, h:mm a')}
                 </p>
               </div>

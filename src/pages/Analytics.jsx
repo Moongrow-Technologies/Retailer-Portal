@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -46,9 +45,13 @@ export default function Analytics() {
 
   return (
     <div>
-      <PageHeader title="Analytics" description="Performance insights across all campaigns">
-        <Button variant="outline" className="gap-2"><Download className="w-4 h-4" /> Export All</Button>
-      </PageHeader>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Analytics</h1>
+          <p className="text-sm text-[#7A7893] mt-1">Performance insights across all campaigns.</p>
+        </div>
+        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export All</Button>
+      </div>
 
       {/* Persistent filters */}
       <div className="flex gap-3 mb-6">
@@ -80,8 +83,8 @@ export default function Analytics() {
 
       {/* Charts */}
       <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold mb-4">Sales by Product</h3>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Sales by Product</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={salesByProduct}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -93,8 +96,8 @@ export default function Analytics() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold mb-4">Best Performing Time of Day</h3>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Best Performing Time of Day</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={timeOfDay}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -109,8 +112,8 @@ export default function Analytics() {
 
       {/* Staff performance */}
       <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold mb-4">Top Earners by Commission</h3>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Commission</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).map((s, i) => (
               <div key={s.id} className="flex items-center gap-3">
@@ -122,8 +125,8 @@ export default function Analytics() {
             ))}
           </div>
         </div>
-        <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold mb-4">Top Earners by Units</h3>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Units</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_units_sold - a.total_units_sold).map((s, i) => (
               <div key={s.id} className="flex items-center gap-3">
@@ -138,8 +141,8 @@ export default function Analytics() {
       </div>
 
       {/* Wallet spend over time */}
-      <div className="bg-card rounded-xl border border-border p-5 mb-6">
-        <h3 className="text-sm font-semibold mb-4">Wallet Spend Over Time</h3>
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5 mb-6">
+        <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Wallet Spend Over Time</h3>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={spendOverTime}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -152,8 +155,8 @@ export default function Analytics() {
       </div>
 
       {/* Campaign ROI */}
-      <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold mb-4">Campaign Spend vs Budget</h3>
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+        <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Campaign Spend vs Budget</h3>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={campaignROI}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />

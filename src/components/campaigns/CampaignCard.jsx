@@ -12,11 +12,11 @@ export default function CampaignCard({ campaign, onTogglePause }) {
 
   return (
     <Link to={`/campaigns/${campaign.id}`} className="block">
-      <div className="bg-card rounded-xl border border-border p-5 hover:shadow-md hover:border-primary/20 transition-all duration-200">
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5 hover:shadow-md hover:border-[#C8C3E0] transition-all duration-200">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h3 className="font-semibold text-foreground">{campaign.name}</h3>
-            <p className="text-sm text-muted-foreground mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
+            <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
+            <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
           </div>
           <div className="flex items-center gap-3">
             <StatusBadge status={campaign.status} />
@@ -36,13 +36,13 @@ export default function CampaignCard({ campaign, onTogglePause }) {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
-            <span className="font-medium">{Math.round(spendPct)}%</span>
+            <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
+            <span className="font-semibold text-[#0E0D1E]">{Math.round(spendPct)}%</span>
           </div>
           <Progress value={spendPct} className="h-1.5" />
         </div>
 
-        <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-4 mt-3 text-xs text-[#9490AA]">
           <span>{campaign.units_sold} units sold</span>
           <span>·</span>
           <span>{campaign.stores?.length || 1} store{(campaign.stores?.length || 1) > 1 ? 's' : ''}</span>

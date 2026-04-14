@@ -22,16 +22,16 @@ const typeColors = {
 
 export default function TransactionHistory({ transactions }) {
   return (
-    <div className="bg-card rounded-xl border border-border">
-      <div className="px-5 py-4 border-b border-border">
-        <h3 className="text-sm font-semibold">Transaction History</h3>
+    <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
+      <div className="px-6 py-4 border-b border-[#EBEBF0]">
+        <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
       </div>
-      <div className="divide-y divide-border">
+      <div className="divide-y divide-[#F5F3FC]">
         {transactions.map((tx, i) => (
-          <div key={i} className="px-5 py-3.5 flex items-center gap-4 hover:bg-muted/30 transition-colors">
+          <div key={i} className="px-6 py-4 flex items-center gap-4 hover:bg-[#FAFAF9] transition-colors">
             <div className={cn(
-              "w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0",
-              tx.amount > 0 ? "bg-emerald-50" : "bg-slate-50"
+              "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0",
+              tx.amount > 0 ? "bg-emerald-50" : "bg-[#F8F7FC]"
             )}>
               {tx.amount > 0
                 ? <ArrowDownRight className="w-4 h-4 text-emerald-600" />
@@ -39,8 +39,8 @@ export default function TransactionHistory({ transactions }) {
               }
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-foreground truncate">{tx.description}</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
+              <p className="text-sm font-medium text-[#0E0D1E] truncate">{tx.description}</p>
+              <p className="text-xs text-[#9490AA] mt-0.5">
                 {format(new Date(tx.created_date), 'MMM d, yyyy · h:mm a')}
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function TransactionHistory({ transactions }) {
               {typeLabels[tx.type] || tx.type}
             </Badge>
             <p className={cn("text-sm font-semibold tabular-nums flex-shrink-0 w-24 text-right",
-              tx.amount > 0 ? "text-emerald-600" : "text-foreground"
+              tx.amount > 0 ? "text-emerald-600" : "text-[#0E0D1E]"
             )}>
               {tx.amount > 0 ? '+' : ''}€{Math.abs(tx.amount).toFixed(2)}
             </p>

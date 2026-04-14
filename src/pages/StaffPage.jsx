@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import PageHeader from '@/components/shared/PageHeader';
 import StaffRow from '@/components/staff/StaffRow';
 import InviteStaffModal from '@/components/staff/InviteStaffModal';
-import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
-import { UserPlus, Users } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { STAFF } from '@/lib/sampleData';
 
 export default function StaffPage() {
@@ -12,22 +10,22 @@ export default function StaffPage() {
   const sorted = [...STAFF].sort((a, b) => b.total_commissions - a.total_commissions);
 
   return (
-    <div>
-      <PageHeader title="Staff" description="Manage your team members">
-        <Button onClick={() => setShowInvite(true)} className="bg-primary hover:bg-primary/90 gap-2">
+    <div className="max-w-4xl">
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0E0D1E]">Staff</h1>
+          <p className="text-sm text-[#7A7893] mt-1">Manage your team members and track their performance.</p>
+        </div>
+        <Button onClick={() => setShowInvite(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
           <UserPlus className="w-4 h-4" /> Invite Staff
         </Button>
-      </PageHeader>
+      </div>
 
-      {sorted.length === 0 ? (
-        <EmptyState icon={Users} title="No staff yet" description="Invite your team members to start tracking performance." actionLabel="Invite Staff" onAction={() => setShowInvite(true)} />
-      ) : (
-        <div className="space-y-2">
-          {sorted.map((staff, i) => (
-            <StaffRow key={staff.id} staff={staff} rank={i + 1} />
-          ))}
-        </div>
-      )}
+      <div className="space-y-2">
+        {sorted.map((staff, i) => (
+          <StaffRow key={staff.id} staff={staff} rank={i + 1} />
+        ))}
+      </div>
 
       <InviteStaffModal open={showInvite} onClose={() => setShowInvite(false)} />
     </div>
