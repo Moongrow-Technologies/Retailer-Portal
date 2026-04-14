@@ -14,6 +14,9 @@ export default function Profile() {
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [newEmail, setNewEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -27,6 +30,7 @@ export default function Profile() {
     : 'U';
 
   return (
+    <>
     <div className="max-w-4xl">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#0E0D1E]">My Profile</h1>
@@ -73,6 +77,12 @@ export default function Profile() {
                 className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
               />
             </div>
+            <button
+              onClick={() => { setNewEmail(''); setConfirmEmail(''); setShowEmailModal(true); }}
+              className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors text-left -mt-1"
+            >
+              Change Email →
+            </button>
 
             <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Role</p>
@@ -92,5 +102,47 @@ export default function Profile() {
 
       </div>
     </div>
+
+      {/* Change Email Modal */}
+
+      {showEmailModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-lg p-6 w-full max-w-sm mx-4">
+            <h3 className="text-base font-bold text-[#0E0D1E] mb-4">Change Email Address</h3>
+            <div className="flex flex-col gap-3">
+              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">New Email Address</p>
+                <Input
+                  type="email"
+                  value={newEmail}
+                  onChange={e => setNewEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none placeholder:text-[#C4C1D8]"
+                />
+              </div>
+              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Confirm New Email Address</p>
+                <Input
+                  type="email"
+                  value={confirmEmail}
+                  onChange={e => setConfirmEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none placeholder:text-[#C4C1D8]"
+                />
+              </div>
+              <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
+                Update Email
+              </Button>
+              <button
+                onClick={() => setShowEmailModal(false)}
+                className="text-xs font-semibold text-[#9490AA] hover:text-[#796EB2] transition-colors text-center"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
