@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -26,14 +25,6 @@ const colorMap = {
   payout: 'bg-primary/10 text-primary',
 };
 
-const linkMap = {
-  campaign_created: '/campaigns',
-  campaign_paused: '/campaigns',
-  campaign_resumed: '/campaigns',
-  bonus_completed: '/bonuses',
-  staff_joined: '/staff',
-};
-
 export default function ActivityFeed({ activities }) {
   return (
     <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6">
@@ -41,9 +32,8 @@ export default function ActivityFeed({ activities }) {
       <div className="space-y-2">
         {activities.map((activity, i) => {
            const Icon = iconMap[activity.type] || ShoppingCart;
-           const to = linkMap[activity.type];
-           const content = (
-             <div className="flex items-start gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 cursor-pointer hover:bg-[#F0EEF9] transition-colors">
+           return (
+             <div key={i} className="flex items-start gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3">
                <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-[#EDE9F8] text-[#796EB2]')}>
                  <Icon className="w-4 h-4" />
                </div>
@@ -55,7 +45,6 @@ export default function ActivityFeed({ activities }) {
                </div>
              </div>
            );
-           return to ? <Link key={i} to={to}>{content}</Link> : <div key={i}>{content}</div>;
          })}
       </div>
     </div>
