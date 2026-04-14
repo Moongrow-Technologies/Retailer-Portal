@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 
 export default function Settings() {
   const [notifications, setNotifications] = useState({
@@ -12,6 +13,8 @@ export default function Settings() {
     budgetWarnings: true,
     bonusCompletions: false,
   });
+  const [toast, setToast] = useState(null);
+  const showToast = (msg) => setToast(msg);
 
   const toggle = (key) => setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -31,7 +34,7 @@ export default function Settings() {
               <h2 className="text-base font-semibold text-[#0E0D1E]">Business Profile</h2>
               <p className="text-sm text-[#7A7893] mt-0.5">Update your store information and brand identity.</p>
             </div>
-            <button className="text-sm text-[#796EB2] font-medium hover:underline">Save Changes</button>
+            <button onClick={() => showToast("Settings saved.")} className="text-sm text-[#796EB2] font-medium hover:underline">Save Changes</button>
           </div>
 
           <div className="flex gap-6">
@@ -167,7 +170,7 @@ export default function Settings() {
                 <span className="text-xs text-[#7A7893] font-medium">2FA Enabled</span>
                 <Switch defaultChecked className="data-[state=checked]:bg-[#796EB2]" />
               </div>
-              <Button variant="outline" size="sm" className="flex items-center gap-1.5 border-[#E2E0ED] text-[#0E0D1E]">
+              <Button onClick={() => showToast("Password changed successfully.")} variant="outline" size="sm" className="flex items-center gap-1.5 border-[#E2E0ED] text-[#0E0D1E]">
                 <Lock className="w-3.5 h-3.5" /> Change Password
               </Button>
             </div>
@@ -177,6 +180,7 @@ export default function Settings() {
         {/* Footer */}
         <p className="text-center text-xs text-[#9490AA] py-4">© 2026 Moongrow Technologies. All rights reserved.</p>
       </div>
+      <SuccessToast message={toast} onDismiss={() => setToast(null)} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
@@ -20,6 +21,7 @@ export default function CreateBonus() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
+  const [toast, setToast] = useState(null);
   const [data, setData] = useState({
     name: '', type: '', metric: 'units_sold', product: '',
     scope: 'chain', stores: [], duration: 'custom',
@@ -311,13 +313,14 @@ export default function CreateBonus() {
       {/* Footer */}
       <div className="flex justify-end mt-6">
         <Button
-          onClick={() => step === 4 ? setDone(true) : setStep(step + 1)}
+          onClick={() => { if (step === 4) { setDone(true); setToast("Bonus launched successfully."); } else setStep(step + 1); }}
           disabled={!canContinue()}
           className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold px-6"
         >
           {step === 4 ? 'Launch Bonus' : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
+      <SuccessToast message={toast} onDismiss={() => setToast(null)} />
     </div>
   );
 }

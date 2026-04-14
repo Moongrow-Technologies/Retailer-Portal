@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Camera, CheckCircle2 } from 'lucide-react';
+import { Camera } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 import { STORE } from '@/lib/sampleData';
 
 export default function Profile() {
@@ -124,13 +125,7 @@ export default function Profile() {
       </div>
     </div>
 
-      {/* Success Toast */}
-      {showToast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-white border border-emerald-200 shadow-lg rounded-xl px-4 py-3">
-          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-          <p className="text-sm font-medium text-[#0E0D1E]">Profile updated successfully.</p>
-        </div>
-      )}
+      <SuccessToast message={showToast ? "Profile updated successfully." : null} onDismiss={() => setShowToast(false)} />
 
       {/* Change Email Modal */}
 

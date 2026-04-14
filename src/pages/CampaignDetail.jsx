@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
@@ -6,6 +6,7 @@ import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, Pause, Play, Square, Download, Target, TrendingUp, DollarSign, Users } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
@@ -22,6 +23,7 @@ export default function CampaignDetail() {
   const campaignId = window.location.pathname.split('/').pop();
   const navigate = useNavigate();
   const campaign = CAMPAIGNS.find(c => c.id === campaignId) || CAMPAIGNS[0];
+  const [toast, setToast] = useState(null);
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
@@ -47,13 +49,13 @@ export default function CampaignDetail() {
         </div>
         <div className="flex gap-2">
           {campaign.status === 'active' && (
-            <Button variant="outline" size="sm" className="gap-1.5"><Pause className="w-3.5 h-3.5" /> Pause</Button>
+            <Button onClick={() => setToast("Campaign paused.")} variant="outline" size="sm" className="gap-1.5"><Pause className="w-3.5 h-3.5" /> Pause</Button>
           )}
           {(campaign.status === 'paused_manual') && (
-            <Button variant="outline" size="sm" className="gap-1.5"><Play className="w-3.5 h-3.5" /> Resume</Button>
+            <Button onClick={() => setToast("Campaign resumed.")} variant="outline" size="sm" className="gap-1.5"><Play className="w-3.5 h-3.5" /> Resume</Button>
           )}
           {campaign.status !== 'completed' && (
-            <Button variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+            <Button onClick={() => setToast("Campaign ended.")} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
           )}
           <Button variant="outline" size="sm" className="gap-1.5"><Download className="w-3.5 h-3.5" /> Export</Button>
         </div>
@@ -130,6 +132,7 @@ export default function CampaignDetail() {
           </div>
         </div>
       </div>
+      <SuccessToast message={toast} onDismiss={() => setToast(null)} />
     </div>
   );
 }

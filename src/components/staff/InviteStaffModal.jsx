@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Mail, Link2, Copy, Check } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 
 export default function InviteStaffModal({ open, onClose }) {
   const [email, setEmail] = useState('');
   const [copied, setCopied] = useState(false);
+  const [toast, setToast] = useState(false);
   const inviteLink = 'https://app.moongrow.io/join/dgh-centrum-abc123';
 
   const handleCopy = () => {
@@ -18,6 +20,7 @@ export default function InviteStaffModal({ open, onClose }) {
   };
 
   return (
+    <>
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -34,7 +37,7 @@ export default function InviteStaffModal({ open, onClose }) {
               <Input type="email" placeholder="team@degroenehoek.nl" value={email} onChange={e => setEmail(e.target.value)} className="mt-1.5" />
             </div>
             <p className="text-xs text-muted-foreground">The staff member will receive an invite to join your team. Their store will be auto-assigned.</p>
-            <Button className="w-full bg-primary hover:bg-primary/90" disabled={!email}>Send Invite</Button>
+            <Button onClick={() => { setToast(true); setTimeout(() => { setToast(false); onClose(); }, 1500); }} className="w-full bg-primary hover:bg-primary/90" disabled={!email}>Send Invite</Button>
           </TabsContent>
           <TabsContent value="link" className="mt-4 space-y-3">
             <div>
@@ -51,5 +54,7 @@ export default function InviteStaffModal({ open, onClose }) {
         </Tabs>
       </DialogContent>
     </Dialog>
+    <SuccessToast message={toast ? "Staff member invited successfully." : null} onDismiss={() => setToast(false)} />
+    </>
   );
 }

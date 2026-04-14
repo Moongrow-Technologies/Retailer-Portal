@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, ArrowRight, Check, Megaphone } from 'lucide-react';
+import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
@@ -15,6 +16,7 @@ const STEPS = ['Select Product', 'Choose Stores', 'Set Commission', 'Budget & Du
 export default function CreateCampaign() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
+  const [toast, setToast] = useState(null);
   const [data, setData] = useState({
     product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: ''
   });
@@ -190,13 +192,14 @@ export default function CreateCampaign() {
 
       <div className="flex justify-end mt-6">
         <Button
-          onClick={() => setStep(step + 1)}
+          onClick={() => { if (step === 4) setToast("Campaign launched successfully."); setStep(step + 1); }}
           disabled={!canNext()}
           className="bg-primary hover:bg-primary/90 gap-2"
         >
           {step === 4 ? 'Launch Campaign' : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
+      <SuccessToast message={toast} onDismiss={() => setToast(null)} />
     </div>
   );
 }
