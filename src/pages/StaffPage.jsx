@@ -25,9 +25,9 @@ export default function StaffPage() {
         <div className="px-6 py-4 border-b border-[#EBEBF0]">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Team Members</h3>
         </div>
-        <div className="px-8 pt-3 pb-1 flex items-center gap-4 text-xs font-semibold uppercase tracking-wide text-[#9490AA]">
+        <div className="px-4 pt-3 pb-1 flex items-center gap-4 text-xs font-semibold uppercase tracking-wide text-[#9490AA]">
           <div className="w-9 flex-shrink-0" />
-          <div className="flex-1">Staff Member</div>
+          <div className="flex-1 pl-0">Staff Member</div>
           <div className="w-28 flex-shrink-0">Status</div>
           <div className="w-28 flex-shrink-0 text-right">Commission</div>
           <div className="w-24 flex-shrink-0 text-right">Units Sold</div>

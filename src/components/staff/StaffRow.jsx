@@ -24,7 +24,7 @@ export default function StaffRow({ staff }) {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-[#0E0D1E] truncate">{staff.name}</p>
-          <p className="text-xs text-[#9490AA] mt-0.5">{staff.role} · {staff.store}</p>
+          <p className="text-xs text-[#9490AA] mt-0.5">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)} · {staff.store}</p>
         </div>
         <div className="w-28 flex-shrink-0">
           <Badge variant="outline" className={cn("text-xs", statusColors[staff.status])}>
