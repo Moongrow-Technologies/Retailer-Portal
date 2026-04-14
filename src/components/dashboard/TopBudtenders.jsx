@@ -19,7 +19,7 @@ export default function TopBudtenders({ staff }) {
           const RankIcon = cfg.icon;
           return (
             <Link key={member.id} to={`/staff/${member.id}`}>
-              <div className="flex items-center gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 hover:bg-[#F0EEF9] transition-colors">
+              <div className="flex items-center gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 hover:bg-[#F0EEF9] transition-colors mb-3">
                 <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0", cfg.bg, `border ${cfg.border}`)}>
                   <RankIcon className={cn("w-4 h-4", cfg.color)} />
                 </div>
