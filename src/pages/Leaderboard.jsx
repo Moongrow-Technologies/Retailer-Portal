@@ -101,38 +101,40 @@ export default function Leaderboard() {
          </div>
        </div>
 
-      <div className="space-y-2">
-        {sorted.map((staff, i) => (
-          <Link to={`/staff/${staff.id}`} key={staff.id}>
-            <div className={cn(
-              "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md mb-3 bg-[#F8F7FC] border-[#E2E0ED]"
-            )}>
-               <div className="w-10 text-center">
-                 {i < 3 ? (
-                   <span className="text-xl">{rankIcons[i]}</span>
-                 ) : (
-                   <span className="text-lg font-bold text-[#9490AA]">{i + 1}</span>
-                 )}
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-4">
+         <div className="space-y-3">
+           {sorted.map((staff, i) => (
+             <Link to={`/staff/${staff.id}`} key={staff.id}>
+               <div className={cn(
+                 "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md bg-[#F8F7FC] border-[#E2E0ED]"
+               )}>
+                 <div className="w-10 text-center">
+                   {i < 3 ? (
+                     <span className="text-xl">{rankIcons[i]}</span>
+                   ) : (
+                     <span className="text-lg font-bold text-[#9490AA]">{i + 1}</span>
+                   )}
+                 </div>
+                 <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
+                   {staff.name.charAt(0)}
+                 </div>
+                 <div className="flex-1">
+                   <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
+                   <p className="text-sm text-[#9490AA]">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)} · {staff.store}</p>
+                 </div>
+                 <div className="text-right">
+                   <p className="text-lg font-bold text-[#0E0D1E]">
+                     {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
+                   </p>
+                   <p className="text-xs text-[#9490AA]">
+                     {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
+                   </p>
+                 </div>
                </div>
-               <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
-                 {staff.name.charAt(0)}
-               </div>
-               <div className="flex-1">
-                 <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
-                 <p className="text-sm text-[#9490AA]">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)} · {staff.store}</p>
-               </div>
-              <div className="text-right">
-                <p className="text-lg font-bold text-[#0E0D1E]">
-                  {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
-                </p>
-                <p className="text-xs text-[#9490AA]">
-                  {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
-                </p>
-              </div>
-              </div>
-          </Link>
-        ))}
-      </div>
+             </Link>
+           ))}
+         </div>
+       </div>
     </div>
   );
 }
