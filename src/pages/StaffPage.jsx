@@ -29,7 +29,7 @@ export default function StaffPage() {
           <div className="w-9 flex-shrink-0" />
           <div className="w-40 flex-shrink-0">Staff Member</div>
           <div className="flex-1">Location</div>
-          <div className="w-28 flex-shrink-0">Status</div>
+          <div className="w-28 flex-shrink-0 text-center">Status</div>
           <div className="w-28 flex-shrink-0 text-right">Commission</div>
           <div className="w-24 flex-shrink-0 text-right">Units Sold</div>
         </div>
