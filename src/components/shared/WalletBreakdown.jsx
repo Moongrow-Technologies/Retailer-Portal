@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 export default function WalletBreakdown({ wallet, compact = false }) {
@@ -20,30 +21,30 @@ export default function WalletBreakdown({ wallet, compact = false }) {
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-[#796EB2]" />
-              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Campaigns</p>
-            </div>
-            <p className="text-sm font-semibold text-[#0E0D1E]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
-          </div>
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-amber-500" />
-              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Bonuses</p>
-            </div>
-            <p className="text-sm font-semibold text-[#0E0D1E]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
-          </div>
-          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Available</p>
-            </div>
-            <p className={cn("text-sm font-semibold", lowBalance ? "text-red-500" : "text-[#0E0D1E]")}>
-              €{available.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            </p>
-          </div>
-        </div>
+           <Link to="/campaigns" className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#F0EEF9] transition-colors cursor-pointer">
+             <div className="flex items-center gap-1.5">
+               <div className="w-2 h-2 rounded-full bg-[#796EB2]" />
+               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Campaigns</p>
+             </div>
+             <p className="text-sm font-semibold text-[#0E0D1E]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+           </Link>
+           <Link to="/bonuses" className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#F0EEF9] transition-colors cursor-pointer">
+             <div className="flex items-center gap-1.5">
+               <div className="w-2 h-2 rounded-full bg-amber-500" />
+               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Bonuses</p>
+             </div>
+             <p className="text-sm font-semibold text-[#0E0D1E]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+           </Link>
+           <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
+             <div className="flex items-center gap-1.5">
+               <div className="w-2 h-2 rounded-full bg-emerald-500" />
+               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Available</p>
+             </div>
+             <p className={cn("text-sm font-semibold", lowBalance ? "text-red-500" : "text-[#0E0D1E]")}>
+               €{available.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+             </p>
+           </div>
+         </div>
 
         {/* Balance bar */}
         <div className="h-2 rounded-full bg-[#F0EFF8] overflow-hidden flex">
