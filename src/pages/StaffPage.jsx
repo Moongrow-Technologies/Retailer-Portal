@@ -21,7 +21,7 @@ export default function StaffPage() {
         </Button>
       </div>
 
-      <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] p-4 space-y-2">
+      <div className="space-y-2">
         {sorted.map((staff, i) => (
           <StaffRow key={staff.id} staff={staff} rank={i + 1} />
         ))}

@@ -57,7 +57,7 @@ export default function Sidebar() {
               )}
             >
               <item.icon className={cn("w-[18px] h-[18px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#7A7893]")} />
-              <span>{item.label}</span>
+              <span className={item.sub ? "pl-3 border-l border-[#EBEBF0]" : ""}>{item.label}</span>
             </Link>
           );
         })}

@@ -81,7 +81,7 @@ export default function Leaderboard() {
         </div>
       </div>
 
-      <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] p-4 space-y-2">
+      <div className="space-y-2">
         {sorted.map((staff, i) => (
           <Link to={`/staff/${staff.id}`} key={staff.id}>
             <div className={cn(

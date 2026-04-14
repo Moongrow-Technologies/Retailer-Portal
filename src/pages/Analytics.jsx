@@ -83,7 +83,7 @@ export default function Analytics() {
 
       {/* Charts */}
       <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Sales by Product</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={salesByProduct}>
@@ -96,7 +96,7 @@ export default function Analytics() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Best Performing Time of Day</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={timeOfDay}>
@@ -112,7 +112,7 @@ export default function Analytics() {
 
       {/* Staff performance */}
       <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Commission</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).map((s, i) => (
@@ -125,7 +125,7 @@ export default function Analytics() {
             ))}
           </div>
         </div>
-        <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Earners by Units</h3>
           <div className="space-y-3">
             {[...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_units_sold - a.total_units_sold).map((s, i) => (
@@ -141,7 +141,7 @@ export default function Analytics() {
       </div>
 
       {/* Wallet spend over time */}
-      <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5 mb-6">
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5 mb-6">
         <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Wallet Spend Over Time</h3>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={spendOverTime}>
@@ -155,7 +155,7 @@ export default function Analytics() {
       </div>
 
       {/* Campaign ROI */}
-      <div className="bg-[#F8F7FC] rounded-xl border border-[#EBEBF0] shadow-sm p-5">
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
         <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Campaign Spend vs Budget</h3>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={campaignROI}>
