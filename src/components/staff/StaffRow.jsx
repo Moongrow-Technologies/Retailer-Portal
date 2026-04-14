@@ -6,7 +6,7 @@ import { Medal } from 'lucide-react';
 export default function StaffRow({ staff, rank }) {
   return (
     <Link to={`/staff/${staff.id}`}>
-      <div className="flex items-center gap-3 px-4 py-3 bg-[#F8F7FC] rounded-xl border border-[#E2E0ED] hover:bg-[#F0EEF9] hover:border-[#C8C3E0] transition-all">
+      <div className="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all" style={{ background: '#F8F7FC', borderColor: '#E2E0ED' }}>
         <div className="w-9 h-9 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-bold text-[#796EB2] flex-shrink-0">
           {staff.name.charAt(0)}
         </div>
