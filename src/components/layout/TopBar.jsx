@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import NotificationDropdown from './NotificationDropdown';
 import HelpDropdown from './HelpDropdown';
+import ProfileDropdown from './ProfileDropdown';
 
 const routeLabels = {
   '/': 'Dashboard',
@@ -38,6 +39,7 @@ export default function TopBar() {
   const label = getPageLabel(location.pathname);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const { data: user } = useQuery({
     queryKey: ['me'],
@@ -88,14 +90,19 @@ export default function TopBar() {
             <NotificationDropdown onClose={() => setShowNotifications(false)} />
           )}
         </div>
-        <div className="flex items-center gap-2.5 pl-2 border-l border-[#EBEBF0]">
+        <div className="relative flex items-center gap-2.5 pl-2 border-l border-[#EBEBF0]">
           <div className="text-right hidden sm:block">
             <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
             <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
           </div>
-          <div className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2]">
+          <button
+            id="profile-avatar"
+            onClick={() => setShowProfile(v => !v)}
+            className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2] hover:ring-2 hover:ring-[#796EB2]/30 transition-all"
+          >
             {initials}
-          </div>
+          </button>
+          {showProfile && <ProfileDropdown user={user} onClose={() => setShowProfile(false)} />}
         </div>
       </div>
     </header>
