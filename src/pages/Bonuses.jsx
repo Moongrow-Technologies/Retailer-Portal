@@ -57,6 +57,15 @@ export default function Bonuses() {
         </Link>
       </div>
 
+      {/* Info bar */}
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 rounded-full bg-[#F0EEF9] border border-[#E2E0ED] text-xs text-[#7A7893]">
+        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
+        <span>€450 committed to bonuses</span>
+        <span className="text-[#C8C5D8]">·</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+        <span>€692 available</span>
+      </div>
+
       {/* Tabs */}
       <div className="flex items-center gap-1 mb-6 bg-[#F8F7FC] rounded-xl p-1 w-fit border border-[#EBEBF0]">
         {TABS.map(t => (

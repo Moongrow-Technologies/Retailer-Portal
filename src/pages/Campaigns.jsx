@@ -43,6 +43,14 @@ export default function Campaigns() {
         </Link>
       </div>
 
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 rounded-full bg-[#F0EEF9] border border-[#E2E0ED] text-xs text-[#7A7893]">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#796EB2] flex-shrink-0" />
+        <span>€1,308 committed to campaigns</span>
+        <span className="text-[#C8C5D8]">·</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+        <span>€692 available</span>
+      </div>
+
       <div className="flex items-center gap-1 mb-6 bg-[#F8F7FC] rounded-xl p-1 w-fit border border-[#EBEBF0]">
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
