@@ -51,14 +51,13 @@ export default function Sidebar() {
               to={item.path}
               className={cn(
                 "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150",
-                item.sub && "ml-5 py-1.5 text-[13px]",
                 active
                   ? "bg-[#EDE9F8] text-[#796EB2]"
                   : "text-[#4A4761] hover:bg-[#F5F3FC] hover:text-[#796EB2]"
               )}
             >
-              <item.icon className={cn("flex-shrink-0", item.sub ? "w-[15px] h-[15px]" : "w-[18px] h-[18px]", active ? "text-[#796EB2]" : "text-[#7A7893]")} />
-              <span>{item.label}</span>
+              <item.icon className={cn("w-[18px] h-[18px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#7A7893]")} />
+              <span className={item.sub ? "pl-3 border-l border-[#EBEBF0]" : ""}>{item.label}</span>
             </Link>
           );
         })}
