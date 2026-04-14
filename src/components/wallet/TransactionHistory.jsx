@@ -26,9 +26,9 @@ export default function TransactionHistory({ transactions }) {
       <div className="px-6 py-4 border-b border-[#EBEBF0]">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
       </div>
-      <div className="divide-y divide-[#F5F3FC]">
+      <div className="p-4 space-y-2">
         {transactions.map((tx, i) => (
-          <div key={i} className="px-6 py-4 flex items-center gap-4 hover:bg-[#FAFAF9] transition-colors">
+          <div key={i} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors">
             <div className={cn(
               "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0",
               tx.amount > 0 ? "bg-emerald-50" : "bg-[#F8F7FC]"
