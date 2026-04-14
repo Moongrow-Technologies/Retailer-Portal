@@ -22,7 +22,7 @@ export default function CreateBonus() {
   const [done, setDone] = useState(false);
   const [data, setData] = useState({
     name: '', type: '', metric: 'units_sold', product: '',
-    scope: 'chain', stores: [], duration: 'this_week',
+    scope: 'chain', stores: [], duration: 'custom',
     customStart: '', customEnd: '',
     prizes: [{ position: 1, amount: '' }, { position: 2, amount: '' }, { position: 3, amount: '' }],
     tiebreaker: 'split',
@@ -172,28 +172,16 @@ export default function CreateBonus() {
             </div>
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Duration</Label>
-              <div className="grid grid-cols-3 gap-2 mb-3">
-                {[{ value: 'this_week', label: 'This Week' }, { value: 'this_month', label: 'This Month' }, { value: 'custom', label: 'Custom' }].map(d => (
-                  <button key={d.value} onClick={() => setData({ ...data, duration: d.value })}
-                    className={cn("py-2.5 px-3 rounded-xl border-2 text-sm font-medium transition-all",
-                      data.duration === d.value ? "border-[#796EB2] bg-[#F5F3FC] text-[#796EB2]" : "border-[#EBEBF0] text-[#7A7893] hover:border-[#C8C3E0]"
-                    )}>
-                    {d.label}
-                  </button>
-                ))}
-              </div>
-              {data.duration === 'custom' && (
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <Label className="text-xs text-[#7A7893]">Start Date</Label>
-                    <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
-                  </div>
-                  <div>
-                    <Label className="text-xs text-[#7A7893]">End Date</Label>
-                    <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
-                  </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label className="text-xs text-[#7A7893]">Start Date</Label>
+                  <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
                 </div>
-              )}
+                <div>
+                  <Label className="text-xs text-[#7A7893]">End Date</Label>
+                  <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -303,7 +291,7 @@ export default function CreateBonus() {
                 { label: 'Metric', value: data.metric === 'units_sold' ? 'Units Sold' : 'Commission Earned' },
                 { label: 'Product', value: data.product || 'All Products' },
                 { label: 'Scope', value: data.scope === 'chain' ? 'Chain-wide' : data.scope },
-                { label: 'Duration', value: data.duration === 'this_week' ? 'This Week' : data.duration === 'this_month' ? 'This Month' : 'Custom' },
+                { label: 'Duration', value: (data.customStart && data.customEnd) ? `${data.customStart} → ${data.customEnd}` : data.customStart || data.customEnd || '—' },
               ].map(row => (
                 <div key={row.label} className="bg-[#F8F7FC] rounded-xl p-3 border border-[#E2E0ED]">
                   <p className="text-[11px] text-[#9490AA] uppercase tracking-wide">{row.label}</p>
