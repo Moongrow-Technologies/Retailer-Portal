@@ -19,22 +19,22 @@ export default function WalletBreakdown({ wallet, compact = false }) {
           <p className="text-xs text-[#9490AA] mt-0.5">EURC</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          <div className="space-y-1">
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
             <div className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-[#796EB2]" />
               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Campaigns</p>
             </div>
             <p className="text-sm font-semibold text-[#0E0D1E]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
           </div>
-          <div className="space-y-1">
+          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
             <div className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-amber-500" />
               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Bonuses</p>
             </div>
             <p className="text-sm font-semibold text-[#0E0D1E]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
           </div>
-          <div className="space-y-1">
+          <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
             <div className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
               <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Available</p>
