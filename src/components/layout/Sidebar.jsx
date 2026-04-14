@@ -30,7 +30,7 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 h-screen w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-50">
       {/* Logo */}
       <div className="h-16 flex items-center px-5 border-b border-[#EBEBF0]">
-        <div className="flex items-center gap-2.5">
+        <Link to="/" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-[#796EB2] flex items-center justify-center flex-shrink-0">
             <Sparkles className="w-4 h-4 text-white" />
           </div>
@@ -38,7 +38,7 @@ export default function Sidebar() {
             <div className="font-bold text-[15px] text-[#0E0D1E] tracking-tight leading-none">moongrow</div>
             <div className="text-[10px] text-[#9490AA] uppercase tracking-widest leading-tight">Retailer Portal</div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Navigation */}
