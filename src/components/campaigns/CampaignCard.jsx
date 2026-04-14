@@ -12,7 +12,7 @@ export default function CampaignCard({ campaign, onTogglePause }) {
 
   return (
     <Link to={`/campaigns/${campaign.id}`} className="block">
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5 hover:shadow-md hover:border-[#C8C3E0] transition-all duration-200">
+      <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors">
         <div className="flex items-start justify-between mb-3">
           <div>
             <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>

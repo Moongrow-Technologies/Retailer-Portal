@@ -65,15 +65,17 @@ export default function Campaigns() {
         ))}
       </div>
 
-      {filtered.length === 0 ? (
-        <div className="bg-white rounded-xl border border-[#EBEBF0] p-12 text-center">
-          <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {filtered.map(campaign => <CampaignCard key={campaign.id} campaign={campaign} />)}
-        </div>
-      )}
+      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
+        {filtered.length === 0 ? (
+          <div className="p-12 text-center">
+            <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>
+          </div>
+        ) : (
+          <div className="p-4 flex flex-col gap-3">
+            {filtered.map(campaign => <CampaignCard key={campaign.id} campaign={campaign} />)}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
