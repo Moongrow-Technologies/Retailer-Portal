@@ -14,7 +14,7 @@ export default function CompactWalletCard({ wallet }) {
       <div className="flex items-start justify-between mb-6 gap-4">
         <div className="min-w-0">
           <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">Wallet Balance</p>
-          <p className="text-4xl font-bold tracking-tight text-[#0E0D1E] truncate">
+          <p className="text-[#0E0D1E] text-4xl font-semibold tracking-tight truncate">
             €{wallet.total_balance.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </p>
         </div>
@@ -71,6 +71,6 @@ export default function CompactWalletCard({ wallet }) {
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
       <WithdrawModal open={showWithdraw} onClose={() => setShowWithdraw(false)} />
-    </div>
-  );
+    </div>);
+
 }
