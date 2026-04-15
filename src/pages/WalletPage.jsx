@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import WalletBreakdown from '@/components/shared/WalletBreakdown';
 import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
+import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Button } from '@/components/ui/button';
 import { Plus, ArrowUpFromLine, AlertTriangle } from 'lucide-react';
 import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
 
 export default function WalletPage() {
   const [showTopUp, setShowTopUp] = useState(false);
+  const [showWithdraw, setShowWithdraw] = useState(false);
   const wallet = WALLET;
   const zeroBalance = wallet.total_balance === 0;
 
@@ -19,7 +21,7 @@ export default function WalletPage() {
           <p className="text-sm text-[#7A7893] mt-1">Manage your EURC funds and transaction history.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E]">
+          <Button onClick={() => setShowWithdraw(true)} variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E]">
             <ArrowUpFromLine className="w-4 h-4" /> Withdraw
           </Button>
           <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
@@ -44,6 +46,7 @@ export default function WalletPage() {
       </div>
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
+      <WithdrawModal open={showWithdraw} onClose={() => setShowWithdraw(false)} />
     </div>
   );
 }
