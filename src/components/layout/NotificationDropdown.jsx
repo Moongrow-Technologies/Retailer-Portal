@@ -5,7 +5,7 @@ import { ACTIVITIES } from '@/lib/sampleData';
 
 const RECENT = ACTIVITIES.slice(0, 5);
 
-export default function NotificationDropdown({ onClose }) {
+export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -26,8 +26,16 @@ export default function NotificationDropdown({ onClose }) {
       ref={ref}
       className="absolute top-full right-0 mt-2 w-80 bg-white border border-[#E2E0ED] rounded-2xl shadow-lg z-50 overflow-hidden"
     >
-      <div className="px-4 py-3 border-b border-[#EBEBF0]">
+      <div className="px-4 py-3 border-b border-[#EBEBF0] flex items-center justify-between">
         <p className="text-sm font-semibold text-[#0E0D1E]">Notifications</p>
+        {hasUnread && (
+          <button
+            onClick={() => { onMarkAllRead(); }}
+            className="text-xs text-[#796EB2] hover:text-[#6A5FA3] font-medium transition-colors"
+          >
+            Mark all as read
+          </button>
+        )}
       </div>
 
       <div className="p-3 flex flex-col gap-2">
