@@ -17,6 +17,7 @@ const routeLabels = {
   '/bonuses/new': 'New Bonus',
   '/staff': 'Staff',
   '/settings': 'Settings',
+  '/notifications': 'Notifications',
 };
 
 function getPageLabel(pathname) {
