@@ -111,7 +111,7 @@ export default function Leaderboard() {
         {/* Rows */}
         {sorted.map((staff, i) => (
           <Link to={`/staff/${staff.id}`} key={staff.id}>
-            <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-4 border-b border-[#F4F3FA] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center">
+            <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-4 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center">
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className={cn(
