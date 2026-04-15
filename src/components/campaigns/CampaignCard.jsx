@@ -18,7 +18,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+    <div className="bg-[#F4F3FA] rounded-2xl p-4 hover:bg-[#EDE9F8] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
           <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>

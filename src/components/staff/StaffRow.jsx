@@ -18,7 +18,7 @@ const statusLabels = {
 export default function StaffRow({ staff }) {
   return (
     <Link to={`/staff/${staff.id}`}>
-      <div className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors mb-3">
+      <div className="px-4 py-3 flex items-center gap-4 bg-[#F4F3FA] rounded-2xl hover:bg-[#EDE9F8] transition-colors mb-3">
         <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
           {staff.avatar_url ? (
             <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
