@@ -27,57 +27,53 @@ export default function BonusCard({ bonus }) {
   return (
     <Link to={`/bonuses/${bonus.id}`} className="block">
       <div className={cn(
-        "bg-white rounded-xl border p-5 transition-all hover:shadow-md",
-        isActive ? "border-[#EBEBF0] hover:border-[#C8C3E0]" : "border-[#EBEBF0] opacity-80"
+        "bg-white rounded-2xl border border-[#EBEBF0] p-6 transition-all hover:shadow-sm",
+        !isActive && "opacity-80"
       )}>
         {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", cfg.bg)}>
-              <Icon className={cn("w-5 h-5", cfg.text)} />
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#0E0D1E] text-sm">{bonus.name}</h3>
-              <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name} · {bonus.scope === 'chain' ? 'Chain-wide' : bonus.store}</p>
-            </div>
+        <div className="flex items-start justify-between mb-5">
+          <div className="flex-1">
+            <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">{cfg.label}</p>
+            <h3 className="font-semibold text-lg text-[#0E0D1E]">{bonus.name}</h3>
+            <p className="text-sm text-[#9490AA] mt-2">{bonus.product_name} · {bonus.scope === 'chain' ? 'Chain-wide' : bonus.store}</p>
           </div>
-          <Badge variant="outline" className={cn("text-xs font-semibold", cfg.badgeBg)}>
-            {cfg.label}
+          <Badge variant="outline" className={cn("text-xs font-semibold flex-shrink-0 ml-4", cfg.badgeBg)}>
+            {isActive ? 'Active' : 'Completed'}
           </Badge>
         </div>
 
         {isActive ? (
           <>
             {/* Stats row */}
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-                <p className="text-base font-bold text-[#0E0D1E]">€{bonus.prize_pool}</p>
-                <p className="text-[11px] text-[#9490AA]">Prize Pool</p>
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#0E0D1E]">€{bonus.prize_pool}</p>
+                <p className="text-xs text-[#9490AA] mt-1">Prize Pool</p>
               </div>
-              <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-                <div className="flex items-center justify-center gap-1">
-                  <Clock className="w-3 h-3 text-[#9490AA]" />
-                  <p className="text-base font-bold text-[#0E0D1E]">{formatTimeLeft(bonus.hours_left)}</p>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  <Clock className="w-4 h-4 text-[#9490AA]" />
+                  <p className="text-2xl font-bold text-[#0E0D1E]">{formatTimeLeft(bonus.hours_left)}</p>
                 </div>
-                <p className="text-[11px] text-[#9490AA]">Remaining</p>
+                <p className="text-xs text-[#9490AA]">Remaining</p>
               </div>
-              <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-                <div className="flex items-center justify-center gap-1">
-                  <Crown className="w-3 h-3 text-amber-500" />
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  <Crown className="w-4 h-4 text-amber-500" />
                   <p className="text-sm font-bold text-[#0E0D1E] truncate">{bonus.current_leader}</p>
                 </div>
-                <p className="text-[11px] text-[#9490AA]">{bonus.leader_score} units</p>
+                <p className="text-xs text-[#9490AA]">{bonus.leader_score} units</p>
               </div>
             </div>
 
             {/* Prize breakdown */}
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               {bonus.prizes?.slice(0, 3).map((prize, i) => {
                 const RankIcon = rankIcons[i] || Award;
                 return (
-                  <div key={i} className="flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-1.5">
-                      <RankIcon className={cn("w-3.5 h-3.5", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : "text-orange-400")} />
+                  <div key={i} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <RankIcon className={cn("w-4 h-4", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : "text-orange-400")} />
                       <span className="text-[#7A7893]">{prize.label}</span>
                     </div>
                     <span className="font-semibold text-[#0E0D1E]">€{prize.amount}</span>
