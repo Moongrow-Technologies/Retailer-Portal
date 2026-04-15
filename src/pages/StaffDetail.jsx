@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
@@ -25,6 +25,8 @@ export default function StaffDetail() {
   const staffId = window.location.pathname.split('/').pop();
   const navigate = useNavigate();
   const staff = STAFF.find(s => s.id === staffId) || STAFF[0];
+
+  useEffect(() => { window.scrollTo(0, 0); }, [staffId]);
 
   return (
     <div>
