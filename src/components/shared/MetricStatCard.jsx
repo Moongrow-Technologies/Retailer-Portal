@@ -59,7 +59,7 @@ export default function MetricStatCard({ label, values, icon: Icon, trend, trend
 
 
   const element =
-  <div className="bg-white p-5 opacity-100 rounded-xl border border-[#EBEBF0] shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+  <div className="bg-white p-5 opacity-100 rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] cursor-pointer hover:shadow-md transition-shadow">
       {content}
     </div>;
 

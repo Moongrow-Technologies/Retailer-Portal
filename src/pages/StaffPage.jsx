@@ -21,8 +21,8 @@ export default function StaffPage() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
-        <div className="px-6 py-4 border-b border-[#EBEBF0]">
+      <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
+        <div className="px-6 py-4 border-b border-[#F4F3FA]">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Team Members</h3>
         </div>
         <div className="px-4 pt-3 pb-1 flex items-center gap-4 text-xs font-semibold uppercase tracking-wide text-[#9490AA]">

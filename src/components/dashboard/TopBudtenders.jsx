@@ -11,7 +11,7 @@ const rankConfig = [
 
 export default function TopBudtenders({ staff }) {
   return (
-    <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6 h-full">
       <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Top Performers</h3>
       <div className="space-y-3">
         {staff.map((member, i) => {
@@ -19,7 +19,7 @@ export default function TopBudtenders({ staff }) {
           const RankIcon = cfg.icon;
           return (
             <Link key={member.id} to={`/staff/${member.id}`}>
-              <div className="flex items-center gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 hover:bg-[#F0EEF9] transition-colors mb-3">
+              <div className="flex items-center gap-3 bg-[#F4F3FA] rounded-2xl px-4 py-3 hover:bg-[#EDE9F8] transition-colors mb-3">
                 <div className="relative flex-shrink-0">
                   <div className="w-10 h-10 rounded-xl overflow-hidden">
                     <img src={member.avatar_url} alt={member.name} className="w-full h-full object-cover" />

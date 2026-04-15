@@ -37,8 +37,8 @@ export default function TransactionHistory({ transactions }) {
   const filtered = filterTransactions();
 
   return (
-    <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
-      <div className="px-6 py-4 border-b border-[#EBEBF0]">
+    <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
+      <div className="px-6 py-4 border-b border-[#F4F3FA]">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
           <div className="flex gap-2">
@@ -68,7 +68,7 @@ export default function TransactionHistory({ transactions }) {
            <div className="text-center py-6 text-[#9490AA] text-sm">No transactions in this period</div>
          ) : (
          filtered.map((tx, i) => (
-          <div key={i} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors">
+          <div key={i} className="px-4 py-3 flex items-center gap-4 bg-[#F4F3FA] rounded-2xl hover:bg-[#EDE9F8] transition-colors">
             <div className={cn(
               "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0",
               tx.amount > 0 ? "bg-emerald-50" : "bg-[#F8F7FC]"

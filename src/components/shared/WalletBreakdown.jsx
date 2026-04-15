@@ -10,7 +10,7 @@ export default function WalletBreakdown({ wallet, compact = false }) {
   const lowBalance = available < (campaigns + bonuses) * 0.2 && total > 0;
 
   return (
-    <div className={cn("bg-white rounded-xl border border-[#EBEBF0] shadow-sm", compact ? "p-4" : "p-6")}>
+    <div className={cn("bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]", compact ? "p-4" : "p-6")}>
       <div className="space-y-4">
         <div>
           <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Total Balance</p>
@@ -21,21 +21,21 @@ export default function WalletBreakdown({ wallet, compact = false }) {
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-           <Link to="/campaigns" className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#F0EEF9] transition-colors cursor-pointer">
+           <Link to="/campaigns" className="bg-[#F4F3FA] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#EDE9F8] transition-colors cursor-pointer">
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-[#796EB2]" />
                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Campaigns</p>
              </div>
              <p className="text-sm font-semibold text-[#0E0D1E]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
            </Link>
-           <Link to="/bonuses" className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#F0EEF9] transition-colors cursor-pointer">
+           <Link to="/bonuses" className="bg-[#F4F3FA] rounded-2xl px-4 py-3 space-y-1 hover:bg-[#EDE9F8] transition-colors cursor-pointer">
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-amber-500" />
                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Bonuses</p>
              </div>
              <p className="text-sm font-semibold text-[#0E0D1E]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
            </Link>
-           <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3 space-y-1">
+           <div className="bg-[#F4F3FA] rounded-2xl px-4 py-3 space-y-1">
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-emerald-500" />
                <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">Available</p>

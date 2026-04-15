@@ -99,7 +99,7 @@ export default function Bonuses() {
       </div>
 
       {/* Bonus list */}
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
+      <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
         {filtered.length === 0 ? (
           <div className="p-12 text-center">
             <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
@@ -114,7 +114,7 @@ export default function Bonuses() {
             {filtered.map(bonus => {
             const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
             return (
-              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-[#F4F3FA] rounded-2xl hover:bg-[#EDE9F8] transition-colors cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
                  {/* Type badge */}
                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
                    {typeStyle.label}

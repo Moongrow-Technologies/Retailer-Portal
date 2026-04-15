@@ -30,14 +30,14 @@ const colorMap = {
 
 export default function ActivityFeed({ activities }) {
   return (
-    <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6">
+    <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
       <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Recent Activity</h3>
       <div className="space-y-2">
         {activities.map((activity, i) => {
            const Icon = iconMap[activity.type] || ShoppingCart;
            const staffMember = activity.actor && staffByName[activity.actor];
            return (
-             <div key={i} className="flex items-start gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3">
+             <div key={i} className="flex items-start gap-3 bg-[#F4F3FA] rounded-2xl px-4 py-3">
                {staffMember?.avatar_url ? (
                  <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
                    <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />

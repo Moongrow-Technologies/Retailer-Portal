@@ -101,12 +101,12 @@ export default function Leaderboard() {
          </div>
        </div>
 
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-4">
+      <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-4">
          <div className="space-y-3">
            {sorted.map((staff, i) => (
              <Link to={`/staff/${staff.id}`} key={staff.id}>
                <div className={cn(
-                 "flex items-center gap-4 p-4 rounded-xl border transition-all hover:shadow-md bg-[#F8F7FC] border-[#E2E0ED] mb-3"
+                 "flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-sm bg-[#F4F3FA] mb-3"
                )}>
                  <div className="w-10 text-center">
                    {i < 3 ? (
