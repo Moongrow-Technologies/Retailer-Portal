@@ -71,20 +71,20 @@ export default function Bonuses() {
       </div>
 
       {/* Budget card */}
-       <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
+       <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-4 mb-6">
          <div className="flex items-start justify-between">
            <div className="flex-1">
-             <p className="text-sm text-[#7A7893] mb-2">Committed to bonuses</p>
-             <p className="text-4xl font-bold text-[#0E0D1E] mb-4">€450</p>
-             <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
+             <p className="text-xs text-[#7A7893] mb-1">Committed to bonuses</p>
+             <p className="text-3xl font-bold text-[#0E0D1E] mb-3">€450</p>
+             <div className="w-full bg-[#E2E0ED] rounded-full h-1.5 mb-1.5">
                <div className="bg-amber-500 h-full rounded-full" style={{ width: '39%' }}></div>
              </div>
-             <p className="text-sm text-amber-600 font-medium">39% of total budget used</p>
+             <p className="text-xs text-amber-600 font-medium">39% of total budget used</p>
            </div>
-           <div className="text-right pl-6">
-             <p className="text-xs text-[#7A7893] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-             <p className="text-3xl font-bold text-emerald-500">€692</p>
-             <p className="text-sm text-emerald-600 font-medium mt-1">• 61% left</p>
+           <div className="text-right pl-4">
+             <p className="text-xs text-[#7A7893] mb-1 inline-block px-2 py-1 bg-[#F4F3FA] rounded-lg text-[10px]">Available</p>
+             <p className="text-2xl font-bold text-emerald-500">€692</p>
+             <p className="text-xs text-emerald-600 font-medium mt-0.5">• 61% left</p>
            </div>
          </div>
        </div>
