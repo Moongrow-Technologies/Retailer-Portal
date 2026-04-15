@@ -45,61 +45,59 @@ export default function Leaderboard() {
         <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
-      <div className="flex items-center gap-4 mb-6 flex-wrap">
-         <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0]">
-           {['Today', 'This Week', 'This Month'].map((period, idx) => {
-             const periodKey = ['today', 'week', 'month'][idx];
-             return (
-               <button
-                 key={periodKey}
-                 onClick={() => setTimePeriod(periodKey)}
-                 className={cn(
-                   "px-4 py-2 rounded-lg text-sm font-medium transition-all",
-                   timePeriod === periodKey
-                     ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]"
-                     : "text-[#7A7893] hover:text-[#796EB2]"
-                 )}
-               >
-                 {period}
-               </button>
-             );
-           })}
-         </div>
+      <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0] flex-shrink-0">
+          {['Today', 'This Week', 'This Month'].map((period, idx) => {
+            const periodKey = ['today', 'week', 'month'][idx];
+            return (
+              <button
+                key={periodKey}
+                onClick={() => setTimePeriod(periodKey)}
+                className={cn(
+                  "px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap",
+                  timePeriod === periodKey
+                    ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]"
+                    : "text-[#7A7893] hover:text-[#796EB2]"
+                )}
+              >
+                {period}
+              </button>
+            );
+          })}
+        </div>
 
-         <div className="flex items-center gap-3 ml-auto flex-nowrap">
-           <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1 flex-nowrap whitespace-nowrap">
-             {['commission', 'units'].map(m => (
-               <button
-                 key={m}
-                 onClick={() => setMetric(m)}
-                 className={cn(
-                   "px-4 py-1.5 rounded-md text-sm font-medium transition-all",
-                   metric === m
-                     ? "bg-[#EDE9F8] text-[#5C51A6]"
-                     : "text-[#9490AA] hover:text-[#0E0D1E]"
-                 )}
-               >
-                 {m === 'commission' ? '€ Commission Earned' : '# Units Sold'}
-               </button>
-             ))}
-           </div>
+        <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1 flex-shrink-0">
+          {['commission', 'units'].map(m => (
+            <button
+              key={m}
+              onClick={() => setMetric(m)}
+              className={cn(
+                "px-3 py-1.5 rounded-md text-xs font-medium transition-all whitespace-nowrap",
+                metric === m
+                  ? "bg-[#EDE9F8] text-[#5C51A6]"
+                  : "text-[#9490AA] hover:text-[#0E0D1E]"
+              )}
+            >
+              {m === 'commission' ? '€ Commission Earned' : '# Units Sold'}
+            </button>
+          ))}
+        </div>
 
-           <Select value={campaign} onValueChange={setCampaign}>
-             <SelectTrigger className="w-[200px]"><SelectValue /></SelectTrigger>
-             <SelectContent>
-               <SelectItem value="all">All Campaigns</SelectItem>
-               {CAMPAIGNS.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
-             </SelectContent>
-           </Select>
-           <Select value={store} onValueChange={setStore}>
-             <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
-             <SelectContent>
-               <SelectItem value="all">All Stores</SelectItem>
-               {STORE.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-             </SelectContent>
-           </Select>
-         </div>
-       </div>
+        <Select value={campaign} onValueChange={setCampaign}>
+          <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Campaigns</SelectItem>
+            {CAMPAIGNS.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select value={store} onValueChange={setStore}>
+          <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Stores</SelectItem>
+            {STORE.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
 
       <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-4">
          <div className="space-y-3">
