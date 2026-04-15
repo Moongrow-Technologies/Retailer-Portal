@@ -25,7 +25,7 @@ function PeriodPill({ value, onChange }) {
       <select
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="appearance-none bg-[#F4F3FA] text-[#3D3761] text-xs font-medium pl-3 pr-6 py-1.5 rounded-full cursor-pointer focus:outline-none"
+        className="appearance-none bg-[#F4F3FA] text-[#3D3761] text-xs font-medium pl-3 pr-4 py-1.5 rounded-full cursor-pointer focus:outline-none"
       >
         {opts.map(o => <option key={o} value={o}>{o}</option>)}
       </select>
