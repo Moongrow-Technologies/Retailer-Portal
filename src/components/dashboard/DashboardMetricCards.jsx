@@ -13,7 +13,7 @@ function daysLeft(endDate) {
 
 function progressPct(spent, budget) {
   if (!budget) return 0;
-  return Math.min(100, Math.round((spent / budget) * 100));
+  return Math.min(100, Math.round(spent / budget * 100));
 }
 
 // ─── sub-components ─────────────────────────────────────────────────────────
@@ -24,22 +24,22 @@ function PeriodPill({ value, onChange }) {
     <div className="relative">
       <select
         value={value}
-        onChange={e => onChange(e.target.value)}
-        className="appearance-none bg-[#F4F3FA] text-[#3D3761] text-xs font-medium pl-3 pr-5 py-1.5 rounded-full cursor-pointer focus:outline-none"
-      >
-        {opts.map(o => <option key={o} value={o}>{o}</option>)}
+        onChange={(e) => onChange(e.target.value)}
+        className="appearance-none bg-[#F4F3FA] text-[#3D3761] text-xs font-medium pl-3 pr-5 py-1.5 rounded-full cursor-pointer focus:outline-none">
+        
+        {opts.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
       <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[#796EB2] text-[10px]">▾</span>
-    </div>
-  );
+    </div>);
+
 }
 
 function TrendBadge({ value }) {
   return (
     <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">
       ↑ {value}
-    </p>
-  );
+    </p>);
+
 }
 
 function CampaignBar({ name, pct, urgency }) {
@@ -55,16 +55,16 @@ function CampaignBar({ name, pct, urgency }) {
       <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all"
-          style={{ width: `${Math.min(100, 100 - pct * 2)}%`, background: barColor }}
-        />
+          style={{ width: `${Math.min(100, 100 - pct * 2)}%`, background: barColor }} />
+        
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── CARD 1 — Active Campaigns ───────────────────────────────────────────────
 function ActiveCampaignsCard({ campaigns }) {
-  const active = campaigns.filter(c => c.status === 'active');
+  const active = campaigns.filter((c) => c.status === 'active');
   const displayed = active.slice(0, 2);
 
   return (
@@ -77,12 +77,12 @@ function ActiveCampaignsCard({ campaigns }) {
       </div>
 
       <div>
-        <p className="text-[42px] font-bold text-[#0E0D1E] leading-none">{active.length}</p>
+        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{active.length}</p>
         <p className="text-[13px] font-semibold text-[#22C55E] mt-1">↑ 2 new this month</p>
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
-        {displayed.map(c => {
+        {displayed.map((c) => {
           const dl = daysLeft(c.end_date);
           const warn = dl !== null && dl <= 5;
           return (
@@ -99,21 +99,21 @@ function ActiveCampaignsCard({ campaigns }) {
                   style={{
                     width: `${progressPct(c.spent, c.budget)}%`,
                     background: warn ? '#F59E0B' : '#5B4FCF'
-                  }}
-                />
+                  }} />
+                
               </div>
-            </div>
-          );
+            </div>);
+
         })}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── CARD 2 — Commission Paid ─────────────────────────────────────────────────
 const commissionData = {
   'This week': { value: '€42.50', trend: '12% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28.00', pct: 66 }, { name: 'Amnesia Haze Launch', amount: '€14.50', pct: 34 }] },
-  'This month': { value: '€184.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€112.00', pct: 61 }, { name: 'Amnesia Haze Launch', amount: '€72.00', pct: 39 }] },
+  'This month': { value: '€184.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€112.00', pct: 61 }, { name: 'Amnesia Haze Launch', amount: '€72.00', pct: 39 }] }
 };
 
 function CommissionCard() {
@@ -128,13 +128,13 @@ function CommissionCard() {
       </div>
 
       <div>
-        <p className="text-[42px] font-bold text-[#0E0D1E] leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-3xl font-semibold leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
-        {d.breakdown.map(b => (
-          <div key={b.name}>
+        {d.breakdown.map((b) =>
+        <div key={b.name}>
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-[13px] font-semibold text-[#0E0D1E] truncate max-w-[65%]">{b.name}</span>
               <span className="text-[13px] font-semibold text-[#0E0D1E]">{b.amount}</span>
@@ -143,42 +143,42 @@ function CommissionCard() {
               <div className="h-full rounded-full bg-[#5B4FCF]" style={{ width: `${b.pct}%` }} />
             </div>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── CARD 3 — Units Sold ─────────────────────────────────────────────────────
 const unitsWeekData = [
-  { day: 'M', units: 14 },
-  { day: 'T', units: 18 },
-  { day: 'W', units: 38 },
-  { day: 'T', units: 16 },
-  { day: 'F', units: 12 },
-  { day: 'S', units: 8 },
-  { day: 'S', units: 28 },
-];
+{ day: 'M', units: 14 },
+{ day: 'T', units: 18 },
+{ day: 'W', units: 38 },
+{ day: 'T', units: 16 },
+{ day: 'F', units: 12 },
+{ day: 'S', units: 8 },
+{ day: 'S', units: 28 }];
+
 
 const unitsMonthData = Array.from({ length: 30 }, (_, i) => ({ day: `${i + 1}`, units: Math.floor(Math.random() * 30) + 8 }));
 
 const unitsSoldData = {
   'This week': { value: '124', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 38 }, today: { day: 'S', value: 28 } },
-  'This month': { value: '538', trend: '11% vs last period', chart: unitsMonthData, best: { day: 'W', value: 38 }, today: { day: '30', value: 21 } },
+  'This month': { value: '538', trend: '11% vs last period', chart: unitsMonthData, best: { day: 'W', value: 38 }, today: { day: '30', value: 21 } }
 };
 
 const CustomBar = (props) => {
   const { x, y, width, height, fill } = props;
   const r = 4;
   return (
-    <rect x={x} y={y} width={width} height={height} rx={r} ry={r} fill={fill} />
-  );
+    <rect x={x} y={y} width={width} height={height} rx={r} ry={r} fill={fill} />);
+
 };
 
 function UnitsSoldCard() {
   const [period, setPeriod] = useState('This week');
   const d = unitsSoldData[period];
-  const maxVal = Math.max(...d.chart.map(v => v.units));
+  const maxVal = Math.max(...d.chart.map((v) => v.units));
 
   return (
     <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
@@ -188,7 +188,7 @@ function UnitsSoldCard() {
       </div>
 
       <div>
-        <p className="text-[42px] font-bold text-[#0E0D1E] leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-4xl font-bold leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -199,13 +199,13 @@ function UnitsSoldCard() {
               dataKey="day"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 11, fill: '#9490AA' }}
-            />
+              tick={{ fontSize: 11, fill: '#9490AA' }} />
+            
             <Tooltip
               cursor={false}
               contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
-              formatter={(val) => [val, 'Units']}
-            />
+              formatter={(val) => [val, 'Units']} />
+            
             <Bar
               dataKey="units"
               shape={(props) => {
@@ -213,8 +213,8 @@ function UnitsSoldCard() {
                 const isToday = props.index === d.chart.length - 1;
                 const fill = isBest ? '#F59E0B' : isToday ? '#5B4FCF' : '#EDEAF8';
                 return <CustomBar {...props} fill={fill} />;
-              }}
-            />
+              }} />
+            
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -229,20 +229,20 @@ function UnitsSoldCard() {
           <span className="text-[11px] text-[#9490AA]">Today ({d.today.value})</span>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── CARD 4 — Revenue Generated ──────────────────────────────────────────────
 const revenueWeekData = [
-  { day: 'M', rev: 140 }, { day: 'T', rev: 200 }, { day: 'W', rev: 380 },
-  { day: 'T', rev: 460 }, { day: 'F', rev: 600 }, { day: 'S', rev: 900 }, { day: 'S', rev: 1240 },
-];
+{ day: 'M', rev: 140 }, { day: 'T', rev: 200 }, { day: 'W', rev: 380 },
+{ day: 'T', rev: 460 }, { day: 'F', rev: 600 }, { day: 'S', rev: 900 }, { day: 'S', rev: 1240 }];
+
 const revenueMonthData = Array.from({ length: 30 }, (_, i) => ({ day: `${i + 1}`, rev: 200 + i * 170 + Math.random() * 80 }));
 
 const revenueData = {
   'This week': { value: '€1,240', trend: '8% vs last period', chart: revenueWeekData },
-  'This month': { value: '€5,380', trend: '14% vs last period', chart: revenueMonthData },
+  'This month': { value: '€5,380', trend: '14% vs last period', chart: revenueMonthData }
 };
 
 function RevenueCard() {
@@ -273,8 +273,8 @@ function RevenueCard() {
             <XAxis dataKey="day" hide />
             <Tooltip
               contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
-              formatter={(val) => [`€${Math.round(val).toLocaleString()}`, 'Revenue']}
-            />
+              formatter={(val) => [`€${Math.round(val).toLocaleString()}`, 'Revenue']} />
+            
             <Area
               type="monotone"
               dataKey="rev"
@@ -282,13 +282,13 @@ function RevenueCard() {
               strokeWidth={2}
               fill="url(#revGrad)"
               dot={false}
-              activeDot={{ r: 4, fill: '#22C55E', strokeWidth: 0 }}
-            />
+              activeDot={{ r: 4, fill: '#22C55E', strokeWidth: 0 }} />
+            
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
@@ -299,6 +299,6 @@ export default function DashboardMetricCards({ campaigns }) {
       <CommissionCard />
       <UnitsSoldCard />
       <RevenueCard />
-    </div>
-  );
+    </div>);
+
 }
