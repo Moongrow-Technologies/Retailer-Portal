@@ -43,14 +43,14 @@ export default function StaffCard({ staff }) {
     <Link to={`/staff/${staff.id}`}>
       <div className="bg-white rounded-2xl border border-[#E2E0ED] p-6 hover:shadow-md transition-shadow h-full flex flex-col">
         {/* Header with avatar and badge */}
-        <div className="flex items-start justify-between mb-4 pb-4 border-b border-[#E2E0ED]">
-          <div className="flex items-center gap-3 flex-1">
+        <div className="flex items-start justify-between gap-3 pb-4 mb-4 border-b border-[#E2E0ED]">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
             <div className={cn('w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0', avatarColorMap[staff.id] || avatarColors[staff.status])}>
               {initials}
             </div>
-            <div className="min-w-0">
-              <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
-              <p className="text-xs text-[#9490AA] capitalize whitespace-nowrap overflow-hidden text-overflow-ellipsis">
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold text-[#0E0D1E] text-sm leading-tight">{staff.name}</p>
+              <p className="text-xs text-[#9490AA] capitalize whitespace-nowrap overflow-hidden text-overflow-ellipsis leading-tight mt-0.5">
                 {staff.role} · {staff.store}
               </p>
             </div>
@@ -61,25 +61,27 @@ export default function StaffCard({ staff }) {
         </div>
 
         {/* Stats */}
-        <div className="grid gap-4 mb-4 flex-1" style={{ gridTemplateColumns: '1fr 1fr' }}>
-          <div className="min-w-0">
+        <div className="grid gap-0 mb-4 flex-1" style={{ gridTemplateColumns: '1fr 1fr' }}>
+          <div className="min-w-0 pr-2">
             <p className="text-xs text-[#9490AA] font-medium mb-1">Commission</p>
             <p className={cn('text-lg font-bold truncate', isHighestCommission ? 'text-emerald-600' : 'text-[#0E0D1E]')}>
               €{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 pl-2">
             <p className="text-xs text-[#9490AA] font-medium mb-1">Units sold</p>
             <p className="text-lg font-bold text-[#0E0D1E]">{staff.total_units_sold}</p>
           </div>
         </div>
 
         {/* Link */}
-        {staff.status === 'active' ? (
-          <p className="text-sm font-medium text-[#796EB2]">View profile →</p>
-        ) : (
-          <p className="text-sm font-medium text-amber-500">Resend invite →</p>
-        )}
+        <div>
+          {staff.status === 'active' ? (
+            <p className="text-sm font-medium text-[#796EB2]">View profile →</p>
+          ) : (
+            <p className="text-sm font-medium text-amber-500">Resend invite →</p>
+          )}
+        </div>
       </div>
     </Link>
   );
