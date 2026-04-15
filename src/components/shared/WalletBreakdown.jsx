@@ -2,12 +2,78 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
-export default function WalletBreakdown({ wallet, compact = false }) {
+export default function WalletBreakdown({ wallet, compact = false, isWalletPage = false }) {
   const total = wallet?.total_balance || 0;
   const campaigns = wallet?.committed_campaigns || 0;
   const bonuses = wallet?.committed_bonuses || 0;
   const available = wallet?.available || 0;
   const lowBalance = available < (campaigns + bonuses) * 0.2 && total > 0;
+
+  if (isWalletPage) {
+    const campaignsPct = total > 0 ? Math.round((campaigns / total) * 100) : 0;
+    const bonusesPct = total > 0 ? Math.round((bonuses / total) * 100) : 0;
+    const availablePct = total > 0 ? Math.round((available / total) * 100) : 0;
+
+    return (
+      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+        <div className="flex items-start justify-between mb-6">
+          <div>
+            <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">Total Balance</p>
+            <p className="text-5xl font-bold tracking-tight text-[#0E0D1E]">
+              €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </p>
+            <p className="text-xs text-[#7A7893] mt-1">EURC</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="bg-[#F4F3FA] rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2]" />
+              <p className="text-sm font-medium text-[#0E0D1E]">Campaigns</p>
+            </div>
+            <p className="text-2xl font-bold text-[#0E0D1E]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
+            <p className="text-xs text-[#7A7893] mt-1">{campaignsPct}% of balance</p>
+          </div>
+          <div className="bg-[#F4F3FA] rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+              <p className="text-sm font-medium text-[#0E0D1E]">Bonuses</p>
+            </div>
+            <p className="text-2xl font-bold text-[#0E0D1E]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
+            <p className="text-xs text-[#7A7893] mt-1">{bonusesPct}% of balance</p>
+          </div>
+          <div className="bg-[#F4F3FA] rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+              <p className="text-sm font-medium text-[#0E0D1E]">Available</p>
+            </div>
+            <p className="text-2xl font-bold text-emerald-600">€{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
+            <p className="text-xs text-[#7A7893] mt-1">{availablePct}% of balance</p>
+          </div>
+        </div>
+
+        {/* Balance bar */}
+        <div className="h-2.5 rounded-full bg-[#E2E0ED] overflow-hidden flex">
+          {total > 0 && (
+            <>
+              <div className="h-full bg-[#796EB2]" style={{ width: `${campaignsPct}%` }} />
+              <div className="h-full bg-amber-500" style={{ width: `${bonusesPct}%` }} />
+              <div className="h-full bg-emerald-500" style={{ width: `${availablePct}%` }} />
+            </>
+          )}
+        </div>
+
+        {lowBalance && (
+          <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mt-4">
+            <p className="text-xs font-medium text-amber-700">
+              ⚠ Low balance — available funds below 20% of committed spend
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className={cn("bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]", compact ? "p-4" : "p-6")}>

@@ -20,14 +20,6 @@ export default function WalletPage() {
           <h1 className="text-2xl font-bold text-[#0E0D1E]">Wallet</h1>
           <p className="text-sm text-[#7A7893] mt-1">Manage your EURC funds and transaction history.</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button onClick={() => setShowWithdraw(true)} variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E]">
-            <ArrowUpFromLine className="w-4 h-4" /> Withdraw
-          </Button>
-          <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
-            <Plus className="w-4 h-4" /> Top Up
-          </Button>
-        </div>
       </div>
 
       {zeroBalance && (
@@ -41,7 +33,17 @@ export default function WalletPage() {
       )}
 
       <div className="space-y-6">
-        <WalletBreakdown wallet={wallet} />
+        <div className="relative">
+          <WalletBreakdown wallet={wallet} isWalletPage={true} />
+          <div className="absolute top-6 right-6 flex items-center gap-2">
+            <Button onClick={() => setShowWithdraw(true)} variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E]">
+              <ArrowUpFromLine className="w-4 h-4" /> Withdraw
+            </Button>
+            <Button onClick={() => setShowTopUp(true)} className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+              <Plus className="w-4 h-4" /> Top Up
+            </Button>
+          </div>
+        </div>
         <TransactionHistory transactions={TRANSACTIONS} />
       </div>
 
