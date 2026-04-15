@@ -68,7 +68,7 @@ function ActiveCampaignsCard({ campaigns }) {
   const displayed = active.slice(0, 2);
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#9490AA] font-medium">Active campaigns</span>
         <div className="w-8 h-8 rounded-full bg-[#F4F3FA] flex items-center justify-center">
@@ -77,8 +77,8 @@ function ActiveCampaignsCard({ campaigns }) {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{active.length}</p>
-        <p className="text-[13px] font-semibold text-[#22C55E] mt-1">↑ 2 new this month</p>
+        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none mt-1">{active.length}</p>
+        <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">↑ 2 new this month</p>
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
@@ -121,7 +121,7 @@ function CommissionCard() {
   const d = commissionData[period];
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#9490AA] font-medium">Commission paid</span>
         <PeriodPill value={period} onChange={setPeriod} />
@@ -181,7 +181,7 @@ function UnitsSoldCard() {
   const maxVal = Math.max(...d.chart.map((v) => v.units));
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#9490AA] font-medium">Units sold</span>
         <PeriodPill value={period} onChange={setPeriod} />
@@ -250,7 +250,7 @@ function RevenueCard() {
   const d = revenueData[period];
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#9490AA] font-medium">Revenue generated</span>
         <PeriodPill value={period} onChange={setPeriod} />
