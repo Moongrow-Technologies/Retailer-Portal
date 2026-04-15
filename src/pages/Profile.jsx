@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Camera } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { STORE } from '@/lib/sampleData';
+import ChangeEmailModal from '@/components/profile/ChangeEmailModal';
 
 export default function Profile() {
   const { data: user } = useQuery({
@@ -17,6 +18,7 @@ export default function Profile() {
   const [email, setEmail] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
   const [showToast, setShowToast] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -97,6 +99,13 @@ export default function Profile() {
                 />
               </div>
 
+              <button
+                onClick={() => setShowEmailModal(true)}
+                className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors text-left -mt-1"
+              >
+                Change Email →
+              </button>
+
               <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Role</p>
                 <p className="text-sm font-medium text-[#0E0D1E] capitalize">{user?.role || 'Admin'}</p>
@@ -120,6 +129,7 @@ export default function Profile() {
       </div>
 
       <SuccessToast message={showToast ? "Profile updated successfully." : null} onDismiss={() => setShowToast(false)} />
+      {showEmailModal && <ChangeEmailModal onClose={() => setShowEmailModal(false)} />}
     </>
   );
 }
