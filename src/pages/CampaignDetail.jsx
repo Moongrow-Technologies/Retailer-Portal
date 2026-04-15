@@ -66,7 +66,7 @@ export default function CampaignDetail() {
           {status !== 'completed' && (
             <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
           )}
-          <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-muted rounded-lg transition-colors">
@@ -87,11 +87,10 @@ export default function CampaignDetail() {
         </div>
       )}
 
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <StatCard label="Units Sold" value={campaign.units_sold} sublabel={`of ${campaign.target_units} target`} icon={Target} />
         <StatCard label="Commission Spend" value={`€${campaign.spent.toFixed(2)}`} sublabel={`of €${campaign.budget.toFixed(2)} budget`} icon={DollarSign} />
         <StatCard label="ROI" value={campaign.status === 'completed' ? '2.4×' : '—'} sublabel={campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion'} icon={TrendingUp} />
-        <StatCard label="Active Staff" value={staffLeaderboard.length} icon={Users} />
       </div>
 
       {/* Progress bars */}

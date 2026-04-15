@@ -114,20 +114,20 @@ export default function Bonuses() {
             {filtered.map(bonus => {
             const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
             return (
-              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors">
-                {/* Type badge */}
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
-                  {typeStyle.label}
-                </span>
+              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+                 {/* Type badge */}
+                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
+                   {typeStyle.label}
+                 </span>
 
-                {/* Name + product */}
-                <Link to={`/bonuses/${bonus.id}`} className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#0E0D1E] truncate">{bonus.name}</p>
-                  <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name}</p>
-                </Link>
+                 {/* Name + product */}
+                 <div className="flex-1 min-w-0">
+                   <p className="text-sm font-semibold text-[#0E0D1E] truncate">{bonus.name}</p>
+                   <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name}</p>
+                 </div>
 
-                {/* Target */}
-                <div className="w-32 flex-shrink-0">
+                 {/* Target */}
+                 <div className="w-32 flex-shrink-0">
                   <p className="text-xs text-[#9490AA]">Target</p>
                   <p className="text-sm font-medium text-[#0E0D1E]">{getTarget(bonus)}</p>
                 </div>
