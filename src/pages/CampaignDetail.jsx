@@ -5,7 +5,7 @@ import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical } from 'lucide-react';
+import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import SuccessToast from '@/components/shared/SuccessToast';
@@ -87,11 +87,11 @@ export default function CampaignDetail() {
         </div>
       )}
 
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <StatCard label="Units Sold" value={campaign.units_sold} sublabel={`of ${campaign.target_units} target`} icon={Target} />
         <StatCard label="Commission Spend" value={`€${campaign.spent.toFixed(2)}`} sublabel={`of €${campaign.budget.toFixed(2)} budget`} icon={DollarSign} />
         <StatCard label="ROI" value={campaign.status === 'completed' ? '2.4×' : '—'} sublabel={campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion'} icon={TrendingUp} />
-        <StatCard label="Active Staff" value={staffLeaderboard.length} icon={Users} />
+
       </div>
 
       {/* Progress bars */}
