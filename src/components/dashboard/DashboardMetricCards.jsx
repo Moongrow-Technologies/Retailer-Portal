@@ -68,7 +68,7 @@ function ActiveCampaignsCard({ campaigns }) {
   const displayed = active.slice(0, 2);
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#9490AA] font-medium">Active campaigns</span>
         <div className="w-8 h-8 rounded-full bg-[#F4F3FA] flex items-center justify-center">
