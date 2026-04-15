@@ -15,11 +15,11 @@ export const PRODUCTS = [
 ];
 
 export const STAFF = [
-  { id: 's1', name: 'Lisa V.', email: 'lisa@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Centrum', status: 'active', total_commissions: 342.50, total_units_sold: 187, bonus_wins: 3 },
-  { id: 's2', name: 'Ahmed R.', email: 'ahmed@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Centrum', status: 'active', total_commissions: 298.00, total_units_sold: 162, bonus_wins: 1 },
-  { id: 's3', name: 'Sarah K.', email: 'sarah@degroenehoek.nl', role: 'lead', store: 'De Groene Hoek — Oost', status: 'active', total_commissions: 276.75, total_units_sold: 148, bonus_wins: 2 },
-  { id: 's4', name: 'Tom B.', email: 'tom@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Zuid', status: 'active', total_commissions: 189.25, total_units_sold: 103, bonus_wins: 0 },
-  { id: 's5', name: 'Nina D.', email: 'nina@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Oost', status: 'pending', total_commissions: 0, total_units_sold: 0, bonus_wins: 0 },
+  { id: 's1', name: 'Lisa V.', email: 'lisa@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Centrum', status: 'active', total_commissions: 342.50, total_units_sold: 187, bonus_wins: 3, avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face' },
+  { id: 's2', name: 'Ahmed R.', email: 'ahmed@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Centrum', status: 'active', total_commissions: 298.00, total_units_sold: 162, bonus_wins: 1, avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face' },
+  { id: 's3', name: 'Sarah K.', email: 'sarah@degroenehoek.nl', role: 'lead', store: 'De Groene Hoek — Oost', status: 'active', total_commissions: 276.75, total_units_sold: 148, bonus_wins: 2, avatar_url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face' },
+  { id: 's4', name: 'Tom B.', email: 'tom@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Zuid', status: 'active', total_commissions: 189.25, total_units_sold: 103, bonus_wins: 0, avatar_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face' },
+  { id: 's5', name: 'Nina D.', email: 'nina@degroenehoek.nl', role: 'budtender', store: 'De Groene Hoek — Oost', status: 'pending', total_commissions: 0, total_units_sold: 0, bonus_wins: 0, avatar_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face' },
 ];
 
 export const CAMPAIGNS = [
