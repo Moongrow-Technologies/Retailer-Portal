@@ -69,7 +69,7 @@ export default function TopBar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-14 bg-white flex items-center z-50">
+    <header className="fixed top-0 left-0 right-0 h-14 bg-white flex items-center z-50 border-b border-[#EBEBF0]">
       {/* Logo area — same width as sidebar */}
       <div className="w-[220px] flex-shrink-0 flex items-center px-5 h-full">
         <Link to="/" className="flex flex-col gap-0.5">
