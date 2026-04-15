@@ -72,7 +72,7 @@ export default function CreateBonus() {
   };
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-2xl mx-auto">
       {/* Back */}
       <button onClick={() => step === 0 ? navigate('/bonuses') : setStep(step - 1)}
         className="flex items-center gap-1.5 text-sm text-[#7A7893] hover:text-[#796EB2] mb-6 transition-colors">
