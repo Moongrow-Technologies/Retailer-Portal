@@ -41,7 +41,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-4 px-3 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.path);
           return (
@@ -49,14 +49,14 @@ export default function Sidebar() {
               key={item.path}
               to={item.path}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150",
+                "flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                 active
-                  ? "bg-[#EDE9F8] text-[#796EB2]"
-                  : "text-[#4A4761] hover:bg-[#F5F3FC] hover:text-[#796EB2]"
+                  ? "text-[#796EB2]"
+                  : "text-[#7A7893] hover:text-[#796EB2]"
               )}
             >
-              <item.icon className={cn("w-[18px] h-[18px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#7A7893]")} />
-              <span>{item.label}</span>
+              <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
+              <span className={cn("font-semibold", active ? "text-[#796EB2]" : "text-[#4A4761]")}>{item.label}</span>
             </Link>
           );
         })}
