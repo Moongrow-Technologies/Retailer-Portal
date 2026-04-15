@@ -69,7 +69,7 @@ export default function TopBar() {
   }
 
   return (
-    <header className="fixed top-3 left-[232px] right-4 h-12 bg-white rounded-2xl flex items-center justify-between px-6 z-40 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)]">
+    <header className="fixed top-0 left-[220px] right-0 h-14 bg-white flex items-center justify-between px-8 z-40">
       {/* Breadcrumb */}
       <div className="flex items-center gap-1.5 text-sm">
         {section && section !== label ? (
