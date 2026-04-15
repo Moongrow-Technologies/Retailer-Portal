@@ -99,44 +99,58 @@ export default function Leaderboard() {
         </Select>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-4">
-         <div className="space-y-3">
-           {sorted.map((staff, i) => (
-             <Link to={`/staff/${staff.id}`} key={staff.id}>
-               <div className={cn(
-                 "flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-sm bg-[#F4F3FA] mb-3"
-               )}>
-                 <div className="w-10 text-center">
-                   {i < 3 ? (
-                     <span className="text-xl">{rankIcons[i]}</span>
-                   ) : (
-                     <span className="text-lg font-bold text-[#9490AA]">{i + 1}</span>
-                   )}
-                 </div>
-                 <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
-                   {staff.avatar_url ? (
-                     <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
-                   ) : (
-                     <div className="w-full h-full bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">{staff.name.charAt(0)}</div>
-                   )}
-                 </div>
-                 <div className="flex-1">
-                   <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
-                   <p className="text-sm text-[#9490AA]">{staff.role.charAt(0).toUpperCase() + staff.role.slice(1)} · {staff.store}</p>
-                 </div>
-                 <div className="text-right">
-                   <p className="text-lg font-bold text-[#0E0D1E]">
-                     {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
-                   </p>
-                   <p className="text-xs text-[#9490AA]">
-                     {metric === 'commission' ? `${staff.total_units_sold} units` : `€${staff.total_commissions.toFixed(2)} earned`}
-                   </p>
-                 </div>
-               </div>
-             </Link>
-           ))}
-         </div>
-       </div>
+      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+        {/* Table Header */}
+        <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-3 border-b border-[#F4F3FA]">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Rank</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff Name</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Metric Value</span>
+        </div>
+
+        {/* Rows */}
+        {sorted.map((staff, i) => (
+          <Link to={`/staff/${staff.id}`} key={staff.id}>
+            <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-4 border-b border-[#F4F3FA] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center">
+              {/* Rank */}
+              <div className="flex items-center gap-2">
+                <span className={cn(
+                  "w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold",
+                  i === 0 ? "bg-amber-100 text-amber-600" : "bg-[#F4F3FA] text-[#9490AA]"
+                )}>
+                  {i + 1}
+                </span>
+                {i === 0 && <span className="text-amber-400 text-sm">★</span>}
+              </div>
+
+              {/* Staff Name + Avatar */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                  {staff.avatar_url ? (
+                    <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
+                      {staff.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </div>
+                  )}
+                </div>
+                <span className="font-semibold text-[#0E0D1E]">{staff.name}</span>
+              </div>
+
+              {/* Store */}
+              <span className="text-[#4A4761]">{staff.store}</span>
+
+              {/* Metric Value */}
+              <span className={cn(
+                "text-right font-semibold text-base",
+                i === 0 ? "text-emerald-500" : "text-[#0E0D1E]"
+              )}>
+                {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
