@@ -19,7 +19,7 @@ export default function Settings() {
   const toggle = (key) => setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
 
   return (
-    <div className="max-w-4xl">
+    <div>
       {/* Page Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-[#0E0D1E]">Settings</h1>
