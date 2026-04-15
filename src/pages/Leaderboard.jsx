@@ -45,7 +45,7 @@ export default function Leaderboard() {
         <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-4 mb-6 flex-wrap">
          <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0]">
            {['Today', 'This Week', 'This Month'].map((period, idx) => {
              const periodKey = ['today', 'week', 'month'][idx];
@@ -66,8 +66,8 @@ export default function Leaderboard() {
            })}
          </div>
 
-         <div className="flex items-center gap-3 ml-auto">
-           <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1">
+         <div className="flex items-center gap-3 ml-auto flex-nowrap">
+           <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1 flex-nowrap whitespace-nowrap">
              {['commission', 'units'].map(m => (
                <button
                  key={m}
