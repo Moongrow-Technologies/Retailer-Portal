@@ -44,11 +44,11 @@ export default function Bonuses() {
 
   const counts = {
     active:    bonuses.filter(b => b.status === 'active').length,
-    scheduled: 0,
+    scheduled: bonuses.filter(b => b.status === 'scheduled').length,
     completed: bonuses.filter(b => b.status === 'completed').length,
   };
 
-  const filtered = tab === 'scheduled' ? [] : bonuses.filter(b => b.status === tab);
+  const filtered = bonuses.filter(b => b.status === tab);
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter(b => b.id !== bonus.id));
@@ -138,19 +138,24 @@ export default function Bonuses() {
                   <p className="text-sm font-semibold text-[#0E0D1E]">{getPrize(bonus)}</p>
                 </div>
 
-                {/* End date */}
+                {/* Date column */}
                 <div className="w-28 flex-shrink-0 text-right">
-                  {bonus.type === 'sprint' ? (
-                    <>
-                      <p className="text-xs text-[#9490AA]">Ends</p>
-                      <p className="text-sm font-medium text-[#9490AA] italic">On completion</p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-xs text-[#9490AA]">Ends</p>
-                      <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
-                    </>
-                  )}
+                 {bonus.status === 'scheduled' ? (
+                   <>
+                     <p className="text-xs text-[#9490AA]">Starts</p>
+                     <p className="text-sm font-medium text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</p>
+                   </>
+                 ) : bonus.type === 'sprint' || !bonus.end_date ? (
+                   <>
+                     <p className="text-xs text-[#9490AA]">Ends</p>
+                     <p className="text-sm font-medium text-[#9490AA] italic">On completion</p>
+                   </>
+                 ) : (
+                   <>
+                     <p className="text-xs text-[#9490AA]">Ends</p>
+                     <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
+                   </>
+                 )}
                 </div>
 
                 {/* Menu */}

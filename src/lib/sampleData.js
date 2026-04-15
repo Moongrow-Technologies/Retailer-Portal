@@ -57,6 +57,13 @@ export const BONUSES = [
     hours_left: 120, // 5 days
   },
   {
+    id: 'b4', name: 'April End Sprint', type: 'sprint', metric: 'units_sold', product_name: 'Gorilla Glue',
+    scope: 'chain', status: 'scheduled', start_date: '2026-04-20', end_date: null,
+    threshold_target: 20, prize_pool: 50, prizes: [{ position: 1, amount: 50, label: 'Winner' }],
+    participants: 0, current_leader: null,
+    leaderboard: [],
+  },
+  {
     id: 'b3', name: 'March Top Seller', type: 'ranked', metric: 'units_sold', product_name: 'All Products',
     scope: 'chain', status: 'completed', start_date: '2026-03-01', end_date: '2026-03-31',
     prize_pool: 175, prizes: [{ position: 1, amount: 100, label: '1st' }, { position: 2, amount: 50, label: '2nd' }, { position: 3, amount: 25, label: '3rd' }],

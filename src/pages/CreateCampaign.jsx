@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, ArrowRight, Check, Megaphone } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Megaphone, Clock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -23,6 +23,7 @@ export default function CreateCampaign() {
 
   const product = PRODUCTS.find(p => p.name === data.product);
   const progress = ((step + 1) / STEPS.length) * 100;
+  const isScheduled = data.start_date && new Date(data.start_date) > new Date();
 
   const canNext = () => {
     if (step === 0) return !!data.product;
@@ -47,9 +48,11 @@ export default function CreateCampaign() {
         <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-5">
           <Check className="w-8 h-8 text-emerald-600" />
         </div>
-        <h2 className="text-2xl font-bold mb-2">Campaign Launched!</h2>
+        <h2 className="text-2xl font-bold mb-2">{isScheduled ? 'Campaign Scheduled!' : 'Campaign Launched!'}</h2>
         <p className="text-muted-foreground mb-6">
-          {data.name || `${data.product} Campaign`} is now live. €{Number(data.budget).toFixed(2)} has been committed from your wallet.
+          {isScheduled
+            ? `${data.name || `${data.product} Campaign`} is scheduled to go live on ${data.start_date}. €${Number(data.budget).toFixed(2)} will be committed when it starts.`
+            : `${data.name || `${data.product} Campaign`} is now live. €${Number(data.budget).toFixed(2)} has been committed from your wallet.`}
         </p>
         <div className="flex gap-3 justify-center">
           <Button variant="outline" onClick={() => navigate('/campaigns')}>View Campaigns</Button>
@@ -153,6 +156,12 @@ export default function CreateCampaign() {
                 <Input type="date" value={data.end_date} onChange={e => setData({ ...data, end_date: e.target.value })} className="mt-1.5" />
               </div>
             </div>
+            {isScheduled && (
+              <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl">
+                <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <p className="text-sm text-amber-700">This campaign will be <span className="font-semibold">scheduled</span> — it goes live automatically on the start date.</p>
+              </div>
+            )}
           </div>
         )}
 
@@ -181,10 +190,16 @@ export default function CreateCampaign() {
                 <p className="font-medium text-[#0E0D1E]">{data.stores.join(', ')}</p>
               </div>
             </div>
+            {isScheduled && (
+              <div className="flex items-center gap-2 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
+                <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <p className="text-sm text-amber-700 font-medium">Scheduled to start on <span className="font-bold">{data.start_date}</span></p>
+              </div>
+            )}
             <div className="p-4 bg-[#EDE9F8] border border-[#C8C3E0] rounded-xl">
               <p className="text-xs font-semibold text-[#796EB2] uppercase tracking-wide mb-1">Financial Commitment</p>
               <p className="text-2xl font-bold text-[#0E0D1E]">€{Number(data.budget).toFixed(2)}</p>
-              <p className="text-xs text-[#796EB2] mt-0.5">will be locked from your wallet upon launch</p>
+              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be locked from your wallet when the campaign starts' : 'will be locked from your wallet upon launch'}</p>
             </div>
           </div>
         )}
@@ -196,7 +211,7 @@ export default function CreateCampaign() {
           disabled={!canNext()}
           className="bg-primary hover:bg-primary/90 gap-2"
         >
-          {step === 4 ? 'Launch Campaign' : 'Continue'} <ArrowRight className="w-4 h-4" />
+          {step === 4 ? (isScheduled ? 'Schedule Campaign' : 'Launch Campaign') : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />

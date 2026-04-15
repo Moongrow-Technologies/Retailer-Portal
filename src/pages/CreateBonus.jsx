@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award, Clock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -32,6 +32,11 @@ export default function CreateBonus() {
     sprint_prize: '',
   });
 
+  const isScheduled = (() => {
+    if (!data.customStart) return false;
+    return new Date(data.customStart) > new Date();
+  })();
+
   const totalPrize = (() => {
     if (data.type === 'threshold') return Number(data.threshold_prize) || 0;
     if (data.type === 'sprint') return Number(data.sprint_prize) || 0;
@@ -46,8 +51,12 @@ export default function CreateBonus() {
         <div className="w-16 h-16 rounded-2xl bg-[#EDE9F8] flex items-center justify-center mx-auto mb-5">
           <Check className="w-8 h-8 text-[#796EB2]" />
         </div>
-        <h2 className="text-2xl font-bold text-[#0E0D1E] mb-2">Bonus Launched!</h2>
-        <p className="text-[#7A7893] mb-6">{data.name} is now live. €{totalPrize.toFixed(2)} has been committed from your wallet.</p>
+        <h2 className="text-2xl font-bold text-[#0E0D1E] mb-2">{isScheduled ? 'Bonus Scheduled!' : 'Bonus Launched!'}</h2>
+        <p className="text-[#7A7893] mb-6">
+          {isScheduled
+            ? `${data.name} is scheduled to go live on ${data.customStart}. €${totalPrize.toFixed(2)} will be committed when it starts.`
+            : `${data.name} is now live. €${totalPrize.toFixed(2)} has been committed from your wallet.`}
+        </p>
         <div className="flex gap-3 justify-center">
           <Button variant="outline" onClick={() => navigate('/bonuses')} className="border-[#E2E0ED]">View Bonuses</Button>
           <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white" onClick={() => navigate('/')}>Dashboard</Button>
@@ -175,21 +184,41 @@ export default function CreateBonus() {
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Duration</Label>
               {data.type === 'sprint' || data.type === 'threshold' ? (
-                <div className="p-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
-                  <p className="text-sm font-medium text-[#0E0D1E]">Ends on completion</p>
-                  <p className="text-xs text-[#9490AA] mt-1">{data.type === 'sprint' ? 'Sprint' : 'Threshold'} bonuses end when the target is reached</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-3">
                   <div>
                     <Label className="text-xs text-[#7A7893]">Start Date</Label>
                     <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
                   </div>
-                  <div>
-                    <Label className="text-xs text-[#7A7893]">End Date</Label>
-                    <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                  <div className="p-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                    <p className="text-sm font-medium text-[#0E0D1E]">Ends on completion</p>
+                    <p className="text-xs text-[#9490AA] mt-1">{data.type === 'sprint' ? 'Sprint' : 'Threshold'} bonuses end when the target is reached</p>
                   </div>
+                  {isScheduled && (
+                    <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl">
+                      <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <p className="text-sm text-amber-700">This bonus will be <span className="font-semibold">scheduled</span> — it goes live automatically on the start date.</p>
+                    </div>
+                  )}
                 </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <Label className="text-xs text-[#7A7893]">Start Date</Label>
+                      <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                    </div>
+                    <div>
+                      <Label className="text-xs text-[#7A7893]">End Date</Label>
+                      <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                    </div>
+                  </div>
+                  {isScheduled && (
+                    <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl mt-1">
+                      <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <p className="text-sm text-amber-700">This bonus will be <span className="font-semibold">scheduled</span> — it goes live automatically on the start date.</p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -308,10 +337,16 @@ export default function CreateBonus() {
                 </div>
               ))}
             </div>
+            {isScheduled && (
+              <div className="flex items-center gap-2 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
+                <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <p className="text-sm text-amber-700 font-medium">Scheduled to start on <span className="font-bold">{data.customStart}</span></p>
+              </div>
+            )}
             <div className="p-4 bg-[#EDE9F8] border border-[#C8C3E0] rounded-xl">
               <p className="text-xs font-semibold text-[#796EB2] uppercase tracking-wide mb-1">Financial Commitment</p>
               <p className="text-2xl font-bold text-[#0E0D1E]">€{totalPrize.toFixed(2)}</p>
-              <p className="text-xs text-[#796EB2] mt-0.5">will be locked from your wallet upon launch</p>
+              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be locked from your wallet when the bonus starts' : 'will be locked from your wallet upon launch'}</p>
             </div>
           </div>
         )}
@@ -324,7 +359,7 @@ export default function CreateBonus() {
           disabled={!canContinue()}
           className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold px-6"
         >
-          {step === 4 ? 'Launch Bonus' : 'Continue'} <ArrowRight className="w-4 h-4" />
+          {step === 4 ? (isScheduled ? 'Schedule Bonus' : 'Launch Bonus') : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
