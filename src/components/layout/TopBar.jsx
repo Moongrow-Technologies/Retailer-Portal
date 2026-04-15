@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Bell, HelpCircle } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -94,7 +94,7 @@ export default function TopBar() {
             />
           )}
         </div>
-        <div className="flex items-center gap-2.5 pl-2 border-l border-[#EBEBF0]">
+        <Link to="/profile" className="flex items-center gap-2.5 pl-2 border-l border-[#EBEBF0] hover:opacity-80 transition-opacity">
           <div className="text-right hidden sm:block">
             <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
             <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
@@ -102,7 +102,7 @@ export default function TopBar() {
           <div className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2]">
             {initials}
           </div>
-        </div>
+        </Link>
       </div>
     </header>
   );
