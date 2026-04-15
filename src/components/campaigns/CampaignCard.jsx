@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
@@ -18,13 +18,13 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors">
+    <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl p-4 hover:bg-[#F0EEF9] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       <div className="flex items-start justify-between mb-3">
-        <Link to={`/campaigns/${campaign.id}`} className="block flex-1">
+        <div className="flex-1">
           <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
           <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
-        </Link>
-        <div className="flex items-center gap-3 ml-3">
+        </div>
+        <div className="flex items-center gap-3 ml-3" onClick={e => e.stopPropagation()}>
           <StatusBadge status={campaign.status} />
           {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
             <Switch
