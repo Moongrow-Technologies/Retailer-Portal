@@ -13,7 +13,7 @@ export default function CompactWalletCard({ wallet }) {
     <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       <div className="flex items-start justify-between mb-6 gap-4">
         <div className="min-w-0">
-          <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">Wallet Balance</p>
+          <p className="text-[#7A7893] mb-2 text-xs font-semibold capitalize tracking-wide">Wallet Balance</p>
           <p className="text-[#0E0D1E] text-4xl font-semibold tracking-tight truncate">
             €{wallet.total_balance.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </p>
