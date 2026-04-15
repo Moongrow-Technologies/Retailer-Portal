@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Bell, HelpCircle } from 'lucide-react';
+import { Bell, HelpCircle, User, LogOut } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import NotificationDropdown from '@/components/layout/NotificationDropdown';
@@ -37,7 +37,19 @@ export default function TopBar() {
   const section = getSection(location.pathname);
   const label = getPageLabel(location.pathname);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [readCount, setReadCount] = useState(0);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setShowProfileMenu(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   const unreadCount = Math.max(0, ACTIVITIES.length - readCount);
 
   const { data: user } = useQuery({
@@ -94,15 +106,39 @@ export default function TopBar() {
             />
           )}
         </div>
-        <Link to="/profile" className="flex items-center gap-2.5 pl-2 border-l border-[#EBEBF0] hover:opacity-80 transition-opacity">
-          <div className="text-right hidden sm:block">
-            <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
-            <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2]">
-            {initials}
-          </div>
-        </Link>
+        <div ref={profileRef} className="relative pl-2 border-l border-[#EBEBF0]">
+          <button
+            onClick={() => setShowProfileMenu(v => !v)}
+            className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+          >
+            <div className="text-right hidden sm:block">
+              <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
+              <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2]">
+              {initials}
+            </div>
+          </button>
+          {showProfileMenu && (
+            <div className="absolute right-0 top-11 w-44 bg-white border border-[#EBEBF0] rounded-xl shadow-lg py-1 z-50">
+              <Link
+                to="/profile"
+                onClick={() => setShowProfileMenu(false)}
+                className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-[#0E0D1E] hover:bg-[#F8F7FC] transition-colors"
+              >
+                <User className="w-4 h-4 text-[#796EB2]" />
+                Profile
+              </Link>
+              <button
+                onClick={() => base44.auth.logout()}
+                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-[#F8F7FC] transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
