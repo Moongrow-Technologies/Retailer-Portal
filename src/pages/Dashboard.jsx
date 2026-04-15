@@ -5,7 +5,7 @@ import QuickActions from '@/components/dashboard/QuickActions';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import TopBudtenders from '@/components/dashboard/TopBudtenders';
 import NeedsAttention from '@/components/dashboard/NeedsAttention';
-import { Megaphone, Award, TrendingUp, Star, AlertTriangle } from 'lucide-react';
+import { Megaphone, Award, TrendingUp, BarChart2, AlertTriangle } from 'lucide-react';
 import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData';
 
 export default function Dashboard() {
@@ -16,6 +16,7 @@ export default function Dashboard() {
   const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
   const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const commissionToday = 6.50;
+  const revenueGenerated = 1240.00;
   const zeroBalance = wallet.total_balance === 0;
 
   return (
@@ -44,10 +45,10 @@ export default function Dashboard() {
           <CompactWalletCard wallet={wallet} />
         </div>
         <div className="col-span-8 grid grid-cols-2 gap-4">
+          <StatCard label="Commission Paid" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp to="/analytics" />
+          <StatCard label="Revenue Generated" value={`€${revenueGenerated.toLocaleString('nl-NL', { minimumFractionDigits: 2 })}`} icon={BarChart2} trend="8% vs yesterday" trendUp to="/analytics" />
           <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
           <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" to="/bonuses" />
-          <StatCard label="Commission Spend Today" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp to="/analytics" />
-          <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} to="/leaderboard" />
         </div>
 
         {/* Activity feed + Top Budtenders */}
