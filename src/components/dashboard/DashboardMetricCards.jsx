@@ -77,11 +77,11 @@ function ActiveCampaignsCard({ campaigns }) {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none mt-1">{active.length}</p>
+        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{active.length}</p>
         <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">↑ 2 new this month</p>
       </div>
 
-      <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
+      <div className="border-t border-[#F4F3FA] pt-3 mt-1 space-y-3">
         {displayed.map((c) => {
           const dl = daysLeft(c.end_date);
           const warn = dl !== null && dl <= 5;
