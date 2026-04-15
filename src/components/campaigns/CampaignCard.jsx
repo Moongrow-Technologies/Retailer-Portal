@@ -18,13 +18,13 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="border border-[#EBEBF0] rounded-xl p-4 hover:bg-[#F8F7FC] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex-1">
+    <div className="border border-[#E8E6F0] rounded-2xl p-5 bg-[#FAFAF9] hover:border-[#DDD9E8] transition-all cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+      <div className="flex items-center justify-between">
+        <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
-          <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
+          <p className="text-sm text-[#9490AA] mt-1">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.units_sold} units sold</p>
         </div>
-        <div className="flex items-center gap-3 ml-3" onClick={e => e.stopPropagation()}>
+        <div className="flex items-center gap-2 ml-4 flex-shrink-0" onClick={e => e.stopPropagation()}>
           <StatusBadge status={campaign.status} />
           {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
             <Switch
@@ -35,7 +35,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-[#F4F3FA] rounded-lg transition-colors">
+              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] transition-colors">
                 <MoreVertical className="w-4 h-4" />
               </button>
             </DropdownMenuTrigger>
@@ -50,22 +50,6 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           </DropdownMenu>
         </div>
       </div>
-
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
-            <span className="font-semibold text-[#0E0D1E]">{Math.round(spendPct)}%</span>
-          </div>
-          <Progress value={spendPct} className="h-1.5" />
-        </div>
-
-        <div className="flex items-center gap-4 mt-4 text-xs text-[#9490AA]">
-          <span>{campaign.units_sold} units sold</span>
-          <span>·</span>
-          <span>{campaign.stores?.length || 1} store{(campaign.stores?.length || 1) > 1 ? 's' : ''}</span>
-          <span>·</span>
-          <span>{campaign.duration_days}d duration</span>
-        </div>
     </div>
   );
 }
