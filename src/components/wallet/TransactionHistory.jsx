@@ -1,6 +1,7 @@
-import React from 'react';
-import { format } from 'date-fns';
+import React, { useState } from 'react';
+import { format, subDays, startOfMonth, isAfter } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
@@ -21,13 +22,52 @@ const typeColors = {
 };
 
 export default function TransactionHistory({ transactions }) {
+  const [period, setPeriod] = useState('all');
+
+  const filterTransactions = () => {
+    const now = new Date();
+    return transactions.filter(tx => {
+      const txDate = new Date(tx.created_date);
+      if (period === 'week') return isAfter(txDate, subDays(now, 7));
+      if (period === 'month') return isAfter(txDate, startOfMonth(now));
+      return true; // all time
+    });
+  };
+
+  const filtered = filterTransactions();
+
   return (
     <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm">
       <div className="px-6 py-4 border-b border-[#EBEBF0]">
-        <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
+          <div className="flex gap-2">
+            {[
+              { value: 'week', label: 'This Week' },
+              { value: 'month', label: 'This Month' },
+              { value: 'all', label: 'All Time' }
+            ].map(opt => (
+              <Button
+                key={opt.value}
+                onClick={() => setPeriod(opt.value)}
+                variant={period === opt.value ? 'default' : 'outline'}
+                size="sm"
+                className={cn(
+                  'text-xs font-medium',
+                  period === opt.value ? 'bg-primary text-white' : 'border-[#E2E0ED] text-[#0E0D1E] hover:bg-[#F8F7FC]'
+                )}
+              >
+                {opt.label}
+              </Button>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="p-4 space-y-2">
-        {transactions.map((tx, i) => (
+         {filtered.length === 0 ? (
+           <div className="text-center py-6 text-[#9490AA] text-sm">No transactions in this period</div>
+         ) : (
+         filtered.map((tx, i) => (
           <div key={i} className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors">
             <div className={cn(
               "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0",
@@ -53,8 +93,9 @@ export default function TransactionHistory({ transactions }) {
               {tx.amount > 0 ? '+' : ''}€{Math.abs(tx.amount).toFixed(2)}
             </p>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+          ))
+          )}
+          </div>
+          </div>
+          );
+          }
