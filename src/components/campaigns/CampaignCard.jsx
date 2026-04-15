@@ -18,11 +18,12 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="border border-[#E8E6F0] rounded-2xl p-5 bg-[#FAFAF9] hover:border-[#DDD9E8] transition-all cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
-      <div className="flex items-center justify-between mb-3">
+    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-6 hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+      <div className="flex items-start justify-between mb-4">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
-          <p className="text-sm text-[#9490AA] mt-1">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.units_sold} units sold</p>
+          <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">{campaign.product_name}</p>
+          <h3 className="font-semibold text-lg text-[#0E0D1E]">{campaign.name}</h3>
+          <p className="text-sm text-[#9490AA] mt-2">€{campaign.commission_rate.toFixed(2)}/unit · {campaign.units_sold} units sold</p>
         </div>
         <div className="flex items-center gap-2 ml-4 flex-shrink-0" onClick={e => e.stopPropagation()}>
           <StatusBadge status={campaign.status} />
@@ -50,8 +51,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           </DropdownMenu>
         </div>
       </div>
-      <div className="flex items-center justify-between text-xs mb-1.5">
-        <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)}</span>
+      <div className="flex items-center justify-between text-xs mb-2">
+        <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
         <span className="font-semibold text-[#0E0D1E]">{Math.round(spendPct)}%</span>
       </div>
       <Progress value={spendPct} className="h-1.5" />
