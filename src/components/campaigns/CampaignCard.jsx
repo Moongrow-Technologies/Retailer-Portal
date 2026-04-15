@@ -26,7 +26,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         </Link>
         <div className="flex items-center gap-3 ml-3">
           <StatusBadge status={campaign.status} />
-          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && (
+          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
             <Switch
               checked={isActive}
               onCheckedChange={() => onTogglePause?.(campaign)}

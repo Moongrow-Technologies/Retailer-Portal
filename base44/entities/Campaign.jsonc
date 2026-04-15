@@ -47,6 +47,7 @@
       "type": "string",
       "enum": [
         "active",
+        "scheduled",
         "paused_manual",
         "paused_budget",
         "completed"

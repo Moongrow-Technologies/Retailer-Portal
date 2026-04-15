@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 const TABS = [
   { key: 'all', label: 'All' },
   { key: 'active', label: 'Active' },
+  { key: 'scheduled', label: 'Scheduled' },
   { key: 'paused', label: 'Paused' },
   { key: 'completed', label: 'Completed' },
 ];
@@ -20,6 +21,7 @@ export default function Campaigns() {
   const filtered = tab === 'all' ? campaigns : campaigns.filter(c => {
     if (tab === 'active') return c.status === 'active';
     if (tab === 'paused') return c.status === 'paused_manual' || c.status === 'paused_budget';
+    if (tab === 'scheduled') return c.status === 'scheduled';
     if (tab === 'completed') return c.status === 'completed';
     return true;
   });
@@ -27,6 +29,7 @@ export default function Campaigns() {
   const count = (key) => {
     if (key === 'all') return campaigns.length;
     if (key === 'paused') return campaigns.filter(c => c.status.startsWith('paused')).length;
+    if (key === 'scheduled') return campaigns.filter(c => c.status === 'scheduled').length;
     return campaigns.filter(c => c.status === key).length;
   };
 
