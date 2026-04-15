@@ -54,11 +54,11 @@ export default function Leaderboard() {
               className={cn(
                 "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
                 metric === m
-                  ? "bg-white text-[#796EB2] shadow-sm border border-[#D6D0F0]"
+                  ? "bg-white text-[#796EB2] shadow-sm"
                   : "text-[#4B4867] hover:text-[#796EB2]"
-              )}
-            >
-              {m === 'commission' ? 'By Commission (€)' : 'By Units Sold'}
+                  )}
+                  >
+                  {m === 'commission' ? 'By Commission (€)' : 'By Units Sold'}
             </button>
           ))}
         </div>
@@ -73,11 +73,11 @@ export default function Leaderboard() {
                 className={cn(
                   "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
                   timePeriod === periodKey
-                    ? "bg-white text-[#796EB2] shadow-sm border border-[#D6D0F0]"
+                    ? "bg-white text-[#796EB2] shadow-sm"
                     : "text-[#4B4867] hover:text-[#796EB2]"
-                )}
-              >
-                {period}
+                    )}
+                    >
+                    {period}
               </button>
             );
           })}
