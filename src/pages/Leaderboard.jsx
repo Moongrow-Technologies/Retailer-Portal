@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Download, Trophy, Medal } from 'lucide-react';
+import { Download, Trophy, Star, ArrowUp, ArrowDown } from 'lucide-react';
 import { STAFF, CAMPAIGNS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
@@ -11,7 +11,7 @@ export default function Leaderboard() {
   const [metric, setMetric] = useState('commission');
   const [campaign, setCampaign] = useState('all');
   const [store, setStore] = useState('all');
-  const [timePeriod, setTimePeriod] = useState('month');
+  const [timePeriod, setTimePeriod] = useState('This Month');
 
   const activeStaff = STAFF.filter(s => s.status === 'active');
   const sorted = [...activeStaff].sort((a, b) => {
@@ -45,44 +45,8 @@ export default function Leaderboard() {
         <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
-      <div className="flex items-center gap-3 mb-6 flex-nowrap overflow-x-auto">
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1 flex-shrink-0">
-          {['commission', 'units'].map(m => (
-            <button
-              key={m}
-              onClick={() => setMetric(m)}
-              className={cn(
-                "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
-                metric === m
-                  ? "bg-white text-[#796EB2] shadow-sm"
-                  : "text-[#4B4867] hover:text-[#796EB2]"
-                  )}
-                  >
-                  {m === 'commission' ? 'By Commission (€)' : 'By Units Sold'}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1 flex-shrink-0">
-          {['Today', 'This Week', 'This Month'].map((period, idx) => {
-            const periodKey = ['today', 'week', 'month'][idx];
-            return (
-              <button
-                key={periodKey}
-                onClick={() => setTimePeriod(periodKey)}
-                className={cn(
-                  "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
-                  timePeriod === periodKey
-                    ? "bg-white text-[#796EB2] shadow-sm"
-                    : "text-[#4B4867] hover:text-[#796EB2]"
-                    )}
-                    >
-                    {period}
-              </button>
-            );
-          })}
-        </div>
-
+      {/* Filters Row */}
+      <div className="flex items-center gap-3 mb-4">
         <Select value={campaign} onValueChange={setCampaign}>
           <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>
@@ -97,58 +61,107 @@ export default function Leaderboard() {
             {STORE.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
           </SelectContent>
         </Select>
+        <Select value={timePeriod} onValueChange={setTimePeriod}>
+          <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Today">Today</SelectItem>
+            <SelectItem value="This Week">This Week</SelectItem>
+            <SelectItem value="This Month">This Month</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Metric Toggle */}
+      <div className="mb-4">
+        <div className="flex items-center gap-2 w-fit">
+          {['commission', 'units'].map(m => (
+            <button
+              key={m}
+              onClick={() => setMetric(m)}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap",
+                metric === m
+                  ? "bg-[#796EB2] text-white shadow-sm"
+                  : "bg-[#EEEDF5] text-[#4B4867] hover:text-[#796EB2]"
+              )}
+            >
+              {m === 'commission' ? 'By Commission' : 'By Units Sold'}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-3 border-b border-[#F4F3FA]">
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Rank</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff Name</span>
+        <div className="grid grid-cols-[60px_160px_140px_140px_140px_60px] px-6 py-3 border-b border-[#F4F3FA]">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
           <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Metric Value</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]"></span>
         </div>
 
         {/* Rows */}
         {sorted.map((staff, i) => (
-          <Link to={`/staff/${staff.id}`} key={staff.id}>
-            <div className="grid grid-cols-[80px_1fr_1fr_160px] px-6 py-4 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center">
-              {/* Rank */}
-              <div className="flex items-center gap-2">
-                <span className={cn(
-                  "w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold",
-                  i === 0 ? "bg-amber-100 text-amber-600" : "bg-[#F4F3FA] text-[#9490AA]"
-                )}>
-                  {i + 1}
-                </span>
-                {i === 0 && <span className="text-amber-400 text-sm">★</span>}
-              </div>
-
-              {/* Staff Name + Avatar */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                  {staff.avatar_url ? (
-                    <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
-                      {staff.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                    </div>
-                  )}
-                </div>
-                <span className="font-semibold text-[#0E0D1E]">{staff.name}</span>
-              </div>
-
-              {/* Store */}
-              <span className="text-[#4A4761]">{staff.store}</span>
-
-              {/* Metric Value */}
+          <div
+            key={staff.id}
+            className={cn(
+              "grid grid-cols-[60px_160px_140px_140px_140px_60px] px-6 py-4 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center",
+              i === 0 && "bg-amber-50"
+            )}
+          >
+            {/* Rank */}
+            <div className="flex items-center gap-2">
               <span className={cn(
-                "text-right font-semibold text-base",
-                i === 0 ? "text-emerald-500" : "text-[#0E0D1E]"
+                "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold",
+                i === 0 ? "bg-amber-500 text-white" : "bg-[#E2E0ED] text-[#9490AA]"
               )}>
-                {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : `${staff.total_units_sold} units`}
+                {i + 1}
+              </span>
+              {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
+            </div>
+
+            {/* Staff */}
+            <div className="flex items-center gap-3">
+              <div className={cn(
+                "w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold text-white flex-shrink-0",
+                i === 0 ? "bg-amber-500" : "bg-[#796EB2]"
+              )}>
+                {staff.name.split(' ').map(n => n[0]).join('').slice(0, 1)}
+              </div>
+              <div className="min-w-0">
+                <p className="font-medium text-[#0E0D1E] text-sm">{staff.name}</p>
+                <p className="text-xs text-[#9490AA]">{staff.store}</p>
+              </div>
+            </div>
+
+            {/* Store */}
+            <span className="text-sm text-[#9490AA]">{staff.store}</span>
+
+            {/* Movement */}
+            <div>
+              <span className={cn(
+                "inline-block px-2 py-1 rounded-full text-xs font-semibold",
+                "bg-[#E2E0ED] text-[#9490AA]"
+              )}>
+                — No change
               </span>
             </div>
-          </Link>
+
+            {/* Commission */}
+            <span className={cn(
+              "text-right font-semibold text-sm",
+              i === 0 ? "text-emerald-600" : "text-[#0E0D1E]"
+            )}>
+              €{staff.total_commissions.toFixed(2)}
+            </span>
+
+            {/* View Link */}
+            <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline text-right">
+              View →
+            </Link>
+          </div>
         ))}
       </div>
     </div>
