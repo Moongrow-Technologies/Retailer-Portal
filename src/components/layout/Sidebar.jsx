@@ -27,9 +27,9 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-50">
+    <aside className="fixed left-0 top-0 h-screen w-[220px] bg-white shadow-[2px_0_12px_0_rgba(0,0,0,0.06)] flex flex-col z-50">
       {/* Logo */}
-      <div className="h-16 flex items-center px-5 border-b border-[#EBEBF0]">
+      <div className="h-16 flex items-center px-5">
         <Link to="/" className="flex flex-col gap-0.5">
           <img
             src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
