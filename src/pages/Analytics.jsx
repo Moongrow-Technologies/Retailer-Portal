@@ -6,37 +6,37 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Download, TrendingUp, DollarSign, ShoppingCart, Percent } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line } from
-'recharts';
+  LineChart, Line,
+} from 'recharts';
 import { STORE, STAFF, CAMPAIGNS, PRODUCTS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const TIME_PERIODS = ['Today', 'This Week', 'This Month', 'Custom'];
 
 const revenueOverTime = {
-  'Today': [{ label: '9am', value: 320 }, { label: '11am', value: 580 }, { label: '1pm', value: 940 }, { label: '3pm', value: 1240 }, { label: '5pm', value: 1520 }, { label: '7pm', value: 1680 }],
-  'This Week': [{ label: 'Mon', value: 820 }, { label: 'Tue', value: 1340 }, { label: 'Wed', value: 1900 }, { label: 'Thu', value: 2450 }, { label: 'Fri', value: 3120 }, { label: 'Sat', value: 3800 }, { label: 'Sun', value: 4100 }],
+  'Today':      [{ label: '9am', value: 320 }, { label: '11am', value: 580 }, { label: '1pm', value: 940 }, { label: '3pm', value: 1240 }, { label: '5pm', value: 1520 }, { label: '7pm', value: 1680 }],
+  'This Week':  [{ label: 'Mon', value: 820 }, { label: 'Tue', value: 1340 }, { label: 'Wed', value: 1900 }, { label: 'Thu', value: 2450 }, { label: 'Fri', value: 3120 }, { label: 'Sat', value: 3800 }, { label: 'Sun', value: 4100 }],
   'This Month': [{ label: 'Mar 14', value: 0 }, { label: 'Mar 21', value: 1200 }, { label: 'Mar 28', value: 2800 }, { label: 'Apr 4', value: 4200 }, { label: 'Apr 7', value: 5500 }, { label: 'Apr 11', value: 6900 }, { label: 'Apr 14', value: 7519 }],
-  'Custom': [{ label: 'Week 1', value: 1800 }, { label: 'Week 2', value: 3200 }, { label: 'Week 3', value: 5100 }, { label: 'Week 4', value: 7519 }]
+  'Custom':     [{ label: 'Week 1', value: 1800 }, { label: 'Week 2', value: 3200 }, { label: 'Week 3', value: 5100 }, { label: 'Week 4', value: 7519 }],
 };
 
 const commissionByProduct = [
-{ name: 'OG Kush', sku: 'OGK-001', units: 156, revenue: 1950, price: 12.50 },
-{ name: 'Blue Dream', sku: 'BLD-002', units: 200, revenue: 2200, price: 11.00 },
-{ name: 'Amnesia Haze', sku: 'AMH-003', units: 74, revenue: 962, price: 13.00 },
-{ name: 'White Widow', sku: 'WTW-004', units: 114, revenue: 1197, price: 10.50 },
-{ name: 'Gorilla Glue', sku: 'GRG-005', units: 15, revenue: 210, price: 14.00 }];
+  { name: 'OG Kush', sku: 'OGK-001', units: 156, revenue: 1950, price: 12.50 },
+  { name: 'Blue Dream', sku: 'BLD-002', units: 200, revenue: 2200, price: 11.00 },
+  { name: 'Amnesia Haze', sku: 'AMH-003', units: 74, revenue: 962, price: 13.00 },
+  { name: 'White Widow', sku: 'WTW-004', units: 114, revenue: 1197, price: 10.50 },
+  { name: 'Gorilla Glue', sku: 'GRG-005', units: 15, revenue: 210, price: 14.00 },
+];
 
-
-const campaignSpend = CAMPAIGNS.map((c) => ({
+const campaignSpend = CAMPAIGNS.map(c => ({
   name: c.name.length > 16 ? c.name.slice(0, 14) + '…' : c.name,
   spent: c.spent,
-  budget: c.budget
+  budget: c.budget,
 }));
 
-const activeStaff = [...STAFF].
-filter((s) => s.status === 'active').
-sort((a, b) => b.total_commissions - a.total_commissions);
+const activeStaff = [...STAFF]
+  .filter(s => s.status === 'active')
+  .sort((a, b) => b.total_commissions - a.total_commissions);
 
 export default function Analytics() {
   const [period, setPeriod] = useState('This Month');
@@ -65,20 +65,20 @@ export default function Analytics() {
       {/* Filters */}
       <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] px-4 py-3 flex items-center gap-4 mb-6">
         <div className="flex items-center gap-1 bg-[#F4F2FB] rounded-lg p-1">
-          {TIME_PERIODS.map((p) =>
-          <button
-            key={p}
-            onClick={() => setPeriod(p)} className="bg-white text-[#0E0D1E] px-4 py-1.5 text-sm font-medium rounded-lg transition-all whitespace-nowrap shadow-sm border border-[#E2E0ED]">
-
-
-
-
-
-
-            
+          {TIME_PERIODS.map(p => (
+            <button
+              key={p}
+              onClick={() => setPeriod(p)}
+              className={cn(
+                'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                period === p
+                  ? 'bg-white text-[#0E0D1E] shadow-sm'
+                  : 'text-[#9490AA] hover:text-[#0E0D1E]'
+              )}
+            >
               {p}
             </button>
-          )}
+          ))}
         </div>
         <Select value={campaign} onValueChange={setCampaign}>
           <SelectTrigger className="w-[220px] border-[#E2E0ED]">
@@ -86,9 +86,9 @@ export default function Analytics() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Campaigns</SelectItem>
-            {CAMPAIGNS.map((c) =>
-            <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
-            )}
+            {CAMPAIGNS.map(c => (
+              <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -109,8 +109,8 @@ export default function Analytics() {
             <LineChart data={revenueOverTime[period]}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="label" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `€${v}`} />
-              <Tooltip formatter={(v) => [`€${v}`, 'Revenue']} />
+              <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" tickFormatter={v => `€${v}`} />
+              <Tooltip formatter={v => [`€${v}`, 'Revenue']} />
               <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
@@ -122,8 +122,8 @@ export default function Analytics() {
             <BarChart data={campaignSpend}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="name" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `€${v}`} />
-              <Tooltip formatter={(v) => [`€${v}`]} />
+              <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" tickFormatter={v => `€${v}`} />
+              <Tooltip formatter={v => [`€${v}`]} />
               <Bar dataKey="budget" name="Budget" fill="hsl(var(--muted))" radius={[4, 4, 0, 0]} />
               <Bar dataKey="spent" name="Spent" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -137,10 +137,10 @@ export default function Analytics() {
         <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Performing Products</h3>
           <div className="space-y-2">
-            {[...commissionByProduct].
-            sort((a, b) => b.units - a.units).
-            map((product, i) =>
-            <div key={product.name} className="flex items-center gap-3 bg-[#F4F2FB] rounded-xl px-4 py-3">
+            {[...commissionByProduct]
+              .sort((a, b) => b.units - a.units)
+              .map((product, i) => (
+                <div key={product.name} className="flex items-center gap-3 bg-[#F4F2FB] rounded-xl px-4 py-3">
                   <span className="text-sm font-bold text-[#9490AA] w-5">{i + 1}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-[#0E0D1E] truncate">{product.name}</p>
@@ -148,7 +148,7 @@ export default function Analytics() {
                   </div>
                   <p className="text-sm font-semibold text-[#0E0D1E]">€{product.revenue.toLocaleString()}</p>
                 </div>
-            )}
+              ))}
           </div>
         </div>
 
@@ -156,8 +156,8 @@ export default function Analytics() {
         <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Staff Performance Comparison</h3>
           <div className="space-y-3">
-            {activeStaff.map((s, i) =>
-            <Link to={`/staff/${s.id}`} key={s.id} className="block">
+            {activeStaff.map((s, i) => (
+              <Link to={`/staff/${s.id}`} key={s.id} className="block">
                 <div className="flex items-center gap-3 group">
                   <span className="text-sm font-bold text-[#9490AA] w-5">{i + 1}</span>
                   <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center text-xs font-semibold text-[#796EB2] flex-shrink-0">
@@ -170,17 +170,17 @@ export default function Analytics() {
                     </div>
                     <div className="h-2 bg-[#F4F2FB] rounded-full overflow-hidden">
                       <div
-                      className="h-full bg-[#796EB2] rounded-full transition-all"
-                      style={{ width: `${s.total_commissions / maxCommission * 100}%` }} />
-                    
+                        className="h-full bg-[#796EB2] rounded-full transition-all"
+                        style={{ width: `${(s.total_commissions / maxCommission) * 100}%` }}
+                      />
                     </div>
                   </div>
                 </div>
               </Link>
-            )}
+            ))}
           </div>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 }

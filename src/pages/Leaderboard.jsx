@@ -46,7 +46,7 @@ export default function Leaderboard() {
       </div>
 
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex items-center gap-1 bg-[#EDE9F8] rounded-full p-1 flex-shrink-0">
+        <div className="flex items-center gap-1 bg-[#F8F7FC] rounded-xl p-1 border border-[#EBEBF0] flex-shrink-0">
           {['Today', 'This Week', 'This Month'].map((period, idx) => {
             const periodKey = ['today', 'week', 'month'][idx];
             return (
@@ -54,10 +54,10 @@ export default function Leaderboard() {
                 key={periodKey}
                 onClick={() => setTimePeriod(periodKey)}
                 className={cn(
-                  "px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap",
+                  "px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap",
                   timePeriod === periodKey
-                    ? "bg-white text-[#0E0D1E] shadow-sm border border-[#E2E0ED]"
-                    : "text-[#7A7893] hover:text-[#0E0D1E]"
+                    ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]"
+                    : "text-[#7A7893] hover:text-[#796EB2]"
                 )}
               >
                 {period}
@@ -66,15 +66,15 @@ export default function Leaderboard() {
           })}
         </div>
 
-        <div className="flex items-center gap-1 bg-[#EDE9F8] rounded-full p-1 flex-shrink-0">
+        <div className="flex bg-white border border-[#EBEBF0] rounded-lg p-1 gap-1 flex-shrink-0">
           {['commission', 'units'].map(m => (
             <button
               key={m}
               onClick={() => setMetric(m)}
               className={cn(
-                "px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap",
+                "px-3 py-1.5 rounded-md text-xs font-medium transition-all whitespace-nowrap",
                 metric === m
-                  ? "bg-white text-[#0E0D1E] shadow-sm border border-[#E2E0ED]"
+                  ? "bg-[#EDE9F8] text-[#5C51A6]"
                   : "text-[#9490AA] hover:text-[#0E0D1E]"
               )}
             >
