@@ -66,7 +66,7 @@ export default function CampaignDetail() {
           {status !== 'completed' && (
             <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
           )}
-          <Button variant="outline" size="sm" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-3.5 h-3.5" /> Export</Button>
+          <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
