@@ -8,7 +8,7 @@ export default function AppLayout() {
     <div className="min-h-screen bg-[#F0F0F5]">
       <Sidebar />
       <TopBar />
-      <main className="ml-[220px] pt-14 min-h-screen">
+      <main className="ml-[220px] pt-14 min-h-screen" style={{minHeight: 'calc(100vh - 56px)'}}>
         <div className="bg-[hsl(var(--background))] p-8">
           <Outlet />
         </div>

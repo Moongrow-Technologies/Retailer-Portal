@@ -27,19 +27,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[220px] bg-white shadow-[2px_0_4px_0_rgba(0,0,0,0.006)] flex flex-col z-50">
-      {/* Logo */}
-      <div className="h-16 flex items-center px-5">
-        <Link to="/" className="flex flex-col gap-0.5">
-          <img
-            src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
-            alt="Moongrow"
-            className="h-6 w-auto object-contain"
-          />
-          <div className="text-[10px] text-[#9490AA] uppercase tracking-widest leading-tight">Retailer Portal</div>
-        </Link>
-      </div>
-
+    <aside className="fixed left-0 top-14 h-[calc(100vh-56px)] w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-40">
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {

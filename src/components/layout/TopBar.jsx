@@ -69,7 +69,21 @@ export default function TopBar() {
   }
 
   return (
-    <header className="fixed top-0 left-[220px] right-0 h-14 bg-white flex items-center justify-between px-8 z-40">
+    <header className="fixed top-0 left-0 right-0 h-14 bg-white flex items-center z-50">
+      {/* Logo area — same width as sidebar */}
+      <div className="w-[220px] flex-shrink-0 flex items-center px-5 border-r border-[#EBEBF0] h-full">
+        <Link to="/" className="flex flex-col gap-0.5">
+          <img
+            src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
+            alt="Moongrow"
+            className="h-6 w-auto object-contain"
+          />
+          <div className="text-[10px] text-[#9490AA] uppercase tracking-widest leading-tight">Retailer Portal</div>
+        </Link>
+      </div>
+
+      {/* Rest of header */}
+      <div className="flex-1 flex items-center justify-between px-8 h-full">
       {/* Breadcrumb */}
        <div className="flex items-center gap-1.5 text-sm">
          {section && section !== label ? (
@@ -156,6 +170,7 @@ export default function TopBar() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </header>
   );
