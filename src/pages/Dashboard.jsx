@@ -1,6 +1,6 @@
 import React from 'react';
 import StatCard from '@/components/shared/StatCard';
-import WalletSummary from '@/components/dashboard/WalletSummary';
+import CompactWalletCard from '@/components/dashboard/CompactWalletCard';
 import QuickActions from '@/components/dashboard/QuickActions';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import TopBudtenders from '@/components/dashboard/TopBudtenders';
@@ -37,22 +37,14 @@ export default function Dashboard() {
       )}
 
       <div className="grid grid-cols-12 gap-6">
-        {/* Wallet summary - spans full width */}
-        <div className="col-span-12">
-          <WalletSummary wallet={wallet} />
+        {/* Wallet + Stats two-column row */}
+        <div className="col-span-4">
+          <CompactWalletCard wallet={wallet} />
         </div>
-
-        {/* Stats row */}
-        <div className="col-span-3">
+        <div className="col-span-8 grid grid-cols-2 gap-4">
           <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
-        </div>
-        <div className="col-span-3">
           <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" to="/bonuses" />
-        </div>
-        <div className="col-span-3">
           <StatCard label="Commission Spend Today" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp to="/analytics" />
-        </div>
-        <div className="col-span-3">
           <StatCard label="Top Performer" value={topStaff?.name || '—'} sublabel={`€${topStaff?.total_commissions.toFixed(2)} earned`} icon={Star} to="/leaderboard" />
         </div>
 
