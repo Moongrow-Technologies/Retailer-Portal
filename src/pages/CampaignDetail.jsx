@@ -5,8 +5,9 @@ import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users } from 'lucide-react';
+import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
@@ -23,7 +24,9 @@ export default function CampaignDetail() {
   const urlParams = new URLSearchParams(window.location.search);
   const campaignId = window.location.pathname.split('/').pop();
   const navigate = useNavigate();
-  const campaign = CAMPAIGNS.find(c => c.id === campaignId) || CAMPAIGNS[0];
+  const baseCampaign = CAMPAIGNS.find(c => c.id === campaignId) || CAMPAIGNS[0];
+  const [status, setStatus] = useState(baseCampaign.status);
+  const campaign = { ...baseCampaign, status };
   const [toast, setToast] = useState(null);
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
@@ -49,17 +52,32 @@ export default function CampaignDetail() {
           <p className="text-sm text-muted-foreground">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.stores?.join(', ')}</p>
         </div>
         <div className="flex items-center gap-2">
-          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
+          {status !== 'completed' && status !== 'paused_budget' && status !== 'scheduled' && (
             <Switch
-              checked={campaign.status === 'active'}
-              onCheckedChange={() => setToast(campaign.status === 'active' ? "Campaign paused." : "Campaign resumed.")}
+              checked={status === 'active'}
+              onCheckedChange={() => {
+                const next = status === 'active' ? 'paused_manual' : 'active';
+                setStatus(next);
+                setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
+              }}
               className="data-[state=checked]:bg-primary"
             />
           )}
-          {campaign.status !== 'completed' && (
-            <Button onClick={() => setToast("Campaign ended.")} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+          {status !== 'completed' && (
+            <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
           )}
           <Button variant="outline" size="sm" className="gap-1.5"><Download className="w-3.5 h-3.5" /> Export</Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
+                <MoreVertical className="w-4 h-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => { setToast("Campaign deleted."); navigate('/campaigns'); }} className="text-destructive">Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { BONUSES } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -26,8 +27,10 @@ function formatTimeLeft(hours) {
 export default function BonusDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const bonus = BONUSES.find(b => b.id === id);
-  const [hoursLeft, setHoursLeft] = useState(bonus?.hours_left || 0);
+  const baseBonus = BONUSES.find(b => b.id === id);
+  const [bonusStatus, setBonusStatus] = useState(baseBonus?.status || 'active');
+  const bonus = baseBonus ? { ...baseBonus, status: bonusStatus } : null;
+  const [hoursLeft, setHoursLeft] = useState(baseBonus?.hours_left || 0);
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
@@ -73,6 +76,17 @@ export default function BonusDetail() {
             <Badge variant="outline" className={isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-50 text-slate-600 border-slate-200"}>
               {isActive ? 'Active' : 'Completed'}
             </Badge>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-[#F8F7FC] rounded-lg transition-colors">
+                  <MoreVertical className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { setToast("Bonus deleted."); navigate('/bonuses'); }} className="text-destructive">Delete</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
@@ -92,15 +106,19 @@ export default function BonusDetail() {
         </div>
 
         {/* Actions */}
-        {isActive && (
+        {bonusStatus !== 'completed' && (
           <div className="flex items-center gap-3 mt-5 pt-5 border-t border-[#EBEBF0]">
             <Switch
-              checked={true}
-              onCheckedChange={() => setToast("Bonus paused.")}
+              checked={bonusStatus === 'active'}
+              onCheckedChange={() => {
+                const next = bonusStatus === 'active' ? 'paused_manual' : 'active';
+                setBonusStatus(next);
+                setToast(next === 'active' ? "Bonus resumed." : "Bonus paused.");
+              }}
               className="data-[state=checked]:bg-primary"
             />
-            <span className="text-sm text-[#7A7893]">Active</span>
-            <Button onClick={() => setToast("Bonus ended.")} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
+            <span className="text-sm text-[#7A7893]">{bonusStatus === 'active' ? 'Active' : 'Paused'}</span>
+            <Button onClick={() => { setBonusStatus('completed'); setToast("Bonus ended."); }} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
               <StopCircle className="w-3.5 h-3.5" /> End Early
             </Button>
           </div>
