@@ -54,7 +54,7 @@ export default function TransactionHistory({ transactions }) {
                 size="sm"
                 className={cn(
                   'text-xs font-medium',
-                  period === opt.value ? 'bg-primary text-white' : 'border-[#E2E0ED] text-[#0E0D1E] hover:bg-[#F8F7FC]'
+                  period === opt.value ? 'bg-[#796EB2] text-white' : 'bg-[#F4F3FA] border-0 text-[#0E0D1E] hover:bg-[#EDE9F8]'
                 )}
               >
                 {opt.label}
@@ -84,7 +84,7 @@ export default function TransactionHistory({ transactions }) {
                 {format(new Date(tx.created_date), 'MMM d, yyyy · h:mm a')}
               </p>
             </div>
-            <Badge variant="outline" className={cn("text-xs flex-shrink-0", typeColors[tx.type])}>
+            <Badge className={cn("text-xs flex-shrink-0 border-0", typeColors[tx.type])}>
               {typeLabels[tx.type] || tx.type}
             </Badge>
             <p className={cn("text-sm font-semibold tabular-nums flex-shrink-0 w-24 text-right",
