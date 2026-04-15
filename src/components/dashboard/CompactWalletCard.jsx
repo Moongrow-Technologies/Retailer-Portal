@@ -11,20 +11,20 @@ export default function CompactWalletCard({ wallet }) {
 
   return (
     <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
-      <div className="mb-6">
-        <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">Wallet Balance</p>
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-5xl font-bold tracking-tight text-[#0E0D1E] min-w-0 truncate">
+      <div className="flex items-start justify-between mb-6 gap-4">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">Wallet Balance</p>
+          <p className="text-5xl font-bold tracking-tight text-[#0E0D1E] truncate">
             €{wallet.total_balance.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </p>
-          <div className="flex gap-2 flex-shrink-0">
-            <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-3 py-2 h-auto" onClick={() => setShowTopUp(true)}>
-              <Plus className="w-4 h-4" /> Top Up
-            </Button>
-            <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-3 py-2 h-auto" onClick={() => setShowWithdraw(true)}>
-              <ArrowDownFromLine className="w-3.5 h-3.5" /> Withdraw
-            </Button>
-          </div>
+        </div>
+        <div className="flex flex-col gap-2 flex-shrink-0">
+          <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-4 py-2 h-auto" onClick={() => setShowTopUp(true)}>
+            <Plus className="w-4 h-4" /> Top Up
+          </Button>
+          <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-4 py-2 h-auto" onClick={() => setShowWithdraw(true)}>
+            <ArrowDownFromLine className="w-3.5 h-3.5" /> Withdraw
+          </Button>
         </div>
       </div>
 
