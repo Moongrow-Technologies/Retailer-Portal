@@ -3,7 +3,7 @@ import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Button } from '@/components/ui/button';
-import { ArrowUpFromLine, Plus, AlertTriangle } from 'lucide-react';
+import { ArrowDownFromLine, Plus, AlertTriangle } from 'lucide-react';
 import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
 
 export default function WalletPage() {
@@ -34,7 +34,7 @@ export default function WalletPage() {
             variant="outline"
             className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]"
           >
-            <ArrowUpFromLine className="w-4 h-4" /> Withdraw
+            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
           </Button>
           <Button
             onClick={() => setShowTopUp(true)}

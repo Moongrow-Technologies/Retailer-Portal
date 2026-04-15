@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Plus, ArrowUpFromLine } from 'lucide-react';
+import { Plus, ArrowDownFromLine } from 'lucide-react';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ export default function CompactWalletCard({ wallet }) {
             <Plus className="w-4 h-4" /> Top Up
           </Button>
           <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-4 py-2 h-auto" onClick={() => setShowWithdraw(true)}>
-            <ArrowUpFromLine className="w-3.5 h-3.5" /> Withdraw
+            <ArrowDownFromLine className="w-3.5 h-3.5" /> Withdraw
           </Button>
         </div>
       </div>
