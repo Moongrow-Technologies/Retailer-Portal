@@ -77,7 +77,7 @@ function ActiveCampaignsCard({ campaigns }) {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{active.length}</p>
+        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{active.length}</p>
         <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">↑ 2 new this month</p>
       </div>
 
@@ -128,7 +128,7 @@ function CommissionCard() {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-3xl font-semibold leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-3xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -188,7 +188,7 @@ function UnitsSoldCard() {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-bold leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -257,7 +257,7 @@ function RevenueCard() {
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
