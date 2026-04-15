@@ -71,8 +71,7 @@ export default function StaffPage() {
 
           <Button
             onClick={() => setShowInvite(true)}
-            variant="outline"
-            className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]"
+            className="gap-2 font-semibold bg-[#534AB7] hover:bg-[#4A3FA3] text-white rounded-xl"
           >
             <Plus className="w-4 h-4" /> Invite staff
           </Button>
@@ -81,29 +80,21 @@ export default function StaffPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-[#0E0D1E]">{totalStaff}</span>
-            <span className="text-sm text-[#9490AA] font-medium">Total staff</span>
-          </div>
+        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-2.5 flex items-center gap-2.5">
+          <span className="text-lg font-bold text-[#0E0D1E]">{totalStaff}</span>
+          <span className="text-xs text-[#9490AA] font-medium">Total staff</span>
         </div>
-        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-emerald-600">{activeStaff}</span>
-            <span className="text-sm text-[#9490AA] font-medium">Active</span>
-          </div>
+        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-2.5 flex items-center gap-2.5">
+          <span className="text-lg font-bold text-emerald-600">{activeStaff}</span>
+          <span className="text-xs text-[#9490AA] font-medium">Active</span>
         </div>
-        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-amber-500">{pendingStaff}</span>
-            <span className="text-sm text-[#9490AA] font-medium">Pending invite</span>
-          </div>
+        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-2.5 flex items-center gap-2.5">
+          <span className="text-lg font-bold text-amber-500">{pendingStaff}</span>
+          <span className="text-xs text-[#9490AA] font-medium">Pending invite</span>
         </div>
-        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-[#0E0D1E]">€{totalCommissionThisMonth.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-            <span className="text-sm text-[#9490AA] font-medium">Total commission this month</span>
-          </div>
+        <div className="bg-white rounded-xl border border-[#E2E0ED] px-4 py-2.5 flex items-center gap-2.5">
+          <span className="text-lg font-bold text-[#0E0D1E]">€{totalCommissionThisMonth.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <span className="text-xs text-[#9490AA] font-medium">Total commission this month</span>
         </div>
       </div>
 
@@ -122,10 +113,17 @@ export default function StaffPage() {
         )}
         {sorted.length > 0 && sorted.length % 3 !== 0 && (
           <div className="bg-white rounded-2xl border-2 border-dashed border-[#E2E0ED] p-12 flex flex-col items-center justify-center">
-            <div className="text-center">
-              <p className="text-3xl text-[#C0BDCE] mb-2">+</p>
-              <p className="text-sm font-semibold text-[#796EB2]">Invite a team member</p>
-              <p className="text-xs text-[#9490AA] mt-1">Add staff to start tracking their performance</p>
+            <div className="text-center space-y-4">
+              <div>
+                <p className="text-sm font-semibold text-[#796EB2] mb-1">Invite a team member</p>
+                <p className="text-xs text-[#9490AA]">Add staff to start tracking their performance</p>
+              </div>
+              <Button
+                onClick={() => setShowInvite(true)}
+                className="gap-2 font-semibold bg-[#534AB7] hover:bg-[#4A3FA3] text-white rounded-xl"
+              >
+                <Plus className="w-4 h-4" /> Invite staff
+              </Button>
             </div>
           </div>
         )}
