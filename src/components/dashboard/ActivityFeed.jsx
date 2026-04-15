@@ -2,6 +2,9 @@ import React from 'react';
 import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import { STAFF } from '@/lib/sampleData';
+
+const staffByName = Object.fromEntries(STAFF.map(s => [s.name, s]));
 
 const iconMap = {
   sale: ShoppingCart,
@@ -32,11 +35,18 @@ export default function ActivityFeed({ activities }) {
       <div className="space-y-2">
         {activities.map((activity, i) => {
            const Icon = iconMap[activity.type] || ShoppingCart;
+           const staffMember = activity.actor && staffByName[activity.actor];
            return (
              <div key={i} className="flex items-start gap-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl px-4 py-3">
-               <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-[#EDE9F8] text-[#796EB2]')}>
-                 <Icon className="w-4 h-4" />
-               </div>
+               {staffMember?.avatar_url ? (
+                 <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+                   <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />
+                 </div>
+               ) : (
+                 <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-[#EDE9F8] text-[#796EB2]')}>
+                   <Icon className="w-4 h-4" />
+                 </div>
+               )}
                <div className="flex-1 min-w-0 pt-0.5">
                  <p className="text-sm text-[#0E0D1E] leading-snug">{activity.message}</p>
                  <p className="text-xs text-[#9490AA] mt-0.5">
