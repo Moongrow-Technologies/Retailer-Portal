@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family: 'OktaNeue';
+  src: url('https://github.com/xahmetux-lab/fonts/raw/refs/heads/main/OktaNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'OktaNeue';
-  src: url('/fonts/OktaNeue-Regular.ttf') format('truetype');
-  font-weight: normal;
+  src: url('https://github.com/xahmetux-lab/fonts/raw/refs/heads/main/OktaNeue-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -13,7 +18,7 @@
 
 @layer base {
   :root {
-    --font-outfit: 'OktaNeue', 'Outfit', sans-serif;
+    --font-outfit: 'OktaNeue', sans-serif;
 
     --background: 240 40% 98%;
     --foreground: 247 38% 9%;
@@ -94,5 +99,11 @@
   }
   body {
     @apply bg-background text-foreground font-outfit;
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'OktaNeue', sans-serif;
+    font-weight: 600;
   }
 }
