@@ -70,14 +70,24 @@ export default function Bonuses() {
         </Link>
       </div>
 
-      {/* Info bar */}
-      <div className="inline-flex items-center gap-2 px-4 py-2 mb-5 rounded-full bg-[#F0EEF9] border border-[#E2E0ED] text-sm text-[#7A7893]">
-        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
-        <span>€450 committed to bonuses</span>
-        <span className="text-[#C8C5D8]">·</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-        <span>€692 available</span>
-      </div>
+      {/* Budget card */}
+       <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
+         <div className="flex items-start justify-between">
+           <div className="flex-1">
+             <p className="text-sm text-[#7A7893] mb-2">Committed to bonuses</p>
+             <p className="text-4xl font-bold text-[#0E0D1E] mb-4">€450</p>
+             <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
+               <div className="bg-amber-500 h-full rounded-full" style={{ width: '39%' }}></div>
+             </div>
+             <p className="text-sm text-amber-600 font-medium">39% of total budget used</p>
+           </div>
+           <div className="text-right pl-6">
+             <p className="text-xs text-[#7A7893] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
+             <p className="text-3xl font-bold text-emerald-500">€692</p>
+             <p className="text-sm text-emerald-600 font-medium mt-1">• 61% left</p>
+           </div>
+         </div>
+       </div>
 
       {/* Tabs */}
       <div className="flex items-center gap-1 mb-6 bg-[#EEEDF5] rounded-[10px] p-1 w-fit">
