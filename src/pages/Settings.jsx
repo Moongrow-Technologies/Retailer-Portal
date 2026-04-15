@@ -41,13 +41,13 @@ export default function Settings() {
             <div className="flex-1 space-y-4">
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Business Name</Label>
-                <Input defaultValue="Barney's Coffeeshop" className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" />
+                <Input defaultValue="Barney's Coffeeshop" className="mt-1.5 bg-[#F4F3FA] border-0 rounded-xl focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
               </div>
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Primary Location</Label>
                 <div className="relative mt-1.5">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9490AA]" />
-                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="pl-9 bg-[#F8F7FC] border-[#E2E0ED]" />
+                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="pl-9 bg-[#F4F3FA] border-0 rounded-xl focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
                 </div>
               </div>
               <button className="text-sm text-[#796EB2] font-medium flex items-center gap-1 hover:underline">
