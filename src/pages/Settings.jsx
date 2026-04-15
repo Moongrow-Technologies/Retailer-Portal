@@ -28,7 +28,7 @@ export default function Settings() {
 
       <div className="space-y-6">
         {/* Business Profile */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
           <div className="flex items-start justify-between mb-5">
             <div>
               <h2 className="text-base font-semibold text-[#0E0D1E]">Business Profile</h2>
@@ -71,15 +71,15 @@ export default function Settings() {
         </div>
 
         {/* POS Integration */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
           <div className="mb-5">
             <h2 className="text-base font-semibold text-[#0E0D1E]">POS Integration</h2>
             <p className="text-sm text-[#7A7893] mt-0.5">Sync your sales data and inventory directly from your POS.</p>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-[#F8F7FC] rounded-xl border border-[#E2E0ED]">
+          <div className="flex items-center justify-between p-4 bg-[#F4F3FA] rounded-2xl">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E0ED] flex items-center justify-center shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm">
                 <Zap className="w-5 h-5 text-[#796EB2]" />
               </div>
               <div>
@@ -102,7 +102,7 @@ export default function Settings() {
         {/* Notifications + Billing side by side */}
         <div className="grid grid-cols-2 gap-6">
           {/* Notifications */}
-          <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+          <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
             <div className="mb-5">
               <h2 className="text-base font-semibold text-[#0E0D1E]">Notifications</h2>
               <p className="text-sm text-[#7A7893] mt-0.5">Manage how you receive updates.</p>
@@ -129,12 +129,12 @@ export default function Settings() {
           </div>
 
           {/* Billing */}
-          <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+          <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
             <div className="mb-5">
               <h2 className="text-base font-semibold text-[#0E0D1E]">Billing &amp; Subscription</h2>
               <p className="text-sm text-[#7A7893] mt-0.5">Review and manage your current plan.</p>
             </div>
-            <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl p-4 mb-4">
+            <div className="bg-[#F4F3FA] rounded-2xl p-4 mb-4">
               <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-1">Current Plan</p>
               <p className="text-xl font-bold text-[#0E0D1E]">Growth Plan</p>
               <p className="text-sm text-[#9490AA]">€149/month · billed monthly</p>
@@ -150,12 +150,12 @@ export default function Settings() {
         </div>
 
         {/* Security */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#EBEBF0] p-6">
+        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-6">
           <div className="mb-5">
             <h2 className="text-base font-semibold text-[#0E0D1E]">Security</h2>
             <p className="text-sm text-[#7A7893] mt-0.5">Control your account access and protection levels.</p>
           </div>
-          <div className="flex items-center justify-between p-4 bg-[#F8F7FC] rounded-xl border border-[#E2E0ED]">
+          <div className="flex items-center justify-between p-4 bg-[#F4F3FA] rounded-2xl">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
                 <Shield className="w-5 h-5 text-[#796EB2]" />
