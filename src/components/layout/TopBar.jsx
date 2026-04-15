@@ -71,17 +71,22 @@ export default function TopBar() {
   return (
     <header className="fixed top-0 left-[220px] right-0 h-14 bg-white flex items-center justify-between px-8 z-40">
       {/* Breadcrumb */}
-      <div className="flex items-center gap-1.5 text-sm">
-        {section && section !== label ? (
-          <>
-            <span className="text-[#796EB2] font-medium">{section}</span>
-            <span className="text-[#C0BDCE]">›</span>
-            <span className="text-[#7A7893]">{label}</span>
-          </>
-        ) : (
-          <span className="text-[#7A7893] font-medium">{label}</span>
-        )}
-      </div>
+       <div className="flex items-center gap-1.5 text-sm">
+         {section && section !== label ? (
+           <>
+             <Link 
+               to={`/${section.toLowerCase().replace(/\s+/g, '')}`}
+               className="text-[#796EB2] font-medium hover:opacity-80 transition-opacity"
+             >
+               {section}
+             </Link>
+             <span className="text-[#C0BDCE]">›</span>
+             <span className="text-[#7A7893]">{label}</span>
+           </>
+         ) : (
+           <span className="text-[#7A7893] font-medium">{label}</span>
+         )}
+       </div>
 
       {/* Right side */}
       <div className="flex items-center gap-4">
