@@ -9,10 +9,10 @@ export default function AppLayout() {
       <Sidebar />
       <TopBar />
       <main className="ml-[220px] pt-14 min-h-screen">
-        <div className="p-8">
+        <div className="bg-[hsl(var(--secondary))] p-8">
           <Outlet />
         </div>
       </main>
-    </div>
-  );
+    </div>);
+
 }
