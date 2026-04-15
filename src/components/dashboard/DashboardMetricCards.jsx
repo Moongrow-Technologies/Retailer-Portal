@@ -257,7 +257,7 @@ function RevenueCard() {
       </div>
 
       <div>
-        <p className="text-[42px] font-bold text-[#0E0D1E] leading-none">{d.value}</p>
+        <p className="text-[#0E0D1E] text-4xl font-semibold leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
