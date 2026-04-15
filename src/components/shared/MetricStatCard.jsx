@@ -18,12 +18,7 @@ export default function MetricStatCard({ label, values, icon: Icon, trend, trend
           <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">{label}</p>
           <p className="text-2xl font-bold tracking-tight text-[#0E0D1E]">{value}</p>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          {Icon && (
-            <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
-              <Icon className="w-5 h-5 text-[#796EB2]" />
-            </div>
-          )}
+        <div className="flex items-center gap-2">
           {/* Period dropdown */}
           <div className="relative">
             <button
@@ -49,6 +44,11 @@ export default function MetricStatCard({ label, values, icon: Icon, trend, trend
               </div>
             )}
           </div>
+          {Icon && (
+            <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center">
+              <Icon className="w-5 h-5 text-[#796EB2]" />
+            </div>
+          )}
         </div>
       </div>
       {trend && (
