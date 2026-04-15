@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
+@font-face {
+  font-family: 'OktaNeue';
+  src: url('/fonts/OktaNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --font-outfit: 'Outfit', sans-serif;
+    --font-outfit: 'OktaNeue', 'Outfit', sans-serif;
 
     --background: 240 40% 98%;
     --foreground: 247 38% 9%;
