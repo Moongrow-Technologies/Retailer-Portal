@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock } from 'lucide-react';
+import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock, Type, X, CheckCircle } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 
 export default function Settings() {
@@ -15,6 +15,51 @@ export default function Settings() {
   });
   const [toast, setToast] = useState(null);
   const showToast = (msg) => setToast(msg);
+
+  const [uploadedFonts, setUploadedFonts] = useState([]);
+  const [activeFont, setActiveFont] = useState(null);
+  const fontInputRef = useRef(null);
+
+  const handleFontUpload = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+      if (!file.name.match(/\.(ttf|otf|woff|woff2)$/i)) return;
+      const url = URL.createObjectURL(file);
+      const fontName = file.name.replace(/\.(ttf|otf|woff|woff2)$/i, '');
+      const style = document.createElement('style');
+      style.textContent = `@font-face { font-family: '${fontName}'; src: url('${url}'); }`;
+      document.head.appendChild(style);
+      setUploadedFonts(prev => {
+        if (prev.find(f => f.name === fontName)) return prev;
+        return [...prev, { name: fontName, url, styleEl: style }];
+      });
+    });
+    e.target.value = '';
+  };
+
+  const applyFont = (fontName) => {
+    document.body.style.fontFamily = `'${fontName}', sans-serif`;
+    setActiveFont(fontName);
+    showToast(`Font "${fontName}" applied.`);
+  };
+
+  const removeFont = (fontName) => {
+    setUploadedFonts(prev => {
+      const font = prev.find(f => f.name === fontName);
+      if (font?.styleEl) font.styleEl.remove();
+      return prev.filter(f => f.name !== fontName);
+    });
+    if (activeFont === fontName) {
+      document.body.style.fontFamily = '';
+      setActiveFont(null);
+    }
+  };
+
+  const resetFont = () => {
+    document.body.style.fontFamily = '';
+    setActiveFont(null);
+    showToast('Font reset to default.');
+  };
 
   const toggle = (key) => setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -147,6 +192,63 @@ export default function Settings() {
               Change Plan
             </Button>
           </div>
+        </div>
+
+        {/* Theme & Fonts */}
+        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-6">
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <h2 className="text-base font-semibold text-[#0E0D1E]">Theme &amp; Fonts</h2>
+              <p className="text-sm text-[#7A7893] mt-0.5">Upload custom fonts (.ttf, .otf, .woff, .woff2) and apply them to the app.</p>
+            </div>
+            {activeFont && (
+              <button onClick={resetFont} className="text-sm text-[#9490AA] font-medium hover:text-[#0E0D1E] hover:underline">
+                Reset to default
+              </button>
+            )}
+          </div>
+
+          {/* Upload area */}
+          <button
+            onClick={() => fontInputRef.current?.click()}
+            className="w-full border-2 border-dashed border-[#C8C3E0] rounded-xl p-6 flex flex-col items-center text-center hover:bg-[#F4F3FA] transition-colors mb-5"
+          >
+            <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center mb-2">
+              <Type className="w-5 h-5 text-[#796EB2]" />
+            </div>
+            <p className="text-sm font-semibold text-[#0E0D1E]">Upload Font Files</p>
+            <p className="text-xs text-[#9490AA] mt-0.5">TTF, OTF, WOFF, WOFF2 supported</p>
+          </button>
+          <input ref={fontInputRef} type="file" accept=".ttf,.otf,.woff,.woff2" multiple className="hidden" onChange={handleFontUpload} />
+
+          {/* Uploaded fonts list */}
+          {uploadedFonts.length === 0 ? (
+            <p className="text-xs text-[#9490AA] text-center py-2">No fonts uploaded yet.</p>
+          ) : (
+            <div className="space-y-2">
+              {uploadedFonts.map(font => (
+                <div key={font.name} className={`flex items-center justify-between p-3 rounded-xl border transition-colors ${activeFont === font.name ? 'border-[#796EB2] bg-[#F4F3FA]' : 'border-[#E2E0ED]'}`}>
+                  <div className="flex items-center gap-3">
+                    {activeFont === font.name && <CheckCircle className="w-4 h-4 text-[#796EB2] flex-shrink-0" />}
+                    <div>
+                      <p className="text-sm font-semibold text-[#0E0D1E]" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.name}</p>
+                      <p className="text-xs text-[#9490AA]" style={{ fontFamily: `'${font.name}', sans-serif` }}>The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {activeFont !== font.name && (
+                      <button onClick={() => applyFont(font.name)} className="text-xs font-medium text-[#796EB2] hover:underline px-3 py-1.5 border border-[#C8C3E0] rounded-lg hover:bg-[#EDE9F8] transition-colors">
+                        Apply
+                      </button>
+                    )}
+                    <button onClick={() => removeFont(font.name)} className="w-7 h-7 rounded-lg flex items-center justify-center text-[#9490AA] hover:bg-red-50 hover:text-red-500 transition-colors">
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Security */}
