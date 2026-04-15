@@ -45,17 +45,17 @@ export default function Leaderboard() {
         <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
-      <div className="flex items-center gap-4 mb-6 flex-wrap">
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1.5 flex-shrink-0">
+      <div className="flex items-center gap-3 mb-6 flex-nowrap overflow-x-auto">
+        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1 flex-shrink-0">
           {['commission', 'units'].map(m => (
             <button
               key={m}
               onClick={() => setMetric(m)}
               className={cn(
-                "px-5 py-2 rounded-[8px] text-sm font-semibold transition-all whitespace-nowrap",
+                "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
                 metric === m
-                  ? "bg-white text-[#796EB2] shadow-sm"
-                  : "text-[#0E0D1E] hover:text-[#796EB2]"
+                  ? "bg-white text-[#796EB2] shadow-sm border border-[#D6D0F0]"
+                  : "text-[#4B4867] hover:text-[#796EB2]"
               )}
             >
               {m === 'commission' ? 'By Commission (€)' : 'By Units Sold'}
@@ -63,7 +63,7 @@ export default function Leaderboard() {
           ))}
         </div>
 
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1.5 flex-shrink-0">
+        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1 flex-shrink-0">
           {['Today', 'This Week', 'This Month'].map((period, idx) => {
             const periodKey = ['today', 'week', 'month'][idx];
             return (
@@ -71,10 +71,10 @@ export default function Leaderboard() {
                 key={periodKey}
                 onClick={() => setTimePeriod(periodKey)}
                 className={cn(
-                  "px-5 py-2 rounded-[8px] text-sm font-semibold transition-all whitespace-nowrap",
+                  "px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap",
                   timePeriod === periodKey
-                    ? "bg-white text-[#796EB2] shadow-sm"
-                    : "text-[#0E0D1E] hover:text-[#796EB2]"
+                    ? "bg-white text-[#796EB2] shadow-sm border border-[#D6D0F0]"
+                    : "text-[#4B4867] hover:text-[#796EB2]"
                 )}
               >
                 {period}
