@@ -51,33 +51,35 @@ export default function CampaignDetail() {
           </div>
           <p className="text-sm text-muted-foreground">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.stores?.join(', ')}</p>
         </div>
-        <div className="flex items-center gap-2">
-          {status !== 'completed' && status !== 'paused_budget' && status !== 'scheduled' && (
-            <Switch
-              checked={status === 'active'}
-              onCheckedChange={() => {
-                const next = status === 'active' ? 'paused_manual' : 'active';
-                setStatus(next);
-                setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
-              }}
-              className="data-[state=checked]:bg-primary"
-            />
-          )}
-          {status !== 'completed' && (
-            <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
-          )}
+        <div className="flex flex-col items-end gap-2">
           <Button variant="outline" size="sm" className="gap-1.5"><Download className="w-3.5 h-3.5" /> Export</Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
-                <MoreVertical className="w-4 h-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => { setToast("Campaign deleted."); navigate('/campaigns'); }} className="text-destructive">Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex items-center gap-2">
+            {status !== 'completed' && status !== 'paused_budget' && status !== 'scheduled' && (
+              <Switch
+                checked={status === 'active'}
+                onCheckedChange={() => {
+                  const next = status === 'active' ? 'paused_manual' : 'active';
+                  setStatus(next);
+                  setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
+                }}
+                className="data-[state=checked]:bg-primary"
+              />
+            )}
+            {status !== 'completed' && (
+              <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+            )}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
+                  <MoreVertical className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { setToast("Campaign deleted."); navigate('/campaigns'); }} className="text-destructive">Delete</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
 
