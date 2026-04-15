@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, Pause, StopCircle, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { BONUSES } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -92,11 +93,14 @@ export default function BonusDetail() {
 
         {/* Actions */}
         {isActive && (
-          <div className="flex gap-2 mt-5 pt-5 border-t border-[#EBEBF0]">
-            <Button onClick={() => setToast("Bonus paused.")} variant="outline" size="sm" className="gap-1.5 border-[#E2E0ED] text-[#7A7893]">
-              <Pause className="w-3.5 h-3.5" /> Pause Competition
-            </Button>
-            <Button onClick={() => setToast("Bonus ended.")} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50">
+          <div className="flex items-center gap-3 mt-5 pt-5 border-t border-[#EBEBF0]">
+            <Switch
+              checked={true}
+              onCheckedChange={() => setToast("Bonus paused.")}
+              className="data-[state=checked]:bg-primary"
+            />
+            <span className="text-sm text-[#7A7893]">Active</span>
+            <Button onClick={() => setToast("Bonus ended.")} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
               <StopCircle className="w-3.5 h-3.5" /> End Early
             </Button>
           </div>

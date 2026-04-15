@@ -5,7 +5,8 @@ import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, Pause, Play, Square, Download, Target, TrendingUp, DollarSign, Users } from 'lucide-react';
+import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
@@ -47,12 +48,13 @@ export default function CampaignDetail() {
           </div>
           <p className="text-sm text-muted-foreground">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.stores?.join(', ')}</p>
         </div>
-        <div className="flex gap-2">
-          {campaign.status === 'active' && (
-            <Button onClick={() => setToast("Campaign paused.")} variant="outline" size="sm" className="gap-1.5"><Pause className="w-3.5 h-3.5" /> Pause</Button>
-          )}
-          {(campaign.status === 'paused_manual') && (
-            <Button onClick={() => setToast("Campaign resumed.")} variant="outline" size="sm" className="gap-1.5"><Play className="w-3.5 h-3.5" /> Resume</Button>
+        <div className="flex items-center gap-2">
+          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
+            <Switch
+              checked={campaign.status === 'active'}
+              onCheckedChange={() => setToast(campaign.status === 'active' ? "Campaign paused." : "Campaign resumed.")}
+              className="data-[state=checked]:bg-primary"
+            />
           )}
           {campaign.status !== 'completed' && (
             <Button onClick={() => setToast("Campaign ended.")} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
