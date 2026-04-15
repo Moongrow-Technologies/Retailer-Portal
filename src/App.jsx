@@ -23,6 +23,8 @@ import Settings from '@/pages/Settings';
 import Onboarding from '@/pages/Onboarding';
 import Notifications from '@/pages/Notifications';
 import Profile from '@/pages/Profile';
+import EditCampaign from '@/pages/EditCampaign';
+import EditBonus from '@/pages/EditBonus';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -56,11 +58,13 @@ const AuthenticatedApp = () => {
         <Route path="/wallet" element={<WalletPage />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/campaigns/new" element={<CreateCampaign />} />
+        <Route path="/campaigns/:id/edit" element={<EditCampaign />} />
         <Route path="/campaigns/:id" element={<CampaignDetail />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/bonuses" element={<Bonuses />} />
         <Route path="/bonuses/new" element={<CreateBonus />} />
+        <Route path="/bonuses/:id/edit" element={<EditBonus />} />
         <Route path="/bonuses/:id" element={<BonusDetail />} />
         <Route path="/staff" element={<StaffPage />} />
         <Route path="/staff/:id" element={<StaffDetail />} />

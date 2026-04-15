@@ -40,7 +40,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onDelete?.(campaign)} className="text-destructive">

@@ -161,7 +161,7 @@ export default function Bonuses() {
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+                    <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>
                       Edit
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">
