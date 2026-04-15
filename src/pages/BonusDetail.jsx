@@ -76,7 +76,7 @@ export default function BonusDetail() {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-2 gap-3 mt-5">
           <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
             <p className="text-xl font-bold text-[#0E0D1E]">€{bonus.prize_pool}</p>
             <p className="text-xs text-[#9490AA]">Prize Pool</p>
@@ -87,10 +87,6 @@ export default function BonusDetail() {
               <p className="text-xl font-bold text-[#0E0D1E]">{isActive ? formatTimeLeft(hoursLeft) : 'Ended'}</p>
             </div>
             <p className="text-xs text-[#9490AA]">{isActive ? 'Remaining' : 'Duration finished'}</p>
-          </div>
-          <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-            <p className="text-xl font-bold text-[#0E0D1E]">{bonus.participants}</p>
-            <p className="text-xs text-[#9490AA]">Participants</p>
           </div>
         </div>
 
