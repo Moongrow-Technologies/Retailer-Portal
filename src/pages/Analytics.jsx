@@ -63,7 +63,7 @@ export default function Analytics() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] px-4 py-3 flex items-center gap-4 mb-6">
+      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] px-4 py-3 flex items-center gap-4 mb-6">
         <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1">
           {TIME_PERIODS.map(p => (
             <button
@@ -103,7 +103,7 @@ export default function Analytics() {
 
       {/* Charts row */}
       <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
+        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Revenue Over Time</h3>
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={revenueOverTime[period]}>
@@ -116,7 +116,7 @@ export default function Analytics() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
+        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Commission Spend by Campaign</h3>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={campaignSpend}>
@@ -134,7 +134,7 @@ export default function Analytics() {
       {/* Bottom sections */}
       <div className="grid grid-cols-2 gap-6">
         {/* Top Performing Products */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
+        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Top Performing Products</h3>
           <div className="space-y-2">
             {[...commissionByProduct]
@@ -153,7 +153,7 @@ export default function Analytics() {
         </div>
 
         {/* Staff Performance Comparison */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] p-5">
+        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
           <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Staff Performance Comparison</h3>
           <div className="space-y-3">
             {activeStaff.map((s, i) => (

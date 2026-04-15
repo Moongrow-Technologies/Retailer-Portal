@@ -78,7 +78,7 @@ export default function Campaigns() {
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
+      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
         {filtered.length === 0 ? (
           <div className="p-12 text-center">
             <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>

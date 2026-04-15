@@ -37,7 +37,7 @@ export default function TransactionHistory({ transactions }) {
   const filtered = filterTransactions();
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
       <div className="px-6 py-4 border-b border-[#F4F3FA]">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
