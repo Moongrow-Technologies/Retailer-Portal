@@ -6,6 +6,7 @@ import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import TopBudtenders from '@/components/dashboard/TopBudtenders';
 import NeedsAttention from '@/components/dashboard/NeedsAttention';
 import { Megaphone, Award, TrendingUp, BarChart2, AlertTriangle } from 'lucide-react';
+import MetricStatCard from '@/components/shared/MetricStatCard';
 import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData';
 
 export default function Dashboard() {
@@ -15,8 +16,8 @@ export default function Dashboard() {
   const topStaff = [...STAFF].sort((a, b) => b.total_commissions - a.total_commissions)[0];
   const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
   const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
-  const commissionToday = 6.50;
-  const revenueGenerated = 1240.00;
+  const commissionValues = { 'This Week': '€42.50', 'This Month': '€184.00' };
+  const revenueValues = { 'This Week': '€1,240.00', 'This Month': '€5,380.00' };
   const zeroBalance = wallet.total_balance === 0;
 
   return (
@@ -45,8 +46,8 @@ export default function Dashboard() {
           <CompactWalletCard wallet={wallet} />
         </div>
         <div className="col-span-8 grid grid-cols-2 gap-4">
-          <StatCard label="Commission Paid" value={`€${commissionToday.toFixed(2)}`} icon={TrendingUp} trend="12% vs yesterday" trendUp to="/analytics" />
-          <StatCard label="Revenue Generated" value={`€${revenueGenerated.toLocaleString('nl-NL', { minimumFractionDigits: 2 })}`} icon={BarChart2} trend="8% vs yesterday" trendUp to="/analytics" />
+          <MetricStatCard label="Commission Paid" values={commissionValues} icon={TrendingUp} trend="12% vs last period" trendUp to="/analytics" />
+          <MetricStatCard label="Revenue Generated" values={revenueValues} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
           <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
           <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" to="/bonuses" />
         </div>
