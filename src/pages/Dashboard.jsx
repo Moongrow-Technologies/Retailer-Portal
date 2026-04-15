@@ -46,10 +46,10 @@ export default function Dashboard() {
           <CompactWalletCard wallet={wallet} />
         </div>
         <div className="col-span-8 grid grid-cols-2 gap-4">
+          <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
+          <StatCard label="Units Sold" value={activeCampaigns.reduce((sum, c) => sum + (c.units_sold || 0), 0)} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
           <MetricStatCard label="Commission Paid" values={commissionValues} icon={TrendingUp} trend="12% vs last period" trendUp to="/analytics" />
           <MetricStatCard label="Revenue Generated" values={revenueValues} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
-          <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
-          <StatCard label="Active Bonuses" value={activeBonuses.length} icon={Award} trend="1 ending soon" to="/bonuses" />
         </div>
 
         {/* Activity feed + Top Budtenders */}
