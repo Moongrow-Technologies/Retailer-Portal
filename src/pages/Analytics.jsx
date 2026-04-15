@@ -68,7 +68,7 @@ export default function Analytics() {
           {TIME_PERIODS.map((p) =>
           <button
             key={p}
-            onClick={() => setPeriod(p)} className="bg-white text-[#0E0D1E] px-4 py-1.5 text-sm font-medium rounded transition-all whitespace-nowrap shadow-sm border border-[#E2E0ED]">
+            onClick={() => setPeriod(p)} className="bg-white text-[#0E0D1E] px-4 py-1.5 text-sm font-medium rounded-lg transition-all whitespace-nowrap shadow-sm border border-[#E2E0ED]">
 
 
 
