@@ -46,13 +46,13 @@ export default function Leaderboard() {
       </div>
 
       <div className="flex items-center gap-4 mb-6 flex-wrap">
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-full p-1.5 flex-shrink-0">
+        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1.5 flex-shrink-0">
           {['commission', 'units'].map(m => (
             <button
               key={m}
               onClick={() => setMetric(m)}
               className={cn(
-                "px-5 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap",
+                "px-5 py-2 rounded-[8px] text-sm font-semibold transition-all whitespace-nowrap",
                 metric === m
                   ? "bg-white text-[#796EB2] shadow-sm"
                   : "text-[#0E0D1E] hover:text-[#796EB2]"
@@ -63,7 +63,7 @@ export default function Leaderboard() {
           ))}
         </div>
 
-        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-full p-1.5 flex-shrink-0">
+        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1.5 flex-shrink-0">
           {['Today', 'This Week', 'This Month'].map((period, idx) => {
             const periodKey = ['today', 'week', 'month'][idx];
             return (
@@ -71,7 +71,7 @@ export default function Leaderboard() {
                 key={periodKey}
                 onClick={() => setTimePeriod(periodKey)}
                 className={cn(
-                  "px-5 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap",
+                  "px-5 py-2 rounded-[8px] text-sm font-semibold transition-all whitespace-nowrap",
                   timePeriod === periodKey
                     ? "bg-white text-[#796EB2] shadow-sm"
                     : "text-[#0E0D1E] hover:text-[#796EB2]"
