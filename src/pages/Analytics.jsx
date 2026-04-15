@@ -95,10 +95,10 @@ export default function Analytics() {
 
       {/* Stat boxes */}
       <div className="grid grid-cols-4 gap-4 mb-6">
+        <StatCard label="Total Units Sold" value={totalUnits} icon={ShoppingCart} trend="vs last period" trendUp />
         <StatCard label="Total Revenue Generated" value={`€${totalRevenue.toFixed(0)}`} icon={TrendingUp} trend="8% vs last period" trendUp />
         <StatCard label="Total Commission Paid" value={`€${totalSpend.toFixed(2)}`} icon={DollarSign} trend="12% vs last period" trendUp />
         <StatCard label="Overall ROI" value={`${roi}x`} sublabel="revenue per €1 commission" icon={Percent} />
-        <StatCard label="Total Units Sold" value={totalUnits} icon={ShoppingCart} trend="vs last period" trendUp />
       </div>
 
       {/* Charts row */}
