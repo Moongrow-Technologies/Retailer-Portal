@@ -42,11 +42,13 @@ export default function Dashboard() {
       )}
 
       <div className="grid grid-cols-12 gap-6">
-        {/* Wallet + Stats two-column row */}
-        <div className="col-span-4">
+        {/* Wallet — full-width split card */}
+        <div className="col-span-12">
           <CompactWalletCard wallet={wallet} />
         </div>
-        <div className="col-span-8 grid grid-cols-2 gap-4">
+
+        {/* Stats row */}
+        <div className="col-span-12 grid grid-cols-4 gap-4">
           <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
           <MetricStatCard label="Units Sold" values={unitsSoldValues} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
           <MetricStatCard label="Commission Paid" values={commissionValues} icon={TrendingUp} trend="12% vs last period" trendUp to="/analytics" />
