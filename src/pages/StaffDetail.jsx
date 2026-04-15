@@ -4,7 +4,7 @@ import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, DollarSign, Target, Medal, TrendingUp, UserX } from 'lucide-react';
+import { ArrowLeft, DollarSign, Target, Medal, TrendingUp, UserX, ShoppingCart } from 'lucide-react';
 import { STAFF, PRODUCTS } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
@@ -57,10 +57,10 @@ export default function StaffDetail() {
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total Commissions" value={`€${staff.total_commissions.toFixed(2)}`} icon={DollarSign} />
-        <StatCard label="Units Sold" value={staff.total_units_sold} icon={Target} />
+        <StatCard label="Units Sold" value={staff.total_units_sold} icon={ShoppingCart} />
+        <StatCard label="Revenue Generated" value={`€${(staff.total_units_sold * 12.5).toFixed(2)}`} icon={TrendingUp} />
+        <StatCard label="Total Commission Earned" value={`€${staff.total_commissions.toFixed(2)}`} icon={DollarSign} />
         <StatCard label="Bonus Wins" value={staff.bonus_wins} icon={Medal} />
-        <StatCard label="Avg. Monthly" value={`€${(staff.total_commissions / 4).toFixed(2)}`} icon={TrendingUp} />
       </div>
 
       <div className="grid grid-cols-2 gap-6">
