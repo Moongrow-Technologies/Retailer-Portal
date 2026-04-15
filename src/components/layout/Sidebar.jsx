@@ -28,8 +28,6 @@ export default function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-14 h-[calc(100vh-56px)] w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-40">
-      <div className="border-t border-[#EBEBF0] mx-3" />
-
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
