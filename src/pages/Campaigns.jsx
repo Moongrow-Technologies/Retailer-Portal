@@ -43,7 +43,7 @@ export default function Campaigns() {
   };
 
   return (
-    <div className="max-w-4xl">
+    <div>
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0E0D1E]">Campaigns</h1>
