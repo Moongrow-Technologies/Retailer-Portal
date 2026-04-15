@@ -4,7 +4,7 @@ import PageHeader from '@/components/shared/PageHeader';
 import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, DollarSign, Target, Medal, TrendingUp, UserX, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, DollarSign, ShoppingCart, TrendingUp, Percent, UserX } from 'lucide-react';
 import { STAFF, PRODUCTS } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
@@ -57,10 +57,18 @@ export default function StaffDetail() {
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Units Sold" value={staff.total_units_sold} icon={ShoppingCart} />
-        <StatCard label="Revenue Generated" value={`€${(staff.total_units_sold * 12.5).toFixed(2)}`} icon={TrendingUp} />
-        <StatCard label="Total Commission Earned" value={`€${staff.total_commissions.toFixed(2)}`} icon={DollarSign} />
-        <StatCard label="Bonus Wins" value={staff.bonus_wins} icon={Medal} />
+        {(() => {
+          const revenue = staff.total_units_sold * 12.5;
+          const roi = staff.total_commissions > 0 ? (revenue / staff.total_commissions).toFixed(1) + 'x' : '—';
+          return (
+            <>
+              <StatCard label="Units Sold" value={staff.total_units_sold} icon={ShoppingCart} />
+              <StatCard label="Revenue Generated" value={`€${revenue.toFixed(2)}`} icon={TrendingUp} />
+              <StatCard label="Total Commission Earned" value={`€${staff.total_commissions.toFixed(2)}`} icon={DollarSign} />
+              <StatCard label="Commission ROI" value={roi} sublabel="revenue per €1 commission" icon={Percent} />
+            </>
+          );
+        })()}
       </div>
 
       <div className="grid grid-cols-2 gap-6">
