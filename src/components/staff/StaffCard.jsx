@@ -11,9 +11,18 @@ export default function StaffCard({ staff }) {
     .toUpperCase()
     .slice(0, 1);
 
+  // Specific avatar colors per staff member
+  const avatarColorMap = {
+    's1': 'bg-amber-500',      // Lisa V.
+    's2': 'bg-blue-600',       // Ahmed R.
+    's3': 'bg-emerald-600',    // Sarah K.
+    's4': 'bg-slate-500',      // Tom B.
+    's5': 'bg-slate-400',      // Nina D.
+  };
+
   const avatarColors = {
     active: 'bg-emerald-500',
-    pending: 'bg-amber-500',
+    pending: 'bg-slate-400',
     deactivated: 'bg-slate-400',
   };
 
@@ -29,7 +38,7 @@ export default function StaffCard({ staff }) {
         {/* Header with avatar and badge */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={cn('w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg', avatarColors[staff.status])}>
+            <div className={cn('w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg', avatarColorMap[staff.id] || avatarColors[staff.status])}>
               {initials}
             </div>
             <div>
@@ -48,19 +57,21 @@ export default function StaffCard({ staff }) {
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
             <p className="text-xs text-[#9490AA] font-medium mb-1">Commission</p>
-            <p className="text-lg font-bold text-emerald-600">€{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            <p className={cn('text-lg font-bold', staff.status === 'active' ? 'text-emerald-600' : 'text-[#C0BDCE]')}>
+              €{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </p>
           </div>
           <div>
             <p className="text-xs text-[#9490AA] font-medium mb-1">Units sold</p>
-            <p className="text-lg font-bold text-[#0E0D1E]">{staff.total_units_sold}</p>
+            <p className={cn('text-lg font-bold', staff.status === 'active' ? 'text-[#0E0D1E]' : 'text-[#C0BDCE]')}>{staff.total_units_sold}</p>
           </div>
         </div>
 
         {/* Link */}
         {staff.status === 'active' ? (
-          <p className="text-sm font-medium text-[#796EB2] hover:text-[#5E54A0] transition-colors">View profile →</p>
+          <p className="text-sm font-medium text-[#796EB2]">View profile →</p>
         ) : (
-          <p className="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Resend invite →</p>
+          <p className="text-sm font-medium text-amber-500">Resend invite →</p>
         )}
       </div>
     </Link>
