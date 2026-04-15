@@ -34,8 +34,12 @@ export default function StaffDetail() {
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
-            {staff.name.charAt(0)}
+          <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
+            {staff.avatar_url ? (
+              <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">{staff.name.charAt(0)}</div>
+            )}
           </div>
           <div>
             <div className="flex items-center gap-2">

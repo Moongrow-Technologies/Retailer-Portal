@@ -19,8 +19,12 @@ export default function StaffRow({ staff }) {
   return (
     <Link to={`/staff/${staff.id}`}>
       <div className="px-4 py-3 flex items-center gap-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-2xl hover:bg-[#F0EEF9] transition-colors mb-3">
-        <div className="w-9 h-9 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-bold text-[#796EB2] flex-shrink-0">
-          {staff.name.charAt(0)}
+        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+          {staff.avatar_url ? (
+            <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-[#EDE9F8] flex items-center justify-center text-sm font-bold text-[#796EB2]">{staff.name.charAt(0)}</div>
+          )}
         </div>
         <div className="w-40 flex-shrink-0 min-w-0">
           <p className="text-sm font-medium text-[#0E0D1E] truncate">{staff.name}</p>

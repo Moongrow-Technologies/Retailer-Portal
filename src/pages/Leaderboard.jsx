@@ -115,8 +115,12 @@ export default function Leaderboard() {
                      <span className="text-lg font-bold text-[#9490AA]">{i + 1}</span>
                    )}
                  </div>
-                 <div className="w-10 h-10 rounded-xl bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">
-                   {staff.name.charAt(0)}
+                 <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+                   {staff.avatar_url ? (
+                     <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
+                   ) : (
+                     <div className="w-full h-full bg-[#EDE9F8] flex items-center justify-center text-sm font-semibold text-[#796EB2]">{staff.name.charAt(0)}</div>
+                   )}
                  </div>
                  <div className="flex-1">
                    <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
