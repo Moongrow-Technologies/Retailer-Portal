@@ -41,24 +41,22 @@ export default function TransactionHistory({ transactions }) {
       <div className="px-6 py-4 border-b border-[#F4F3FA]">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction History</h3>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1">
             {[
               { value: 'week', label: 'This Week' },
               { value: 'month', label: 'This Month' },
               { value: 'all', label: 'All Time' }
             ].map(opt => (
-              <Button
+              <button
                 key={opt.value}
                 onClick={() => setPeriod(opt.value)}
-                variant={period === opt.value ? 'default' : 'outline'}
-                size="sm"
                 className={cn(
-                  'text-xs font-medium',
-                  period === opt.value ? 'bg-[#796EB2] text-white' : 'bg-[#F4F3FA] border-0 text-[#0E0D1E] hover:bg-[#EDE9F8]'
+                  'px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all whitespace-nowrap',
+                  period === opt.value ? 'bg-white text-[#796EB2] shadow-sm' : 'text-[#4B4867] hover:text-[#796EB2]'
                 )}
               >
                 {opt.label}
-              </Button>
+              </button>
             ))}
           </div>
         </div>

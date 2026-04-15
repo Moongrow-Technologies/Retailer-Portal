@@ -64,16 +64,16 @@ export default function Analytics() {
 
       {/* Filters */}
       <div className="bg-white rounded-2xl shadow-[0_2px_16px_0_rgba(0,0,0,0.06)] px-4 py-3 flex items-center gap-4 mb-6">
-        <div className="flex items-center gap-1 bg-[#F4F2FB] rounded-lg p-1">
+        <div className="flex items-center gap-1 bg-[#EEEDF5] rounded-[10px] p-1">
           {TIME_PERIODS.map(p => (
             <button
               key={p}
               onClick={() => setPeriod(p)}
               className={cn(
-                'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                'px-3.5 py-1.5 text-xs font-semibold rounded-[8px] transition-colors whitespace-nowrap',
                 period === p
-                  ? 'bg-white text-[#0E0D1E] shadow-sm'
-                  : 'text-[#9490AA] hover:text-[#0E0D1E]'
+                  ? 'bg-white text-[#796EB2] shadow-sm'
+                  : 'text-[#4B4867] hover:text-[#796EB2]'
               )}
             >
               {p}

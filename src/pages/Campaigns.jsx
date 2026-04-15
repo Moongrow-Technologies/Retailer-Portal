@@ -64,14 +64,14 @@ export default function Campaigns() {
         <span>€692 available</span>
       </div>
 
-      <div className="flex items-center gap-1 mb-6 bg-[#F8F7FC] rounded-xl p-1 w-fit border border-[#EBEBF0]">
+      <div className="flex items-center gap-1 mb-6 bg-[#EEEDF5] rounded-[10px] p-1 w-fit">
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
-            className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all",
-              tab === t.key ? "bg-white text-[#796EB2] shadow-sm border border-[#E2E0ED]" : "text-[#7A7893] hover:text-[#796EB2]"
+            className={cn("px-3.5 py-1.5 rounded-[8px] text-xs font-semibold transition-all",
+              tab === t.key ? "bg-white text-[#796EB2] shadow-sm" : "text-[#4B4867] hover:text-[#796EB2]"
             )}>
             {t.label}
-            <span className={cn("ml-1.5 text-xs px-1.5 py-0.5 rounded-full", tab === t.key ? "bg-[#EDE9F8] text-[#796EB2]" : "bg-[#EBEBF0] text-[#9490AA]")}>
+            <span className={cn("ml-1.5 text-xs px-1.5 py-0.5 rounded-full", tab === t.key ? "bg-[#EDE9F8] text-[#796EB2]" : "bg-[#DDDBE8] text-[#9490AA]")}>
               {count(t.key)}
             </span>
           </button>
