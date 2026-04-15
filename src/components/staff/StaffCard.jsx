@@ -61,14 +61,14 @@ export default function StaffCard({ staff }) {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4 mb-4 flex-1">
-          <div>
+        <div className="grid gap-4 mb-4 flex-1" style={{ gridTemplateColumns: '1fr 1fr' }}>
+          <div className="min-w-0">
             <p className="text-xs text-[#9490AA] font-medium mb-1">Commission</p>
-            <p className={cn('text-lg font-bold', isHighestCommission ? 'text-emerald-600' : 'text-[#0E0D1E]')}>
+            <p className={cn('text-lg font-bold truncate', isHighestCommission ? 'text-emerald-600' : 'text-[#0E0D1E]')}>
               €{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xs text-[#9490AA] font-medium mb-1">Units sold</p>
             <p className="text-lg font-bold text-[#0E0D1E]">{staff.total_units_sold}</p>
           </div>
