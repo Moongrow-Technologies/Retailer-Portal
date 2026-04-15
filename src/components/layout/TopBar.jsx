@@ -118,7 +118,7 @@ export default function TopBar() {
             />
           )}
         </div>
-        <div ref={profileRef} className="relative pl-4 border-l border-[#EBEBF0]">
+        <div ref={profileRef} className="relative px-4 border-l border-[#EBEBF0]">
           <button
             onClick={() => setShowProfileMenu(v => !v)}
             className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
