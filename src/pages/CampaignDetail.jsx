@@ -5,9 +5,7 @@ import StatCard from '@/components/shared/StatCard';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, MoreVertical } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { ArrowLeft, Pause, Play, Square, Download, Target, TrendingUp, DollarSign, Users } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
@@ -24,9 +22,7 @@ export default function CampaignDetail() {
   const urlParams = new URLSearchParams(window.location.search);
   const campaignId = window.location.pathname.split('/').pop();
   const navigate = useNavigate();
-  const baseCampaign = CAMPAIGNS.find(c => c.id === campaignId) || CAMPAIGNS[0];
-  const [status, setStatus] = useState(baseCampaign.status);
-  const campaign = { ...baseCampaign, status };
+  const campaign = CAMPAIGNS.find(c => c.id === campaignId) || CAMPAIGNS[0];
   const [toast, setToast] = useState(null);
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
@@ -51,33 +47,17 @@ export default function CampaignDetail() {
           </div>
           <p className="text-sm text-muted-foreground">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit · {campaign.stores?.join(', ')}</p>
         </div>
-        <div className="flex items-center gap-2">
-          {status !== 'completed' && status !== 'paused_budget' && status !== 'scheduled' && (
-            <Switch
-              checked={status === 'active'}
-              onCheckedChange={() => {
-                const next = status === 'active' ? 'paused_manual' : 'active';
-                setStatus(next);
-                setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
-              }}
-              className="data-[state=checked]:bg-primary"
-            />
+        <div className="flex gap-2">
+          {campaign.status === 'active' && (
+            <Button onClick={() => setToast("Campaign paused.")} variant="outline" size="sm" className="gap-1.5"><Pause className="w-3.5 h-3.5" /> Pause</Button>
           )}
-          {status !== 'completed' && (
-            <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+          {(campaign.status === 'paused_manual') && (
+            <Button onClick={() => setToast("Campaign resumed.")} variant="outline" size="sm" className="gap-1.5"><Play className="w-3.5 h-3.5" /> Resume</Button>
           )}
-          <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
-                <MoreVertical className="w-4 h-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => { setToast("Campaign deleted."); navigate('/campaigns'); }} className="text-destructive">Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {campaign.status !== 'completed' && (
+            <Button onClick={() => setToast("Campaign ended.")} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+          )}
+          <Button variant="outline" size="sm" className="gap-1.5"><Download className="w-3.5 h-3.5" /> Export</Button>
         </div>
       </div>
 
@@ -87,11 +67,11 @@ export default function CampaignDetail() {
         </div>
       )}
 
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-4 gap-4 mb-6">
         <StatCard label="Units Sold" value={campaign.units_sold} sublabel={`of ${campaign.target_units} target`} icon={Target} />
         <StatCard label="Commission Spend" value={`€${campaign.spent.toFixed(2)}`} sublabel={`of €${campaign.budget.toFixed(2)} budget`} icon={DollarSign} />
         <StatCard label="ROI" value={campaign.status === 'completed' ? '2.4×' : '—'} sublabel={campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion'} icon={TrendingUp} />
-
+        <StatCard label="Active Staff" value={staffLeaderboard.length} icon={Users} />
       </div>
 
       {/* Progress bars */}
