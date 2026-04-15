@@ -18,6 +18,7 @@ export default function Dashboard() {
   const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const commissionValues = { 'This Week': '€42.50', 'This Month': '€184.00' };
   const revenueValues = { 'This Week': '€1,240.00', 'This Month': '€5,380.00' };
+  const unitsSoldValues = { 'This Week': '124', 'This Month': '538' };
   const zeroBalance = wallet.total_balance === 0;
 
   return (
@@ -47,7 +48,7 @@ export default function Dashboard() {
         </div>
         <div className="col-span-8 grid grid-cols-2 gap-4">
           <StatCard label="Active Campaigns" value={activeCampaigns.length} icon={Megaphone} trend="2 new this month" trendUp to="/campaigns" />
-          <StatCard label="Units Sold" value={activeCampaigns.reduce((sum, c) => sum + (c.units_sold || 0), 0)} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
+          <MetricStatCard label="Units Sold" values={unitsSoldValues} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
           <MetricStatCard label="Commission Paid" values={commissionValues} icon={TrendingUp} trend="12% vs last period" trendUp to="/analytics" />
           <MetricStatCard label="Revenue Generated" values={revenueValues} icon={BarChart2} trend="8% vs last period" trendUp to="/analytics" />
         </div>
