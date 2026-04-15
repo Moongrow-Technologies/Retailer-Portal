@@ -18,8 +18,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-[#F4F3FA] rounded-2xl p-4 hover:bg-[#EDE9F8] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
-      <div className="flex items-start justify-between mb-3">
+    <div className="border border-[#EBEBF0] rounded-xl p-4 hover:bg-[#F8F7FC] transition-colors cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+      <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
           <p className="text-sm text-[#9490AA] mt-0.5">{campaign.product_name} · €{campaign.commission_rate.toFixed(2)}/unit</p>
@@ -35,7 +35,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors">
+              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-[#F4F3FA] rounded-lg transition-colors">
                 <MoreVertical className="w-4 h-4" />
               </button>
             </DropdownMenuTrigger>
@@ -59,7 +59,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           <Progress value={spendPct} className="h-1.5" />
         </div>
 
-        <div className="flex items-center gap-4 mt-3 text-xs text-[#9490AA]">
+        <div className="flex items-center gap-4 mt-4 text-xs text-[#9490AA]">
           <span>{campaign.units_sold} units sold</span>
           <span>·</span>
           <span>{campaign.stores?.length || 1} store{(campaign.stores?.length || 1) > 1 ? 's' : ''}</span>
