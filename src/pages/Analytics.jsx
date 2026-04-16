@@ -5,59 +5,59 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Download } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,
-  BarChart, Bar as RechartsBar } from
-'recharts';
+  BarChart, Bar as RechartsBar
+} from 'recharts';
 import { STAFF, CAMPAIGNS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const revenueOverTime = {
   'This Month': [
-  { label: 'Mar 14', value: 3200 },
-  { label: 'Mar 21', value: 3800 },
-  { label: 'Mar 28', value: 4500 },
-  { label: 'Apr 4', value: 5200 },
-  { label: 'Apr 7', value: 5800 },
-  { label: 'Apr 11', value: 6300 },
-  { label: 'Apr 14', value: 6708 }],
-
+    { label: 'Mar 14', value: 3200 },
+    { label: 'Mar 21', value: 3800 },
+    { label: 'Mar 28', value: 4500 },
+    { label: 'Apr 4', value: 5200 },
+    { label: 'Apr 7', value: 5800 },
+    { label: 'Apr 11', value: 6300 },
+    { label: 'Apr 14', value: 6708 },
+  ],
   'This Week': [
-  { label: 'Mon', value: 820 },
-  { label: 'Tue', value: 1340 },
-  { label: 'Wed', value: 1900 },
-  { label: 'Thu', value: 2450 },
-  { label: 'Fri', value: 3120 },
-  { label: 'Sat', value: 3800 },
-  { label: 'Sun', value: 4100 }]
-
+    { label: 'Mon', value: 820 },
+    { label: 'Tue', value: 1340 },
+    { label: 'Wed', value: 1900 },
+    { label: 'Thu', value: 2450 },
+    { label: 'Fri', value: 3120 },
+    { label: 'Sat', value: 3800 },
+    { label: 'Sun', value: 4100 },
+  ],
 };
 
 const topProducts = [
-{ name: 'Blue Dream', units: 200, revenue: 2200 },
-{ name: 'OG Kush', units: 156, revenue: 1950 },
-{ name: 'White Widow', units: 114, revenue: 1197 },
-{ name: 'Amnesia Haze', units: 74, revenue: 962 }];
-
+  { name: 'Blue Dream', units: 200, revenue: 2200 },
+  { name: 'OG Kush', units: 156, revenue: 1950 },
+  { name: 'White Widow', units: 114, revenue: 1197 },
+  { name: 'Amnesia Haze', units: 74, revenue: 962 },
+];
 
 const topSellingDays = [
-{ label: 'Wed', day: 'W', units: 98, rank: 1 },
-{ label: 'Sat', day: 'S', units: 86, rank: 2 },
-{ label: 'Thu', day: 'T', units: 74, rank: 3 },
-{ label: 'M', units: 52 },
-{ label: 'T', units: 48 },
-{ label: 'F', units: 65 },
-{ label: 'S', units: 71 }];
+  { label: 'Wed', day: 'W', units: 98, rank: 1 },
+  { label: 'Sat', day: 'S', units: 86, rank: 2 },
+  { label: 'Thu', day: 'T', units: 74, rank: 3 },
+  { label: 'M', units: 52 },
+  { label: 'T', units: 48 },
+  { label: 'F', units: 65 },
+  { label: 'S', units: 71 },
+];
 
-
-const activeStaff = [...STAFF].
-filter((s) => s.status === 'active').
-sort((a, b) => b.total_commissions - a.total_commissions);
+const activeStaff = [...STAFF]
+  .filter(s => s.status === 'active')
+  .sort((a, b) => b.total_commissions - a.total_commissions);
 
 const staffAvatarMap = {
   's1': 'bg-amber-500',
   's2': 'bg-blue-600',
   's3': 'bg-emerald-600',
   's4': 'bg-slate-500',
-  's5': 'bg-slate-400'
+  's5': 'bg-slate-400',
 };
 
 export default function Analytics() {
@@ -76,20 +76,20 @@ export default function Analytics() {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 bg-white border border-[#E2E0ED] rounded-lg p-1">
-            {['This Month', 'This Week'].map((p) =>
-            <button
-              key={p}
-              onClick={() => setPeriod(p)}
-              className={cn(
-                'px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap',
-                period === p ?
-                'border border-[#796EB2] text-[#796EB2] bg-white' :
-                'text-[#0E0D1E] hover:text-[#796EB2]'
-              )}>
-              
+            {['This Month', 'This Week'].map(p => (
+              <button
+                key={p}
+                onClick={() => setPeriod(p)}
+                className={cn(
+                  'px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap',
+                  period === p
+                    ? 'border border-[#796EB2] text-[#796EB2] bg-white'
+                    : 'text-[#0E0D1E] hover:text-[#796EB2]'
+                )}
+              >
                 {p}
               </button>
-            )}
+            ))}
           </div>
           <Select value={campaign} onValueChange={setCampaign}>
             <SelectTrigger className="w-[180px] border-[#E2E0ED]">
@@ -97,9 +97,9 @@ export default function Analytics() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All campaigns</SelectItem>
-              {CAMPAIGNS.map((c) =>
-              <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
-              )}
+              {CAMPAIGNS.map(c => (
+                <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]">
@@ -166,8 +166,8 @@ export default function Analytics() {
         <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top products</h3>
           <div>
-            {topProducts.map((product, idx) =>
-            <div key={product.name}>
+            {topProducts.map((product, idx) => (
+              <div key={product.name}>
                 <div className="flex items-center justify-between py-4">
                   <div className="flex-1">
                     <p className="font-medium text-[#0E0D1E]">{product.name}</p>
@@ -177,7 +177,7 @@ export default function Analytics() {
                 </div>
                 {idx !== topProducts.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>
-            )}
+            ))}
           </div>
         </div>
 
@@ -185,27 +185,27 @@ export default function Analytics() {
         <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top selling days</h3>
           <div className="flex gap-3 mb-6">
-            {topSellingDays.slice(0, 3).map((day) =>
-            <div
-              key={day.label}
-              className={cn(
-                'flex-1 rounded-lg p-3 text-center',
-                day.rank === 1 ?
-                'bg-[#796EB2] text-white' :
-                'bg-[#EDE9F8] text-[#796EB2]'
-              )}>
-              
+            {topSellingDays.slice(0, 3).map((day) => (
+              <div
+                key={day.label}
+                className={cn(
+                  'flex-1 rounded-lg p-3 text-center',
+                  day.rank === 1
+                    ? 'bg-[#796EB2] text-white'
+                    : 'bg-[#EDE9F8] text-[#796EB2]'
+                )}
+              >
                 <p className="text-xs font-semibold mb-1">#{day.rank}</p>
                 <p className="text-xs font-medium">{day.label}</p>
-                <p className="text-[hsl(var(--primary))] mt-1 text-lg font-bold">
-
-
-                
+                <p className={cn(
+                  'text-lg font-bold mt-1',
+                  day.rank === 1 ? 'text-white' : 'text-[#796EB2]'
+                )}>
                   {day.units}
                 </p>
                 <p className="text-xs font-medium mt-0.5">units</p>
               </div>
-            )}
+            ))}
           </div>
           <div className="flex justify-center gap-1">
             {topSellingDays.slice(3).map((day, idx) => {
@@ -215,14 +215,14 @@ export default function Analytics() {
                   key={idx}
                   className="flex-1 h-12 rounded-md flex items-end justify-center"
                   style={{
-                    backgroundColor: isTopDay ?
-                    idx + 3 === 5 ? '#EDE9F8' : idx + 3 === 2 ? '#EDE9F8' : '#796EB2' :
-                    '#E2E0ED'
-                  }}>
-                  
+                    backgroundColor: isTopDay
+                      ? idx + 3 === 5 ? '#EDE9F8' : idx + 3 === 2 ? '#EDE9F8' : '#796EB2'
+                      : '#E2E0ED',
+                  }}
+                >
                   <span className="text-xs font-semibold text-[#0E0D1E] mb-1">{day.label}</span>
-                </div>);
-
+                </div>
+              );
             })}
           </div>
         </div>
@@ -231,32 +231,32 @@ export default function Analytics() {
         <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Staff performance</h3>
           <div>
-            {activeStaff.map((staff, idx) =>
-            <div key={staff.id}>
+            {activeStaff.map((staff, idx) => (
+              <div key={staff.id}>
                 <div className="flex items-center gap-3 py-4">
                   <span className="text-xs font-medium text-[#9490AA] w-4">{idx + 1}</span>
                   <div className={cn(
-                  'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0',
-                  staffAvatarMap[staff.id] || 'bg-[#796EB2]'
-                )}>
+                    'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0',
+                    staffAvatarMap[staff.id] || 'bg-[#796EB2]'
+                  )}>
                     {staff.name[0]}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-[#0E0D1E]">{staff.name}</p>
                   </div>
                   <p className={cn(
-                  'text-sm font-semibold',
-                  idx === 0 ? 'text-emerald-600' : 'text-[#0E0D1E]'
-                )}>
+                    'text-sm font-semibold',
+                    idx === 0 ? 'text-emerald-600' : 'text-[#0E0D1E]'
+                  )}>
                     €{staff.total_commissions.toFixed(2)}
                   </p>
                 </div>
                 {idx !== activeStaff.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>
-            )}
+            ))}
           </div>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 }
