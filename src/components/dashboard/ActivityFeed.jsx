@@ -1,61 +1,58 @@
 import React from 'react';
-import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { STAFF } from '@/lib/sampleData';
+import { cn } from '@/lib/utils';
 
 const staffByName = Object.fromEntries(STAFF.map(s => [s.name, s]));
 
-const iconMap = {
-  sale: ShoppingCart,
-  campaign_paused: Pause,
-  campaign_resumed: Megaphone,
-  campaign_created: Megaphone,
-  staff_joined: UserPlus,
-  top_up: Wallet,
-  bonus_completed: Trophy,
-  payout: Wallet,
-};
-
-const colorMap = {
-  sale: 'bg-emerald-50 text-emerald-600',
-  campaign_paused: 'bg-amber-50 text-amber-600',
-  campaign_resumed: 'bg-blue-50 text-blue-600',
-  campaign_created: 'bg-primary/10 text-primary',
-  staff_joined: 'bg-blue-50 text-blue-600',
-  top_up: 'bg-emerald-50 text-emerald-600',
-  bonus_completed: 'bg-amber-50 text-amber-600',
-  payout: 'bg-primary/10 text-primary',
-};
+const avatarColors = [
+  'bg-amber-400',
+  'bg-blue-500',
+  'bg-emerald-600',
+  'bg-slate-500',
+  'bg-rose-500',
+  'bg-violet-500',
+];
 
 export default function ActivityFeed({ activities }) {
   return (
     <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
       <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Recent Activity</h3>
-      <div className="space-y-2">
+      <div>
         {activities.map((activity, i) => {
-           const Icon = iconMap[activity.type] || ShoppingCart;
-           const staffMember = activity.actor && staffByName[activity.actor];
-           return (
-             <div key={i} className="flex items-start gap-3 bg-[#F4F3FA] rounded-2xl px-4 py-3">
-               {staffMember?.avatar_url ? (
-                 <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
-                   <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />
-                 </div>
-               ) : (
-                 <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", colorMap[activity.type] || 'bg-[#EDE9F8] text-[#796EB2]')}>
-                   <Icon className="w-4 h-4" />
-                 </div>
-               )}
-               <div className="flex-1 min-w-0 pt-0.5">
-                 <p className="text-sm text-[#0E0D1E] leading-snug">{activity.message}</p>
-                 <p className="text-xs text-[#9490AA] mt-0.5">
-                   {format(new Date(activity.created_date), 'MMM d, h:mm a')}
-                 </p>
-               </div>
-             </div>
-           );
-         })}
+          const staffMember = activity.actor && staffByName[activity.actor];
+          const initials = activity.actor
+            ? activity.actor.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+            : '?';
+          const colorClass = avatarColors[i % avatarColors.length];
+
+          return (
+            <div key={i}>
+              <div className="flex items-center gap-4 py-4">
+                <span className="text-sm text-[#9490AA] w-4 text-right flex-shrink-0">{i + 1}</span>
+                {staffMember?.avatar_url ? (
+                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                    <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className={cn("w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold", colorClass)}>
+                    {initials}
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-[#0E0D1E]">{activity.message}</p>
+                  <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(activity.created_date), 'MMM d, h:mm a')}</p>
+                </div>
+                {activity.amount != null && (
+                  <span className={cn("text-sm font-bold flex-shrink-0", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>
+                    €{activity.amount.toFixed(2)}
+                  </span>
+                )}
+              </div>
+              {i < activities.length - 1 && <div className="h-px bg-[#F0EFF5]" />}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
