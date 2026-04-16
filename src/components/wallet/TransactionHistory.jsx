@@ -128,7 +128,7 @@ export default function TransactionHistory({ transactions }) {
                 {/* Amount */}
                 <p className={cn(
                   "text-sm font-semibold tabular-nums text-right w-24",
-                  isPositive ? "text-emerald-600" : "text-[#0E0D1E]"
+                  isPositive ? "text-emerald-600" : "text-red-500"
                 )}>
                   {isPositive ? '+' : '-'}€{Math.abs(tx.amount).toFixed(2)}
                 </p>
