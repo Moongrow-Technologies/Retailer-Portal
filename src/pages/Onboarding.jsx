@@ -58,10 +58,10 @@ export default function Onboarding() {
       <div className="px-8 py-4 bg-card border-b border-border">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-2">
-            <div className="flex gap-1">
+            <div className="flex gap-1 flex-nowrap overflow-x-auto">
               {STEPS.map((s, i) => (
                 <div key={i} className={cn(
-                  "flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full transition-all",
+                  "flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full transition-all whitespace-nowrap flex-shrink-0",
                   i === step ? "bg-primary text-primary-foreground" : i < step ? "bg-primary/10 text-primary" : "text-muted-foreground"
                 )}>
                   {i < step ? <Check className="w-3 h-3" /> : <s.icon className="w-3 h-3" />}
