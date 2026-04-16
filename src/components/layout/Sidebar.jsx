@@ -29,7 +29,7 @@ export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-14 h-[calc(100vh-56px)] w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-40">
       {/* Navigation */}
-      <nav className="flex-1 py-4 px-5 space-y-1 overflow-y-auto">
+      <nav className="flex-1 pt-8 pb-4 px-5 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.path);
           return (
