@@ -55,7 +55,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
         <span className="font-semibold text-[#0E0D1E]">{Math.round(spendPct)}%</span>
       </div>
-      <Progress value={spendPct} className="h-1.5" />
+      <Progress value={spendPct} className={cn("h-1.5", spendPct >= 100 ? "[&>div]:bg-red-500" : "")} />
     </div>
   );
 }
