@@ -44,9 +44,9 @@ export default function TransactionHistory({ transactions }) {
   const filtered = filterTransactions();
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_1px_4px_0_rgba(0,0,0,0.06)]">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
       {/* Header */}
-      <div className="px-6 py-5 flex items-center justify-between border-b border-[#F0EFF8]">
+      <div className="px-6 py-5 flex items-center justify-between border-b border-[#EBEBF0]">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction history</h3>
         <div className="flex items-center gap-1 border border-[#E2E0ED] rounded-full p-1">
           {[
@@ -71,14 +71,14 @@ export default function TransactionHistory({ transactions }) {
       </div>
 
       {/* Table header */}
-      <div className="px-6 py-3 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-[#F0EFF8]">
+      <div className="px-6 py-3 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-[#EBEBF0]">
         <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider">Transaction</p>
         <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider text-right w-32">Type</p>
         <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider text-right w-24">Amount</p>
       </div>
 
       {/* Rows */}
-      <div className="divide-y divide-[#F0EFF8]">
+      <div className="divide-y divide-[#EBEBF0]">
         {filtered.length === 0 ? (
           <div className="text-center py-10 text-[#9490AA] text-sm">No transactions in this period</div>
         ) : (
