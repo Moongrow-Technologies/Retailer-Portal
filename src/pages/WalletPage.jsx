@@ -16,9 +16,9 @@ export default function WalletPage() {
   const campaigns = wallet.committed_campaigns || 0;
   const bonuses = wallet.committed_bonuses || 0;
   const available = wallet.available || 0;
-  const campaignsPct = total > 0 ? Math.round((campaigns / total) * 100) : 0;
-  const bonusesPct = total > 0 ? Math.round((bonuses / total) * 100) : 0;
-  const availablePct = total > 0 ? Math.round((available / total) * 100) : 0;
+  const campaignsPct = total > 0 ? Math.round(campaigns / total * 100) : 0;
+  const bonusesPct = total > 0 ? Math.round(bonuses / total * 100) : 0;
+  const availablePct = total > 0 ? Math.round(available / total * 100) : 0;
 
   return (
     <div>
@@ -32,29 +32,29 @@ export default function WalletPage() {
           <Button
             onClick={() => setShowWithdraw(true)}
             variant="outline"
-            className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]"
-          >
+            className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]">
+            
             <ArrowDownFromLine className="w-4 h-4" /> Withdraw
           </Button>
           <Button
             onClick={() => setShowTopUp(true)}
             variant="outline"
-            className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]"
-          >
+            className="gap-2 font-semibold border-[#E2E0ED] text-[#0E0D1E] bg-white hover:bg-[#F4F3FA]">
+            
             <Plus className="w-4 h-4" /> Top Up
           </Button>
         </div>
       </div>
 
-      {zeroBalance && (
-        <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
+      {zeroBalance &&
+      <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
           <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />
           <div>
             <p className="text-sm font-semibold text-red-700">All campaigns auto-paused</p>
             <p className="text-xs text-red-600">Your wallet balance is zero. Top up now to resume all system-paused campaigns.</p>
           </div>
         </div>
-      )}
+      }
 
       <div className="space-y-4">
         {/* Wallet Card */}
@@ -64,7 +64,7 @@ export default function WalletPage() {
             <div className="flex flex-col justify-between min-w-[180px]">
               <div>
                 <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-widest mb-2">Total Balance</p>
-                <p className="text-4xl font-bold text-[#0E0D1E] tracking-tight">
+                <p className="text-[#0E0D1E] text-4xl font-medium tracking-tight">
                   €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                   {/* Decimal */}
                   <span className="text-2xl">,{String(total.toFixed(2).split('.')[1])}</span>
@@ -76,8 +76,8 @@ export default function WalletPage() {
                   const el = document.getElementById('tx-history');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-sm font-medium text-[#796EB2] hover:text-[#5E54A0] transition-colors text-left mt-4"
-              >
+                className="text-sm font-medium text-[#796EB2] hover:text-[#5E54A0] transition-colors text-left mt-4">
+                
                 View transactions →
               </button>
             </div>
@@ -127,13 +127,13 @@ export default function WalletPage() {
 
               {/* Balance bar */}
               <div className="h-2.5 rounded-full bg-[#E2E0ED] overflow-hidden flex">
-                {total > 0 && (
-                  <>
+                {total > 0 &&
+                <>
                     <div className="h-full bg-[#796EB2]" style={{ width: `${campaignsPct}%` }} />
                     <div className="h-full bg-amber-500" style={{ width: `${bonusesPct}%` }} />
                     <div className="h-full bg-emerald-500" style={{ width: `${availablePct}%` }} />
                   </>
-                )}
+                }
               </div>
             </div>
           </div>
@@ -147,6 +147,6 @@ export default function WalletPage() {
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
       <WithdrawModal open={showWithdraw} onClose={() => setShowWithdraw(false)} />
-    </div>
-  );
+    </div>);
+
 }
