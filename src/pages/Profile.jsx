@@ -12,7 +12,7 @@ import ChangeEmailModal from '@/components/profile/ChangeEmailModal';
 export default function Profile() {
   const { data: user } = useQuery({
     queryKey: ['me'],
-    queryFn: () => base44.auth.me(),
+    queryFn: () => base44.auth.me()
   });
 
   const [fullName, setFullName] = useState('');
@@ -29,9 +29,9 @@ export default function Profile() {
     }
   }, [user]);
 
-  const initials = fullName
-    ? fullName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
-    : 'U';
+  const initials = fullName ?
+  fullName.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() :
+  'U';
 
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0];
@@ -58,15 +58,15 @@ export default function Profile() {
           {/* Left card — identity */}
           <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col items-center text-center">
             <div className="w-24 h-24 rounded-full bg-[#EDE9F8] flex items-center justify-center text-3xl font-bold text-[#796EB2] mb-3 overflow-hidden">
-              {avatarUrl
-                ? <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" />
-                : initials}
+              {avatarUrl ?
+              <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" /> :
+              initials}
             </div>
             <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
             <button
               onClick={() => fileInputRef.current.click()}
-              className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors mb-5"
-            >
+              className="flex items-center gap-1.5 text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors mb-5">
+              
               <Camera className="w-3.5 h-3.5" />
               Upload Photo
             </button>
@@ -82,45 +82,45 @@ export default function Profile() {
             <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Personal Details</h3>
 
             <div className="flex flex-col gap-3">
-              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Full Name</p>
                 <Input
                   value={fullName}
-                  onChange={e => setFullName(e.target.value)}
-                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
-                />
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none" />
+                
               </div>
 
-              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Email Address</p>
                 <Input
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none"
-                />
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none" />
+                
               </div>
 
               <button
                 onClick={() => setShowEmailModal(true)}
-                className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors text-left -mt-1"
-              >
+                className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors text-left -mt-1">
+                
                 Change Email →
               </button>
 
-              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Role</p>
                 <p className="text-sm font-medium text-[#0E0D1E] capitalize">{user?.role || 'Admin'}</p>
               </div>
 
-              <div className="bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl px-4 py-3">
+              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Location</p>
                 <p className="text-sm font-medium text-[#0E0D1E]">{STORE.city}, Netherlands</p>
               </div>
 
               <Button
                 onClick={handleSave}
-                className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1"
-              >
+                className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
+                
                 Save Changes
               </Button>
             </div>
@@ -131,6 +131,6 @@ export default function Profile() {
 
       <SuccessToast message={showToast ? "Profile updated successfully." : null} onDismiss={() => setShowToast(false)} />
       {showEmailModal && <ChangeEmailModal onClose={() => setShowEmailModal(false)} />}
-    </>
-  );
+    </>);
+
 }
