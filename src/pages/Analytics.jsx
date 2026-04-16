@@ -109,7 +109,7 @@ export default function Analytics() {
       </div>
 
       {/* Hero Card with Stats and Chart */}
-      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] mb-6">
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] mb-6">
         {/* Stats Row */}
         <div className="grid grid-cols-4 border-b border-[#EBEBF0]">
           {/* Revenue */}
@@ -163,7 +163,7 @@ export default function Analytics() {
       {/* Three-column bottom section */}
       <div className="grid grid-cols-3 gap-6">
         {/* Top Products */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top products</h3>
           <div>
             {topProducts.map((product, idx) =>
@@ -182,7 +182,7 @@ export default function Analytics() {
         </div>
 
         {/* Top Selling Days */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top selling days</h3>
           <div className="flex gap-3 mb-6">
             {topSellingDays.slice(0, 3).map((day) =>
@@ -228,7 +228,7 @@ export default function Analytics() {
         </div>
 
         {/* Staff Performance */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Staff performance</h3>
           <div>
             {activeStaff.map((staff, idx) =>

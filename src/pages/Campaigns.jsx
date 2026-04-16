@@ -56,7 +56,7 @@ export default function Campaigns() {
         </Link>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <p className="text-sm text-[#7A7893] mb-2">Committed to campaigns</p>
@@ -90,7 +90,7 @@ export default function Campaigns() {
 
       <div>
         {filtered.length === 0 ?
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
             <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>
           </div> :
 

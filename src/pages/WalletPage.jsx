@@ -58,7 +58,7 @@ export default function WalletPage() {
 
       <div className="space-y-4">
         {/* Wallet Card */}
-        <div className="bg-white rounded-2xl shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
           <div className="flex items-stretch gap-6">
             {/* Left: Total Balance */}
             <div className="flex flex-col justify-between min-w-[180px]">

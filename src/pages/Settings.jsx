@@ -28,7 +28,7 @@ export default function Settings() {
 
       <div className="space-y-6">
         {/* Business Profile */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
           <div className="flex items-start justify-between mb-8">
             <div>
               <h2 className="text-xl font-bold text-[#0E0D1E]">Business Profile</h2>
@@ -71,7 +71,7 @@ export default function Settings() {
         </div>
 
         {/* POS Integration */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
           <div className="mb-8">
             <h2 className="text-xl font-bold text-[#0E0D1E]">POS Integration</h2>
             <p className="text-sm text-[#7A7893] mt-1">Sync your sales data and inventory directly from your POS.</p>
@@ -102,7 +102,7 @@ export default function Settings() {
         {/* Notifications + Billing side by side */}
         <div className="grid grid-cols-2 gap-6">
           {/* Notifications */}
-          <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
+          <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
             <div className="mb-8">
               <h2 className="text-xl font-bold text-[#0E0D1E]">Notifications</h2>
               <p className="text-sm text-[#7A7893] mt-1">Manage how you receive updates.</p>
@@ -129,7 +129,7 @@ export default function Settings() {
           </div>
 
           {/* Billing */}
-          <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
+          <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
             <div className="mb-8">
               <h2 className="text-xl font-bold text-[#0E0D1E]">Billing &amp; Subscription</h2>
               <p className="text-sm text-[#7A7893] mt-1">Review and manage your current plan.</p>
@@ -150,7 +150,7 @@ export default function Settings() {
         </div>
 
         {/* Security */}
-        <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
           <div className="mb-8">
             <h2 className="text-xl font-bold text-[#0E0D1E]">Security</h2>
             <p className="text-sm text-[#7A7893] mt-1">Control your account access and protection levels.</p>
