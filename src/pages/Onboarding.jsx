@@ -54,12 +54,25 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Top bar */}
-      <div className="h-16 border-b border-border flex items-center px-8 bg-card">
-        <img src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/20c0f77e7_MoongrowLogo.png" alt="Moongrow" className="h-8" />
+      {/* Progress */}
+      <div className="px-8 py-4 bg-card border-b border-border">
+        <div className="max-w-2xl mx-auto">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex gap-1">
+              {STEPS.map((s, i) => (
+                <div key={i} className={cn(
+                  "flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full transition-all",
+                  i === step ? "bg-primary text-primary-foreground" : i < step ? "bg-primary/10 text-primary" : "text-muted-foreground"
+                )}>
+                  {i < step ? <Check className="w-3 h-3" /> : <s.icon className="w-3 h-3" />}
+                  <span className="hidden sm:inline">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <Progress value={progress} className="h-1" />
+        </div>
       </div>
-
-
 
       {/* Content */}
       <div className="flex-1 flex items-center justify-center px-8 py-12">
