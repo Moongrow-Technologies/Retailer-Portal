@@ -60,8 +60,8 @@ export default function TransactionHistory({ transactions }) {
               className={cn(
                 'px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap',
                 period === opt.value
-                  ? 'bg-[#0E0D1E] text-white'
-                  : 'text-[#4B4867] hover:text-[#0E0D1E]'
+                  ? 'bg-[#796EB2] text-white'
+                  : 'text-[#4B4867] hover:text-[#796EB2]'
               )}
             >
               {opt.label}
