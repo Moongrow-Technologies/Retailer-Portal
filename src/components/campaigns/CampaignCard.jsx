@@ -8,13 +8,13 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  DropdownMenuTrigger } from
+'@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 
 export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const navigate = useNavigate();
-  const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
+  const spendPct = campaign.budget > 0 ? campaign.spent / campaign.budget * 100 : 0;
   const isActive = campaign.status === 'active';
 
   return (
@@ -38,7 +38,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
 
       {/* Spent/Budget + Progress */}
       <div className="flex-shrink-0 w-48 flex flex-col justify-center h-12">
-        <p className="text-xs text-[#9490AA] mb-0.5">Spent: €{campaign.spent.toFixed(2)}</p>
+        <p className="text-[hsl(var(--foreground))] mb-0.5 text-xs">Spent: €{campaign.spent.toFixed(2)}</p>
         <div className="flex items-baseline gap-2 mb-0.5">
           <div className="w-32 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden flex-shrink-0">
             <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
@@ -49,15 +49,15 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       </div>
 
       {/* Right: Status, Switch, Menu */}
-      <div className="flex items-center gap-2 flex-shrink-0 ml-auto" onClick={e => e.stopPropagation()}>
+      <div className="flex items-center gap-2 flex-shrink-0 ml-auto" onClick={(e) => e.stopPropagation()}>
         <StatusBadge status={campaign.status} />
-        {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
-          <Switch
-            checked={isActive}
-            onCheckedChange={() => onTogglePause?.(campaign)}
-            className="data-[state=checked]:bg-primary"
-          />
-        )}
+        {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' &&
+        <Switch
+          checked={isActive}
+          onCheckedChange={() => onTogglePause?.(campaign)}
+          className="data-[state=checked]:bg-primary" />
+
+        }
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="p-2 text-[#9490AA] hover:text-[#796EB2] transition-colors">
@@ -74,6 +74,6 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-    </div>
-  );
+    </div>);
+
 }
