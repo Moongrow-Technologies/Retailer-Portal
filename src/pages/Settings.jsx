@@ -113,15 +113,15 @@ export default function Settings() {
                 { key: 'budgetWarnings', label: 'Budget Warnings', desc: 'Alerts when campaign budgets are low.' },
                 { key: 'bonusCompletions', label: 'Bonus Completions', desc: 'When staff hit their reward targets.' },
               ].map(n => (
-                <div key={n.key} className="flex items-center justify-between">
+                <div key={n.key} className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-sm font-medium text-[#0E0D1E]">{n.label}</p>
-                    <p className="text-xs text-[#9490AA]">{n.desc}</p>
+                    <p className="text-sm font-bold text-[#0E0D1E]">{n.label}</p>
+                    <p className="text-sm text-[#7A7893] mt-0.5">{n.desc}</p>
                   </div>
                   <Switch
                     checked={notifications[n.key]}
                     onCheckedChange={() => toggle(n.key)}
-                    className="data-[state=checked]:bg-[#796EB2]"
+                    className="data-[state=checked]:bg-[#796EB2] flex-shrink-0"
                   />
                 </div>
               ))}
@@ -135,15 +135,15 @@ export default function Settings() {
               <p className="text-sm text-[#7A7893] mt-1">Review and manage your current plan.</p>
             </div>
             <div className="bg-[#F4F3FA] rounded-2xl p-5 mb-5">
-              <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-1">Current Plan</p>
-              <p className="text-xl font-bold text-[#0E0D1E]">Growth Plan</p>
-              <p className="text-sm text-[#9490AA]">€149/month · billed monthly</p>
-              <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E2E0ED]">
-                <p className="text-xs text-[#7A7893]">Renewal Date: <span className="font-semibold text-[#0E0D1E]">May 1, 2026</span></p>
-                <button className="text-xs text-[#796EB2] font-medium hover:underline">View Invoice History</button>
+              <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-2">Current Plan</p>
+              <p className="text-2xl font-bold text-[#0E0D1E] mb-1">Growth Plan</p>
+              <p className="text-sm text-[#0E0D1E]">€149/month <span className="text-[#796EB2] font-medium">billed monthly</span></p>
+              <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#E2E0ED]">
+                <p className="text-sm text-[#7A7893]">Renewal Date: <span className="font-bold text-[#0E0D1E]">May 1, 2026</span></p>
+                <button className="text-sm text-[#796EB2] font-medium hover:underline">View Invoice History</button>
               </div>
             </div>
-            <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold">
+            <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold rounded-full h-12">
               Change Plan
             </Button>
           </div>
