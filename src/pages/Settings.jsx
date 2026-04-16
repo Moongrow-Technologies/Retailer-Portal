@@ -77,7 +77,7 @@ export default function Settings() {
             <p className="text-sm text-[#7A7893] mt-1">Sync your sales data and inventory directly from your POS.</p>
           </div>
 
-          <div className="flex items-center justify-between p-5 bg-[#F4F3FA] rounded-2xl">
+          <div className="flex items-center justify-between p-5 border border-[#E2E0ED] rounded-2xl">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm">
                 <Zap className="w-5 h-5 text-[#796EB2]" />
