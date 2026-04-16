@@ -213,14 +213,14 @@ export default function Analytics() {
               return (
                 <div
                   key={idx}
-                  className="flex-1 h-12 rounded-md flex items-end justify-center"
+                  className="flex-1 h-12 rounded-md flex items-center justify-center"
                   style={{
                     backgroundColor: isTopDay ?
                     idx + 3 === 5 ? '#EDE9F8' : idx + 3 === 2 ? '#EDE9F8' : '#796EB2' :
                     '#E2E0ED'
                   }}>
                   
-                  <span className="text-xs font-semibold text-[#0E0D1E] mb-1">{day.label}</span>
+                  <span className="text-xs font-semibold text-[#0E0D1E]">{day.label}</span>
                 </div>);
 
             })}
