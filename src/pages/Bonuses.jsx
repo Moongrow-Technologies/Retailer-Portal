@@ -56,7 +56,7 @@ export default function Bonuses() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
