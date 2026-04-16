@@ -16,7 +16,7 @@ const avatarColors = [
 
 export default function ActivityFeed({ activities }) {
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full w-full">
       <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Recent Activity</h3>
       <div>
         {activities.map((activity, i) => {
