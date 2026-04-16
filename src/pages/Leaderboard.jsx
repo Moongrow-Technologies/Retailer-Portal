@@ -36,7 +36,7 @@ export default function Leaderboard() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0E0D1E]">Leaderboard</h1>
