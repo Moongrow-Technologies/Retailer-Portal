@@ -76,7 +76,7 @@ export default function Campaigns() {
 
       <div className="flex items-center gap-1 mb-6 bg-white border border-[#E2E0ED] rounded-xl p-1 w-fit">
         {TABS.map((t) =>
-        <button key={t.key} onClick={() => setTab(t.key)} className="bg-[#e3e3f2] text-white px-4 py-1.5 text-sm font-semibold rounded-lg transition-all border border-[#12121f]">
+        <button key={t.key} onClick={() => setTab(t.key)} className="bg-[#f2f1f4] text-white px-4 py-1.5 text-sm font-semibold rounded-lg transition-all border border-[#12121f]">
 
 
 
