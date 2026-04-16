@@ -89,40 +89,40 @@ export default function WalletPage() {
             <div className="flex-1 flex flex-col justify-between gap-4">
               <div className="grid grid-cols-3 gap-3">
                 {/* Campaigns */}
-                <div className="bg-[#F4F3FA] rounded-xl px-4 py-3">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2]" />
-                    <p className="text-sm font-medium text-[#0E0D1E]">Campaigns</p>
-                  </div>
-                  <p className="text-[#0E0D1E] text-2xl font-semibold">
-                    €{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                  </p>
-                  <p className="text-xs text-[#9490AA] mt-1">{campaignsPct}% of balance</p>
-                </div>
+                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
+                   <div className="flex items-center gap-1.5 mb-2">
+                     <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2]" />
+                     <p className="text-sm font-medium text-[#0E0D1E]">Campaigns</p>
+                   </div>
+                   <p className="text-[#0E0D1E] text-2xl font-semibold">
+                     €{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}
+                   </p>
+                   <p className="text-xs text-[#9490AA] mt-1">{campaignsPct}% of balance</p>
+                 </div>
 
-                {/* Bonuses */}
-                <div className="bg-[#F4F3FA] rounded-xl px-4 py-3">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                    <p className="text-sm font-medium text-[#0E0D1E]">Bonuses</p>
-                  </div>
-                  <p className="text-[#0E0D1E] text-2xl font-semibold">
-                    €{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                  </p>
-                  <p className="text-xs text-[#9490AA] mt-1">{bonusesPct}% of balance</p>
-                </div>
+                 {/* Bonuses */}
+                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
+                   <div className="flex items-center gap-1.5 mb-2">
+                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                     <p className="text-sm font-medium text-[#0E0D1E]">Bonuses</p>
+                   </div>
+                   <p className="text-[#0E0D1E] text-2xl font-semibold">
+                     €{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}
+                   </p>
+                   <p className="text-xs text-[#9490AA] mt-1">{bonusesPct}% of balance</p>
+                 </div>
 
-                {/* Available */}
-                <div className="bg-emerald-50 rounded-xl px-4 py-3">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    <p className="text-sm font-medium text-emerald-700">Available</p>
-                  </div>
-                  <p className="text-emerald-700 text-2xl font-semibold">
-                    €{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                  </p>
-                  <p className="text-xs text-emerald-600 mt-1">{availablePct}% of balance</p>
-                </div>
+                 {/* Available */}
+                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
+                   <div className="flex items-center gap-1.5 mb-2">
+                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                     <p className="text-sm font-medium text-[#0E0D1E]">Available</p>
+                   </div>
+                   <p className="text-emerald-700 text-2xl font-semibold">
+                     €{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}
+                   </p>
+                   <p className="text-xs text-[#9490AA] mt-1">{availablePct}% of balance</p>
+                 </div>
               </div>
 
               {/* Balance bar */}
