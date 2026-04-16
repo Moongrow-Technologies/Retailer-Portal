@@ -140,7 +140,7 @@ function CommissionCard() {
               <span className="text-[13px] font-semibold text-[#0E0D1E]">{b.amount}</span>
             </div>
             <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-              <div className="h-full rounded-full bg-[#5B4FCF]" style={{ width: `${b.pct}%` }} />
+              <div className="bg-[#5c4fcf] rounded-full h-full" style={{ width: `${b.pct}%` }} />
             </div>
           </div>
         )}
