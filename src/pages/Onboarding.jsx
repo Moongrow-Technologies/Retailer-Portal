@@ -55,19 +55,21 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Progress */}
-      <div className="bg-card border-b border-border overflow-x-auto">
-        <div className="px-8 py-4 inline-flex gap-2 mb-0 min-w-full">
-          {STEPS.map((s, i) => (
-            <div key={i} className={cn(
-              "flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full transition-all whitespace-nowrap",
-              i === step ? "bg-primary text-primary-foreground" : i < step ? "bg-primary/10 text-primary" : "text-muted-foreground"
-            )}>
-              {i < step ? <Check className="w-3 h-3" /> : <s.icon className="w-3 h-3" />}
-              <span>{s.label}</span>
-            </div>
-          ))}
+      <div className="bg-card border-b border-border">
+        <div className="flex justify-center px-8 py-4">
+          <div className="flex gap-2 mb-0">
+            {STEPS.map((s, i) => (
+              <div key={i} className={cn(
+                "flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full transition-all whitespace-nowrap",
+                i === step ? "bg-primary text-primary-foreground" : i < step ? "bg-primary/10 text-primary" : "text-muted-foreground"
+              )}>
+                {i < step ? <Check className="w-3 h-3" /> : <s.icon className="w-3 h-3" />}
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="px-8 pb-4"><Progress value={progress} className="h-1" /></div>
+        <div className="px-8 pb-4 max-w-2xl mx-auto"><Progress value={progress} className="h-1" /></div>
       </div>
 
       {/* Content */}
