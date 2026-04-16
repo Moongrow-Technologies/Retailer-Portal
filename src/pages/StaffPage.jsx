@@ -38,7 +38,7 @@ export default function StaffPage() {
       </div>
 
       {/* Staff List */}
-      <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {STAFF.map((staff, idx) =>
         <div
           key={staff.id}
