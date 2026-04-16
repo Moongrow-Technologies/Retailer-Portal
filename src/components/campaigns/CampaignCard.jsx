@@ -32,8 +32,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
 
       {/* Rate */}
       <div className="flex-shrink-0 w-24 flex flex-col justify-center h-12">
-        <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-0.5">Rate</p>
-        <p className="text-sm font-semibold text-[#0E0D1E]">€{campaign.commission_rate.toFixed(2)}/unit</p>
+        <p className="text-[hsl(var(--popover-foreground))] mb-0.5 text-xs font-semibold uppercase tracking-wide">RATE</p>
+        <p className="text-[hsl(var(--muted-foreground))] text-sm font-semibold">€{campaign.commission_rate.toFixed(2)}/unit</p>
       </div>
 
       {/* Spent/Budget + Progress */}
