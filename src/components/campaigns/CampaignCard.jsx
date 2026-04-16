@@ -31,19 +31,19 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       </div>
 
       {/* Rate */}
-      <div className="flex-shrink-0 w-24">
-        <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">Rate</p>
+      <div className="flex-shrink-0 w-24 flex flex-col justify-center h-12">
+        <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-0.5">Rate</p>
         <p className="text-sm font-semibold text-[#0E0D1E]">€{campaign.commission_rate.toFixed(2)}/unit</p>
       </div>
 
       {/* Spent/Budget + Progress */}
-      <div className="flex-shrink-0 w-40">
-        <p className="text-xs text-[#9490AA] mb-1">Spent: €{campaign.spent.toFixed(2)}</p>
-        <div className="flex items-center gap-2">
+      <div className="flex-shrink-0 w-40 flex flex-col justify-center h-12">
+        <p className="text-xs text-[#9490AA] mb-0.5">Spent: €{campaign.spent.toFixed(2)}</p>
+        <div className="flex items-center gap-2 mb-0.5">
           <Progress value={spendPct} className="flex-1 h-1.5" />
           <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right">{Math.round(spendPct)}%</span>
         </div>
-        <p className="text-xs text-[#9490AA] mt-1">Budget: €{campaign.budget.toFixed(2)}</p>
+        <p className="text-xs text-[#9490AA]">Budget: €{campaign.budget.toFixed(2)}</p>
       </div>
 
       {/* Right: Status, Switch, Menu */}
