@@ -11,12 +11,12 @@ export default function Settings() {
   const [notifications, setNotifications] = useState({
     newSales: true,
     budgetWarnings: true,
-    bonusCompletions: false,
+    bonusCompletions: false
   });
   const [toast, setToast] = useState(null);
   const showToast = (msg) => setToast(msg);
 
-  const toggle = (key) => setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
+  const toggle = (key) => setNotifications((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <div>
@@ -41,13 +41,13 @@ export default function Settings() {
             <div className="flex-1 space-y-6">
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Business Name</Label>
-                <Input defaultValue="Barney's Coffeeshop" className="mt-2 bg-[#F4F3FA] border-0 rounded-xl h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
+                <Input defaultValue="Barney's Coffeeshop" className="bg-[hsl(var(--background))] mt-2 px-3 py-1 text-base rounded-xl flex w-full border-input shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm border-0 h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
               </div>
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Primary Location</Label>
                 <div className="relative mt-2">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9490AA]" />
-                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="pl-9 bg-[#F4F3FA] border-0 rounded-xl h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
+                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="bg-[hsl(var(--background))] pl-9 px-3 py-1 text-base rounded-xl flex w-full border-input shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm border-0 h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
                 </div>
               </div>
               <button className="text-sm text-[#796EB2] font-medium flex items-center gap-1 hover:underline">
@@ -109,22 +109,22 @@ export default function Settings() {
             </div>
             <div className="space-y-6">
               {[
-                { key: 'newSales', label: 'New Sales', desc: 'Daily summary of new store sales.' },
-                { key: 'budgetWarnings', label: 'Budget Warnings', desc: 'Alerts when campaign budgets are low.' },
-                { key: 'bonusCompletions', label: 'Bonus Completions', desc: 'When staff hit their reward targets.' },
-              ].map(n => (
-                <div key={n.key} className="flex items-center justify-between gap-4">
+              { key: 'newSales', label: 'New Sales', desc: 'Daily summary of new store sales.' },
+              { key: 'budgetWarnings', label: 'Budget Warnings', desc: 'Alerts when campaign budgets are low.' },
+              { key: 'bonusCompletions', label: 'Bonus Completions', desc: 'When staff hit their reward targets.' }].
+              map((n) =>
+              <div key={n.key} className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-bold text-[#0E0D1E]">{n.label}</p>
                     <p className="text-sm text-[#7A7893] mt-0.5">{n.desc}</p>
                   </div>
                   <Switch
-                    checked={notifications[n.key]}
-                    onCheckedChange={() => toggle(n.key)}
-                    className="data-[state=checked]:bg-[#796EB2] flex-shrink-0"
-                  />
+                  checked={notifications[n.key]}
+                  onCheckedChange={() => toggle(n.key)}
+                  className="data-[state=checked]:bg-[#796EB2] flex-shrink-0" />
+                
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
@@ -181,6 +181,6 @@ export default function Settings() {
         <p className="text-center text-xs text-[#9490AA] py-4">© 2026 Moongrow Technologies. All rights reserved.</p>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
-    </div>
-  );
+    </div>);
+
 }
