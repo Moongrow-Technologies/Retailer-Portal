@@ -77,7 +77,7 @@ export default function Bonuses() {
              <p className="text-sm text-[#7A7893] mb-2">Committed to bonuses</p>
              <p className="text-4xl font-bold text-[#0E0D1E] mb-4">€450</p>
              <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
-               <div className="bg-amber-500 h-full rounded-full" style={{ width: '39%' }}></div>
+               <div className="h-full rounded-full" style={{ width: '39%', background: 'linear-gradient(to right, #a8d5a2, #f5c842, #e07b39, #c94040)' }}></div>
              </div>
              <p className="text-sm text-amber-600 font-medium">39% of total budget used</p>
            </div>
