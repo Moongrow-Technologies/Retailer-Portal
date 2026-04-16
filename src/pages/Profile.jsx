@@ -45,7 +45,7 @@ export default function Profile() {
   };
 
   return (
-    <>
+    <div className="bg-white rounded-2xl p-6">
       <div>
         {/* Page header */}
         <div className="mb-6">
@@ -131,6 +131,6 @@ export default function Profile() {
 
       <SuccessToast message={showToast ? "Profile updated successfully." : null} onDismiss={() => setShowToast(false)} />
       {showEmailModal && <ChangeEmailModal onClose={() => setShowEmailModal(false)} />}
-    </>);
+    </div>);
 
 }
