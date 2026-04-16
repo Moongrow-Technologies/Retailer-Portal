@@ -39,9 +39,9 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       {/* Spent/Budget + Progress */}
       <div className="flex-shrink-0 w-48 flex flex-col justify-center h-12">
         <p className="text-xs text-[#9490AA] mb-0.5">Spent: €{campaign.spent.toFixed(2)}</p>
-        <div className="flex items-center gap-2 mb-0.5">
-          <Progress value={spendPct} className="w-32 h-1.5" />
-          <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right">{Math.round(spendPct)}%</span>
+        <div className="flex items-baseline gap-2 mb-0.5">
+          <Progress value={spendPct} className="w-32 h-1.5 flex-shrink-0" />
+          <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right flex-shrink-0">{Math.round(spendPct)}%</span>
         </div>
         <p className="text-xs text-[#9490AA]">Budget: €{campaign.budget.toFixed(2)}</p>
       </div>
