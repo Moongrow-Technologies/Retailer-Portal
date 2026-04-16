@@ -111,18 +111,17 @@ export default function Bonuses() {
       </div>
 
       {/* Bonus list */}
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
-        {filtered.length === 0 ? (
-          <div className="p-12 text-center">
-            <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
-            {tab === 'active' && (
-              <Link to="/bonuses/new">
-                <Button className="mt-4 bg-[#796EB2] hover:bg-[#6A5FA3] text-white">Create your first bonus</Button>
-              </Link>
-            )}
-          </div>
-        ) : (
-          <div className="p-4 flex flex-col gap-3">
+      {filtered.length === 0 ? (
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
+          <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
+          {tab === 'active' && (
+            <Link to="/bonuses/new">
+              <Button className="mt-4 bg-[#796EB2] hover:bg-[#6A5FA3] text-white">Create your first bonus</Button>
+            </Link>
+          )}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3">
             {filtered.map(bonus => {
             const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
             return (
@@ -190,8 +189,7 @@ export default function Bonuses() {
             );
           })}
           </div>
-        )}
-      </div>
-    </div>
-  );
-}
+          )}
+          </div>
+          );
+          }
