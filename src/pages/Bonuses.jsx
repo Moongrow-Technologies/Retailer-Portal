@@ -125,7 +125,7 @@ export default function Bonuses() {
             {filtered.map(bonus => {
             const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
             return (
-              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-white border border-[#EBEBF0] rounded-2xl hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-white border border-[#EBEBF0] rounded-2xl hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
                  {/* Type badge */}
                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
                    {typeStyle.label}
