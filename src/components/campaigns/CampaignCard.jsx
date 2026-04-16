@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
-import { MoreVertical } from 'lucide-react';
+import { MoreVertical, Sparkles } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,44 +18,60 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-6 hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex-1 min-w-0">
-          <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">{campaign.product_name}</p>
-          <h3 className="font-semibold text-lg text-[#0E0D1E]">{campaign.name}</h3>
-          <p className="text-sm text-[#9490AA] mt-2">€{campaign.commission_rate.toFixed(2)}/unit · {campaign.units_sold} units sold</p>
+    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer flex items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+      {/* Left: Icon + Name/Description */}
+      <div className="flex items-center gap-4 flex-1 min-w-0">
+        <div className="w-12 h-12 rounded-xl bg-[#F4F3FA] flex items-center justify-center flex-shrink-0">
+          <Sparkles className="w-6 h-6 text-[#796EB2]" />
         </div>
-        <div className="flex items-center gap-2 ml-4 flex-shrink-0" onClick={e => e.stopPropagation()}>
-          <StatusBadge status={campaign.status} />
-          {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
-            <Switch
-              checked={isActive}
-              onCheckedChange={() => onTogglePause?.(campaign)}
-              className="data-[state=checked]:bg-primary"
-            />
-          )}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="p-2 text-[#9490AA] hover:text-[#796EB2] transition-colors">
-                <MoreVertical className="w-4 h-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>
-                Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onDelete?.(campaign)} className="text-destructive">
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="min-w-0">
+          <h3 className="font-semibold text-[#0E0D1E]">{campaign.name}</h3>
+          <p className="text-xs text-[#9490AA] mt-0.5">{campaign.product_name} • Last edited 2h ago</p>
         </div>
       </div>
-      <div className="flex items-center justify-between text-xs mb-2">
-        <span className="text-[#9490AA]">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)} budget</span>
-        <span className="font-semibold text-[#0E0D1E]">{Math.round(spendPct)}%</span>
+
+      {/* Rate */}
+      <div className="flex-shrink-0">
+        <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">Rate</p>
+        <p className="text-sm font-semibold text-[#0E0D1E]">€{campaign.commission_rate.toFixed(2)}/unit</p>
       </div>
-      <Progress value={spendPct} className={cn("h-1.5", spendPct >= 100 ? "[&>div]:bg-red-500" : "")} />
+
+      {/* Spent/Budget + Progress */}
+      <div className="flex-shrink-0 w-32">
+        <p className="text-xs text-[#9490AA] mb-1">Spent: €{campaign.spent.toFixed(2)}</p>
+        <div className="flex items-center gap-2">
+          <Progress value={spendPct} className="flex-1 h-1.5" />
+          <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right">{Math.round(spendPct)}%</span>
+        </div>
+        <p className="text-xs text-[#9490AA] mt-1">Budget: €{campaign.budget.toFixed(2)}</p>
+      </div>
+
+      {/* Right: Status, Switch, Menu */}
+      <div className="flex items-center gap-2 flex-shrink-0" onClick={e => e.stopPropagation()}>
+        <StatusBadge status={campaign.status} />
+        {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
+          <Switch
+            checked={isActive}
+            onCheckedChange={() => onTogglePause?.(campaign)}
+            className="data-[state=checked]:bg-primary"
+          />
+        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="p-2 text-[#9490AA] hover:text-[#796EB2] transition-colors">
+              <MoreVertical className="w-4 h-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onDelete?.(campaign)} className="text-destructive">
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   );
 }
