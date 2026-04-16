@@ -56,12 +56,7 @@ export default function Onboarding() {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Top bar */}
       <div className="h-16 border-b border-border flex items-center px-8 bg-card">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Moon className="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span className="font-semibold text-lg tracking-tight">Moongrow</span>
-        </div>
+        <img src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/20c0f77e7_MoongrowLogo.png" alt="Moongrow" className="h-8" />
       </div>
 
       {/* Progress */}
@@ -91,8 +86,8 @@ export default function Onboarding() {
           {/* Step 0: Welcome */}
           {step === 0 && (
             <div className="text-center">
-              <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <Moon className="w-10 h-10 text-primary" />
+              <div className="flex items-center justify-center mx-auto mb-6">
+                <img src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/20c0f77e7_MoongrowLogo.png" alt="Moongrow" className="h-14" />
               </div>
               <h1 className="text-3xl font-bold mb-3">Welcome to Moongrow</h1>
               <p className="text-muted-foreground mb-2 max-w-md mx-auto">
