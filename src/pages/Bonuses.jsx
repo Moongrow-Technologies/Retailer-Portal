@@ -98,12 +98,12 @@ export default function Bonuses() {
             className={cn(
               "px-4 py-1.5 rounded-lg text-sm font-semibold transition-all",
               tab === t.key
-                ? "border border-[#796EB2] text-[#796EB2] bg-white"
+                ? "bg-[#12121f] text-white border border-[#12121f]"
                 : "text-[#0E0D1E] hover:text-[#796EB2]"
             )}
           >
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-[#796EB2]/70" : "text-[#9490AA]")}>
+            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/60" : "text-[#9490AA]")}>
               {counts[t.key]}
             </span>
           </button>
