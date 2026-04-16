@@ -39,12 +39,12 @@ export default function Sidebar() {
               className={cn(
                 "flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                 active ?
-                "text-[#796EB2]" :
+                "bg-[#F0EDF8] text-[#796EB2]" :
                 "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#F5F3FC]"
               )}>
               
               <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
-              <span className="text-[#4A4761] font-medium">{item.label}</span>
+              <span className={cn("font-medium", active ? "text-[#796EB2]" : "text-[#4A4761]")}>{item.label}</span>
             </Link>);
 
         })}
