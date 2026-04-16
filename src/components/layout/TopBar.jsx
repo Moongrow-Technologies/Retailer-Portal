@@ -18,7 +18,7 @@ const routeLabels = {
   '/bonuses/new': 'New Bonus',
   '/staff': 'Staff',
   '/settings': 'Settings',
-  '/notifications': 'Notifications'
+  '/notifications': 'Notifications',
 };
 
 function getPageLabel(pathname) {
@@ -57,12 +57,12 @@ export default function TopBar() {
 
   const { data: user } = useQuery({
     queryKey: ['me'],
-    queryFn: () => base44.auth.me()
+    queryFn: () => base44.auth.me(),
   });
 
-  const initials = user?.full_name ?
-  user.full_name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() :
-  'U';
+  const initials = user?.full_name
+    ? user.full_name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+    : 'U';
 
   function handleMarkAllRead() {
     setReadCount(ACTIVITIES.length);
@@ -76,8 +76,8 @@ export default function TopBar() {
           <img
             src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
             alt="Moongrow"
-            className="h-6 w-auto object-contain" />
-          
+            className="h-6 w-auto object-contain"
+          />
           <div className="text-[10px] text-[#9490AA] uppercase tracking-widest leading-tight">Retailer Portal</div>
         </Link>
       </div>
@@ -86,62 +86,62 @@ export default function TopBar() {
       <div className="flex-1 flex items-center justify-between px-8 h-full">
       {/* Breadcrumb */}
        <div className="flex items-center gap-1.5 text-sm">
-         {section && section !== label ?
-          <>
-             <Link
-              to={`/${section.toLowerCase().replace(/\s+/g, '')}`}
-              className="text-[#796EB2] font-medium hover:opacity-80 transition-opacity">
-              
+         {section && section !== label ? (
+           <>
+             <Link 
+               to={`/${section.toLowerCase().replace(/\s+/g, '')}`}
+               className="text-[#796EB2] font-medium hover:opacity-80 transition-opacity"
+             >
                {section}
              </Link>
              <span className="text-[#C0BDCE]">›</span>
              <span className="text-[#7A7893]">{label}</span>
-           </> :
-
-          <span className="text-[#7A7893] font-medium">{label}</span>
-          }
+           </>
+         ) : (
+           <span className="text-[#7A7893] font-medium">{label}</span>
+         )}
        </div>
 
       {/* Right side */}
       <div className="flex items-center gap-4">
         <div className="relative">
           <button
-              id="help-button"
-              onClick={() => setShowHelp((v) => !v)}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors">
-              
+            id="help-button"
+            onClick={() => setShowHelp(v => !v)}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors"
+          >
             <HelpCircle className="w-5 h-5" />
           </button>
-          {showHelp &&
+          {showHelp && (
             <HelpDropdown onClose={() => setShowHelp(false)} />
-            }
+          )}
         </div>
         <div className="relative">
           <button
-              id="notification-bell"
-              onClick={() => setShowNotifications((v) => !v)}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors relative">
-              
+            id="notification-bell"
+            onClick={() => setShowNotifications(v => !v)}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F3FC] text-[#7A7893] transition-colors relative"
+          >
             <Bell className="w-5 h-5" />
-            {unreadCount > 0 &&
+            {unreadCount > 0 && (
               <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-[#796EB2] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1">
                 {unreadCount}
               </span>
-              }
+            )}
           </button>
-          {showNotifications &&
+          {showNotifications && (
             <NotificationDropdown
               onClose={() => setShowNotifications(false)}
               onMarkAllRead={handleMarkAllRead}
-              hasUnread={unreadCount > 0} />
-
-            }
+              hasUnread={unreadCount > 0}
+            />
+          )}
         </div>
         <div ref={profileRef} className="relative pl-4 border-l border-[#EBEBF0]">
           <button
-              onClick={() => setShowProfileMenu((v) => !v)}
-              className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              
+            onClick={() => setShowProfileMenu(v => !v)}
+            className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+          >
             <div className="text-right hidden sm:block">
               <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
               <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
@@ -150,28 +150,28 @@ export default function TopBar() {
               {initials}
             </div>
           </button>
-          {showProfileMenu &&
+          {showProfileMenu && (
             <div className="absolute right-0 top-11 w-44 bg-white border border-[#EBEBF0] rounded-xl shadow-lg py-1 z-50">
               <Link
                 to="/profile"
                 onClick={() => setShowProfileMenu(false)}
-                className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-[#0E0D1E] hover:bg-[#F8F7FC] transition-colors">
-                
+                className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-[#0E0D1E] hover:bg-[#F8F7FC] transition-colors"
+              >
                 <User className="w-4 h-4 text-[#796EB2]" />
                 Profile
               </Link>
               <button
                 onClick={() => base44.auth.logout()}
-                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-[#F8F7FC] transition-colors">
-                
+                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-[#F8F7FC] transition-colors"
+              >
                 <LogOut className="w-4 h-4" />
                 Sign Out
               </button>
             </div>
-            }
+          )}
         </div>
       </div>
       </div>
-    </header>);
-
+    </header>
+  );
 }
