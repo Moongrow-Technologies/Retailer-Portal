@@ -134,10 +134,10 @@ export default function Settings() {
               <h2 className="text-xl font-bold text-[#0E0D1E]">Billing &amp; Subscription</h2>
               <p className="text-sm text-[#7A7893] mt-1">Review and manage your current plan.</p>
             </div>
-            <div className="bg-[#F4F3FA] rounded-2xl p-5 mb-5">
+            <div className="border border-[#E2E0ED] rounded-2xl p-5 mb-5">
               <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-2">Current Plan</p>
               <p className="text-2xl font-bold text-[#0E0D1E] mb-1">Growth Plan</p>
-              <p className="text-sm text-[#0E0D1E]">€149/month <span className="text-[#796EB2] font-medium">billed monthly</span></p>
+              <p className="text-sm text-[#0E0D1E]">€149/month <span className="text-[#9490AA]">billed monthly</span></p>
               <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#E2E0ED]">
                 <p className="text-sm text-[#7A7893]">Renewal Date: <span className="font-bold text-[#0E0D1E]">May 1, 2026</span></p>
                 <button className="text-sm text-[#796EB2] font-medium hover:underline">View Invoice History</button>
