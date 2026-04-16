@@ -20,7 +20,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   return (
     <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer flex items-center gap-8 justify-between" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
-      <div className="flex items-center gap-4 flex-shrink-0 min-w-0 w-48">
+      <div className="flex items-center gap-4 flex-1 min-w-0">
         <div className="w-12 h-12 rounded-xl bg-[#F4F3FA] flex items-center justify-center flex-shrink-0">
           <Sparkles className="w-6 h-6 text-[#796EB2]" />
         </div>
