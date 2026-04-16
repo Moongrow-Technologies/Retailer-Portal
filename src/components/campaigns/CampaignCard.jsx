@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
-import { MoreVertical, Sparkles } from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,9 +21,11 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
     <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer flex items-center gap-8" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
-        <div className="w-12 h-12 rounded-xl bg-[#F4F3FA] flex items-center justify-center flex-shrink-0">
-          <Sparkles className="w-6 h-6 text-[#796EB2]" />
-        </div>
+        <img 
+          src={campaign.product_image} 
+          alt={campaign.product_name}
+          className="w-12 h-12 rounded-xl object-cover flex-shrink-0"
+        />
         <div className="min-w-0">
           <h3 className="font-semibold text-[#0E0D1E] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
           <p className="text-xs text-[#9490AA] mt-0.5">{campaign.product_name} • Last edited 2h ago</p>
