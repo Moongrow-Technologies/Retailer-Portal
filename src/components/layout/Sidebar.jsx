@@ -40,7 +40,7 @@ export default function Sidebar() {
                 "flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                 active ?
                 "text-[#796EB2]" :
-                "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#F5F3FC]"
+                "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#f7f7fb]"
               )}>
               
               <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
