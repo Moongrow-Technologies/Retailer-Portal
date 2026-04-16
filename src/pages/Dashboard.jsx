@@ -44,7 +44,7 @@ export default function Dashboard() {
         </div>
 
         {/* Activity feed + Top Budtenders */}
-        <div className="col-span-8">
+        <div className="col-span-8 flex">
           <ActivityFeed activities={ACTIVITIES} />
         </div>
         <div className="col-span-4 flex flex-col gap-6">
