@@ -40,7 +40,7 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
 
       <div className="p-3 flex flex-col gap-2">
         {RECENT.map((n, i) => (
-          <div key={i} className="flex items-start gap-3 px-3 py-2.5 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+          <div key={i} className="flex items-start gap-3 px-3 py-2.5 bg-background border border-[#E2E0ED] rounded-xl">
             <div className="flex-1 min-w-0">
               <p className="text-sm text-[#0E0D1E] leading-snug">{n.message}</p>
               <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(n.created_date), 'MMM d, h:mm a')}</p>

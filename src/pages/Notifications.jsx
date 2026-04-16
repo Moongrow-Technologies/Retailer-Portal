@@ -3,6 +3,7 @@ import { format, isToday, isYesterday } from 'date-fns';
 import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ACTIVITIES } from '@/lib/sampleData';
+import { useNavigate } from 'react-router-dom';
 
 const iconMap = {
   sale: ShoppingCart,
@@ -40,6 +41,18 @@ const typeToTab = {
   payout: 'Sales',
 };
 
+const typeToPath = {
+  sale: '/analytics',
+  campaign_paused: '/campaigns',
+  campaign_resumed: '/campaigns',
+  campaign_created: '/campaigns',
+  bonus_created: '/bonuses',
+  bonus_completed: '/bonuses',
+  staff_joined: '/staff',
+  top_up: '/wallet',
+  payout: '/wallet',
+};
+
 const TABS = ['All', 'Sales', 'Campaigns', 'Bonuses', 'Staff'];
 
 function groupByDate(items) {
@@ -54,6 +67,7 @@ function groupByDate(items) {
 }
 
 export default function Notifications() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('All');
   const [dismissed, setDismissed] = useState(new Set());
   const [read, setRead] = useState(new Set());
@@ -126,7 +140,8 @@ export default function Notifications() {
                   return (
                     <div
                       key={n._id}
-                      className="flex items-start gap-3 px-3 py-2.5 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl"
+                      onClick={() => navigate(typeToPath[n.type] || '/')}
+                      className="flex items-start gap-3 px-3 py-2.5 bg-background border border-[#E2E0ED] rounded-xl cursor-pointer hover:bg-[#F5F3FC] transition-colors"
                     >
                       {/* Unread dot */}
                       <div className="flex items-center self-center w-2 flex-shrink-0">
