@@ -34,7 +34,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-6 items-start">
         {/* Wallet + Stats two-column row */}
         <div className="col-span-4">
           <CompactWalletCard wallet={wallet} />
