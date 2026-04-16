@@ -18,9 +18,9 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer flex items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer flex items-center gap-8 justify-between" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
-      <div className="flex items-center gap-4 flex-1 min-w-0">
+      <div className="flex items-center gap-4 flex-shrink-0 min-w-0 w-48">
         <div className="w-12 h-12 rounded-xl bg-[#F4F3FA] flex items-center justify-center flex-shrink-0">
           <Sparkles className="w-6 h-6 text-[#796EB2]" />
         </div>
@@ -31,13 +31,13 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       </div>
 
       {/* Rate */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 w-24">
         <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-1">Rate</p>
         <p className="text-sm font-semibold text-[#0E0D1E]">€{campaign.commission_rate.toFixed(2)}/unit</p>
       </div>
 
       {/* Spent/Budget + Progress */}
-      <div className="flex-shrink-0 w-32">
+      <div className="flex-shrink-0 w-40">
         <p className="text-xs text-[#9490AA] mb-1">Spent: €{campaign.spent.toFixed(2)}</p>
         <div className="flex items-center gap-2">
           <Progress value={spendPct} className="flex-1 h-1.5" />
