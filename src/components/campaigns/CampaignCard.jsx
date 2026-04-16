@@ -25,7 +25,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           <Sparkles className="w-6 h-6 text-[#796EB2]" />
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-[#0E0D1E]">{campaign.name} <span className="text-xs text-[#9490AA] font-normal">• {campaign.product_name} • Last edited 2h ago</span></p>
+          <h3 className="font-semibold text-[#0E0D1E] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
+          <p className="text-xs text-[#9490AA] mt-0.5">{campaign.product_name} • Last edited 2h ago</p>
         </div>
       </div>
 
