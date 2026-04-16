@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --font-outfit: 'Outfit', sans-serif;
+    --font-outfit: 'Urbanist', sans-serif;
 
     --background: 240 40% 98%;
     --foreground: 247 38% 9%;
