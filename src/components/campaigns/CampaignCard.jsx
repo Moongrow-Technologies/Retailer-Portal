@@ -18,7 +18,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
   const isActive = campaign.status === 'active';
 
   return (
-    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:shadow-sm transition-all cursor-pointer grid grid-cols-[auto_1fr_auto_200px_auto] items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+    <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer grid grid-cols-[auto_1fr_auto_200px_auto] items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <div className="w-12 h-12 rounded-xl bg-[#F4F3FA] flex items-center justify-center flex-shrink-0">
