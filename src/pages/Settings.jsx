@@ -41,13 +41,13 @@ export default function Settings() {
             <div className="flex-1 space-y-6">
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Business Name</Label>
-                <Input defaultValue="Barney's Coffeeshop" className="bg-[hsl(var(--background))] mt-2 px-3 py-1 text-base rounded-xl flex w-full border-input shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm border-0 h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
+                <Input defaultValue="Barney's Coffeeshop" className="bg-[hsl(var(--background))] mt-2 px-3 py-1 text-base rounded-xl flex w-full border-input shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
               </div>
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Primary Location</Label>
                 <div className="relative mt-2">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9490AA]" />
-                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="bg-[hsl(var(--background))] pl-10 py-1 text-base rounded-xl file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground flex w-full border-input shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm border-0 h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
+                  <Input defaultValue="Amsterdam — Haarlemmerstraat" className="bg-[hsl(var(--background))] pl-10 py-1 text-base rounded-xl file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground flex w-full border-input shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-12 focus-visible:ring-1 focus-visible:ring-[#796EB2]" />
                 </div>
               </div>
               <button className="text-sm text-[#796EB2] font-medium flex items-center gap-1 hover:underline">
