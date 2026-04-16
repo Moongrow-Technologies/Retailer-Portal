@@ -62,7 +62,7 @@ export default function Campaigns() {
             <p className="text-sm text-[#7A7893] mb-2">Committed to campaigns</p>
             <p className="text-[#0E0D1E] mb-4 text-4xl font-semibold">€1,308</p>
             <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
-              <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(to right, #a8d5a2, #f5c842, #e07b39, #c94040)' }}></div>
+              <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }}></div>
             </div>
             <p className="text-sm text-[#796EB2] font-medium">65% of total budget used</p>
           </div>

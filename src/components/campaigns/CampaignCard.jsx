@@ -41,7 +41,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         <p className="text-xs text-[#9490AA] mb-0.5">Spent: €{campaign.spent.toFixed(2)}</p>
         <div className="flex items-baseline gap-2 mb-0.5">
           <div className="w-32 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden flex-shrink-0">
-            <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: 'linear-gradient(to right, #a8d5a2, #f5c842, #e07b39, #c94040)' }} />
+            <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
           </div>
           <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right flex-shrink-0">{Math.round(spendPct)}%</span>
         </div>
