@@ -91,7 +91,7 @@ export default function Leaderboard() {
         </div>
       </div>
 
-      <div className="w-full bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+      <div className="w-full bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
         <div className="grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-4 border-b border-[#F4F3FA]">
           <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
@@ -108,7 +108,7 @@ export default function Leaderboard() {
             key={staff.id}
             className={cn(
               "grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-5 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center",
-              i === 0 && "bg-amber-50"
+              i === 0 && ""
             )}
           >
             {/* Rank */}
