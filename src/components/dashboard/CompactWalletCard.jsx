@@ -10,7 +10,7 @@ export default function CompactWalletCard({ wallet }) {
   const [showWithdraw, setShowWithdraw] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       <div className="flex items-start justify-between mb-6 gap-4">
         <div className="min-w-0">
           <p className="text-[#7A7893] mb-2 text-xs font-semibold capitalize tracking-wide">Wallet Balance</p>

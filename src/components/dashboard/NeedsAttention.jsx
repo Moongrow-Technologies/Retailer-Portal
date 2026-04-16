@@ -6,7 +6,7 @@ const avatarColors = ['bg-slate-500', 'bg-rose-500', 'bg-violet-500'];
 
 export default function NeedsAttention({ staff }) {
   return (
-    <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
       <h3 className="text-base font-semibold text-[#0E0D1E] mb-2">Needs Attention</h3>
       <div>
         {staff.map((member, i) => (
