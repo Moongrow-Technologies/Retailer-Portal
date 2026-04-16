@@ -63,8 +63,7 @@ export default function CreateCampaign() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1A24]">
-    <div className="max-w-2xl mx-auto px-6">
+    <div className="max-w-2xl mx-auto">
       <button onClick={() => step === 0 ? navigate('/campaigns') : setStep(step - 1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> {step === 0 ? 'Back to Campaigns' : 'Previous Step'}
       </button>
@@ -216,7 +215,6 @@ export default function CreateCampaign() {
         </Button>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
-    </div>
     </div>
   );
 }
