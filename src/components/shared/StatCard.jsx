@@ -28,7 +28,7 @@ export default function StatCard({ label, value, sublabel, icon: Icon, trend, tr
   );
 
   const element = (
-    <div className={cn("bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 cursor-pointer hover:shadow-md transition-shadow", className)}>
+    <div className={cn("bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 cursor-pointer hover:shadow-md transition-shadow", className)}>
       {content}
     </div>
   );
