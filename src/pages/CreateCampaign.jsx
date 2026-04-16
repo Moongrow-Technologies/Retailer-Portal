@@ -77,7 +77,7 @@ export default function CreateCampaign() {
         <p className="text-sm font-medium text-primary mt-2">{STEPS[step]}</p>
       </div>
 
-      <div className="bg-card rounded-xl border border-border p-6 min-h-[300px]">
+      <div className="bg-white rounded-xl border border-border p-6 min-h-[300px]">
         {step === 0 && (
           <div className="space-y-3">
             <Label>Select a product</Label>
