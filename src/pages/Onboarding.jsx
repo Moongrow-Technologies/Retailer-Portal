@@ -69,7 +69,7 @@ export default function Onboarding() {
             ))}
           </div>
         </div>
-        <div className="px-8 pb-4"><Progress value={progress} className="h-1" /></div>
+        <div className="px-8 pb-4 flex justify-center"><div className="max-w-2xl w-full"><Progress value={progress} className="h-1" /></div></div>
       </div>
 
       {/* Content */}
