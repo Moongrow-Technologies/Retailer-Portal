@@ -45,17 +45,17 @@ export default function Profile() {
 
   return (
     <>
-      <div>
+      <div className="max-w-4xl">
         {/* Page header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-[#0E0D1E]">My Profile</h1>
           <p className="text-sm text-[#7A7893] mt-1">Manage your personal details.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5">
 
           {/* Left card — identity */}
-          <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col items-center text-center">
+          <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 flex flex-col items-center text-center">
             <div className="w-24 h-24 rounded-full bg-[#EDE9F8] flex items-center justify-center text-3xl font-bold text-[#796EB2] mb-3 overflow-hidden">
               {avatarUrl
                 ? <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" />
@@ -77,7 +77,7 @@ export default function Profile() {
           </div>
 
           {/* Right card — personal details */}
-          <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
+          <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6">
             <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Personal Details</h3>
 
             <div className="flex flex-col gap-3">

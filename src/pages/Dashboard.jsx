@@ -47,13 +47,11 @@ export default function Dashboard() {
 
         {/* Row 2: Activity feed + Top Budtenders + Needs Attention */}
         <div className="grid grid-cols-12 gap-6 items-stretch">
-          <div className="col-span-4">
+          <div className="col-span-8">
             <ActivityFeed activities={ACTIVITIES} />
           </div>
-          <div className="col-span-4">
+          <div className="col-span-4 flex flex-col gap-6">
             <TopBudtenders staff={topBudtenders} />
-          </div>
-          <div className="col-span-4">
             <NeedsAttention staff={needsAttention} />
           </div>
         </div>

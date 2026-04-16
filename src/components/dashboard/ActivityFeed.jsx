@@ -17,7 +17,7 @@ const avatarColors = [
 export default function ActivityFeed({ activities }) {
   return (
     <div className="bg-white rounded-2xl shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full w-full">
-      <h3 className="text-base font-semibold text-[#0E0D1E] mb-2">Recent Activity</h3>
+      <h3 className="text-base font-semibold text-[#0E0D1E] mb-5">Recent Activity</h3>
       <div>
         {activities.map((activity, i) => {
           const staffMember = activity.actor && staffByName[activity.actor];
@@ -40,11 +40,11 @@ export default function ActivityFeed({ activities }) {
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#0E0D1E] leading-snug">{activity.message}</p>
+                  <p className="text-sm font-semibold text-[#0E0D1E]">{activity.message}</p>
                   <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(activity.created_date), 'MMM d, h:mm a')}</p>
                 </div>
                 {activity.amount != null && (
-                  <span className={cn("text-sm font-bold flex-shrink-0", activity.amount > 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>
+                  <span className={cn("text-sm font-bold flex-shrink-0", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>
                     €{activity.amount.toFixed(2)}
                   </span>
                 )}
