@@ -124,7 +124,7 @@ export default function TopBar() {
               
             <Bell className="w-5 h-5" />
             {unreadCount > 0 &&
-              <span className="bg-[#e34a4a] text-slate-50 px-1 text-xs font-light rounded-full absolute -top-0.5 -right-0.5 min-w-[16px] h-4 flex items-center justify-center">
+              <span className="bg-[#ef3e41] text-slate-50 px-1 text-xs font-light rounded-full absolute -top-0.5 -right-0.5 min-w-[16px] h-4 flex items-center justify-center">
                 {unreadCount}
               </span>
               }
