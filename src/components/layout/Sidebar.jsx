@@ -29,7 +29,7 @@ export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-14 h-[calc(100vh-56px)] w-[220px] bg-white border-r border-[#EBEBF0] flex flex-col z-40">
       {/* Navigation */}
-      <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
+      <nav className="flex-1 py-4 px-5 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.path);
           return (
@@ -51,7 +51,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="p-3 border-t border-[#EBEBF0]">
+      <div className="px-5 py-3 border-t border-[#EBEBF0]">
         <button
           onClick={() => base44.auth.logout()}
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#7A7893] hover:bg-[#F5F3FC] hover:text-[#796EB2] transition-all w-full">
