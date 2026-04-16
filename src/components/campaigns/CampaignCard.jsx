@@ -47,7 +47,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       </div>
 
       {/* Right: Status, Switch, Menu */}
-      <div className="flex items-center gap-2 flex-shrink-0" onClick={e => e.stopPropagation()}>
+      <div className="flex items-center gap-2 flex-shrink-0 ml-auto" onClick={e => e.stopPropagation()}>
         <StatusBadge status={campaign.status} />
         {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
           <Switch
