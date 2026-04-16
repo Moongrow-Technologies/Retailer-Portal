@@ -63,7 +63,7 @@ export default function CreateCampaign() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6">
       <button onClick={() => step === 0 ? navigate('/campaigns') : setStep(step - 1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> {step === 0 ? 'Back to Campaigns' : 'Previous Step'}
       </button>
