@@ -71,23 +71,50 @@ export default function Bonuses() {
       </div>
 
       {/* Budget card */}
-       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
-         <div className="flex items-start justify-between">
-           <div className="flex-1">
-             <p className="text-sm text-[#5b616e] mb-2">Committed to bonuses</p>
-             <p className="text-4xl font-bold text-[#0c0b0c] mb-4">€450</p>
-             <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
-               <div className="h-full rounded-full" style={{ width: '39%', background: 'linear-gradient(to right, #f59e0b, #fbbf24, #fde68a)' }}></div>
-             </div>
-             <p className="text-sm text-amber-600 font-medium">39% of total budget used</p>
-           </div>
-           <div className="text-right pl-6">
-             <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-             <p className="text-3xl font-bold" style={{ color: '#16A34A' }}>€692</p>
-             <p className="text-sm font-medium mt-1" style={{ color: '#16A34A' }}>• 61% left</p>
-           </div>
-         </div>
-       </div>
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
+        {/* Top row: label */}
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-xs font-semibold tracking-widest text-[#5b616e] uppercase">Budget · April 2026</p>
+        </div>
+
+        {/* Two columns: Committed | Remaining */}
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
+          <div className="pr-6">
+            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
+            <p className="text-3xl font-bold text-[#0c0b0c] tracking-tight mb-1">€450</p>
+            <p className="text-xs text-[#5b616e]">39% allocated to bonuses</p>
+          </div>
+          <div className="pl-6 text-right">
+            <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#796EB2' }}>€692</p>
+            <p className="text-xs text-[#5b616e]">61% ready to deploy</p>
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
+          <div className="h-full" style={{ width: '39%', background: '#0c0b0c' }} />
+          <div className="h-full flex-1" style={{ background: '#796EB2' }} />
+        </div>
+
+        {/* Bar labels */}
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs text-[#0c0b0c] flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0c0b0c] inline-block"></span>
+            39% committed
+          </p>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#796EB2' }}>
+            61% remaining
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#796EB2' }}></span>
+          </p>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-[#EBEBF0] pt-3 flex items-center justify-between">
+          <p className="text-xs text-[#5b616e]">You have <span className="font-bold text-[#0c0b0c]">€692</span> to allocate before the period ends.</p>
+          <button className="text-xs font-bold text-[#0c0b0c] hover:underline">Allocate budget →</button>
+        </div>
+      </div>
 
       {/* Tabs */}
       <div className="flex items-center mb-6 w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
