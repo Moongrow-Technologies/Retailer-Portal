@@ -33,8 +33,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           <img src={PRODUCT_IMAGES[campaign.product_name] || PRODUCT_IMAGES.default} alt={campaign.product_name} className="w-full h-full object-cover" />
         </div>
         <div className="min-w-0">
-          <h3 className="font-semibold text-[#0E0D1E] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
-          <p className="text-xs text-[#9490AA] mt-0.5">{campaign.product_name} • Last edited 2h ago</p>
+          <h3 className="font-semibold text-[#0c0b0c] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
+          <p className="text-xs text-[#5b616e] mt-0.5">{campaign.product_name} • Last edited 2h ago</p>
         </div>
       </div>
 
@@ -51,9 +51,9 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
           <div className="w-32 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden flex-shrink-0">
             <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
           </div>
-          <span className="text-xs font-semibold text-[#0E0D1E] w-8 text-right flex-shrink-0">{Math.round(spendPct)}%</span>
+          <span className="text-xs font-semibold text-[#0c0b0c] w-8 text-right flex-shrink-0">{Math.round(spendPct)}%</span>
         </div>
-        <p className="text-xs text-[#9490AA]">Budget: €{campaign.budget.toFixed(2)}</p>
+        <p className="text-xs text-[#5b616e]">Budget: €{campaign.budget.toFixed(2)}</p>
       </div>
 
       {/* Right: Status, Switch, Menu */}
@@ -68,7 +68,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         }
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="p-2 text-[#9490AA] hover:text-[#796EB2] transition-colors">
+            <button className="p-2 text-[#5b616e] hover:text-[#796EB2] transition-colors">
               <MoreVertical className="w-4 h-4" />
             </button>
           </DropdownMenuTrigger>

@@ -60,8 +60,8 @@ export default function Bonuses() {
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0E0D1E]">Bonuses</h1>
-          <p className="text-sm text-[#7A7893] mt-1">Run competitions and reward your team.</p>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Bonuses</h1>
+          <p className="text-sm text-[#5b616e] mt-1">Run competitions and reward your team.</p>
         </div>
         <Link to="/bonuses/new">
           <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
@@ -74,15 +74,15 @@ export default function Bonuses() {
        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
          <div className="flex items-start justify-between">
            <div className="flex-1">
-             <p className="text-sm text-[#7A7893] mb-2">Committed to bonuses</p>
-             <p className="text-4xl font-bold text-[#0E0D1E] mb-4">€450</p>
+             <p className="text-sm text-[#5b616e] mb-2">Committed to bonuses</p>
+             <p className="text-4xl font-bold text-[#0c0b0c] mb-4">€450</p>
              <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
                <div className="h-full rounded-full" style={{ width: '39%', background: 'linear-gradient(to right, #f59e0b, #fbbf24, #fde68a)' }}></div>
              </div>
              <p className="text-sm text-amber-600 font-medium">39% of total budget used</p>
            </div>
            <div className="text-right pl-6">
-             <p className="text-xs text-[#7A7893] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
+             <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
              <p className="text-3xl font-bold" style={{color:'#16A34A'}}>€692</p>
              <p className="text-sm font-medium mt-1" style={{color:'#16A34A'}}>• 61% left</p>
            </div>
@@ -99,11 +99,11 @@ export default function Bonuses() {
               "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all",
               tab === t.key
                 ? "bg-[#796EB2] text-white"
-                : "text-[#0E0D1E] hover:text-[#796EB2]"
+                : "text-[#0c0b0c] hover:text-[#796EB2]"
             )}
           >
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/70" : "text-[#0E0D1E]")}>
+            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/70" : "text-[#0c0b0c]")}>
               {counts[t.key]}
             </span>
           </button>
@@ -113,7 +113,7 @@ export default function Bonuses() {
       {/* Bonus list */}
       {filtered.length === 0 ? (
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
-          <p className="text-[#9490AA] text-sm">No {tab} bonuses yet.</p>
+          <p className="text-[#5b616e] text-sm">No {tab} bonuses yet.</p>
           {tab === 'active' && (
             <Link to="/bonuses/new">
               <Button className="mt-4 bg-[#796EB2] hover:bg-[#6A5FA3] text-white">Create your first bonus</Button>
@@ -133,38 +133,38 @@ export default function Bonuses() {
 
                  {/* Name + product */}
                  <div className="flex-1 min-w-0">
-                   <p className="text-sm font-semibold text-[#0E0D1E] truncate">{bonus.name}</p>
-                   <p className="text-xs text-[#9490AA] mt-0.5">{bonus.product_name}</p>
+                   <p className="text-sm font-semibold text-[#0c0b0c] truncate">{bonus.name}</p>
+                   <p className="text-xs text-[#5b616e] mt-0.5">{bonus.product_name}</p>
                  </div>
 
                  {/* Target */}
                  <div className="w-32 flex-shrink-0">
-                  <p className="text-xs text-[#9490AA]">Target</p>
-                  <p className="text-sm font-medium text-[#0E0D1E]">{getTarget(bonus)}</p>
+                  <p className="text-xs text-[#5b616e]">Target</p>
+                  <p className="text-sm font-medium text-[#0c0b0c]">{getTarget(bonus)}</p>
                 </div>
 
                 {/* Prize */}
                 <div className="w-24 flex-shrink-0">
-                  <p className="text-xs text-[#9490AA]">Prize</p>
-                  <p className="text-sm font-semibold text-[#0E0D1E]">{getPrize(bonus)}</p>
+                  <p className="text-xs text-[#5b616e]">Prize</p>
+                  <p className="text-sm font-semibold text-[#0c0b0c]">{getPrize(bonus)}</p>
                 </div>
 
                 {/* Date column */}
                 <div className="w-28 flex-shrink-0 text-right">
                  {bonus.status === 'scheduled' ? (
                    <>
-                     <p className="text-xs text-[#9490AA]">Starts</p>
+                     <p className="text-xs text-[#5b616e]">Starts</p>
                      <p className="text-sm font-medium text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</p>
                    </>
                  ) : bonus.type === 'sprint' || !bonus.end_date ? (
                    <>
-                     <p className="text-xs text-[#9490AA]">Ends</p>
-                     <p className="text-sm font-medium text-[#9490AA] italic">On completion</p>
+                     <p className="text-xs text-[#5b616e]">Ends</p>
+                     <p className="text-sm font-medium text-[#5b616e] italic">On completion</p>
                    </>
                  ) : (
                    <>
-                     <p className="text-xs text-[#9490AA]">Ends</p>
-                     <p className="text-sm font-medium text-[#0E0D1E]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
+                     <p className="text-xs text-[#5b616e]">Ends</p>
+                     <p className="text-sm font-medium text-[#0c0b0c]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
                    </>
                  )}
                 </div>
@@ -172,7 +172,7 @@ export default function Bonuses() {
                 {/* Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="p-2 text-[#9490AA] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
+                    <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-white rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
                       <MoreVertical className="w-4 h-4" />
                     </button>
                   </DropdownMenuTrigger>

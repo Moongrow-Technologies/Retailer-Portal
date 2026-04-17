@@ -18,8 +18,8 @@ export default function Dashboard() {
     <div>
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0E0D1E]">Dashboard</h1>
-          <p className="text-sm text-[#7A7893] mt-1">De Groene Hoek — Amsterdam</p>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Dashboard</h1>
+          <p className="text-sm text-[#5b616e] mt-1">De Groene Hoek — Amsterdam</p>
         </div>
         <QuickActions />
       </div>

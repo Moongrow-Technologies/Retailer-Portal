@@ -21,15 +21,15 @@ export default function CompactWalletCard({ wallet }) {
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       {/* Header */}
       <div className="mb-5">
-        <p className="text-[#7A7893] mb-1 text-sm">Wallet balance</p>
-        <p className="text-[#0E0D1E] text-4xl font-bold tracking-tight mb-3">
+        <p className="text-[#5b616e] mb-1 text-sm">Wallet balance</p>
+        <p className="text-[#0c0b0c] text-4xl font-bold tracking-tight mb-3">
           €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0E0D1E] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
+          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
             <Plus className="w-3 h-3" /> Top Up
           </Button>
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0E0D1E] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
+          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
             <ArrowDownFromLine className="w-3 h-3" /> Withdraw
           </Button>
         </div>
@@ -42,13 +42,13 @@ export default function CompactWalletCard({ wallet }) {
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-[#796EB2] flex-shrink-0"></div>
             <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Campaigns</p>
-              <p className="text-xs text-[#9490AA]">{activeCampaigns} active</p>
+              <p className="text-sm font-semibold text-[#0c0b0c]">Campaigns</p>
+              <p className="text-xs text-[#5b616e]">{activeCampaigns} active</p>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-sm font-bold text-[#0E0D1E]">€{campaigns.toLocaleString('nl-NL')}</span>
-            <p className="text-xs text-[#9490AA]">allocated</p>
+            <span className="text-sm font-bold text-[#0c0b0c]">€{campaigns.toLocaleString('nl-NL')}</span>
+            <p className="text-xs text-[#5b616e]">allocated</p>
           </div>
         </div>
 
@@ -57,13 +57,13 @@ export default function CompactWalletCard({ wallet }) {
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-amber-400 flex-shrink-0"></div>
             <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Bonuses</p>
-              <p className="text-xs text-[#9490AA]">{activeBonuses} active</p>
+              <p className="text-sm font-semibold text-[#0c0b0c]">Bonuses</p>
+              <p className="text-xs text-[#5b616e]">{activeBonuses} active</p>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-sm font-bold text-[#0E0D1E]">€{bonuses.toLocaleString('nl-NL')}</span>
-            <p className="text-xs text-[#9490AA]">allocated</p>
+            <span className="text-sm font-bold text-[#0c0b0c]">€{bonuses.toLocaleString('nl-NL')}</span>
+            <p className="text-xs text-[#5b616e]">allocated</p>
           </div>
         </div>
 
@@ -74,13 +74,13 @@ export default function CompactWalletCard({ wallet }) {
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0"></div>
             <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Available</p>
-              <p className="text-xs text-[#9490AA]">free to allocate</p>
+              <p className="text-sm font-semibold text-[#0c0b0c]">Available</p>
+              <p className="text-xs text-[#5b616e]">free to allocate</p>
             </div>
           </div>
           <div className="text-right">
             <span className="text-sm font-bold" style={{color:'#16A34A'}}>€{available.toLocaleString('nl-NL')}</span>
-            <p className="text-xs text-[#9490AA]">available</p>
+            <p className="text-xs text-[#5b616e]">available</p>
           </div>
         </div>
       </div>

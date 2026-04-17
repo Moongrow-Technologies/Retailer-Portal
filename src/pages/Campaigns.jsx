@@ -46,8 +46,8 @@ export default function Campaigns() {
     <div>
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0E0D1E]">Campaigns</h1>
-          <p className="text-sm text-[#7A7893] mt-1">Manage commission campaigns for your products.</p>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Campaigns</h1>
+          <p className="text-sm text-[#5b616e] mt-1">Manage commission campaigns for your products.</p>
         </div>
         <Link to="/campaigns/new">
           <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
@@ -59,15 +59,15 @@ export default function Campaigns() {
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <p className="text-sm text-[#7A7893] mb-2">Committed to campaigns</p>
-            <p className="text-[#0E0D1E] mb-4 text-4xl font-semibold">€1,308</p>
+            <p className="text-sm text-[#5b616e] mb-2">Committed to campaigns</p>
+            <p className="text-[#0c0b0c] mb-4 text-4xl font-semibold">€1,308</p>
             <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
               <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }}></div>
             </div>
             <p className="text-sm text-[#796EB2] font-medium">65% of total budget used</p>
           </div>
           <div className="text-right pl-6">
-            <p className="text-xs text-[#7A7893] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
+            <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
             <p className="text-3xl font-semibold" style={{color:'#16A34A'}}>€692</p>
             <p className="text-sm font-medium mt-1" style={{color:'#16A34A'}}>• 35% left</p>
           </div>
@@ -80,10 +80,10 @@ export default function Campaigns() {
         className={cn("px-3 py-1.5 rounded-xl text-xs font-semibold transition-all",
         tab === t.key ?
         "bg-[#796EB2] text-white" :
-        "text-[#0E0D1E] hover:text-[#796EB2]"
+        "text-[#0c0b0c] hover:text-[#796EB2]"
         )}>
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/70" : "text-[#0E0D1E]")}>
+            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/70" : "text-[#0c0b0c]")}>
               {count(t.key)}
             </span>
           </button>

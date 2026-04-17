@@ -47,8 +47,8 @@ function CampaignBar({ name, pct, urgency }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[13px] font-semibold text-[#0E0D1E]">{name}</span>
-        <span className={`text-[12px] font-medium ${urgency === 'warn' ? 'text-[#F59E0B]' : 'text-[#9490AA]'}`}>
+        <span className="text-[13px] font-semibold text-[#0c0b0c]">{name}</span>
+        <span className={`text-[12px] font-medium ${urgency === 'warn' ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
           {urgency === 'warn' ? `${pct} days left` : `${pct} days left`}
         </span>
       </div>
@@ -70,14 +70,14 @@ function ActiveCampaignsCard({ campaigns }) {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#9490AA] font-medium">Active campaigns</span>
+        <span className="text-[13px] text-[#5b616e] font-medium">Active campaigns</span>
         <div className="w-8 h-8 rounded-full bg-[#F4F3FA] flex items-center justify-center">
           <Send className="w-3.5 h-3.5 text-[#796EB2]" />
         </div>
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{active.length}</p>
+        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{active.length}</p>
         <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">↑ 2 new this month</p>
       </div>
 
@@ -88,8 +88,8 @@ function ActiveCampaignsCard({ campaigns }) {
           return (
             <div key={c.id}>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[13px] font-semibold text-[#0E0D1E] truncate max-w-[60%]">{c.name}</span>
-                <span className={`text-[12px] font-medium ${warn ? 'text-[#F59E0B]' : 'text-[#9490AA]'}`}>
+                <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
+                <span className={`text-[12px] font-medium ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
                   {dl !== null ? `${dl} days left` : '—'}
                 </span>
               </div>
@@ -123,12 +123,12 @@ function CommissionCard() {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#9490AA] font-medium">Commission paid</span>
+        <span className="text-[13px] text-[#5b616e] font-medium">Commission paid</span>
         <PeriodPill value={period} onChange={setPeriod} />
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-3xl font-medium leading-none">{d.value}</p>
+        <p className="text-[#0c0b0c] text-3xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -136,8 +136,8 @@ function CommissionCard() {
         {d.breakdown.map((b) =>
         <div key={b.name}>
             <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[13px] font-semibold text-[#0E0D1E] truncate max-w-[65%]">{b.name}</span>
-              <span className="text-[13px] font-semibold text-[#0E0D1E]">{b.amount}</span>
+              <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[65%]">{b.name}</span>
+              <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
             </div>
             <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
               <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
@@ -183,12 +183,12 @@ function UnitsSoldCard() {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#9490AA] font-medium">Units sold</span>
+        <span className="text-[13px] text-[#5b616e] font-medium">Units sold</span>
         <PeriodPill value={period} onChange={setPeriod} />
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{d.value}</p>
+        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -199,7 +199,7 @@ function UnitsSoldCard() {
               dataKey="day"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 11, fill: '#9490AA' }} />
+              tick={{ fontSize: 11, fill: '#5b616e' }} />
             
             <Tooltip
               cursor={false}
@@ -210,7 +210,7 @@ function UnitsSoldCard() {
               dataKey="units"
               shape={(props) => {
                 const isBest = props.units === maxVal;
-                const fill = isBest ? '#9490AA' : '#E2E0ED';
+                const fill = isBest ? '#5b616e' : '#E2E0ED';
                 return <CustomBar {...props} fill={fill} />;
               }} />
             
@@ -219,8 +219,8 @@ function UnitsSoldCard() {
       </div>
 
       <div className="flex items-center gap-1.5">
-        <span className="w-2.5 h-2.5 rounded-sm bg-[#9490AA] inline-block" />
-        <span className="text-[11px] text-[#9490AA]">Best — {d.best.day} ({d.best.value})</span>
+        <span className="w-2.5 h-2.5 rounded-sm bg-[#5b616e] inline-block" />
+        <span className="text-[11px] text-[#5b616e]">Best — {d.best.day} ({d.best.value})</span>
       </div>
     </div>);
 
@@ -245,12 +245,12 @@ function RevenueCard() {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#9490AA] font-medium">Revenue generated</span>
+        <span className="text-[13px] text-[#5b616e] font-medium">Revenue generated</span>
         <PeriodPill value={period} onChange={setPeriod} />
       </div>
 
       <div>
-        <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{d.value}</p>
+        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 

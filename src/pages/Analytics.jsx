@@ -71,8 +71,8 @@ export default function Analytics() {
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-[#0E0D1E] text-2xl font-bold">Analytics</h1>
-          <p className="text-sm text-[#7A7893] mt-2">Track the performance of your incentives programme</p>
+          <h1 className="text-[#0c0b0c] text-2xl font-bold">Analytics</h1>
+          <p className="text-sm text-[#5b616e] mt-2">Track the performance of your incentives programme</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 bg-white border border-[#E2E0ED] rounded-lg p-1">
@@ -84,7 +84,7 @@ export default function Analytics() {
                 'px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap',
                 period === p ?
                 'border border-[#796EB2] text-[#796EB2] bg-white' :
-                'text-[#0E0D1E] hover:text-[#796EB2]'
+                'text-[#0c0b0c] hover:text-[#796EB2]'
               )}>
               
                 {p}
@@ -102,7 +102,7 @@ export default function Analytics() {
               )}
             </SelectContent>
           </Select>
-          <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]">
+          <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c]">
             <Download className="w-4 h-4" /> Export
           </Button>
         </div>
@@ -114,36 +114,36 @@ export default function Analytics() {
         <div className="grid grid-cols-4 border-b border-[#EBEBF0]">
           {/* Revenue */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
-            <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Revenue</p>
-            <p className="text-[26px] font-medium text-[#0E0D1E]">€6,708</p>
+            <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Revenue</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€6,708</p>
             <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
           </div>
 
           {/* Units Sold */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
-            <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Units Sold</p>
-            <p className="text-[26px] font-medium text-[#0E0D1E]">559</p>
+            <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Units Sold</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">559</p>
             <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
           </div>
 
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
-            <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Commission Paid</p>
-            <p className="text-[26px] font-medium text-[#0E0D1E]">€1,042</p>
+            <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Commission Paid</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,042</p>
             <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 12% vs last period</p>
           </div>
 
           {/* ROI */}
           <div className="px-6 py-6">
-            <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">ROI</p>
-            <p className="text-[26px] font-medium text-[#0E0D1E]">6.4x</p>
-            <p className="text-xs text-[#9490AA] font-medium mt-1.5">per €1 commission</p>
+            <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">ROI</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">6.4x</p>
+            <p className="text-xs text-[#5b616e] font-medium mt-1.5">per €1 commission</p>
           </div>
         </div>
 
         {/* Chart */}
         <div className="px-6 py-6">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Revenue over time</h3>
+          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Revenue over time</h3>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <defs>
@@ -152,7 +152,7 @@ export default function Analytics() {
                   <stop offset="95%" stopColor="#796EB2" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#9490AA" />
+              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#5b616e" />
               <Tooltip contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '8px' }} />
               <Area type="monotone" dataKey="value" stroke="#796EB2" strokeWidth={2} fill="url(#colorValue)" dot={false} />
             </AreaChart>
@@ -164,7 +164,7 @@ export default function Analytics() {
       <div className="grid grid-cols-3 gap-6">
         {/* Top Products */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top products</h3>
+          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top products</h3>
           <div>
             {topProducts.map((product, idx) =>
             <div key={product.name}>
@@ -173,10 +173,10 @@ export default function Analytics() {
                     <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-[#0E0D1E] text-sm">{product.name}</p>
-                    <p className="text-xs text-[#9490AA] mt-0.5">{product.units} units</p>
+                    <p className="font-medium text-[#0c0b0c] text-sm">{product.name}</p>
+                    <p className="text-xs text-[#5b616e] mt-0.5">{product.units} units</p>
                   </div>
-                  <p className="font-medium text-[#0E0D1E] text-sm">€{product.revenue.toLocaleString()}</p>
+                  <p className="font-medium text-[#0c0b0c] text-sm">€{product.revenue.toLocaleString()}</p>
                 </div>
                 {idx !== topProducts.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>
@@ -186,7 +186,7 @@ export default function Analytics() {
 
         {/* Top Selling Days */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Top selling days</h3>
+          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top selling days</h3>
           <div className="flex gap-3 mb-6">
             {topSellingDays.slice(0, 3).map((day) =>
             <div
@@ -223,7 +223,7 @@ export default function Analytics() {
                     '#E2E0ED'
                   }}>
                   
-                  <span className="text-xs font-semibold text-[#0E0D1E]">{day.label}</span>
+                  <span className="text-xs font-semibold text-[#0c0b0c]">{day.label}</span>
                 </div>);
 
             })}
@@ -232,12 +232,12 @@ export default function Analytics() {
 
         {/* Staff Performance */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Staff performance</h3>
+          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Staff performance</h3>
           <div>
             {activeStaff.map((staff, idx) =>
             <div key={staff.id}>
                 <div className="flex items-center gap-3 py-4">
-                  <span className="text-xs font-medium text-[#9490AA] w-4">{idx + 1}</span>
+                  <span className="text-xs font-medium text-[#5b616e] w-4">{idx + 1}</span>
                   <div className={cn(
                   'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0',
                   staffAvatarMap[staff.id] || 'bg-[#796EB2]'
@@ -245,11 +245,11 @@ export default function Analytics() {
                     {staff.name[0]}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#0E0D1E]">{staff.name}</p>
+                    <p className="text-sm font-medium text-[#0c0b0c]">{staff.name}</p>
                   </div>
                   <p className={cn(
                   'text-sm font-semibold',
-                  idx === 0 ? 'text-emerald-600' : 'text-[#0E0D1E]'
+                  idx === 0 ? 'text-emerald-600' : 'text-[#0c0b0c]'
                 )}>
                     €{staff.total_commissions.toFixed(2)}
                   </p>
