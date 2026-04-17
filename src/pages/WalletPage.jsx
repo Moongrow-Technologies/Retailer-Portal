@@ -30,18 +30,16 @@ export default function WalletPage() {
         </div>
         <div className="flex items-center gap-2">
           <Button
-            onClick={() => setShowWithdraw(true)}
-            variant="outline"
-            className="gap-2 font-semibold border-[#E2E0ED] text-[#0c0b0c] bg-white hover:bg-[#F4F3FA]">
-            
-            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
-          </Button>
-          <Button
             onClick={() => setShowTopUp(true)}
             variant="outline"
             className="gap-2 font-semibold border-[#E2E0ED] text-[#0c0b0c] bg-white hover:bg-[#F4F3FA]">
-            
             <Plus className="w-4 h-4" /> Top Up
+          </Button>
+          <Button
+            onClick={() => setShowWithdraw(true)}
+            variant="outline"
+            className="gap-2 font-semibold border-[#E2E0ED] text-[#0c0b0c] bg-white hover:bg-[#F4F3FA]">
+            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
           </Button>
         </div>
       </div>
