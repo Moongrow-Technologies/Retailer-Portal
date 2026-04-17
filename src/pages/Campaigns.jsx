@@ -67,14 +67,14 @@ export default function Campaigns() {
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="bg-[hsl(var(--popover))] text-[hsl(var(--foreground))] mb-1 text-3xl font-bold tracking-tight" style={{ color: '#5b616e' }}>€692</p>
+            <p className="bg-[hsl(var(--popover))] text-[#3c2fa2] mb-1 text-3xl font-bold tracking-tight" style={{ color: '#5b616e' }}>€692</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
           <div className="h-full" style={{ width: '65%', background: '#27272b' }} />
-          <div className="h-full flex-1" style={{ background: '#5b616e' }} />
+          <div className="bg-[hsl(var(--secondary-foreground))] h-full flex-1" style={{ background: '#5b616e' }} />
         </div>
 
         {/* Bar labels */}
