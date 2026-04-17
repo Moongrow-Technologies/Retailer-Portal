@@ -48,7 +48,7 @@ export default function TransactionHistory({ transactions }) {
       {/* Header */}
       <div className="px-6 py-5 flex items-center justify-between border-b border-[#EBEBF0]">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction history</h3>
-        <div className="flex items-center gap-1 border border-[#E2E0ED] rounded-full p-1">
+        <div className="flex items-center gap-0.5 bg-[#F4F3F4] rounded-xl p-1">
           {[
             { value: 'week', label: 'This week' },
             { value: 'month', label: 'This month' },
@@ -58,10 +58,10 @@ export default function TransactionHistory({ transactions }) {
               key={opt.value}
               onClick={() => setPeriod(opt.value)}
               className={cn(
-                'px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap',
+                'px-4 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap',
                 period === opt.value
-                  ? 'bg-[#796EB2] text-white'
-                  : 'text-[#4B4867] hover:text-[#796EB2]'
+                  ? 'bg-white text-[#12121f] shadow-sm'
+                  : 'text-[#5b616e] hover:text-[#12121f]'
               )}
             >
               {opt.label}
