@@ -83,7 +83,7 @@ export default function Campaigns() {
         "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
         )}>
             {t.label}
-            <span className="bg-transparent text-white/70 ml-1 text-xs">
+            <span className="bg-transparent text-[hsl(var(--background))] ml-1 text-xs">
               {count(t.key)}
             </span>
           </button>
