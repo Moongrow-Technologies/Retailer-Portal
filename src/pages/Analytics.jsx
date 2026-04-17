@@ -32,10 +32,10 @@ const revenueOverTime = {
 };
 
 const topProducts = [
-{ name: 'Blue Dream', units: 200, revenue: 2200 },
-{ name: 'OG Kush', units: 156, revenue: 1950 },
-{ name: 'White Widow', units: 114, revenue: 1197 },
-{ name: 'Amnesia Haze', units: 74, revenue: 962 }];
+{ name: 'Blue Dream',   units: 200, revenue: 2200, img: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80' },
+{ name: 'OG Kush',      units: 156, revenue: 1950, img: 'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80' },
+{ name: 'White Widow',  units: 114, revenue: 1197, img: 'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80' },
+{ name: 'Amnesia Haze', units: 74,  revenue: 962,  img: 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80' }];
 
 
 const topSellingDays = [
@@ -168,12 +168,15 @@ export default function Analytics() {
           <div>
             {topProducts.map((product, idx) =>
             <div key={product.name}>
-                <div className="flex items-center justify-between py-4">
-                  <div className="flex-1">
-                    <p className="font-medium text-[#0E0D1E]">{product.name}</p>
+                <div className="flex items-center gap-3 py-3">
+                  <div className="w-10 h-10 rounded-lg border border-[#E2E0ED] overflow-hidden flex-shrink-0">
+                    <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-[#0E0D1E] text-sm">{product.name}</p>
                     <p className="text-xs text-[#9490AA] mt-0.5">{product.units} units</p>
                   </div>
-                  <p className="font-medium text-[#0E0D1E]">€{product.revenue.toLocaleString()}</p>
+                  <p className="font-medium text-[#0E0D1E] text-sm">€{product.revenue.toLocaleString()}</p>
                 </div>
                 {idx !== topProducts.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>

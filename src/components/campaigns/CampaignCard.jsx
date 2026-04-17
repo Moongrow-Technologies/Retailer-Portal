@@ -3,7 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Switch } from '@/components/ui/switch';
-import { MoreVertical, Sparkles } from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
+
+const PRODUCT_IMAGES = {
+  'Blue Dream':    'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+  'OG Kush':       'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80',
+  'White Widow':   'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80',
+  'Amnesia Haze':  'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80',
+  default:         'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+};
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,8 +29,8 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
     <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer grid grid-cols-[auto_1fr_auto_200px_auto] items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
-        <div className="bg-[hsl(var(--destructive-foreground))] rounded-xl w-12 h-12 border-2 border-[#796EB2] flex items-center justify-center flex-shrink-0 shadow-sm">
-          <Sparkles className="text-[hsl(var(--muted-foreground))] lucide lucide-sparkles w-6 h-6" />
+        <div className="rounded-xl w-12 h-12 border-2 border-[#796EB2] flex-shrink-0 shadow-sm overflow-hidden">
+          <img src={PRODUCT_IMAGES[campaign.product_name] || PRODUCT_IMAGES.default} alt={campaign.product_name} className="w-full h-full object-cover" />
         </div>
         <div className="min-w-0">
           <h3 className="font-semibold text-[#0E0D1E] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
