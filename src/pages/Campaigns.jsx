@@ -57,20 +57,48 @@ export default function Campaigns() {
       </div>
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <p className="text-sm text-[#5b616e] mb-2">Committed to campaigns</p>
-            <p className="text-[#0c0b0c] mb-4 text-4xl font-semibold">€1,308</p>
-            <div className="w-full bg-[#E2E0ED] rounded-full h-2 mb-2">
-              <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }}></div>
-            </div>
-            <p className="text-sm text-[#796EB2] font-medium">65% of total budget used</p>
+        {/* Top row: label + total */}
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-xs font-semibold tracking-widest text-[#5b616e] uppercase">Budget · April 2026</p>
+          <p className="text-xs font-semibold tracking-widest text-[#5b616e] uppercase">Total €2,000</p>
+        </div>
+
+        {/* Two columns: Committed | Available */}
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-6">
+          <div className="pr-6">
+            <p className="text-sm text-[#5b616e] mb-1">Committed</p>
+            <p className="text-5xl font-bold text-[#0c0b0c] tracking-tight mb-2">€1,308</p>
+            <p className="text-sm text-[#5b616e]">65% allocated to campaigns</p>
           </div>
-          <div className="text-right pl-6">
-            <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-            <p className="text-3xl font-semibold" style={{ color: '#16A34A' }}>€692</p>
-            <p className="text-sm font-medium mt-1" style={{ color: '#16A34A' }}>• 35% left</p>
+          <div className="pl-6 text-right">
+            <p className="text-sm text-[#5b616e] mb-1">Available</p>
+            <p className="text-5xl font-bold tracking-tight mb-2" style={{ color: '#16A34A' }}>€692</p>
+            <p className="text-sm text-[#5b616e]">35% ready to deploy</p>
           </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
+          <div className="h-full" style={{ width: '65%', background: '#0c0b0c' }} />
+          <div className="h-full flex-1" style={{ background: '#16A34A' }} />
+        </div>
+
+        {/* Bar labels */}
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-sm text-[#0c0b0c] flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#0c0b0c] inline-block"></span>
+            65% committed
+          </p>
+          <p className="text-sm font-medium flex items-center gap-1.5" style={{ color: '#16A34A' }}>
+            35% available
+            <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#16A34A' }}></span>
+          </p>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-[#EBEBF0] pt-4 flex items-center justify-between">
+          <p className="text-sm text-[#5b616e]">You have <span className="font-bold text-[#0c0b0c]">€692</span> to allocate before the period ends.</p>
+          <button className="text-sm font-bold text-[#0c0b0c] hover:underline">Allocate budget →</button>
         </div>
       </div>
 
