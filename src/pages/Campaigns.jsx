@@ -50,7 +50,7 @@ export default function Campaigns() {
           <p className="text-sm text-[#5b616e] mt-1">Manage commission campaigns for your products.</p>
         </div>
         <Link to="/campaigns/new">
-          <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+          <Button className="bg-[#131320] text-white px-4 py-2 text-sm font-semibold rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 hover:bg-[#6A5FA3] gap-2">
             <Plus className="w-4 h-4" /> Create Campaign
           </Button>
         </Link>
@@ -68,8 +68,8 @@ export default function Campaigns() {
           </div>
           <div className="text-right pl-6">
             <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-            <p className="text-3xl font-semibold" style={{color:'#16A34A'}}>€692</p>
-            <p className="text-sm font-medium mt-1" style={{color:'#16A34A'}}>• 35% left</p>
+            <p className="text-3xl font-semibold" style={{ color: '#16A34A' }}>€692</p>
+            <p className="text-sm font-medium mt-1" style={{ color: '#16A34A' }}>• 35% left</p>
           </div>
         </div>
       </div>
