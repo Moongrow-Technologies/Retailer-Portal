@@ -59,22 +59,12 @@ export default function WalletPage() {
       <div className="space-y-4">
         {/* Wallet Card */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
-          {/* Top row: balance + buttons */}
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <p className="text-sm text-[#5b616e] mb-1">Wallet balance</p>
-              <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
-                €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c] font-medium" onClick={() => setShowWithdraw(true)}>
-                <ArrowDownFromLine className="w-4 h-4" /> Withdraw
-              </Button>
-              <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c] font-medium" onClick={() => setShowTopUp(true)}>
-                <Plus className="w-4 h-4" /> Top Up
-              </Button>
-            </div>
+          {/* Top row: balance */}
+          <div className="mb-6">
+            <p className="text-sm text-[#5b616e] mb-1">Wallet balance</p>
+            <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
+              €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+            </p>
           </div>
 
           {/* Bottom row: three columns */}
