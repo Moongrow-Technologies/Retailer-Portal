@@ -42,7 +42,7 @@ export default function BonusDetail() {
   if (!bonus) return (
     <div className="text-center py-20">
       <p className="text-[#9490AA]">Bonus not found.</p>
-      <Link to="/bonuses"><Button className="mt-4 bg-[#796EB2] text-white">Back to Bonuses</Button></Link>
+      <Link to="/bonuses"><Button className="mt-4 bg-[#12121f] hover:bg-[#12121f]/90 text-white">Back to Bonuses</Button></Link>
     </div>
   );
 

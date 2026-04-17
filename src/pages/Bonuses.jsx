@@ -64,7 +64,7 @@ export default function Bonuses() {
           <p className="text-sm text-[#5b616e] mt-1">Run competitions and reward your team.</p>
         </div>
         <Link to="/bonuses/new">
-          <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+          <Button className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold">
             <Plus className="w-4 h-4" /> Create New Bonus
           </Button>
         </Link>
@@ -116,7 +116,7 @@ export default function Bonuses() {
           <p className="text-[#5b616e] text-sm">No {tab} bonuses yet.</p>
           {tab === 'active' && (
             <Link to="/bonuses/new">
-              <Button className="mt-4 bg-[#796EB2] hover:bg-[#6A5FA3] text-white">Create your first bonus</Button>
+              <Button className="mt-4 bg-[#12121f] hover:bg-[#12121f]/90 text-white">Create your first bonus</Button>
             </Link>
           )}
         </div>

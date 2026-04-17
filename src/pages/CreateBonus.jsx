@@ -59,7 +59,7 @@ export default function CreateBonus() {
         </p>
         <div className="flex gap-3 justify-center">
           <Button variant="outline" onClick={() => navigate('/bonuses')} className="border-[#E2E0ED]">View Bonuses</Button>
-          <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white" onClick={() => navigate('/')}>Dashboard</Button>
+          <Button className="bg-[#12121f] hover:bg-[#12121f]/90 text-white" onClick={() => navigate('/')}>Dashboard</Button>
         </div>
       </div>
     );
@@ -357,7 +357,7 @@ export default function CreateBonus() {
         <Button
           onClick={() => { if (step === 4) { setDone(true); setToast("Bonus launched successfully."); } else setStep(step + 1); }}
           disabled={!canContinue()}
-          className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold px-6"
+          className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold px-6"
         >
           {step === 4 ? (isScheduled ? 'Schedule Bonus' : 'Launch Bonus') : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>

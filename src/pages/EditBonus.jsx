@@ -315,7 +315,7 @@ export default function EditBonus() {
         <Button
           onClick={() => step === 4 ? handleSave() : setStep(step + 1)}
           disabled={!canContinue()}
-          className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold px-6"
+          className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold px-6"
         >
           {step === 4 ? 'Save Changes' : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
