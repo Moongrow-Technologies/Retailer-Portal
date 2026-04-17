@@ -98,7 +98,7 @@ export default function Bonuses() {
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
             39% spent
           </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#e2e2e2' }}>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
             61% remaining
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
           </p>
