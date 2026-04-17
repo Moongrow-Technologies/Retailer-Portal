@@ -90,16 +90,16 @@ export default function Bonuses() {
        </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 mb-6 bg-white border border-[#E2E0ED] rounded-xl p-1 w-fit">
+      <div className="flex items-center gap-2 mb-6 w-fit">
         {TABS.map(t => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
             className={cn(
-              "px-4 py-1.5 rounded-lg text-sm font-semibold transition-all",
+              "px-4 py-2 rounded-xl text-sm font-semibold border transition-all",
               tab === t.key
-                ? "bg-[#12121f] text-white border border-[#12121f]"
-                : "text-[#0E0D1E] hover:text-[#796EB2]"
+                ? "bg-[#12121f] text-white border-[#12121f]"
+                : "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
             )}
           >
             {t.label}
