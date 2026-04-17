@@ -72,7 +72,7 @@ function ActiveCampaignsCard({ campaigns }) {
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Active campaigns</span>
         <div className="bg-[#ececee] rounded-full w-8 h-8 flex items-center justify-center">
-          <Send className="w-3.5 h-3.5 text-[#796EB2]" />
+          <Send className="text-[#a1a1a1] lucide lucide-send w-3.5 h-3.5" />
         </div>
       </div>
 
