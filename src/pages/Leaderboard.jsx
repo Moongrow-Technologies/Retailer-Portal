@@ -137,7 +137,7 @@ export default function Leaderboard() {
             </div>
 
             {/* Store */}
-            <span className="text-sm text-[#9490AA]">{staff.store}</span>
+            <span className="text-[#0d0c1d] text-sm">{staff.store}</span>
 
             {/* Movement */}
             <div>
