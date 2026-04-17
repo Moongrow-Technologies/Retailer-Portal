@@ -94,16 +94,17 @@ export default function StaffDetail() {
         )}
       </div>
 
-      {/* Stat Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        {stats.map((s, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
-            <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2">{s.label}</p>
-            <p className="text-2xl font-bold tracking-tight text-[#0E0D1E] mb-1">{s.value}</p>
-            <div className="h-px bg-[#F0EFF5] my-2" />
-            <p className="text-xs text-[#9490AA]">{s.sub}</p>
-          </div>
-        ))}
+      {/* Stat Cards — single unified card with column dividers */}
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] mb-6">
+        <div className="grid grid-cols-4 divide-x divide-[#EBEBF0]">
+          {stats.map((s, i) => (
+            <div key={i} className="px-6 py-5">
+              <p className="text-xs font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
+              <p className="text-3xl font-bold tracking-tight text-[#0E0D1E] mb-1">{s.value}</p>
+              <p className="text-xs text-[#9490AA]">{s.sub}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Charts */}
