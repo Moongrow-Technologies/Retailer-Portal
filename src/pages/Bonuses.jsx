@@ -77,7 +77,7 @@ export default function Bonuses() {
         {/* Two columns: Committed | Remaining */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Commited</p>
+            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
             <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€450</p>
           </div>
           <div className="pl-6 text-right">
