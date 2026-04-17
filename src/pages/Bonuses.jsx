@@ -9,20 +9,20 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  DropdownMenuTrigger } from
+'@/components/ui/dropdown-menu';
 
 const TYPE_STYLES = {
-  sprint:    { label: 'Sprint',    className: 'bg-blue-50 text-blue-600 border-blue-200' },
+  sprint: { label: 'Sprint', className: 'bg-blue-50 text-blue-600 border-blue-200' },
   threshold: { label: 'Threshold', className: 'bg-amber-50 text-amber-600 border-amber-200' },
-  ranked:    { label: 'Ranked',    className: 'bg-purple-50 text-purple-600 border-purple-200' },
+  ranked: { label: 'Ranked', className: 'bg-purple-50 text-purple-600 border-purple-200' }
 };
 
 const TABS = [
-  { key: 'active',    label: 'Active' },
-  { key: 'scheduled', label: 'Scheduled' },
-  { key: 'completed', label: 'Completed' },
-];
+{ key: 'active', label: 'Active' },
+{ key: 'scheduled', label: 'Scheduled' },
+{ key: 'completed', label: 'Completed' }];
+
 
 function getTarget(bonus) {
   if (bonus.type === 'sprint') return `First to ${bonus.threshold_target || '?'} units`;
@@ -44,15 +44,15 @@ export default function Bonuses() {
   const [bonuses, setBonuses] = useState(BONUSES);
 
   const counts = {
-    active:    bonuses.filter(b => b.status === 'active').length,
-    scheduled: bonuses.filter(b => b.status === 'scheduled').length,
-    completed: bonuses.filter(b => b.status === 'completed').length,
+    active: bonuses.filter((b) => b.status === 'active').length,
+    scheduled: bonuses.filter((b) => b.status === 'scheduled').length,
+    completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
-  const filtered = bonuses.filter(b => b.status === tab);
+  const filtered = bonuses.filter((b) => b.status === tab);
 
   const handleDelete = (bonus) => {
-    setBonuses(bonuses.filter(b => b.id !== bonus.id));
+    setBonuses(bonuses.filter((b) => b.id !== bonus.id));
   };
 
   return (
@@ -64,7 +64,7 @@ export default function Bonuses() {
           <p className="text-sm text-[#5b616e] mt-1">Run competitions and reward your team.</p>
         </div>
         <Link to="/bonuses/new">
-          <Button className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold">
+          <Button className="bg-[#27272b] text-white px-4 py-2 text-sm font-semibold rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 hover:bg-[#12121f]/90 gap-2">
             <Plus className="w-4 h-4" /> Create New Bonus
           </Button>
         </Link>
@@ -83,46 +83,46 @@ export default function Bonuses() {
            </div>
            <div className="text-right pl-6">
              <p className="text-xs text-[#5b616e] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-             <p className="text-3xl font-bold" style={{color:'#16A34A'}}>€692</p>
-             <p className="text-sm font-medium mt-1" style={{color:'#16A34A'}}>• 61% left</p>
+             <p className="text-3xl font-bold" style={{ color: '#16A34A' }}>€692</p>
+             <p className="text-sm font-medium mt-1" style={{ color: '#16A34A' }}>• 61% left</p>
            </div>
          </div>
        </div>
 
       {/* Tabs */}
       <div className="flex items-center mb-6 w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
-        {TABS.map(t => (
-          <button
-            key={t.key}
-            onClick={() => setTab(t.key)}
-            className={cn(
-              "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
-              tab === t.key
-                ? "bg-white text-[#12121f] shadow-sm"
-                : "text-[#5b616e] hover:text-[#12121f]"
-            )}
-          >
+        {TABS.map((t) =>
+        <button
+          key={t.key}
+          onClick={() => setTab(t.key)}
+          className={cn(
+            "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
+            tab === t.key ?
+            "bg-white text-[#12121f] shadow-sm" :
+            "text-[#5b616e] hover:text-[#12121f]"
+          )}>
+          
             {t.label}
           </button>
-        ))}
+        )}
       </div>
 
       {/* Bonus list */}
-      {filtered.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
+      {filtered.length === 0 ?
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-12 text-center">
           <p className="text-[#5b616e] text-sm">No {tab} bonuses yet.</p>
-          {tab === 'active' && (
-            <Link to="/bonuses/new">
+          {tab === 'active' &&
+        <Link to="/bonuses/new">
               <Button className="mt-4 bg-[#12121f] hover:bg-[#12121f]/90 text-white">Create your first bonus</Button>
             </Link>
-          )}
-        </div>
-      ) : (
-        <div className="flex flex-col gap-3">
-            {filtered.map(bonus => {
-            const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
-            return (
-              <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-white border border-[#EBEBF0] rounded-2xl hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+        }
+        </div> :
+
+      <div className="flex flex-col gap-3">
+            {filtered.map((bonus) => {
+          const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
+          return (
+            <div key={bonus.id} className="px-4 py-3 flex items-center gap-4 bg-white border border-[#EBEBF0] rounded-2xl hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer" onClick={() => navigate(`/bonuses/${bonus.id}`)}>
                  {/* Type badge */}
                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${typeStyle.className}`}>
                    {typeStyle.label}
@@ -148,22 +148,22 @@ export default function Bonuses() {
 
                 {/* Date column */}
                 <div className="w-28 flex-shrink-0 text-right">
-                 {bonus.status === 'scheduled' ? (
-                   <>
+                 {bonus.status === 'scheduled' ?
+                <>
                      <p className="text-xs text-[#5b616e]">Starts</p>
                      <p className="text-sm font-medium text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</p>
-                   </>
-                 ) : bonus.type === 'sprint' || !bonus.end_date ? (
-                   <>
+                   </> :
+                bonus.type === 'sprint' || !bonus.end_date ?
+                <>
                      <p className="text-xs text-[#5b616e]">Ends</p>
                      <p className="text-sm font-medium text-[#5b616e] italic">On completion</p>
-                   </>
-                 ) : (
-                   <>
+                   </> :
+
+                <>
                      <p className="text-xs text-[#5b616e]">Ends</p>
                      <p className="text-sm font-medium text-[#0c0b0c]">{format(new Date(bonus.end_date), 'MMM d, yyyy')}</p>
                    </>
-                 )}
+                }
                 </div>
 
                 {/* Menu */}
@@ -182,11 +182,11 @@ export default function Bonuses() {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </div>
-            );
-          })}
+              </div>);
+
+        })}
           </div>
-          )}
-          </div>
-          );
-          }
+      }
+          </div>);
+
+}
