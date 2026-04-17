@@ -96,7 +96,7 @@ export default function Bonuses() {
             key={t.key}
             onClick={() => setTab(t.key)}
             className={cn(
-              "px-4 py-2 rounded-xl text-sm font-semibold transition-all",
+              "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all",
               tab === t.key
                 ? "bg-[#796EB2] text-white"
                 : "text-[#0E0D1E] hover:text-[#796EB2]"
