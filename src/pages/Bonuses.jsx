@@ -82,14 +82,14 @@ export default function Bonuses() {
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#5b616e' }}>€692</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#e2e2e2' }}>€692</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
           <div className="h-full" style={{ width: '39%', background: '#27272b' }} />
-          <div className="h-full flex-1" style={{ background: '#5b616e' }} />
+          <div className="h-full flex-1" style={{ background: '#e2e2e2' }} />
         </div>
 
         {/* Bar labels */}
@@ -98,9 +98,9 @@ export default function Bonuses() {
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
             39% spent
           </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#5b616e' }}>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#e2e2e2' }}>
             61% remaining
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#5b616e' }}></span>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
           </p>
         </div>
 
