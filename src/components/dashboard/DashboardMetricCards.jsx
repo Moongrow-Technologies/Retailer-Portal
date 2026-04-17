@@ -78,7 +78,7 @@ function ActiveCampaignsCard({ campaigns }) {
 
       <div>
         <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{active.length}</p>
-        <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">↑ 2 new this month</p>
+        <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">↑ 1 new this month</p>
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 mt-1 space-y-3">
@@ -111,9 +111,11 @@ function ActiveCampaignsCard({ campaigns }) {
 }
 
 // ─── CARD 2 — Commission Paid ─────────────────────────────────────────────────
+// This week: 14 OG units × €2 + 8 Amnesia × €2.50 = €28 + €20 = €48
+// This month: 156 OG × €2 + 70 Amnesia × €2.50 = €312 + €175 = €487 (active campaigns only)
 const commissionData = {
-  'This week': { value: '€42.50', trend: '12% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28.00', pct: 66 }, { name: 'Amnesia Haze Launch', amount: '€14.50', pct: 34 }] },
-  'This month': { value: '€184.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€112.00', pct: 61 }, { name: 'Amnesia Haze Launch', amount: '€72.00', pct: 39 }] }
+  'This week': { value: '€48.00', trend: '11% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28.00', pct: 58 }, { name: 'Amnesia Haze Launch', amount: '€20.00', pct: 42 }] },
+  'This month': { value: '€487.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€312.00', pct: 64 }, { name: 'Amnesia Haze Launch', amount: '€175.00', pct: 36 }] }
 };
 
 function CommissionCard() {
@@ -150,21 +152,24 @@ function CommissionCard() {
 }
 
 // ─── CARD 3 — Units Sold ─────────────────────────────────────────────────────
+// This week: 18+22+38+26+18+12+22 = 156 across OG + Amnesia active campaigns
+// This month total across all active campaigns: 521 units
 const unitsWeekData = [
-{ day: 'M', units: 14 },
-{ day: 'T', units: 18 },
-{ day: 'W', units: 38 },
-{ day: 'T', units: 16 },
-{ day: 'F', units: 12 },
-{ day: 'S', units: 8 },
-{ day: 'S', units: 28 }];
+{ day: 'M', units: 16 },
+{ day: 'T', units: 22 },
+{ day: 'W', units: 34 },
+{ day: 'T', units: 24 },
+{ day: 'F', units: 18 },
+{ day: 'S', units: 10 },
+{ day: 'S', units: 20 }];
 
-
-const unitsMonthData = Array.from({ length: 30 }, (_, i) => ({ day: `${i + 1}`, units: Math.floor(Math.random() * 30) + 8 }));
+const unitsMonthData = [
+  8,14,18,12,22,28,16,20,24,18,30,22,16,26,34,20,18,24,28,16,22,18,26,20,14,24,18,22,16,20
+].map((units, i) => ({ day: `${i + 1}`, units }));
 
 const unitsSoldData = {
-  'This week': { value: '124', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 38 }, today: { day: 'S', value: 28 } },
-  'This month': { value: '538', trend: '11% vs last period', chart: unitsMonthData, best: { day: 'W', value: 38 }, today: { day: '30', value: 21 } }
+  'This week': { value: '144', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 34 }, today: { day: 'S', value: 20 } },
+  'This month': { value: '521', trend: '7% vs last period', chart: unitsMonthData, best: { day: 'W', value: 34 }, today: { day: '17', value: 20 } }
 };
 
 const CustomBar = (props) => {
@@ -227,15 +232,19 @@ function UnitsSoldCard() {
 }
 
 // ─── CARD 4 — Revenue Generated ──────────────────────────────────────────────
+// Week revenue: 144 units × avg €11.25 product price ≈ €1,620
+// Month revenue: 521 units × avg €11.73 ≈ €6,110
 const revenueWeekData = [
-{ day: 'M', rev: 140 }, { day: 'T', rev: 200 }, { day: 'W', rev: 380 },
-{ day: 'T', rev: 460 }, { day: 'F', rev: 600 }, { day: 'S', rev: 900 }, { day: 'S', rev: 1240 }];
+{ day: 'M', rev: 180 }, { day: 'T', rev: 248 }, { day: 'W', rev: 382 },
+{ day: 'T', rev: 270 }, { day: 'F', rev: 202 }, { day: 'S', rev: 112 }, { day: 'S', rev: 226 }];
 
-const revenueMonthData = Array.from({ length: 30 }, (_, i) => ({ day: `${i + 1}`, rev: 200 + i * 170 + Math.random() * 80 }));
+const revenueMonthData = [
+  90,158,202,135,248,315,180,225,270,202,338,248,180,292,382,225,202,270,315,180,248,202,292,225,157,270,202,248,180,225
+].map((rev, i) => ({ day: `${i + 1}`, rev }));
 
 const revenueData = {
-  'This week': { value: '€1,240', trend: '8% vs last period', chart: revenueWeekData },
-  'This month': { value: '€5,380', trend: '14% vs last period', chart: revenueMonthData }
+  'This week': { value: '€1,620', trend: '9% vs last period', chart: revenueWeekData },
+  'This month': { value: '€6,110', trend: '11% vs last period', chart: revenueMonthData }
 };
 
 function RevenueCard() {

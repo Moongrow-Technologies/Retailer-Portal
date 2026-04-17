@@ -14,7 +14,7 @@ export default function CompactWalletCard({ wallet }) {
   const bonuses = wallet.committed_bonuses || 0;
   const available = wallet.available || 0;
 
-  const activeCampaigns = 2;
+  const activeCampaigns = 3;
   const activeBonuses = 2;
 
   return (

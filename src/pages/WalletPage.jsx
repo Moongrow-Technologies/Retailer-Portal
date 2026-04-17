@@ -74,7 +74,7 @@ export default function WalletPage() {
                 <p className="text-sm text-[#5b616e]">Campaign budgets</p>
               </div>
               <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">2 active campaigns</p>
+              <p className="text-xs text-[#5b616e]">3 active campaigns</p>
             </div>
 
             {/* Bonus budgets */}

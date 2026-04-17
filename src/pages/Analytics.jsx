@@ -10,42 +10,46 @@ import {
 import { STAFF, CAMPAIGNS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
+// This Month chart: cumulative revenue building up to €6,110 (all campaigns combined)
+// This Week chart: ~€1,240 this week (roughly 124 units × avg €10/unit product price)
 const revenueOverTime = {
   'This Month': [
-  { label: 'Mar 14', value: 3200 },
-  { label: 'Mar 21', value: 3800 },
-  { label: 'Mar 28', value: 4500 },
-  { label: 'Apr 4', value: 5200 },
-  { label: 'Apr 7', value: 5800 },
-  { label: 'Apr 11', value: 6300 },
-  { label: 'Apr 14', value: 6708 }],
+  { label: 'Mar 14', value: 980  },
+  { label: 'Mar 21', value: 1870 },
+  { label: 'Mar 28', value: 2940 },
+  { label: 'Apr 4',  value: 3810 },
+  { label: 'Apr 7',  value: 4620 },
+  { label: 'Apr 11', value: 5380 },
+  { label: 'Apr 17', value: 6110 }],
 
   'This Week': [
-  { label: 'Mon', value: 820 },
-  { label: 'Tue', value: 1340 },
-  { label: 'Wed', value: 1900 },
-  { label: 'Thu', value: 2450 },
-  { label: 'Fri', value: 3120 },
-  { label: 'Sat', value: 3800 },
-  { label: 'Sun', value: 4100 }]
+  { label: 'Mon', value: 140  },
+  { label: 'Tue', value: 310  },
+  { label: 'Wed', value: 580  },
+  { label: 'Thu', value: 760  },
+  { label: 'Fri', value: 930  },
+  { label: 'Sat', value: 1080 },
+  { label: 'Sun', value: 1240 }]
 
 };
 
+// Revenue = units × product price: OG 156×12.50=1950, Blue 200×11=2200, White 80×10.50=840, Amnesia 70×13=910, Gorilla 15×14=210
 const topProducts = [
 { name: 'Blue Dream',   units: 200, revenue: 2200, img: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80' },
 { name: 'OG Kush',      units: 156, revenue: 1950, img: 'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80' },
-{ name: 'White Widow',  units: 114, revenue: 1197, img: 'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80' },
-{ name: 'Amnesia Haze', units: 74,  revenue: 962,  img: 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80' }];
+{ name: 'Amnesia Haze', units: 70,  revenue: 910,  img: 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80' },
+{ name: 'White Widow',  units: 80,  revenue: 840,  img: 'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80' }];
 
 
+// Weekly totals across all campaigns, should sum close to 521 units for the month
 const topSellingDays = [
-{ label: 'Wed', day: 'W', units: 98, rank: 1 },
-{ label: 'Sat', day: 'S', units: 86, rank: 2 },
-{ label: 'Thu', day: 'T', units: 74, rank: 3 },
-{ label: 'M', units: 52 },
-{ label: 'T', units: 48 },
-{ label: 'F', units: 65 },
-{ label: 'S', units: 71 }];
+{ label: 'Wed', day: 'W', units: 84, rank: 1 },
+{ label: 'Sat', day: 'S', units: 72, rank: 2 },
+{ label: 'Fri', day: 'F', units: 68, rank: 3 },
+{ label: 'M', units: 58 },
+{ label: 'T', units: 52 },
+{ label: 'T', units: 61 },
+{ label: 'S', units: 64 }];
 
 
 const activeStaff = [...STAFF].
@@ -114,28 +118,28 @@ export default function Analytics() {
           {/* Revenue */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Revenue</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">€6,708</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€6,110</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 9% vs last period</p>
           </div>
 
           {/* Units Sold */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Units Sold</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">559</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">521</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 7% vs last period</p>
           </div>
 
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Commission Paid</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,042</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 12% vs last period</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,032</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 11% vs last period</p>
           </div>
 
           {/* ROI */}
           <div className="px-6 py-6">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">ROI</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">6.4x</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">5.9x</p>
             <p className="text-xs text-[#5b616e] font-medium mt-1.5">per €1 commission</p>
           </div>
         </div>

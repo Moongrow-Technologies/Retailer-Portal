@@ -63,17 +63,17 @@ export default function Campaigns() {
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
             <p className="text-xs text-[#5b616e] mb-1">Committed</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,308</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,400</p>
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€692</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€375</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
-          <div className="h-full" style={{ width: '65%', background: '#27272b' }} />
+          <div className="h-full" style={{ width: '79%', background: '#27272b' }} />
           <div className="h-full flex-1" style={{ background: '#e2e2e2' }} />
         </div>
 
@@ -81,10 +81,10 @@ export default function Campaigns() {
         <div className="flex items-center justify-between mb-4">
           <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-            65% spent
+            79% committed
           </p>
           <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            35% remaining
+            21% remaining
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
           </p>
         </div>
