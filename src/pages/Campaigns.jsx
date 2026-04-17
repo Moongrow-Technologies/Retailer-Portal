@@ -78,12 +78,12 @@ export default function Campaigns() {
         {TABS.map((t) =>
         <button key={t.key} onClick={() => setTab(t.key)}
         className={cn("px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all",
-        tab === t.key
-          ? "bg-[#12121f] text-white border-[#12121f]"
-          : "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
+        tab === t.key ?
+        "bg-[#12121f] text-white border-[#12121f]" :
+        "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
         )}>
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/60" : "text-[#9490AA]")}>
+            <span className="text-[hsl(var(--background))] ml-1 text-xs">
               {count(t.key)}
             </span>
           </button>
