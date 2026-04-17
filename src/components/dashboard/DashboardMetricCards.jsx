@@ -210,8 +210,7 @@ function UnitsSoldCard() {
               dataKey="units"
               shape={(props) => {
                 const isBest = props.units === maxVal;
-                const isToday = props.index === d.chart.length - 1;
-                const fill = isBest ? '#F59E0B' : isToday ? '#5B4FCF' : '#EDEAF8';
+                const fill = isBest ? '#9490AA' : '#E2E0ED';
                 return <CustomBar {...props} fill={fill} />;
               }} />
             
@@ -219,15 +218,9 @@ function UnitsSoldCard() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-sm bg-[#F59E0B] inline-block" />
-          <span className="text-[11px] text-[#9490AA]">Best — {d.best.day} ({d.best.value})</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-sm bg-[#5B4FCF] inline-block" />
-          <span className="text-[11px] text-[#9490AA]">Today ({d.today.value})</span>
-        </div>
+      <div className="flex items-center gap-1.5">
+        <span className="w-2.5 h-2.5 rounded-sm bg-[#9490AA] inline-block" />
+        <span className="text-[11px] text-[#9490AA]">Best — {d.best.day} ({d.best.value})</span>
       </div>
     </div>);
 
