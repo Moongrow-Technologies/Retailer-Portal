@@ -50,7 +50,7 @@ export default function StaffPage() {
           
             {/* Avatar + Name + Role */}
             <div className="flex items-center gap-4 flex-1">
-              <div className="bg-[hsl(var(--muted-foreground))] text-white text-lg font-semibold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+              <div className="bg-[hsl(var(--border))] text-white text-lg font-semibold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
 
 
               
