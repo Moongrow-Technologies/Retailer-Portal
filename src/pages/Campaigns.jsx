@@ -72,7 +72,7 @@ export default function Campaigns() {
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#2563EB' }}>€692</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#796EB2' }}>€692</p>
             <p className="text-xs text-[#5b616e]">35% ready to deploy</p>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Campaigns() {
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
           <div className="h-full" style={{ width: '65%', background: '#0c0b0c' }} />
-          <div className="h-full flex-1" style={{ background: '#2563EB' }} />
+          <div className="h-full flex-1" style={{ background: '#796EB2' }} />
         </div>
 
         {/* Bar labels */}
@@ -89,9 +89,9 @@ export default function Campaigns() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#0c0b0c] inline-block"></span>
             65% committed
           </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#2563EB' }}>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#796EB2' }}>
             35% remaining
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#2563EB' }}></span>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#796EB2' }}></span>
           </p>
         </div>
 
