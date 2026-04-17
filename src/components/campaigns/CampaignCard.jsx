@@ -49,7 +49,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         <p className="text-[hsl(var(--foreground))] mb-0.5 text-xs">Spent: €{campaign.spent.toFixed(2)}</p>
         <div className="flex items-baseline gap-2 mb-0.5">
           <div className="w-32 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden flex-shrink-0">
-            <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
+            <div className="h-full rounded-full" style={{ width: `${spendPct}%`, background: '#27272b' }} />
           </div>
           <span className="text-xs font-semibold text-[#0c0b0c] w-8 text-right flex-shrink-0">{Math.round(spendPct)}%</span>
         </div>
@@ -63,7 +63,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
         <Switch
           checked={isActive}
           onCheckedChange={() => onTogglePause?.(campaign)}
-          className="data-[state=checked]:bg-primary" />
+          className="data-[state=checked]:bg-[#796EB2]" />
 
         }
         <DropdownMenu>
