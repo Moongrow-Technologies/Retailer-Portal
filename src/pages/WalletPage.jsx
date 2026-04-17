@@ -56,42 +56,42 @@ export default function WalletPage() {
 
       <div className="space-y-4">
         {/* Wallet Card */}
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
-          {/* Top row: balance */}
-          <div className="mb-6">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex items-center gap-8">
+          {/* Left: balance */}
+          <div className="pr-8 border-r border-[#EBEBF0] flex-shrink-0">
             <p className="text-sm text-[#5b616e] mb-1">Wallet balance</p>
-            <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
+            <p className="text-[#0c0b0c] text-4xl font-bold tracking-tight">
               €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
             </p>
           </div>
 
-          {/* Bottom row: three columns */}
-          <div className="grid grid-cols-3 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] pt-6">
+          {/* Right: breakdown rows */}
+          <div className="flex flex-col gap-3 flex-1">
             {/* Campaign budgets */}
-            <div className="pr-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Campaign budgets</p>
-              </div>
-              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">2 active campaigns</p>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-[#796EB2] flex-shrink-0" />
+              <span className="text-sm font-medium text-[#0c0b0c] w-36">Campaign budgets</span>
+              <span className="text-xs text-[#5b616e] bg-[#F4F3F4] rounded-full px-2 py-0.5">2 active</span>
+              <div className="flex-1 h-0.5 rounded-full bg-[#796EB2] mx-2" />
+              <span className="text-sm font-bold text-[#0c0b0c] ml-auto">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</span>
             </div>
 
             {/* Bonus budgets */}
-            <div className="px-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Bonus budgets</p>
-              </div>
-              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{bonuses.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">2 active bonuses</p>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
+              <span className="text-sm font-medium text-[#0c0b0c] w-36">Bonus budgets</span>
+              <span className="text-xs text-[#5b616e] bg-[#F4F3F4] rounded-full px-2 py-0.5">2 active</span>
+              <div className="flex-1 h-0.5 rounded-full bg-amber-400 mx-2" style={{ maxWidth: '60px' }} />
+              <span className="text-sm font-bold text-[#0c0b0c] ml-auto">€{bonuses.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</span>
             </div>
 
             {/* Unbudgeted */}
-            <div className="pl-6">
-              <p className="text-sm text-[#5b616e] mb-2">Unbudgeted</p>
-              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{available.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">free to budget</p>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-[#BEBEBE] flex-shrink-0" />
+              <span className="text-sm font-medium text-[#0c0b0c] w-36">Unbudgeted</span>
+              <span className="text-xs text-[#5b616e] bg-[#F4F3F4] rounded-full px-2 py-0.5">free to budget</span>
+              <div className="flex-1 h-0.5 rounded-full bg-[#BEBEBE] mx-2" style={{ maxWidth: '40px' }} />
+              <span className="text-sm font-bold text-[#0c0b0c] ml-auto">€{available.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</span>
             </div>
           </div>
         </div>
