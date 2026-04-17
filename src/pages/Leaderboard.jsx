@@ -112,10 +112,7 @@ export default function Leaderboard() {
           
             {/* Rank */}
             <div className="flex items-center gap-2">
-              <span className="bg-[hsl(var(--muted))] text-[#5b616e] text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center">
-
-
-              
+              <span className="text-sm text-[#9490AA] w-4 text-right">
                 {i + 1}
               </span>
               {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
