@@ -81,8 +81,8 @@ export default function Leaderboard() {
             className={cn(
               "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap",
               metric === m ?
-              "bg-[#796EB2] text-white" :
-              "text-[#0c0b0c] hover:text-[#796EB2]"
+              "bg-[#12121f] text-white" :
+              "text-[#0c0b0c] hover:text-[#12121f]"
             )}>
               {m === 'commission' ? 'By Commission' : 'By Units Sold'}
             </button>

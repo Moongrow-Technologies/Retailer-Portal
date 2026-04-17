@@ -83,8 +83,8 @@ export default function Analytics() {
               className={cn(
                 'px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap',
                 period === p ?
-                'border border-[#796EB2] text-[#796EB2] bg-white' :
-                'text-[#0c0b0c] hover:text-[#796EB2]'
+                'border border-[#12121f] text-[#12121f] bg-white' :
+                'text-[#0c0b0c] hover:text-[#12121f]'
               )}>
               
                 {p}

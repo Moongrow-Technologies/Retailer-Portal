@@ -98,8 +98,8 @@ export default function Bonuses() {
             className={cn(
               "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all",
               tab === t.key
-                ? "bg-[#796EB2] text-white"
-                : "text-[#0c0b0c] hover:text-[#796EB2]"
+                ? "bg-[#12121f] text-white"
+                : "text-[#0c0b0c] hover:text-[#12121f]"
             )}
           >
             {t.label}
