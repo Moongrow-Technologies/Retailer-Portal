@@ -22,7 +22,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
       {/* Left: Icon + Name/Description */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <div className="bg-[hsl(var(--destructive-foreground))] rounded-xl w-12 h-12 border-2 border-[#796EB2] flex items-center justify-center flex-shrink-0 shadow-sm">
-          <Sparkles className="text-[hsl(var(--muted-foreground))] lucide lucide-sparkles w-6 h-6" />
+          <Sparkles className="text-[hsl(var(--secondary))] lucide lucide-sparkles w-6 h-6" />
         </div>
         <div className="min-w-0">
           <h3 className="font-semibold text-[#0E0D1E] whitespace-nowrap overflow-hidden text-ellipsis">{campaign.name}</h3>
