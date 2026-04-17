@@ -57,11 +57,7 @@ export default function Campaigns() {
       </div>
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
-        {/* Top row: label + total */}
-        <div className="flex items-center justify-between mb-5">
-          <p className="text-xs font-semibold tracking-widest text-[#5b616e] uppercase">Budget · April 2026</p>
-          <p className="text-xs font-semibold tracking-widest text-[#5b616e] uppercase">Total €2,000</p>
-        </div>
+
 
         {/* Two columns: Committed | Remaining */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
@@ -95,11 +91,7 @@ export default function Campaigns() {
           </p>
         </div>
 
-        {/* Footer */}
-        <div className="border-t border-[#EBEBF0] pt-3 flex items-center justify-between">
-          <p className="text-xs text-[#5b616e]">You have <span className="font-bold text-[#0c0b0c]">€692</span> to allocate before the period ends.</p>
-          <button className="text-xs font-bold text-[#0c0b0c] hover:underline">Allocate budget →</button>
-        </div>
+
       </div>
 
       <div className="flex items-center mb-6 w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
