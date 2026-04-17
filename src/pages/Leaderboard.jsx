@@ -113,10 +113,10 @@ export default function Leaderboard() {
           
             {/* Rank */}
             <div className="flex items-center gap-2">
-              <span className={cn(
-              "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold",
-              i === 0 ? "bg-amber-500 text-white" : "bg-[#E2E0ED] text-[#9490AA]"
-            )}>
+              <span className="bg-[hsl(var(--muted))] text-[#9490AA] text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center">
+
+
+              
                 {i + 1}
               </span>
               {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
@@ -141,10 +141,10 @@ export default function Leaderboard() {
 
             {/* Movement */}
             <div>
-              <span className={cn(
-              "inline-block px-2 py-1 rounded-full text-xs font-semibold",
-              "bg-[#E2E0ED] text-[#9490AA]"
-            )}>
+              <span className="bg-[hsl(var(--popover))] text-[#9490AA] px-2 py-1 text-xs font-semibold rounded-full inline-block">
+
+
+              
                 — No change
               </span>
             </div>
