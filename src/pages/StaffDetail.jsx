@@ -4,7 +4,7 @@ import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, UserX } from 'lucide-react';
 import { STAFF } from '@/lib/sampleData';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { cn } from '@/lib/utils';
 
 const earningsOverTime = [
@@ -95,42 +95,48 @@ export default function StaffDetail() {
       </div>
 
       {/* Stat Cards — single unified card with column dividers */}
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] mb-6">
-        <div className="grid grid-cols-4 divide-x divide-[#EBEBF0]">
+      <div className="bg-white rounded-xl border border-[#EBEBF0] mb-5">
+        <div className="grid grid-cols-4" style={{ borderRadius: 'inherit' }}>
           {stats.map((s, i) => (
-            <div key={i} className="px-7 py-7">
-              <p className="text-[11px] font-semibold text-[#7A7893] uppercase tracking-widest mb-3">{s.label}</p>
-              <p className="text-4xl font-bold tracking-tight text-[#0E0D1E] mb-2">{s.value}</p>
-              <p className="text-sm text-[#9490AA]">{s.sub}</p>
+            <div key={i} className={cn("px-6 py-5", i > 0 && "border-l border-[#EBEBF0]")} style={{ borderLeftWidth: i > 0 ? '0.5px' : undefined }}>
+              <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
+              <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight mb-1">{s.value}</p>
+              <p className="text-xs text-[#9490AA]">{s.sub}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Earnings Over Time</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={earningsOverTime}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" />
-              <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="#9490AA" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#9490AA" />
+      <div className="grid grid-cols-2 gap-4 mb-5">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
+          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Earnings over time</h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <AreaChart data={earningsOverTime}>
+              <defs>
+                <linearGradient id="earningsGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" vertical={false} />
+              <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <Tooltip />
-              <Line type="monotone" dataKey="earnings" stroke="#27272b" strokeWidth={2} dot={{ r: 3 }} />
-            </LineChart>
+              <Area type="monotone" dataKey="earnings" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#earningsGrad)" dot={{ r: 3, fill: 'hsl(var(--primary))' }} />
+            </AreaChart>
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5">
-          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Commission by Product</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={commissionByProduct} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" />
-              <XAxis type="number" tick={{ fontSize: 11 }} stroke="#9490AA" />
-              <YAxis type="category" dataKey="product" tick={{ fontSize: 11 }} stroke="#9490AA" width={80} />
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
+          <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Commission by product</h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={commissionByProduct} layout="vertical" margin={{ left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" horizontal={false} />
+              <XAxis type="number" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="product" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} width={85} />
               <Tooltip />
-              <Bar dataKey="commission" fill="#27272b" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="commission" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
