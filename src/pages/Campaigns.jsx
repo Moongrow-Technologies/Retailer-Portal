@@ -68,8 +68,8 @@ export default function Campaigns() {
           </div>
           <div className="text-right pl-6">
             <p className="text-xs text-[#7A7893] mb-1 inline-block px-3 py-1.5 bg-[#F4F3FA] rounded-lg">Available</p>
-            <p className="text-emerald-500 text-3xl font-semibold">€692</p>
-            <p className="text-sm text-emerald-600 font-medium mt-1">• 35% left</p>
+            <p className="text-3xl font-semibold" style={{color:'#16A34A'}}>€692</p>
+            <p className="text-sm font-medium mt-1" style={{color:'#16A34A'}}>• 35% left</p>
           </div>
         </div>
       </div>

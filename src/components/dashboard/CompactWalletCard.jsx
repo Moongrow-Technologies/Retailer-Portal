@@ -85,7 +85,7 @@ export default function CompactWalletCard({ wallet }) {
               <p className="text-xs text-[#9490AA]">free to allocate</p>
             </div>
           </div>
-          <span className="text-sm font-bold text-emerald-600">€{available.toLocaleString('nl-NL')}</span>
+          <span className="text-sm font-bold" style={{color:'#16A34A'}}>€{available.toLocaleString('nl-NL')}</span>
         </div>
       </div>
 

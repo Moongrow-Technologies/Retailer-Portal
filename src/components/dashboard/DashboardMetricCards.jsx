@@ -78,7 +78,7 @@ function ActiveCampaignsCard({ campaigns }) {
 
       <div>
         <p className="text-[#0E0D1E] text-4xl font-medium leading-none">{active.length}</p>
-        <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">↑ 2 new this month</p>
+        <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">↑ 2 new this month</p>
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 mt-1 space-y-3">
@@ -266,8 +266,8 @@ function RevenueCard() {
           <AreaChart data={d.chart} margin={{ top: 4, right: 4, left: 4, bottom: 0 }}>
             <defs>
               <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#22C55E" stopOpacity={0.18} />
-                <stop offset="100%" stopColor="#22C55E" stopOpacity={0.01} />
+                <stop offset="0%" stopColor="#16A34A" stopOpacity={0.18} />
+                <stop offset="100%" stopColor="#16A34A" stopOpacity={0.01} />
               </linearGradient>
             </defs>
             <XAxis dataKey="day" hide />
@@ -278,11 +278,11 @@ function RevenueCard() {
             <Area
               type="monotone"
               dataKey="rev"
-              stroke="#22C55E"
+              stroke="#16A34A"
               strokeWidth={2}
               fill="url(#revGrad)"
               dot={false}
-              activeDot={{ r: 4, fill: '#22C55E', strokeWidth: 0 }} />
+              activeDot={{ r: 4, fill: '#16A34A', strokeWidth: 0 }} />
             
           </AreaChart>
         </ResponsiveContainer>

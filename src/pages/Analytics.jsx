@@ -116,21 +116,21 @@ export default function Analytics() {
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Revenue</p>
             <p className="text-[26px] font-medium text-[#0E0D1E]">€6,708</p>
-            <p className="text-xs text-[#16A34A] font-medium mt-1.5">↑ 8% vs last period</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
           </div>
 
           {/* Units Sold */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Units Sold</p>
             <p className="text-[26px] font-medium text-[#0E0D1E]">559</p>
-            <p className="text-xs text-[#16A34A] font-medium mt-1.5">↑ 8% vs last period</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 8% vs last period</p>
           </div>
 
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#9490AA] tracking-wide mb-2">Commission Paid</p>
             <p className="text-[26px] font-medium text-[#0E0D1E]">€1,042</p>
-            <p className="text-xs text-[#16A34A] font-medium mt-1.5">↑ 12% vs last period</p>
+            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 12% vs last period</p>
           </div>
 
           {/* ROI */}
