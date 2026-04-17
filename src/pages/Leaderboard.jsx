@@ -90,75 +90,57 @@ export default function Leaderboard() {
         </div>
       </div>
 
-      <div className="w-full bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+      <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-4 border-b border-[#F4F3FA]">
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">#</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Staff</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Store</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Movement</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e] text-right">Commission</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]"></span>
+        <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-3 border-b border-[#EBEBF0]">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
+          <span />
         </div>
 
         {/* Rows */}
-        {sorted.map((staff, i) =>
-        <div
-          key={staff.id}
-          className={cn(
-            "grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-5 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center",
-            i === 0 && ""
-          )}>
-          
-            {/* Rank */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-[#9490AA] w-4 text-right">
-                {i + 1}
-              </span>
-              {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
-            </div>
-
-            {/* Staff */}
-            <div className="flex items-center gap-3">
-              <div className="bg-[#d7d5d5] text-white text-sm font-semibold rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-
-
-              
-                {staff.name.split(' ').map((n) => n[0]).join('').slice(0, 1)}
+        {sorted.map((staff, i) => (
+          <div key={staff.id}>
+            <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-6 items-center hover:bg-[#FAFAF9] transition-colors">
+              {/* Rank */}
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-[#9490AA]">{i + 1}</span>
+                {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
               </div>
-              <div className="min-w-0">
-                <p className="font-medium text-[#0c0b0c] text-sm">{staff.name}</p>
-                <p className="text-xs text-[#5b616e]">{staff.store}</p>
+
+              {/* Staff */}
+              <div className="flex items-center gap-3">
+                <div className="bg-[#E2E0ED] text-[#7A7893] text-sm font-semibold rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
+                  {staff.name.charAt(0)}
+                </div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-[#0c0b0c] text-sm">{staff.name}</p>
+                  <p className="text-xs text-[#9490AA]">{staff.store}</p>
+                </div>
               </div>
-            </div>
 
-            {/* Store */}
-            <span className="text-[#0d0c1d] text-sm">{staff.store}</span>
+              {/* Store */}
+              <span className="text-sm text-[#0c0b0c]">{staff.store}</span>
 
-            {/* Movement */}
-            <div>
-              <span className="bg-[hsl(var(--popover))] text-[#5b616e] px-2 py-1 text-xs font-semibold rounded-full inline-block">
+              {/* Movement */}
+              <span className="text-sm text-[#9490AA]">— No change</span>
 
-
-              
-                — No change
+              {/* Commission */}
+              <span className={cn("text-right font-bold text-sm", i === 0 ? "text-emerald-600" : "text-[#0c0b0c]")}>
+                €{staff.total_commissions.toFixed(2)}
               </span>
+
+              {/* View Link */}
+              <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline text-right">
+                View →
+              </Link>
             </div>
-
-            {/* Commission */}
-            <span className={cn(
-            "text-right font-semibold text-sm",
-            i === 0 ? "text-emerald-600" : "text-[#0c0b0c]"
-          )}>
-              €{staff.total_commissions.toFixed(2)}
-            </span>
-
-            {/* View Link */}
-            <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline text-right">
-              View →
-            </Link>
+            {i < sorted.length - 1 && <div className="h-px bg-[#F0EFF5] mx-8" />}
           </div>
-        )}
+        ))}
       </div>
     </div>);
 

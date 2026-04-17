@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp, MoreVertical } from 'lucide-react';
+import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp, MoreVertical, Star } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import SuccessToast from '@/components/shared/SuccessToast';
@@ -91,17 +91,14 @@ export default function BonusDetail() {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-2 gap-3 mt-5">
-          <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-            <p className="text-xl font-bold text-[#0E0D1E]">€{bonus.prize_pool}</p>
-            <p className="text-xs text-[#9490AA]">Prize Pool</p>
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] mt-5">
+          <div className="px-6 py-4">
+            <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">Prize Pool</p>
+            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">€{bonus.prize_pool}</p>
           </div>
-          <div className="bg-[#F8F7FC] rounded-xl p-3 text-center">
-            <div className="flex items-center justify-center gap-1.5">
-              <Clock className="w-4 h-4 text-[#9490AA]" />
-              <p className="text-xl font-bold text-[#0E0D1E]">{isActive ? formatTimeLeft(hoursLeft) : 'Ended'}</p>
-            </div>
-            <p className="text-xs text-[#9490AA]">{isActive ? 'Remaining' : 'Duration finished'}</p>
+          <div className="px-6 py-4">
+            <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">{isActive ? 'Time Remaining' : 'Status'}</p>
+            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">{isActive ? formatTimeLeft(hoursLeft) : 'Ended'}</p>
           </div>
         </div>
 
@@ -127,46 +124,44 @@ export default function BonusDetail() {
 
       <div className="grid grid-cols-3 gap-4">
         {/* Live Leaderboard */}
-        <div className="col-span-2 bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-4 h-4 text-[#796EB2]" />
-            <h2 className="font-semibold text-[#0E0D1E]">{isActive ? 'Live Leaderboard' : 'Final Standings'}</h2>
+        <div className="col-span-2 bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
+          <div className="px-6 py-4 border-b border-[#EBEBF0]">
+            <h2 className="font-semibold text-[#0E0D1E] text-sm">{isActive ? 'Live Leaderboard' : 'Final Standings'}</h2>
           </div>
-          <div className="space-y-2">
+          {/* Header */}
+          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0]">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Score</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Prize</span>
+          </div>
+          <div>
             {bonus.leaderboard?.map((entry, i) => {
-              const RankIcon = rankIcons[i] || Award;
               const pct = Math.round((entry.score / maxScore) * 100);
               const gap = i > 0 ? bonus.leaderboard[i - 1].score - entry.score : null;
               return (
-                <div key={entry.rank} className={cn(
-                  "flex items-center gap-3 p-3 rounded-xl transition-all",
-                  i === 0 ? "bg-[#F5F3FC] border border-[#E2E0ED]" : "bg-[#F8F7FC]"
-                )}>
-                  <div className="w-7 flex-shrink-0 flex items-center justify-center">
-                    <RankIcon className={cn("w-4 h-4", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : i === 2 ? "text-orange-400" : "text-[#C8C3E0]")} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <div>
-                        <span className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</span>
-                        <span className="text-xs text-[#9490AA] ml-1.5">{entry.store}</span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold text-[#0E0D1E]">{entry.score} units</span>
-                        {gap !== null && isActive && (
-                          <span className="text-xs text-[#9490AA] block">-{gap} behind</span>
-                        )}
+                <div key={entry.rank}>
+                  <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-5 items-center hover:bg-[#FAFAF9] transition-colors">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm text-[#9490AA]">{i + 1}</span>
+                      {i === 0 && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
+                      <p className="text-xs text-[#9490AA]">{entry.store}</p>
+                      <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-[180px]">
+                        <div className="h-full bg-[#796EB2] rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
-                    <div className="h-1.5 bg-[#E2E0ED] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#796EB2] rounded-full transition-all" style={{ width: `${pct}%` }} />
+                    <div className="text-right">
+                      <span className="text-sm font-bold text-[#0E0D1E]">{entry.score} units</span>
+                      {gap !== null && isActive && <p className="text-xs text-[#9490AA]">-{gap} behind</p>}
+                    </div>
+                    <div className="text-right">
+                      {entry.prize && <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{entry.prize}</span>}
                     </div>
                   </div>
-                  {entry.prize && (
-                    <div className="flex-shrink-0 text-right">
-                      <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{entry.prize}</span>
-                    </div>
-                  )}
+                  {i < (bonus.leaderboard?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
                 </div>
               );
             })}
@@ -174,29 +169,34 @@ export default function BonusDetail() {
         </div>
 
         {/* Prize Structure */}
-        <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-5">
-          <h2 className="font-semibold text-[#0E0D1E] mb-4">Prize Structure</h2>
-          <div className="space-y-2">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
+          <div className="px-5 py-4 border-b border-[#EBEBF0]">
+            <h2 className="font-semibold text-[#0E0D1E] text-sm">Prize Structure</h2>
+          </div>
+          <div>
             {bonus.prizes?.map((prize, i) => {
               const RankIcon = rankIcons[i] || Award;
               return (
-                <div key={i} className="flex items-center justify-between p-3 bg-[#F8F7FC] rounded-xl">
-                  <div className="flex items-center gap-2">
-                    <RankIcon className={cn("w-4 h-4", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : "text-orange-400")} />
-                    <span className="text-sm text-[#7A7893]">{prize.label}</span>
+                <div key={i}>
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <div className="flex items-center gap-2.5">
+                      <RankIcon className={cn("w-4 h-4", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : "text-orange-400")} />
+                      <span className="text-sm text-[#5b616e]">{prize.label}</span>
+                    </div>
+                    <span className="text-sm font-bold text-[#0E0D1E]">€{prize.amount}</span>
                   </div>
-                  <span className="text-sm font-bold text-[#0E0D1E]">€{prize.amount}</span>
+                  {i < (bonus.prizes?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-5" />}
                 </div>
               );
             })}
           </div>
 
           {!isActive && bonus.winner_name && (
-            <div className="mt-4 pt-4 border-t border-[#EBEBF0]">
-              <p className="text-xs text-[#9490AA] uppercase tracking-wide font-semibold mb-2">Winner</p>
+            <div className="mx-5 mb-5 mt-1 pt-4 border-t border-[#EBEBF0]">
+              <p className="text-[10px] text-[#9490AA] uppercase tracking-widest font-semibold mb-2">Winner</p>
               <div className="flex items-center gap-2">
                 <Crown className="w-4 h-4 text-amber-500" />
-                <span className="font-semibold text-[#0E0D1E]">{bonus.winner_name}</span>
+                <span className="font-semibold text-[#0E0D1E] text-sm">{bonus.winner_name}</span>
               </div>
               <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout} paid out</p>
             </div>

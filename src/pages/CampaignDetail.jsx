@@ -87,10 +87,20 @@ export default function CampaignDetail() {
         </div>
       )}
 
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <StatCard label="Units Sold" value={campaign.units_sold} sublabel={`of ${campaign.target_units} target`} icon={Target} />
-        <StatCard label="Commission Spend" value={`€${campaign.spent.toFixed(2)}`} sublabel={`of €${campaign.budget.toFixed(2)} budget`} icon={DollarSign} />
-        <StatCard label="ROI" value={campaign.status === 'completed' ? '2.4×' : '—'} sublabel={campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion'} icon={TrendingUp} />
+      <div className="bg-white rounded-xl border border-[#EBEBF0] mb-5">
+        <div className="grid grid-cols-3 divide-x divide-[#EBEBF0]">
+          {[
+            { label: 'Units Sold', value: campaign.units_sold, sub: `of ${campaign.target_units} target` },
+            { label: 'Commission Spend', value: `€${campaign.spent.toFixed(2)}`, sub: `of €${campaign.budget.toFixed(2)} budget` },
+            { label: 'ROI', value: campaign.status === 'completed' ? '2.4×' : '—', sub: campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion' },
+          ].map((s, i) => (
+            <div key={i} className="px-6 py-5">
+              <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
+              <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight mb-1">{s.value}</p>
+              <p className="text-xs text-[#9490AA]">{s.sub}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Progress bars */}
