@@ -77,32 +77,30 @@ export default function Bonuses() {
         {/* Two columns: Committed | Remaining */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
-            <p className="text-3xl font-bold text-[#0c0b0c] tracking-tight mb-1">€450</p>
-            <p className="text-xs text-[#5b616e]">39% allocated to bonuses</p>
+            <p className="text-xs text-[#5b616e] mb-1">Spent</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€450</p>
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#796EB2' }}>€692</p>
-            <p className="text-xs text-[#5b616e]">61% ready to deploy</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#5b616e' }}>€692</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
-          <div className="h-full" style={{ width: '39%', background: '#0c0b0c' }} />
-          <div className="h-full flex-1" style={{ background: '#796EB2' }} />
+          <div className="h-full" style={{ width: '39%', background: '#27272b' }} />
+          <div className="h-full flex-1" style={{ background: '#5b616e' }} />
         </div>
 
         {/* Bar labels */}
         <div className="flex items-center justify-between mb-4">
-          <p className="text-xs text-[#0c0b0c] flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0c0b0c] inline-block"></span>
-            39% committed
+          <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+            39% spent
           </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#796EB2' }}>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#5b616e' }}>
             61% remaining
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#796EB2' }}></span>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#5b616e' }}></span>
           </p>
         </div>
 
