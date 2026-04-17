@@ -14,10 +14,6 @@ export default function CompactWalletCard({ wallet }) {
   const bonuses = wallet.committed_bonuses || 0;
   const available = wallet.available || 0;
 
-  const campaignPct = total > 0 ? (campaigns / total) * 100 : 0;
-  const bonusPct = total > 0 ? (bonuses / total) * 100 : 0;
-  const availablePct = total > 0 ? (available / total) * 100 : 0;
-
   const activeCampaigns = 2;
   const activeBonuses = 2;
 
@@ -41,13 +37,6 @@ export default function CompactWalletCard({ wallet }) {
         </div>
       </div>
 
-      {/* Stacked bar */}
-      <div className="w-full h-3 rounded-full overflow-hidden flex mb-5">
-        <div style={{ width: `${campaignPct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2)' }} className="h-full" />
-        <div style={{ width: `${bonusPct}%`, background: 'linear-gradient(to right, #f59e0b, #fbbf24)' }} className="h-full" />
-        <div style={{ width: `${availablePct}%`, background: 'linear-gradient(to right, #10b981, #34d399)' }} className="h-full" />
-      </div>
-
       {/* Rows */}
       <div className="flex flex-col gap-0 flex-1">
         {/* Campaigns */}
@@ -59,7 +48,10 @@ export default function CompactWalletCard({ wallet }) {
               <p className="text-xs text-[#9490AA]">{activeCampaigns} active</p>
             </div>
           </div>
-          <span className="text-sm font-bold text-[#0E0D1E]">€{campaigns.toLocaleString('nl-NL')}</span>
+          <div className="text-right">
+            <span className="text-sm font-bold text-[#0E0D1E]">€{campaigns.toLocaleString('nl-NL')}</span>
+            <p className="text-xs text-[#9490AA]">allocated</p>
+          </div>
         </div>
 
         {/* Bonuses */}
@@ -71,7 +63,10 @@ export default function CompactWalletCard({ wallet }) {
               <p className="text-xs text-[#9490AA]">{activeBonuses} active</p>
             </div>
           </div>
-          <span className="text-sm font-bold text-[#0E0D1E]">€{bonuses.toLocaleString('nl-NL')}</span>
+          <div className="text-right">
+            <span className="text-sm font-bold text-[#0E0D1E]">€{bonuses.toLocaleString('nl-NL')}</span>
+            <p className="text-xs text-[#9490AA]">allocated</p>
+          </div>
         </div>
 
         <div className="border-t border-[#EBEBF0]" />
@@ -85,7 +80,10 @@ export default function CompactWalletCard({ wallet }) {
               <p className="text-xs text-[#9490AA]">free to allocate</p>
             </div>
           </div>
-          <span className="text-sm font-bold" style={{color:'#16A34A'}}>€{available.toLocaleString('nl-NL')}</span>
+          <div className="text-right">
+            <span className="text-sm font-bold" style={{color:'#16A34A'}}>€{available.toLocaleString('nl-NL')}</span>
+            <p className="text-xs text-[#9490AA]">available</p>
+          </div>
         </div>
       </div>
 
