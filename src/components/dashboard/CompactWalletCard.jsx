@@ -77,7 +77,7 @@ export default function CompactWalletCard({ wallet }) {
         <div className="border-t border-[#EBEBF0]" />
 
         {/* Available */}
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between py-2">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0"></div>
             <div>
@@ -89,7 +89,7 @@ export default function CompactWalletCard({ wallet }) {
         </div>
       </div>
 
-      <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-2 block font-semibold">
+      <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-0 block font-semibold">
         View full wallet →
       </Link>
 
