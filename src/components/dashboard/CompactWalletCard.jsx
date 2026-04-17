@@ -50,7 +50,7 @@ export default function CompactWalletCard({ wallet }) {
           <span className="text-sm font-semibold text-[#0E0D1E]">€{wallet.committed_bonuses.toLocaleString('nl-NL')}</span>
         </div>
         <div className="w-full bg-[#E2E0ED] rounded-full h-1.5">
-          <div className="bg-amber-500 h-full rounded-full" style={{ width: '18%' }}></div>
+          <div className="h-full rounded-full" style={{ width: '18%', background: 'linear-gradient(to right, #f59e0b, #fbbf24, #fde68a)' }}></div>
         </div>
 
         <div className="flex items-center justify-between">
