@@ -39,7 +39,7 @@ export default function CompactWalletCard({ wallet }) {
           <span className="text-sm font-semibold text-[#0E0D1E]">€{wallet.committed_campaigns.toLocaleString('nl-NL')}</span>
         </div>
         <div className="w-full bg-[#E2E0ED] rounded-full h-1.5">
-          <div className="bg-[#796EB2] h-full rounded-full" style={{ width: '53%' }}></div>
+          <div className="h-full rounded-full" style={{ width: '53%', background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }}></div>
         </div>
 
         <div className="flex items-center justify-between">
