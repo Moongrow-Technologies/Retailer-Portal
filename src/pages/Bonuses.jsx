@@ -90,20 +90,20 @@ export default function Bonuses() {
        </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 mb-6 w-fit">
+      <div className="flex items-center mb-6 w-fit bg-white border border-[#E2E0ED] rounded-2xl p-1 gap-1">
         {TABS.map(t => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
             className={cn(
-              "px-4 py-2 rounded-xl text-sm font-semibold border transition-all",
+              "px-4 py-2 rounded-xl text-sm font-semibold transition-all",
               tab === t.key
-                ? "bg-[#12121f] text-white border-[#12121f]"
-                : "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
+                ? "bg-[#796EB2] text-white"
+                : "text-[#0E0D1E] hover:text-[#796EB2]"
             )}
           >
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/60" : "text-[#9490AA]")}>
+            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/70" : "text-[#0E0D1E]")}>
               {counts[t.key]}
             </span>
           </button>
