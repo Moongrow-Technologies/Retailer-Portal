@@ -59,82 +59,51 @@ export default function WalletPage() {
       <div className="space-y-4">
         {/* Wallet Card */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
-          <div className="flex items-stretch gap-6">
-            {/* Left: Total Balance */}
-            <div className="flex flex-col justify-between min-w-[180px]">
-              <div>
-                <p className="text-xs font-semibold text-[#5b616e] uppercase tracking-widest mb-2">Total Balance</p>
-                <p className="text-[#0c0b0c] text-4xl font-medium tracking-tight">
-                  €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-                  {/* Decimal */}
-                  <span className="text-2xl">,{String(total.toFixed(2).split('.')[1])}</span>
-                </p>
-                <p className="text-xs text-[#5b616e] mt-1">EURC</p>
+          {/* Top row: balance + buttons */}
+          <div className="flex items-start justify-between mb-6">
+            <div>
+              <p className="text-sm text-[#5b616e] mb-1">Wallet balance</p>
+              <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
+                €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c] font-medium" onClick={() => setShowWithdraw(true)}>
+                <ArrowDownFromLine className="w-4 h-4" /> Withdraw
+              </Button>
+              <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c] font-medium" onClick={() => setShowTopUp(true)}>
+                <Plus className="w-4 h-4" /> Top Up
+              </Button>
+            </div>
+          </div>
+
+          {/* Bottom row: three columns */}
+          <div className="grid grid-cols-3 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] pt-6">
+            {/* Campaign budgets */}
+            <div className="pr-6">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0" />
+                <p className="text-sm text-[#5b616e]">Campaign budgets</p>
               </div>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('tx-history');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-sm font-medium text-[#796EB2] hover:text-[#5E54A0] transition-colors text-left mt-4">
-                
-                View transactions →
-              </button>
+              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
+              <p className="text-xs text-[#5b616e]">2 active campaigns</p>
             </div>
 
-            {/* Divider */}
-            <div className="w-px bg-[#F0EFF8] self-stretch" />
-
-            {/* Right: Breakdown cards + bar */}
-            <div className="flex-1 flex flex-col justify-between gap-4">
-              <div className="grid grid-cols-3 gap-3">
-                {/* Campaigns */}
-                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
-                   <div className="flex items-center gap-1.5 mb-2">
-                     <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2]" />
-                     <p className="text-sm font-medium text-[#0c0b0c]">Campaigns</p>
-                   </div>
-                   <p className="text-[#0c0b0c] text-2xl font-semibold">
-                     €{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                   </p>
-                   <p className="text-xs text-[#5b616e] mt-1">{campaignsPct}% of balance</p>
-                 </div>
-
-                 {/* Bonuses */}
-                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
-                   <div className="flex items-center gap-1.5 mb-2">
-                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                     <p className="text-sm font-medium text-[#0c0b0c]">Bonuses</p>
-                   </div>
-                   <p className="text-[#0c0b0c] text-2xl font-semibold">
-                     €{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                   </p>
-                   <p className="text-xs text-[#5b616e] mt-1">{bonusesPct}% of balance</p>
-                 </div>
-
-                 {/* Available */}
-                 <div className="bg-white border border-[#EBEBF0] rounded-xl px-4 py-3">
-                   <div className="flex items-center gap-1.5 mb-2">
-                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                     <p className="text-sm font-medium text-[#0c0b0c]">Available</p>
-                   </div>
-                   <p className="text-emerald-700 text-2xl font-semibold">
-                     €{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-                   </p>
-                   <p className="text-xs text-[#5b616e] mt-1">{availablePct}% of balance</p>
-                 </div>
+            {/* Bonus budgets */}
+            <div className="px-6">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
+                <p className="text-sm text-[#5b616e]">Bonus budgets</p>
               </div>
+              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{bonuses.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
+              <p className="text-xs text-[#5b616e]">2 active bonuses</p>
+            </div>
 
-              {/* Balance bar */}
-              <div className="h-2.5 rounded-full bg-[#E2E0ED] overflow-hidden flex">
-                {total > 0 &&
-                <>
-                    <div className="h-full bg-[#796EB2]" style={{ width: `${campaignsPct}%` }} />
-                    <div className="h-full bg-amber-500" style={{ width: `${bonusesPct}%` }} />
-                    <div className="h-full bg-emerald-500" style={{ width: `${availablePct}%` }} />
-                  </>
-                }
-              </div>
+            {/* Unbudgeted */}
+            <div className="pl-6">
+              <p className="text-sm text-[#5b616e] mb-2">Unbudgeted</p>
+              <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{available.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
+              <p className="text-xs text-[#5b616e]">free to budget</p>
             </div>
           </div>
         </div>
