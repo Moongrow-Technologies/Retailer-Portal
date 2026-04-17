@@ -26,8 +26,8 @@ export default function Leaderboard() {
       <div>
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-[#0E0D1E]">Leaderboard</h1>
-            <p className="text-sm text-[#7A7893] mt-1">Staff rankings across all campaigns.</p>
+            <h1 className="text-2xl font-bold text-[#0c0b0c]">Leaderboard</h1>
+            <p className="text-sm text-[#5b616e] mt-1">Staff rankings across all campaigns.</p>
           </div>
         </div>
         <EmptyState icon={Trophy} title="No staff yet" description="Invite your team to start tracking performance." actionLabel="Invite Staff" onAction={() => window.location.href = '/staff'} />
@@ -39,10 +39,10 @@ export default function Leaderboard() {
     <div className="flex flex-col min-h-screen">
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0E0D1E]">Leaderboard</h1>
-          <p className="text-sm text-[#7A7893] mt-1">Staff rankings across all campaigns.</p>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Leaderboard</h1>
+          <p className="text-sm text-[#5b616e] mt-1">Staff rankings across all campaigns.</p>
         </div>
-        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0E0D1E]"><Download className="w-4 h-4" /> Export</Button>
+        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
       {/* Filters Row */}
@@ -82,7 +82,7 @@ export default function Leaderboard() {
               "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap",
               metric === m ?
               "bg-[#796EB2] text-white" :
-              "text-[#0E0D1E] hover:text-[#796EB2]"
+              "text-[#0c0b0c] hover:text-[#796EB2]"
             )}>
               {m === 'commission' ? 'By Commission' : 'By Units Sold'}
             </button>
@@ -93,12 +93,12 @@ export default function Leaderboard() {
       <div className="w-full bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
         <div className="grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-4 border-b border-[#F4F3FA]">
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#9490AA]"></span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">#</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Staff</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Store</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]">Movement</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e] text-right">Commission</span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#5b616e]"></span>
         </div>
 
         {/* Rows */}
@@ -112,7 +112,7 @@ export default function Leaderboard() {
           
             {/* Rank */}
             <div className="flex items-center gap-2">
-              <span className="bg-[hsl(var(--muted))] text-[#9490AA] text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center">
+              <span className="bg-[hsl(var(--muted))] text-[#5b616e] text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center">
 
 
               
@@ -130,8 +130,8 @@ export default function Leaderboard() {
                 {staff.name.split(' ').map((n) => n[0]).join('').slice(0, 1)}
               </div>
               <div className="min-w-0">
-                <p className="font-medium text-[#0E0D1E] text-sm">{staff.name}</p>
-                <p className="text-xs text-[#9490AA]">{staff.store}</p>
+                <p className="font-medium text-[#0c0b0c] text-sm">{staff.name}</p>
+                <p className="text-xs text-[#5b616e]">{staff.store}</p>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export default function Leaderboard() {
 
             {/* Movement */}
             <div>
-              <span className="bg-[hsl(var(--popover))] text-[#9490AA] px-2 py-1 text-xs font-semibold rounded-full inline-block">
+              <span className="bg-[hsl(var(--popover))] text-[#5b616e] px-2 py-1 text-xs font-semibold rounded-full inline-block">
 
 
               
@@ -151,7 +151,7 @@ export default function Leaderboard() {
             {/* Commission */}
             <span className={cn(
             "text-right font-semibold text-sm",
-            i === 0 ? "text-emerald-600" : "text-[#0E0D1E]"
+            i === 0 ? "text-emerald-600" : "text-[#0c0b0c]"
           )}>
               €{staff.total_commissions.toFixed(2)}
             </span>

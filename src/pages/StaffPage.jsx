@@ -25,13 +25,13 @@ export default function StaffPage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-[#0E0D1E] text-2xl font-bold">Staff</h1>
-          <p className="text-sm text-[#7A7893] mt-2">{totalStaff} members · {activeStaff} active</p>
+          <h1 className="text-[#0c0b0c] text-2xl font-bold">Staff</h1>
+          <p className="text-sm text-[#5b616e] mt-2">{totalStaff} members · {activeStaff} active</p>
         </div>
         <Button
           onClick={() => setShowInvite(true)}
           variant="outline"
-          className="font-semibold border-[#E2E0ED] text-[#0E0D1E] rounded-lg px-6">
+          className="font-semibold border-[#E2E0ED] text-[#0c0b0c] rounded-lg px-6">
           
           Invite staff
         </Button>
@@ -57,8 +57,8 @@ export default function StaffPage() {
                 {staff.name.split(' ').map((n) => n[0]).join('').slice(0, 1)}
               </div>
               <div className="min-w-0">
-                <p className="font-semibold text-[#0E0D1E]">{staff.name}</p>
-                <p className="text-sm text-[#9490AA] capitalize">
+                <p className="font-semibold text-[#0c0b0c]">{staff.name}</p>
+                <p className="text-sm text-[#5b616e] capitalize">
                   {staff.role} · {staff.store}
                 </p>
               </div>
