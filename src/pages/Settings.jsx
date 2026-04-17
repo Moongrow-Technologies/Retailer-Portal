@@ -57,7 +57,7 @@ export default function Settings() {
 
             <div className="w-[220px] flex-shrink-0">
               <div className="border border-dashed border-[#C8C3E0] rounded-2xl p-7 flex flex-col items-center text-center h-full justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#EDE9F8] flex items-center justify-center mb-4">
+                <div className="bg-[hsl(var(--muted))] mb-4 rounded-full w-16 h-16 flex items-center justify-center">
                   <Building2 className="w-7 h-7 text-[#796EB2]" />
                 </div>
                 <p className="text-sm font-semibold text-[#0E0D1E] mb-1">Store Logo</p>
