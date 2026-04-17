@@ -73,16 +73,16 @@ export default function Leaderboard() {
 
       {/* Metric Toggle */}
       <div className="mb-4">
-        <div className="flex items-center w-fit bg-white border border-[#E2E0ED] rounded-2xl p-1 gap-1">
+        <div className="flex items-center w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
           {['commission', 'units'].map((m) =>
           <button
             key={m}
             onClick={() => setMetric(m)}
             className={cn(
-              "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap",
+              "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap",
               metric === m ?
-              "bg-[#12121f] text-white" :
-              "text-[#0c0b0c] hover:text-[#12121f]"
+              "bg-white text-[#12121f] shadow-sm" :
+              "text-[#5b616e] hover:text-[#12121f]"
             )}>
               {m === 'commission' ? 'By Commission' : 'By Units Sold'}
             </button>

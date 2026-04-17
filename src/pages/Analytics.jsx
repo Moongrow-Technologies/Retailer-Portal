@@ -75,18 +75,17 @@ export default function Analytics() {
           <p className="text-sm text-[#5b616e] mt-2">Track the performance of your incentives programme</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-white border border-[#E2E0ED] rounded-lg p-1">
+          <div className="flex items-center gap-0.5 bg-[#F4F3F4] rounded-xl p-1">
             {['This Month', 'This Week'].map((p) =>
             <button
               key={p}
               onClick={() => setPeriod(p)}
               className={cn(
-                'px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap',
+                'px-4 py-1.5 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap',
                 period === p ?
-                'border border-[#12121f] text-[#12121f] bg-white' :
-                'text-[#0c0b0c] hover:text-[#12121f]'
+                'bg-white text-[#12121f] shadow-sm' :
+                'text-[#5b616e] hover:text-[#12121f]'
               )}>
-              
                 {p}
               </button>
             )}
