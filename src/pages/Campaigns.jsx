@@ -62,12 +62,12 @@ export default function Campaigns() {
         {/* Two columns: Committed | Remaining */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Spent</p>
+            <p className="text-xs text-[#5b616e] mb-1">Commited</p>
             <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,308</p>
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#5b616e' }}>€692</p>
+            <p className="bg-[hsl(var(--popover))] text-[hsl(var(--foreground))] mb-1 text-3xl font-bold tracking-tight" style={{ color: '#5b616e' }}>€692</p>
           </div>
         </div>
 
