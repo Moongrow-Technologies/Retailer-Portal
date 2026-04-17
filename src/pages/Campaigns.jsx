@@ -67,7 +67,7 @@ export default function Campaigns() {
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#e2e2e2' }}>€692</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€692</p>
           </div>
         </div>
 
