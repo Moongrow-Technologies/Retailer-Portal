@@ -20,19 +20,17 @@ export default function CompactWalletCard({ wallet }) {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-start justify-between mb-5 gap-4">
-        <div className="min-w-0">
-          <p className="text-[#7A7893] mb-1 text-sm">Wallet balance</p>
-          <p className="text-[#0E0D1E] text-4xl font-bold tracking-tight">
-            €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-          </p>
-        </div>
-        <div className="flex flex-col gap-2 flex-shrink-0">
-          <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-4 py-2 h-auto font-medium" onClick={() => setShowTopUp(true)}>
-            <Plus className="w-4 h-4" /> Top Up
+      <div className="mb-5">
+        <p className="text-[#7A7893] mb-1 text-sm">Wallet balance</p>
+        <p className="text-[#0E0D1E] text-4xl font-bold tracking-tight mb-3">
+          €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+        </p>
+        <div className="flex gap-2">
+          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0E0D1E] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
+            <Plus className="w-3 h-3" /> Top Up
           </Button>
-          <Button variant="outline" className="gap-1.5 border-[#E2E0ED] text-[#0E0D1E] text-sm px-4 py-2 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
-            <ArrowDownFromLine className="w-3.5 h-3.5" /> Withdraw
+          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0E0D1E] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
+            <ArrowDownFromLine className="w-3 h-3" /> Withdraw
           </Button>
         </div>
       </div>
