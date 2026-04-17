@@ -13,7 +13,7 @@ export default function Leaderboard() {
   const [store, setStore] = useState('all');
   const [timePeriod, setTimePeriod] = useState('This Month');
 
-  const activeStaff = STAFF.filter(s => s.status === 'active');
+  const activeStaff = STAFF.filter((s) => s.status === 'active');
   const sorted = [...activeStaff].sort((a, b) => {
     if (metric === 'commission') return b.total_commissions - a.total_commissions;
     return b.total_units_sold - a.total_units_sold;
@@ -31,8 +31,8 @@ export default function Leaderboard() {
           </div>
         </div>
         <EmptyState icon={Trophy} title="No staff yet" description="Invite your team to start tracking performance." actionLabel="Invite Staff" onAction={() => window.location.href = '/staff'} />
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -51,14 +51,14 @@ export default function Leaderboard() {
           <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Campaigns</SelectItem>
-            {CAMPAIGNS.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+            {CAMPAIGNS.map((c) => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
           </SelectContent>
         </Select>
         <Select value={store} onValueChange={setStore}>
           <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Stores</SelectItem>
-            {STORE.locations.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+            {STORE.locations.map((l) => <SelectItem key={l} value={l}>{l}</SelectItem>)}
           </SelectContent>
         </Select>
         <Select value={timePeriod} onValueChange={setTimePeriod}>
@@ -74,20 +74,20 @@ export default function Leaderboard() {
       {/* Metric Toggle */}
       <div className="mb-4">
         <div className="flex items-center gap-2 w-fit">
-          {['commission', 'units'].map(m => (
-            <button
-              key={m}
-              onClick={() => setMetric(m)}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap",
-                metric === m
-                  ? "bg-[#796EB2] text-white shadow-sm"
-                  : "bg-[#EEEDF5] text-[#4B4867] hover:text-[#796EB2]"
-              )}
-            >
+          {['commission', 'units'].map((m) =>
+          <button
+            key={m}
+            onClick={() => setMetric(m)}
+            className={cn(
+              "px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap",
+              metric === m ?
+              "bg-[#796EB2] text-white shadow-sm" :
+              "bg-[#EEEDF5] text-[#4B4867] hover:text-[#796EB2]"
+            )}>
+            
               {m === 'commission' ? 'By Commission' : 'By Units Sold'}
             </button>
-          ))}
+          )}
         </div>
       </div>
 
@@ -103,20 +103,20 @@ export default function Leaderboard() {
         </div>
 
         {/* Rows */}
-        {sorted.map((staff, i) => (
-          <div
-            key={staff.id}
-            className={cn(
-              "grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-5 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center",
-              i === 0 && ""
-            )}
-          >
+        {sorted.map((staff, i) =>
+        <div
+          key={staff.id}
+          className={cn(
+            "grid grid-cols-[50px_2fr_1.5fr_1.5fr_120px_60px] gap-4 px-8 py-5 border-b border-[#EBEBF0] last:border-0 hover:bg-[#FAFAF9] transition-colors items-center",
+            i === 0 && ""
+          )}>
+          
             {/* Rank */}
             <div className="flex items-center gap-2">
               <span className={cn(
-                "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold",
-                i === 0 ? "bg-amber-500 text-white" : "bg-[#E2E0ED] text-[#9490AA]"
-              )}>
+              "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold",
+              i === 0 ? "bg-amber-500 text-white" : "bg-[#E2E0ED] text-[#9490AA]"
+            )}>
                 {i + 1}
               </span>
               {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
@@ -124,11 +124,11 @@ export default function Leaderboard() {
 
             {/* Staff */}
             <div className="flex items-center gap-3">
-              <div className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold text-white flex-shrink-0",
-                i === 0 ? "bg-amber-500" : "bg-[#796EB2]"
-              )}>
-                {staff.name.split(' ').map(n => n[0]).join('').slice(0, 1)}
+              <div className="bg-[#d7d5d5] text-white text-sm font-semibold rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
+
+
+              
+                {staff.name.split(' ').map((n) => n[0]).join('').slice(0, 1)}
               </div>
               <div className="min-w-0">
                 <p className="font-medium text-[#0E0D1E] text-sm">{staff.name}</p>
@@ -142,18 +142,18 @@ export default function Leaderboard() {
             {/* Movement */}
             <div>
               <span className={cn(
-                "inline-block px-2 py-1 rounded-full text-xs font-semibold",
-                "bg-[#E2E0ED] text-[#9490AA]"
-              )}>
+              "inline-block px-2 py-1 rounded-full text-xs font-semibold",
+              "bg-[#E2E0ED] text-[#9490AA]"
+            )}>
                 — No change
               </span>
             </div>
 
             {/* Commission */}
             <span className={cn(
-              "text-right font-semibold text-sm",
-              i === 0 ? "text-emerald-600" : "text-[#0E0D1E]"
-            )}>
+            "text-right font-semibold text-sm",
+            i === 0 ? "text-emerald-600" : "text-[#0E0D1E]"
+          )}>
               €{staff.total_commissions.toFixed(2)}
             </span>
 
@@ -162,8 +162,8 @@ export default function Leaderboard() {
               View →
             </Link>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
