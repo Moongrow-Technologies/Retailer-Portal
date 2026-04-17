@@ -50,7 +50,7 @@ export default function Campaigns() {
           <p className="text-sm text-[#7A7893] mt-1">Manage commission campaigns for your products.</p>
         </div>
         <Link to="/campaigns/new">
-          <Button className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2 font-semibold">
+          <Button className="bg-[#2b2b2b] text-white px-4 py-2 text-sm font-semibold rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 hover:bg-[#6A5FA3] gap-2">
             <Plus className="w-4 h-4" /> Create Campaign
           </Button>
         </Link>
@@ -76,14 +76,14 @@ export default function Campaigns() {
 
       <div className="flex items-center gap-2 mb-6 w-fit">
         {TABS.map((t) =>
-        <button key={t.key} onClick={() => setTab(t.key)}
-        className={cn("px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all",
-        tab === t.key ?
-        "bg-[#12121f] text-white border-[#12121f]" :
-        "bg-white text-[#0E0D1E] border-[#E2E0ED] hover:border-[#796EB2] hover:text-[#796EB2]"
-        )}>
+        <button key={t.key} onClick={() => setTab(t.key)} className="bg-[#10111e] text-white px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all border-[#12121f]">
+
+
+
+
+          
             {t.label}
-            <span className={cn("ml-1 text-xs", tab === t.key ? "text-white/60" : "text-[#0E0D1E]")}>
+            <span className="text-[hsl(var(--background))] ml-1 text-xs">
               {count(t.key)}
             </span>
           </button>
