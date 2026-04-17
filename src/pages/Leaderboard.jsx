@@ -42,7 +42,7 @@ export default function Leaderboard() {
           <h1 className="text-2xl font-bold text-[#0c0b0c]">Leaderboard</h1>
           <p className="text-sm text-[#5b616e] mt-1">Staff rankings across all campaigns.</p>
         </div>
-        <Button variant="outline" className="gap-2 border-[#E2E0ED] text-[#0c0b0c]"><Download className="w-4 h-4" /> Export</Button>
+        <Button variant="outline" className="bg-[hsl(var(--background))] text-[#0c0b0c] px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:bg-accent hover:text-accent-foreground h-9 gap-2 border-[#E2E0ED]"><Download className="w-4 h-4" /> Export</Button>
       </div>
 
       {/* Filters Row */}
