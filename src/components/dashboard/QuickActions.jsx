@@ -7,7 +7,7 @@ export default function QuickActions() {
   return (
     <div className="flex items-center gap-3">
       <Link to="/campaigns/new">
-        <Button className="bg-[hsl(var(--card-foreground))] text-primary-foreground px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 hover:bg-primary/90 gap-2">
+        <Button className="bg-[#131320] text-primary-foreground px-4 py-2 text-sm font-medium rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 hover:bg-primary/90 gap-2">
           <Megaphone className="w-4 h-4" /> Create Campaign
         </Button>
       </Link>
