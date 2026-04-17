@@ -36,7 +36,7 @@ function PeriodPill({ value, onChange }) {
 
 function TrendBadge({ value }) {
   return (
-    <p className="text-[13px] font-semibold text-[#22C55E] mt-0.5">
+    <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">
       ↑ {value}
     </p>);
 
