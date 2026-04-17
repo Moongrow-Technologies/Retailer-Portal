@@ -29,7 +29,7 @@ export default function CampaignCard({ campaign, onTogglePause, onDelete }) {
     <div className="bg-white border border-[#EBEBF0] rounded-2xl p-5 hover:border-[#E2E0ED] hover:shadow-sm transition-all cursor-pointer grid grid-cols-[auto_1fr_auto_200px_auto] items-center gap-6" onClick={() => navigate(`/campaigns/${campaign.id}`)}>
       {/* Left: Icon + Name/Description */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
-        <div className="rounded-xl w-12 h-12 border-2 border-[#796EB2] flex-shrink-0 shadow-sm overflow-hidden">
+        <div className="rounded-xl w-12 h-12 flex-shrink-0 overflow-hidden">
           <img src={PRODUCT_IMAGES[campaign.product_name] || PRODUCT_IMAGES.default} alt={campaign.product_name} className="w-full h-full object-cover" />
         </div>
         <div className="min-w-0">
