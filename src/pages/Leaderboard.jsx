@@ -95,7 +95,7 @@ export default function Leaderboard() {
         <div className="bg-[#ece8f8] px-8 py-3 grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
           <span className="text-[hsl(var(--foreground))] text-xs font-extralight normal-case tracking-widest">STAFF</span>
-          <span className="text-[hsl(var(--foreground))] text-xs font-thin capitalize tracking-widest">STORE</span>
+          <span className="text-[hsl(var(--foreground))] text-xs font-semibold capitalize tracking-widest">STORE</span>
           <span className="text-[hsl(var(--foreground))] font-semibold uppercase tracking-widest">MOVEMENT</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
           <span />
