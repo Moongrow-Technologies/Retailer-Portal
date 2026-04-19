@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 const typeConfig = {
   ranked: { icon: Trophy, label: 'Ranked', color: 'text-amber-600', bg: 'bg-amber-50', badgeBg: 'bg-amber-50 text-amber-700 border-amber-200' },
   threshold: { icon: Target, label: 'Threshold', color: 'text-blue-600', bg: 'bg-blue-50', badgeBg: 'bg-blue-50 text-blue-700 border-blue-200' },
-  sprint: { icon: Zap, label: 'Sprint', color: 'text-rose-600', bg: 'bg-rose-50', badgeBg: 'bg-rose-50 text-rose-700 border-rose-200' },
+  sprint: { icon: Zap, label: 'Sprint', color: 'text-rose-600', bg: 'bg-rose-50', badgeBg: 'bg-rose-50 text-rose-700 border-rose-200' }
 };
 
 const rankIcons = [Crown, Medal, Award];
@@ -27,7 +27,7 @@ function formatTimeLeft(hours) {
 export default function BonusDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const baseBonus = BONUSES.find(b => b.id === id);
+  const baseBonus = BONUSES.find((b) => b.id === id);
   const [bonusStatus, setBonusStatus] = useState(baseBonus?.status || 'active');
   const bonus = baseBonus ? { ...baseBonus, status: bonusStatus } : null;
   const [hoursLeft, setHoursLeft] = useState(baseBonus?.hours_left || 0);
@@ -35,7 +35,7 @@ export default function BonusDetail() {
 
   useEffect(() => {
     if (!bonus || bonus.status !== 'active') return;
-    const timer = setInterval(() => setHoursLeft(h => Math.max(0, h - 1)), 3600000);
+    const timer = setInterval(() => setHoursLeft((h) => Math.max(0, h - 1)), 3600000);
     return () => clearInterval(timer);
   }, [bonus]);
 
@@ -43,8 +43,8 @@ export default function BonusDetail() {
     <div className="text-center py-20">
       <p className="text-[#9490AA]">Bonus not found.</p>
       <Link to="/bonuses"><Button className="mt-4 bg-[#12121f] hover:bg-[#12121f]/90 text-white">Back to Bonuses</Button></Link>
-    </div>
-  );
+    </div>);
+
 
   const cfg = typeConfig[bonus.type] || typeConfig.ranked;
   const Icon = cfg.icon;
@@ -55,7 +55,7 @@ export default function BonusDetail() {
     <div className="max-w-3xl">
       {/* Back */}
       <button onClick={() => navigate('/bonuses')}
-        className="flex items-center gap-1.5 text-sm text-[#7A7893] hover:text-[#796EB2] mb-6 transition-colors">
+      className="flex items-center gap-1.5 text-sm text-[#7A7893] hover:text-[#796EB2] mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back to Bonuses
       </button>
 
@@ -72,7 +72,7 @@ export default function BonusDetail() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className={cn("text-xs font-semibold", cfg.badgeBg)}>{cfg.label}</Badge>
+            <Badge variant="outline" className="bg-[#efb57b] text-[#f38612] px-2.5 py-0.5 text-xs font-semibold rounded-md inline-flex items-center border transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-amber-200">{cfg.label}</Badge>
             <Badge variant="outline" className={isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-50 text-slate-600 border-slate-200"}>
               {isActive ? 'Active' : 'Completed'}
             </Badge>
@@ -84,7 +84,7 @@ export default function BonusDetail() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => { setToast("Bonus deleted."); navigate('/bonuses'); }} className="text-destructive">Delete</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => {setToast("Bonus deleted.");navigate('/bonuses');}} className="text-destructive">Delete</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -103,23 +103,23 @@ export default function BonusDetail() {
         </div>
 
         {/* Actions */}
-        {bonusStatus !== 'completed' && (
-          <div className="flex items-center gap-3 mt-5 pt-5 border-t border-[#EBEBF0]">
+        {bonusStatus !== 'completed' &&
+        <div className="flex items-center gap-3 mt-5 pt-5 border-t border-[#EBEBF0]">
             <Switch
-              checked={bonusStatus === 'active'}
-              onCheckedChange={() => {
-                const next = bonusStatus === 'active' ? 'paused_manual' : 'active';
-                setBonusStatus(next);
-                setToast(next === 'active' ? "Bonus resumed." : "Bonus paused.");
-              }}
-              className="data-[state=checked]:bg-primary"
-            />
+            checked={bonusStatus === 'active'}
+            onCheckedChange={() => {
+              const next = bonusStatus === 'active' ? 'paused_manual' : 'active';
+              setBonusStatus(next);
+              setToast(next === 'active' ? "Bonus resumed." : "Bonus paused.");
+            }}
+            className="data-[state=checked]:bg-primary" />
+          
             <span className="text-sm text-[#7A7893]">{bonusStatus === 'active' ? 'Active' : 'Paused'}</span>
-            <Button onClick={() => { setBonusStatus('completed'); setToast("Bonus ended."); }} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
+            <Button onClick={() => {setBonusStatus('completed');setToast("Bonus ended.");}} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
               <StopCircle className="w-3.5 h-3.5" /> End Early
             </Button>
           </div>
-        )}
+        }
       </div>
 
       <div className="grid grid-cols-3 gap-4">
@@ -137,7 +137,7 @@ export default function BonusDetail() {
           </div>
           <div>
             {bonus.leaderboard?.map((entry, i) => {
-              const pct = Math.round((entry.score / maxScore) * 100);
+              const pct = Math.round(entry.score / maxScore * 100);
               const gap = i > 0 ? bonus.leaderboard[i - 1].score - entry.score : null;
               return (
                 <div key={entry.rank}>
@@ -162,8 +162,8 @@ export default function BonusDetail() {
                     </div>
                   </div>
                   {i < (bonus.leaderboard?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
-                </div>
-              );
+                </div>);
+
             })}
           </div>
         </div>
@@ -186,13 +186,13 @@ export default function BonusDetail() {
                     <span className="text-sm font-bold text-[#0E0D1E]">€{prize.amount}</span>
                   </div>
                   {i < (bonus.prizes?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-5" />}
-                </div>
-              );
+                </div>);
+
             })}
           </div>
 
-          {!isActive && bonus.winner_name && (
-            <div className="mx-5 mb-5 mt-1 pt-4 border-t border-[#EBEBF0]">
+          {!isActive && bonus.winner_name &&
+          <div className="mx-5 mb-5 mt-1 pt-4 border-t border-[#EBEBF0]">
               <p className="text-[10px] text-[#9490AA] uppercase tracking-widest font-semibold mb-2">Winner</p>
               <div className="flex items-center gap-2">
                 <Crown className="w-4 h-4 text-amber-500" />
@@ -200,10 +200,10 @@ export default function BonusDetail() {
               </div>
               <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout} paid out</p>
             </div>
-          )}
+          }
         </div>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
-    </div>
-  );
+    </div>);
+
 }
