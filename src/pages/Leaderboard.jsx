@@ -98,7 +98,7 @@ export default function Leaderboard() {
           <span className="text-[hsl(var(--foreground))] text-xs font-semibold capitalize tracking-widest">STORE</span>
           <span className="text-[hsl(var(--foreground))] font-semibold uppercase tracking-widest">MOVEMENT</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
-          <span />
+          <span className="text-sm font-semibold" />
         </div>
 
         {/* Rows */}
