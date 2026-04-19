@@ -97,7 +97,7 @@ export default function Leaderboard() {
           <span className="text-[hsl(var(--foreground))] text-xs font-extralight normal-case tracking-widest">STAFF</span>
           <span className="text-[hsl(var(--foreground))] text-xs font-semibold capitalize tracking-widest">STORE</span>
           <span className="text-[hsl(var(--foreground))] text-sm font-semibold normal-case tracking-widest">MOVEMENT</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
+          <span className="text-[#0d0c0d] text-xs font-semibold text-right uppercase tracking-widest">COMMISSION</span>
           <span className="text-xs font-semibold text-right capitalize" />
         </div>
 
