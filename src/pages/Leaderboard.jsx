@@ -94,9 +94,9 @@ export default function Leaderboard() {
         {/* Table Header */}
         <div className="text-[#100e20] px-8 py-3 grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
+          <span className="text-[hsl(var(--foreground))] font-semibold uppercase tracking-widest">STAFF</span>
+          <span className="text-[hsl(var(--foreground))] font-semibold uppercase tracking-widest">STORE</span>
+          <span className="text-[hsl(var(--foreground))] font-semibold uppercase tracking-widest">MOVEMENT</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
           <span />
         </div>
