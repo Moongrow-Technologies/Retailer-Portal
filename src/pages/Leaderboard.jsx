@@ -102,13 +102,13 @@ export default function Leaderboard() {
         </div>
 
         {/* Rows */}
-        {sorted.map((staff, i) =>
-        <div key={staff.id}>
+        {sorted.map((staff, i) => (
+          <div key={staff.id}>
             <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-6 items-center hover:bg-[#FAFAF9] transition-colors">
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[#9490AA]">{i + 1}</span>
-                {i === 0 && <Star className="text-[#f38612] lucide lucide-star w-4 h-4 fill-amber-500" />}
+                {i === 0 && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
               </div>
 
               {/* Staff */}
@@ -140,7 +140,7 @@ export default function Leaderboard() {
             </div>
             {i < sorted.length - 1 && <div className="h-px bg-[#F0EFF5] mx-8" />}
           </div>
-        )}
+        ))}
       </div>
     </div>);
 
