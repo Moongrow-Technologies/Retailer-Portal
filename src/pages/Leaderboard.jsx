@@ -92,7 +92,7 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="text-[hsl(var(--background))] px-8 py-3 grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] border-b border-[#EBEBF0]">
+        <div className="text-[#100e20] px-8 py-3 grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
