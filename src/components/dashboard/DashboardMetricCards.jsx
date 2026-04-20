@@ -71,7 +71,7 @@ function ActiveCampaignsCard({ campaigns }) {
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Active campaigns</span>
-        <div className="bg-[#dbd1f5] rounded-full w-8 h-8 flex items-center justify-center">
+        <div className="bg-[#b79ef5] rounded-full w-8 h-8 flex items-center justify-center">
           <Send className="text-[#a1a1a1] lucide lucide-send w-3.5 h-3.5" />
         </div>
       </div>
