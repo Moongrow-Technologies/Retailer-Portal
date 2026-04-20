@@ -24,8 +24,8 @@ function PeriodPill({ value, onChange }) {
     <div className="relative">
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value)} className="bg-[#F4F4F4] text-[#6B7280] pr-5 pl-3 py-1.5 text-xs font-medium opacity-100 rounded-full appearance-none cursor-pointer focus:outline-none">
-        
+        onChange={(e) => onChange(e.target.value)}
+        className="appearance-none bg-[#F4F4F4] text-[#6B7280] text-xs font-medium pl-3 pr-5 py-1.5 rounded-full cursor-pointer focus:outline-none">
         
         {opts.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
@@ -71,7 +71,7 @@ function ActiveCampaignsCard({ campaigns }) {
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Active campaigns</span>
-        <div className="bg-[#cecaf7] rounded-full w-8 h-8 flex items-center justify-center">
+        <div className="bg-[#ececee] rounded-full w-8 h-8 flex items-center justify-center">
           <Send className="text-[#a1a1a1] lucide lucide-send w-3.5 h-3.5" />
         </div>
       </div>
@@ -164,8 +164,8 @@ const unitsWeekData = [
 { day: 'S', units: 20 }];
 
 const unitsMonthData = [
-8, 14, 18, 12, 22, 28, 16, 20, 24, 18, 30, 22, 16, 26, 34, 20, 18, 24, 28, 16, 22, 18, 26, 20, 14, 24, 18, 22, 16, 20].
-map((units, i) => ({ day: `${i + 1}`, units }));
+  8,14,18,12,22,28,16,20,24,18,30,22,16,26,34,20,18,24,28,16,22,18,26,20,14,24,18,22,16,20
+].map((units, i) => ({ day: `${i + 1}`, units }));
 
 const unitsSoldData = {
   'This week': { value: '144', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 34 }, today: { day: 'S', value: 20 } },
@@ -239,8 +239,8 @@ const revenueWeekData = [
 { day: 'T', rev: 270 }, { day: 'F', rev: 202 }, { day: 'S', rev: 112 }, { day: 'S', rev: 226 }];
 
 const revenueMonthData = [
-90, 158, 202, 135, 248, 315, 180, 225, 270, 202, 338, 248, 180, 292, 382, 225, 202, 270, 315, 180, 248, 202, 292, 225, 157, 270, 202, 248, 180, 225].
-map((rev, i) => ({ day: `${i + 1}`, rev }));
+  90,158,202,135,248,315,180,225,270,202,338,248,180,292,382,225,202,270,315,180,248,202,292,225,157,270,202,248,180,225
+].map((rev, i) => ({ day: `${i + 1}`, rev }));
 
 const revenueData = {
   'This week': { value: '€1,620', trend: '9% vs last period', chart: revenueWeekData },
