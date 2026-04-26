@@ -160,7 +160,7 @@ export default function Campaigns() {
                   <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
 
                   {/* Progress bar */}
-                  <div className="min-w-0">
+                  <div className="min-w-0 max-w-xs">
                     <div className="w-full h-1.5 rounded-full overflow-hidden mb-1" style={{ background: '#D1D5DB' }}>
                       <div className="h-full rounded-full" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#534AB7' }} />
                     </div>
