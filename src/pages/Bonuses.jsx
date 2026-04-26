@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, MoreVertical } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import StatusBadge from '@/components/shared/StatusBadge';
 import { cn } from '@/lib/utils';
 import { BONUSES } from '@/lib/sampleData';
 import { format } from 'date-fns';
@@ -50,6 +52,11 @@ export default function Bonuses() {
   };
 
   const filtered = bonuses.filter((b) => b.status === tab);
+
+  const handleTogglePause = (bonus) => {
+    const newStatus = bonus.status === 'active' ? 'paused_manual' : 'active';
+    setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
+  };
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
@@ -138,7 +145,7 @@ export default function Bonuses() {
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Bonus</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Type</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Target</span>
@@ -146,57 +153,67 @@ export default function Bonuses() {
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">
             {tab === 'scheduled' ? 'Starts' : 'Ends'}
           </span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Status</span>
           <span />
         </div>
 
         {/* Rows */}
         {filtered.map((bonus, idx) => {
-          const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
-          return (
-            <div key={bonus.id}>
-              <div
-                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
-                onClick={() => navigate(`/bonuses/${bonus.id}`)}>
+           const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
+           const isActive = bonus.status === 'active';
+           return (
+             <div key={bonus.id}>
+               <div
+                 className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
+                 onClick={() => navigate(`/bonuses/${bonus.id}`)}>
 
-                {/* Bonus name + product */}
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-[#0c0b0c] truncate">{bonus.name}</p>
-                  <p className="text-xs text-[#5b616e] mt-0.5">{bonus.product_name}</p>
-                </div>
+                 {/* Bonus name + product */}
+                 <div className="min-w-0">
+                   <p className="text-sm font-semibold text-[#0c0b0c] truncate">{bonus.name}</p>
+                   <p className="text-xs text-[#5b616e] mt-0.5">{bonus.product_name}</p>
+                 </div>
 
-                {/* Type */}
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border w-fit ${typeStyle.className}`}>
-                  {typeStyle.label}
-                </span>
+                 {/* Type */}
+                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border w-fit ${typeStyle.className}`}>
+                   {typeStyle.label}
+                 </span>
 
-                {/* Target */}
-                <span className="text-sm text-[#0c0b0c]">{getTarget(bonus)}</span>
+                 {/* Target */}
+                 <span className="text-sm text-[#0c0b0c]">{getTarget(bonus)}</span>
 
-                {/* Top prize */}
-                <span className="text-sm font-semibold text-[#0c0b0c]">{getPrize(bonus)}</span>
+                 {/* Top prize */}
+                 <span className="text-sm font-semibold text-[#0c0b0c]">{getPrize(bonus)}</span>
 
-                {/* Date */}
-                <span className="text-sm text-[#0c0b0c]">
-                  {bonus.status === 'scheduled' && bonus.start_date
-                    ? <span className="text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</span>
-                    : bonus.type === 'sprint' || !bonus.end_date
-                    ? <span className="text-[#5b616e] italic">On completion</span>
-                    : format(new Date(bonus.end_date), 'MMM d, yyyy')}
-                </span>
+                 {/* Date */}
+                 <span className="text-sm text-[#0c0b0c]">
+                   {bonus.status === 'scheduled' && bonus.start_date
+                     ? <span className="text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</span>
+                     : bonus.type === 'sprint' || !bonus.end_date
+                     ? <span className="text-[#5b616e] italic">On completion</span>
+                     : format(new Date(bonus.end_date), 'MMM d, yyyy')}
+                 </span>
 
-                {/* Menu */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
-                      <MoreVertical className="w-4 h-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
+                 {/* Status + toggle */}
+                 <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                   <StatusBadge status={bonus.status} />
+                   {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
+                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
+                   )}
+                 </div>
+
+                 {/* Menu */}
+                 <DropdownMenu>
+                   <DropdownMenuTrigger asChild>
+                     <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
+                       <MoreVertical className="w-4 h-4" />
+                     </button>
+                   </DropdownMenuTrigger>
+                   <DropdownMenuContent align="end">
+                     <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
+                   </DropdownMenuContent>
+                 </DropdownMenu>
+               </div>
               {idx < filtered.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
             </div>
           );
