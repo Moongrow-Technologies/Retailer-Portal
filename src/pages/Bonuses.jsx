@@ -80,22 +80,21 @@ export default function Bonuses() {
       {/* Budget card */}
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
 
-
-        {/* Two columns: Committed | Remaining */}
+        {/* Two columns: Prizes paid out | Remaining in fund */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€225</p>
+            <p className="text-xs text-[#5b616e] mb-1">Prizes paid out</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€100</p>
           </div>
           <div className="pl-6 text-right">
-            <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€375</p>
+            <p className="text-xs text-[#5b616e] mb-1">Remaining in fund</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€125</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
-          <div className="h-full" style={{ width: '37%', background: '#F0997B' }} />
+          <div className="h-full" style={{ width: '44%', background: '#F0997B' }} />
           <div className="h-full flex-1" style={{ background: '#e2e2e2' }} />
         </div>
 
@@ -103,14 +102,13 @@ export default function Bonuses() {
         <div className="flex items-center justify-between mb-4">
           <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-            37% committed
+            44% paid out of €225 Bonus Fund
           </p>
           <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            63% remaining
+            56% remaining
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
           </p>
         </div>
-
 
       </div>
 
