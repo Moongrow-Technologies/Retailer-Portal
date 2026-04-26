@@ -1,6 +1,5 @@
 import React from 'react';
 import CompactWalletCard from '@/components/dashboard/CompactWalletCard';
-import BudgetUtilisation from '@/components/dashboard/BudgetUtilisation';
 import QuickActions from '@/components/dashboard/QuickActions';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import TopBudtenders from '@/components/dashboard/TopBudtenders';
@@ -36,26 +35,27 @@ export default function Dashboard() {
       )}
 
       <div className="flex flex-col gap-6">
-         {/* Row 1: Wallet + Metric Cards */}
-         <div className="grid grid-cols-3 gap-6">
-           <CompactWalletCard wallet={wallet} />
-           <div className="col-span-1">
-             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
-           </div>
-           <div className="col-span-1">
-             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
-           </div>
-         </div>
+        {/* Row 1: Wallet + Metric Cards */}
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-4">
+            <CompactWalletCard wallet={wallet} />
+          </div>
+          <div className="col-span-8">
+            <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+          </div>
+        </div>
 
-         {/* Row 2: Budget + Activity + More metrics */}
-         <div className="grid grid-cols-3 gap-6">
-           <BudgetUtilisation wallet={wallet} />
-           <ActivityFeed activities={ACTIVITIES} />
-           <div className="col-span-1">
-             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
-           </div>
-         </div>
-       </div>
+        {/* Row 2: Activity feed + Top Budtenders + Needs Attention */}
+        <div className="grid grid-cols-12 gap-6 items-stretch">
+          <div className="col-span-8">
+            <ActivityFeed activities={ACTIVITIES} />
+          </div>
+          <div className="col-span-4 flex flex-col gap-6">
+            <TopBudtenders staff={topBudtenders} />
+            <NeedsAttention staff={needsAttention} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
