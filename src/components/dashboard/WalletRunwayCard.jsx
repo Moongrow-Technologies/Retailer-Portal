@@ -16,7 +16,7 @@ export default function WalletRunwayCard() {
   const activeBonuses = 2;
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden" style={{ alignSelf: 'start' }}>
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden">
       {/* Campaign Fund Section */}
       <div className="mb-4">
         {/* Header: Title + Budget */}

@@ -38,14 +38,16 @@ export default function Dashboard() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        gridTemplateRows: 'auto auto auto',
-        gap: '16px',
+        gridTemplateRows: 'auto auto',
+        gap: '24px',
         alignItems: 'start'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <CompactWalletCard wallet={wallet} />
-          <WalletRunwayCard wallet={wallet} />
+          <div style={{ alignSelf: 'start' }}>
+            <WalletRunwayCard wallet={wallet} />
+          </div>
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
