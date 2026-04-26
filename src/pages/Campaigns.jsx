@@ -77,7 +77,9 @@ export default function Campaigns() {
         </div>
 
         {/* Progress bar */}
-        <SegmentedProgress value={79} segments={20} color="#6B7280" bgColor="#D1D5DB" className="mb-2" />
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
+          <div className="h-full rounded-full" style={{ width: '79%', background: '#6B7280' }} />
+        </div>
 
         {/* Bar labels */}
         <div className="flex items-center justify-between mb-4">
