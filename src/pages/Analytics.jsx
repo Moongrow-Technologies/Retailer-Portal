@@ -209,9 +209,10 @@ export default function Analytics() {
                 const barWidth = (day.units / maxUnits) * 100;
 
                 return (
-                  <div 
+                  <Link
                     key={day.id}
-                    className="rounded-lg p-4 flex items-center gap-4"
+                    to={`/analytics/${day.id}`}
+                    className="rounded-lg p-4 flex items-center gap-4 transition-opacity hover:opacity-80 cursor-pointer"
                     style={{ backgroundColor: rowColor.bg }}
                   >
                     <span className="text-sm font-semibold w-12" style={{ color: rowColor.text }}>
@@ -229,7 +230,7 @@ export default function Analytics() {
                     <span className="text-sm font-bold w-12 text-right" style={{ color: rowColor.text }}>
                       {day.units}
                     </span>
-                  </div>
+                  </Link>
                 );
               });
             })()}

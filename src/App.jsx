@@ -13,6 +13,7 @@ import Campaigns from '@/pages/Campaigns';
 import CreateCampaign from '@/pages/CreateCampaign';
 import CampaignDetail from '@/pages/CampaignDetail';
 import Analytics from '@/pages/Analytics';
+import DayAnalytics from '@/pages/DayAnalytics';
 import Leaderboard from '@/pages/Leaderboard';
 import Bonuses from '@/pages/Bonuses';
 import CreateBonus from '@/pages/CreateBonus';
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
         <Route path="/campaigns/:id/edit" element={<EditCampaign />} />
         <Route path="/campaigns/:id" element={<CampaignDetail />} />
         <Route path="/analytics" element={<Analytics />} />
+        <Route path="/analytics/:dayId" element={<DayAnalytics />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/bonuses" element={<Bonuses />} />
         <Route path="/bonuses/new" element={<CreateBonus />} />
