@@ -144,7 +144,7 @@ export default function TopBar() {
           >
             <div className="text-right hidden sm:block">
               <div className="text-sm font-semibold text-[#0E0D1E] leading-tight">{user?.full_name || 'User'}</div>
-              <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role || 'Store Manager'}</div>
+              <div className="text-xs text-[#9490AA] leading-tight capitalize">{user?.role === 'admin' ? 'Admin' : ''}</div>
             </div>
             <div className="w-8 h-8 rounded-full bg-[#EDE9F8] flex items-center justify-center text-xs font-bold text-[#796EB2]">
               {initials}

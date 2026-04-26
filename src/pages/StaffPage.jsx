@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { STAFF } from '@/lib/sampleData';
+import { Send } from 'lucide-react';
 
 export default function StaffPage() {
   const [showInvite, setShowInvite] = useState(false);
@@ -31,8 +32,7 @@ export default function StaffPage() {
         <Button
           onClick={() => setShowInvite(true)}
           variant="outline" className="bg-[#27272b] text-[#ffffff] px-6 py-2 text-sm font-semibold rounded-lg inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:bg-accent hover:text-accent-foreground h-9 border-[#E2E0ED]">
-          
-          
+          <Send className="w-4 h-4" />
           Invite staff
         </Button>
       </div>
@@ -80,7 +80,7 @@ export default function StaffPage() {
                   <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700">
                     Pending
                   </span>
-                  <button className="text-sm font-medium text-amber-500 hover:underline">
+                  <button onClick={() => setShowInvite(true)} className="text-sm font-medium text-amber-500 hover:underline">
                     Resend →
                   </button>
                 </>
