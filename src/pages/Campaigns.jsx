@@ -160,7 +160,9 @@ export default function Campaigns() {
                   {/* Budget + bar */}
                   <div>
                     <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
-                    <SegmentedProgress value={spendPct} segments={8} className="w-24" />
+                    <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
+                      <div className="h-full rounded-full" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#9697b4' }} />
+                    </div>
                   </div>
 
                   {/* Spent */}
