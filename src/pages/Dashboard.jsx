@@ -37,25 +37,34 @@ export default function Dashboard() {
 
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr 1fr',
+        gridTemplateColumns: '1fr 1fr 1fr',
         gridTemplateRows: 'auto auto',
         gap: '24px',
         alignItems: 'stretch'
       }}>
-        {/* Row 1-2, Column 1: Wallet card */}
-        <div style={{ gridRow: 'span 2' }}>
+        {/* Row 1, Column 1: Wallet cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <CompactWalletCard wallet={wallet} />
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <WalletRunwayCard wallet={wallet} />
+          </div>
         </div>
 
-        {/* Row 1, Columns 2-4: Active Now, Units Sold, Commission ROI */}
-        <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+        {/* Row 1, Columns 2-3: Metric Cards */}
+        <div style={{ gridColumn: 'span 2' }}>
+          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+        </div>
 
-        {/* Row 2, Columns 2-4: Campaign/Bonus Funds, Revenue Generated, Activity Feed */}
+        {/* Row 2, Columns 1-2: Activity Feed */}
+        <div style={{ gridColumn: 'span 2' }}>
+          <ActivityFeed activities={ACTIVITIES} />
+        </div>
+
+        {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <TopBudtenders staff={topBudtenders} />
           <NeedsAttention staff={needsAttention} />
         </div>
-        <ActivityFeed activities={ACTIVITIES} />
       </div>
     </div>
   );
