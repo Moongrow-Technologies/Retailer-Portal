@@ -15,9 +15,9 @@ import {
 '@/components/ui/dropdown-menu';
 
 const TYPE_STYLES = {
-  sprint: { label: 'Sprint', className: 'bg-blue-50 text-blue-600 border-blue-200' },
-  threshold: { label: 'Threshold', className: 'bg-amber-50 text-amber-600 border-amber-200' },
-  ranked: { label: 'Ranked', className: 'bg-purple-50 text-purple-600 border-purple-200' }
+  ranked: { label: 'Ranked', className: 'bg-[#FAEEDA] text-[#854F0B] border-[#FAC775]' },
+  threshold: { label: 'Threshold', className: 'bg-[#E6F1FB] text-[#185FA5] border-[#85B7EB]' },
+  sprint: { label: 'Sprint', className: 'bg-[#FCEBEB] text-[#791F1F] border-[#F09595]' }
 };
 
 const TABS = [

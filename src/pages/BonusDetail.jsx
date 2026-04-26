@@ -11,9 +11,9 @@ import { BONUSES, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const typeConfig = {
-  ranked: { icon: Trophy, label: 'Ranked', color: 'text-amber-600', bg: 'bg-amber-50', badgeBg: 'bg-amber-50 text-amber-700 border-amber-200' },
-  threshold: { icon: Target, label: 'Threshold', color: 'text-blue-600', bg: 'bg-blue-50', badgeBg: 'bg-blue-50 text-blue-700 border-blue-200' },
-  sprint: { icon: Zap, label: 'Sprint', color: 'text-rose-600', bg: 'bg-rose-50', badgeBg: 'bg-rose-50 text-rose-700 border-rose-200' },
+  ranked: { icon: Trophy, label: 'Ranked', color: 'text-[#854F0B]', bg: 'bg-[#FAEEDA]', badgeBg: 'bg-[#FAEEDA] text-[#854F0B] border-[#FAC775]' },
+  threshold: { icon: Target, label: 'Threshold', color: 'text-[#185FA5]', bg: 'bg-[#E6F1FB]', badgeBg: 'bg-[#E6F1FB] text-[#185FA5] border-[#85B7EB]' },
+  sprint: { icon: Zap, label: 'Sprint', color: 'text-[#791F1F]', bg: 'bg-[#FCEBEB]', badgeBg: 'bg-[#FCEBEB] text-[#791F1F] border-[#F09595]' },
 };
 
 const rankIcons = [Crown, Medal, Award];

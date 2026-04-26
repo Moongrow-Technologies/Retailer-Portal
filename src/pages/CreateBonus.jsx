@@ -13,9 +13,9 @@ import { cn } from '@/lib/utils';
 const STEPS = ['Bonus Type', 'Ranking Metric', 'Scope & Duration', 'Prize Structure', 'Review & Confirm'];
 
 const typeConfig = [
-  { value: 'ranked', icon: Trophy, label: 'Ranked', tagline: 'Top N performers win prizes', desc: 'Best for competitive teams.', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200' },
-  { value: 'threshold', icon: Target, label: 'Threshold', tagline: 'Everyone who hits a target earns a reward', desc: 'Best for team motivation.', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-200' },
-  { value: 'sprint', icon: Zap, label: 'Sprint', tagline: 'First to hit target or most sales before deadline', desc: 'Best for urgency.', color: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-200' },
+  { value: 'ranked', icon: Trophy, label: 'Ranked', tagline: 'Top N performers win prizes', desc: 'Best for competitive teams.', color: 'text-[#854F0B]', bg: 'bg-[#FAEEDA]', border: 'border-[#FAC775]' },
+  { value: 'threshold', icon: Target, label: 'Threshold', tagline: 'Everyone who hits a target earns a reward', desc: 'Best for team motivation.', color: 'text-[#185FA5]', bg: 'bg-[#E6F1FB]', border: 'border-[#85B7EB]' },
+  { value: 'sprint', icon: Zap, label: 'Sprint', tagline: 'First to hit target or most sales before deadline', desc: 'Best for urgency.', color: 'text-[#791F1F]', bg: 'bg-[#FCEBEB]', border: 'border-[#F09595]' },
 ];
 
 export default function CreateBonus() {
