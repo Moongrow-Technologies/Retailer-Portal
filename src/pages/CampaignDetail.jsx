@@ -62,7 +62,7 @@ export default function CampaignDetail() {
                 setStatus(next);
                 setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
               }}
-              className="data-[state=checked]:bg-primary"
+              className="data-[state=checked]:bg-[#796EB2]"
             />
           )}
           {status !== 'completed' && (
