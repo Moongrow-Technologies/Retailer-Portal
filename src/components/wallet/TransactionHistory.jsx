@@ -71,10 +71,10 @@ export default function TransactionHistory({ transactions }) {
       </div>
 
       {/* Table header */}
-      <div className="px-6 py-3 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+      <div className="px-6 py-3 grid grid-cols-[1fr_160px_120px] border-b border-[#EBEBF0] bg-[#F7F6FB]">
         <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider">Transaction</p>
-        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-right w-32">Type</p>
-        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-right w-24">Amount</p>
+        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-center">Type</p>
+        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-right">Amount</p>
       </div>
 
       {/* Rows */}
@@ -94,7 +94,7 @@ export default function TransactionHistory({ transactions }) {
             return (
               <div
                 key={i}
-                className="px-6 py-4 grid grid-cols-[1fr_auto_auto] gap-4 items-center hover:bg-[#FAFAFA] transition-colors"
+                className="px-6 py-4 grid grid-cols-[1fr_160px_120px] items-center hover:bg-[#FAFAFA] transition-colors"
               >
                 {/* Left: icon + text */}
                 <div className="flex items-center gap-3 min-w-0">
@@ -116,7 +116,7 @@ export default function TransactionHistory({ transactions }) {
                 </div>
 
                 {/* Type badge */}
-                <div className="w-32 flex justify-end">
+                <div className="flex justify-center">
                   <span className={cn(
                     "text-xs font-semibold px-3 py-1 rounded-full",
                     typeColors[tx.type] || 'bg-slate-50 text-slate-600'
@@ -127,7 +127,7 @@ export default function TransactionHistory({ transactions }) {
 
                 {/* Amount */}
                 <p className={cn(
-                  "text-sm font-semibold tabular-nums text-right w-24",
+                  "text-sm font-semibold tabular-nums text-right",
                   isPositive ? "text-emerald-600" : "text-red-500"
                 )}>
                   {isPositive ? '+' : '-'}€{Math.abs(tx.amount).toFixed(2)}
