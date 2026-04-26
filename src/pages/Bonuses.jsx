@@ -138,12 +138,11 @@ export default function Bonuses() {
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Bonus</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Type</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Target</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Prize</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Prize Pool</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">
             {tab === 'scheduled' ? 'Starts' : 'Ends'}
           </span>
@@ -156,7 +155,7 @@ export default function Bonuses() {
           return (
             <div key={bonus.id}>
               <div
-                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_48px] px-6 py-4 items-center hover:bg-[#FAFAF9] transition-colors cursor-pointer"
+                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-4 items-center hover:bg-[#FAFAF9] transition-colors cursor-pointer"
                 onClick={() => navigate(`/bonuses/${bonus.id}`)}>
 
                 {/* Bonus name + product */}
@@ -175,11 +174,6 @@ export default function Bonuses() {
 
                 {/* Top prize */}
                 <span className="text-sm font-semibold text-[#0c0b0c]">{getPrize(bonus)}</span>
-
-                {/* Prize pool */}
-                <span className="text-sm font-semibold text-[#0c0b0c]">
-                  {bonus.prize_pool ? `€${bonus.prize_pool}` : '—'}
-                </span>
 
                 {/* Date */}
                 <span className="text-sm text-[#0c0b0c]">
