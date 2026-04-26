@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Plus, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -33,6 +33,7 @@ const STAFF_PRODUCT_DATA = {
 };
 
 export default function ProductDetail() {
+  const [timePeriod, setTimePeriod] = useState('week');
   const navigate = useNavigate();
   const productId = window.location.pathname.split('/').pop();
 
@@ -108,7 +109,28 @@ export default function ProductDetail() {
 
       {/* Sales chart */}
       <div className="bg-white rounded-xl border border-[#EBEBF0] p-5 mb-6">
-        <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Units Sold — Last 8 Weeks</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-sm font-semibold text-[#0c0b0c]">Units Sold</h3>
+          <div className="flex gap-2">
+            {[
+              { value: '24h', label: '24 hour' },
+              { value: 'week', label: 'Week' },
+              { value: 'month', label: 'Month' }
+            ].map(period => (
+              <button
+                key={period.value}
+                onClick={() => setTimePeriod(period.value)}
+                className={`text-xs font-medium px-3 py-1.5 rounded-md transition-colors ${
+                  timePeriod === period.value
+                    ? 'bg-[#534AB7] text-white'
+                    : 'bg-[#F0EFF5] text-[#7A7893] hover:bg-[#E8E5F5]'
+                }`}
+              >
+                {period.label}
+              </button>
+            ))}
+          </div>
+        </div>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={chartData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" vertical={false} />
