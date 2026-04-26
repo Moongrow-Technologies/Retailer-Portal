@@ -78,7 +78,7 @@ function ActiveCampaignsCard({ campaigns }) {
 
       <div>
         <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{active.length}</p>
-        <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">↑ 1 new this month</p>
+        <TrendBadge value="1 new this month" />
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 mt-1 space-y-3">
