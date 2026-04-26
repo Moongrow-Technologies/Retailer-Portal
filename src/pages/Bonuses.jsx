@@ -22,6 +22,7 @@ const TYPE_STYLES = {
 
 const TABS = [
 { key: 'active', label: 'Active' },
+{ key: 'paused', label: 'Paused' },
 { key: 'scheduled', label: 'Scheduled' },
 { key: 'completed', label: 'Completed' }];
 
@@ -47,12 +48,14 @@ export default function Bonuses() {
 
   const counts = {
     active: bonuses.filter((b) => b.status === 'active').length,
+    paused: bonuses.filter((b) => b.status === 'paused_manual').length,
     scheduled: bonuses.filter((b) => b.status === 'scheduled').length,
     completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
   const filtered = bonuses.filter((b) => {
     if (tab === 'active') return b.status === 'active';
+    if (tab === 'paused') return b.status === 'paused_manual';
     if (tab === 'scheduled') return b.status === 'scheduled';
     if (tab === 'completed') return b.status === 'completed';
     return b.status === tab;
