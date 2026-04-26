@@ -40,7 +40,7 @@ export default function Dashboard() {
         gridTemplateColumns: '1fr 1fr 1fr',
         gridTemplateRows: 'auto auto',
         gap: '24px',
-        alignItems: 'stretch'
+        alignItems: 'start'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
