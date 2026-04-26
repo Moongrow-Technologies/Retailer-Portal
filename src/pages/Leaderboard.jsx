@@ -79,7 +79,7 @@ export default function Leaderboard() {
             key={m}
             onClick={() => setMetric(m)}
             className={cn(
-              "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap",
+              "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap cursor-pointer",
               metric === m ?
               "bg-white text-[#12121f] shadow-sm" :
               "text-[#5b616e] hover:text-[#12121f]"
