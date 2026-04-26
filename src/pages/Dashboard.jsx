@@ -38,8 +38,8 @@ export default function Dashboard() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        gridTemplateRows: 'auto auto',
-        gap: '24px',
+        gridTemplateRows: 'auto auto auto',
+        gap: '16px',
         alignItems: 'start'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
