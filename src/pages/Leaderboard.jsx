@@ -92,7 +92,7 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid gap-4 px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
+        <div className="grid gap-4 px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F7F7]" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>

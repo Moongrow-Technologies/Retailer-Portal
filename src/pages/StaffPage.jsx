@@ -41,7 +41,7 @@ export default function StaffPage() {
       {/* Staff List */}
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Column Header */}
-        <div className="grid grid-cols-[1fr_120px_80px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+        <div className="grid grid-cols-[1fr_120px_80px] px-6 py-3 bg-[#F7F7F7] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff Member</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-center">Status</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Action</span>
