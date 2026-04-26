@@ -88,7 +88,7 @@ export default function Bonuses() {
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#E2E0ED' }}>
-          <div className="h-full" style={{ width: '37%', background: '#27272b' }} />
+          <div className="h-full" style={{ width: '37%', background: '#F0997B' }} />
           <div className="h-full flex-1" style={{ background: '#e2e2e2' }} />
         </div>
 

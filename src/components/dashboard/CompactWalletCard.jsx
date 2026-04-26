@@ -40,7 +40,7 @@ export default function CompactWalletCard({ wallet }) {
         {/* Campaigns */}
         <div className="flex items-center justify-between py-3 border-b border-[#EBEBF0]">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0"></div>
             <div>
               <p className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</p>
               <p className="text-xs text-[#5b616e]">{activeCampaigns} active</p>
@@ -52,7 +52,7 @@ export default function CompactWalletCard({ wallet }) {
         {/* Bonuses */}
         <div className="flex items-center justify-between py-3 border-b border-[#EBEBF0]">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0"></div>
             <div>
               <p className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</p>
               <p className="text-xs text-[#5b616e]">{activeBonuses} active</p>
