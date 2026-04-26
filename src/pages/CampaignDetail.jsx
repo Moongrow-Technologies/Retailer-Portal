@@ -63,7 +63,7 @@ export default function CampaignDetail() {
                 setStatus(next);
                 setToast(next === 'active' ? "Campaign resumed." : "Campaign paused.");
               }}
-              className="data-[state=checked]:bg-[#2977d6]"
+              className="data-[state=checked]:bg-[#796EB2]"
             />
           )}
           {status !== 'completed' && (
@@ -120,7 +120,7 @@ export default function CampaignDetail() {
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#2977d6' }} />
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#534AB7' }} />
           </div>
           <p className="text-xs text-muted-foreground mt-1">{campaign.units_sold} / {campaign.target_units} units</p>
         </div>
@@ -130,7 +130,7 @@ export default function CampaignDetail() {
             <span className="font-medium">{Math.round(spendPct)}%</span>
           </div>
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#2977d6' }} />
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#534AB7' }} />
           </div>
           <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)}</p>
         </div>
