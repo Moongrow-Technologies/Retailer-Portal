@@ -14,11 +14,11 @@ const typeLabels = {
 };
 
 const typeColors = {
-  commission: 'bg-emerald-50 text-emerald-700',
-  bonus_payout: 'bg-amber-50 text-amber-700',
-  top_up: 'bg-blue-50 text-blue-700',
-  budget_commit: 'bg-slate-100 text-slate-600',
-  budget_release: 'bg-blue-50 text-blue-600',
+  commission: 'bg-[#EEEDFE] text-[#534AB7]',
+  bonus_payout: 'bg-[#FAECE7] text-[#993C1D]',
+  top_up: 'bg-[#EAF3DE] text-[#3B6D11]',
+  budget_commit: 'bg-[#E6F1FB] text-[#185FA5]',
+  budget_release: 'bg-[#E6F1FB] text-[#185FA5]',
 };
 
 function parseDescription(description) {
