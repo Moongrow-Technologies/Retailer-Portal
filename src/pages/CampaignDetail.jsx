@@ -119,7 +119,9 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Units Progress</span>
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
-          <SegmentedProgress value={unitsPct} segments={12} />
+          <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#9697b4' }} />
+          </div>
           <p className="text-xs text-muted-foreground mt-1">{campaign.units_sold} / {campaign.target_units} units</p>
         </div>
         <div className="bg-card rounded-xl border border-border p-5">
@@ -127,7 +129,9 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Budget Spend</span>
             <span className="font-medium">{Math.round(spendPct)}%</span>
           </div>
-          <SegmentedProgress value={spendPct} segments={12} />
+          <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#9697b4' }} />
+          </div>
           <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)}</p>
         </div>
       </div>
