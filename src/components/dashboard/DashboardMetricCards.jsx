@@ -117,7 +117,7 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
                     </span>
                   </div>
                   <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
-                    <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: warn ? '#F59E0B' : '#534AB7' }} />
+                    <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
