@@ -14,13 +14,29 @@ function daysLeft(endDate) {
   return d >= 0 ? d : 0;
 }
 
-// Fake weekly sales data per product
+// Fake sales data per product
+const DAILY_DATA = {
+  'OG Kush':      [2, 3, 1, 4, 2, 3, 2, 5, 3, 2, 4, 1, 3, 2, 1, 5, 2, 3, 4, 2, 3, 1, 2, 3],
+  'Blue Dream':   [3, 2, 4, 3, 2, 5, 3, 4, 2, 3, 1, 4, 2, 3, 5, 2, 3, 4, 2, 1, 3, 2, 4, 3],
+  'Amnesia Haze': [1, 1, 1, 2, 1, 1, 1, 2, 0, 1, 1, 1, 2, 1, 0, 1, 1, 2, 1, 1, 0, 1, 1, 2],
+  'White Widow':  [1, 2, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1],
+  'Gorilla Glue': [0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+};
+
 const WEEKLY_DATA = {
   'OG Kush':      [22, 18, 28, 24, 32, 20, 18, 26],
   'Blue Dream':   [30, 28, 22, 26, 18, 24, 20, 16],
   'Amnesia Haze': [8,  12, 10, 14, 18, 12, 8,  10],
   'White Widow':  [14, 18, 20, 16, 12, 10, 14, 8],
   'Gorilla Glue': [4,  6,  8,  4,  6,  8,  4,  6],
+};
+
+const MONTHLY_DATA = {
+  'OG Kush':      [88, 74, 106, 92, 118, 82, 96, 104, 110, 78, 88, 92],
+  'Blue Dream':   [112, 108, 94, 102, 74, 98, 84, 78, 96, 102, 88, 94],
+  'Amnesia Haze': [32, 48, 42, 56, 64, 48, 36, 44, 52, 48, 40, 44],
+  'White Widow':  [56, 72, 80, 64, 52, 42, 56, 48, 60, 52, 48, 56],
+  'Gorilla Glue': [16, 24, 32, 16, 24, 28, 16, 20, 24, 28, 16, 20],
 };
 
 // Fake staff-per-product data
@@ -56,9 +72,23 @@ export default function ProductDetail() {
   const totalRevenue = totalUnits * product.price;
   const totalCommission = allCampaigns.reduce((s, c) => s + c.spent, 0);
 
-  // Weekly chart data
-  const weeklyRaw = WEEKLY_DATA[product.name] || [0, 0, 0, 0, 0, 0, 0, 0];
-  const chartData = weeklyRaw.map((units, i) => ({ week: `W${i + 1}`, units }));
+  // Chart data based on time period
+  const getChartData = () => {
+    let data = [];
+    if (timePeriod === '24h') {
+      const dailyRaw = DAILY_DATA[product.name] || Array(24).fill(0);
+      data = dailyRaw.map((units, i) => ({ label: `${i}h`, units }));
+    } else if (timePeriod === 'week') {
+      const weeklyRaw = WEEKLY_DATA[product.name] || [0, 0, 0, 0, 0, 0, 0, 0];
+      data = weeklyRaw.map((units, i) => ({ label: `W${i + 1}`, units }));
+    } else if (timePeriod === 'month') {
+      const monthlyRaw = MONTHLY_DATA[product.name] || Array(12).fill(0);
+      data = monthlyRaw.map((units, i) => ({ label: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i], units }));
+    }
+    return data;
+  };
+  
+  const chartData = getChartData();
 
   // Staff leaderboard for this product
   const staffRows = (STAFF_PRODUCT_DATA[product.name] || [])
@@ -134,7 +164,7 @@ export default function ProductDetail() {
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={chartData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" vertical={false} />
-            <XAxis dataKey="week" tick={{ fontSize: 12, fill: '#5b616e' }} axisLine={false} tickLine={false} />
+            <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#5b616e' }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fontSize: 12, fill: '#5b616e' }} axisLine={false} tickLine={false} />
             <Tooltip
               contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
