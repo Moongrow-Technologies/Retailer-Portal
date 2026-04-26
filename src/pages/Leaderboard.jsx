@@ -92,7 +92,7 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[50px_1.5fr_1fr_1fr_160px_120px] px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+        <div className="grid grid-cols-[50px_1.5fr_1fr_1fr_140px_100px] px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
@@ -104,7 +104,7 @@ export default function Leaderboard() {
         {/* Rows */}
         {sorted.map((staff, i) => (
           <div key={staff.id}>
-            <div className="grid grid-cols-[50px_1.5fr_1fr_1fr_160px_120px] px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors">
+            <div className="grid grid-cols-[50px_1.5fr_1fr_1fr_140px_100px] px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors">
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[#9490AA]">{i + 1}</span>
