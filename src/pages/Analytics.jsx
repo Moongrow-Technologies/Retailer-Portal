@@ -137,22 +137,27 @@ export default function Analytics() {
         </div>
 
         {/* Chart */}
-        <div className="px-6 py-6">
-          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Revenue over time</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <AreaChart data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#796EB2" stopOpacity={0.15} />
-                  <stop offset="95%" stopColor="#796EB2" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#5b616e" />
-              <Tooltip contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '8px' }} />
-              <Area type="monotone" dataKey="value" stroke="#796EB2" strokeWidth={2} fill="url(#colorValue)" dot={false} />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+         <div className="px-6 py-6">
+           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Revenue over time</h3>
+           <ResponsiveContainer width="100%" height={220}>
+             <AreaChart data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+               <defs>
+                 <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                   <stop offset="5%" stopColor="#796EB2" stopOpacity={0.15} />
+                   <stop offset="95%" stopColor="#796EB2" stopOpacity={0} />
+                 </linearGradient>
+               </defs>
+               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#5b616e" />
+               <Tooltip contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '8px' }} />
+               <Area type="monotone" dataKey="value" stroke="#796EB2" strokeWidth={2} fill="url(#colorValue)" dot={false} />
+             </AreaChart>
+           </ResponsiveContainer>
+           <div className="mt-4 flex justify-center">
+             <span className="inline-flex items-center bg-emerald-50 text-emerald-700 text-sm font-semibold px-3 py-1.5 rounded-full">
+               €{chartData[chartData.length - 1].value.toLocaleString()}
+             </span>
+           </div>
+         </div>
       </div>
 
       {/* Three-column bottom section */}
