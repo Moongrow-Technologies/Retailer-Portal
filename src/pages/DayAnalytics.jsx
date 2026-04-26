@@ -126,7 +126,7 @@ export default function DayAnalytics() {
                   <Link
                     key={product.name}
                     to={`/products/${encodeURIComponent(product.name)}`}
-                    className="block hover:opacity-70 transition-opacity"
+                    className="block p-2 rounded-lg hover:bg-[#F5F3FC] transition-colors -mx-2"
                   >
                     <div>
                       <div className="flex justify-between items-end mb-2">
