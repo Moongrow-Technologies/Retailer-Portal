@@ -35,27 +35,35 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div className="flex flex-col gap-6">
-        {/* Row 1: Wallet + Metric Cards */}
-        <div className="grid grid-cols-12 gap-6 items-stretch">
-          <div className="col-span-4 flex flex-col gap-6">
-            <CompactWalletCard wallet={wallet} />
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateRows: 'auto auto',
+        gap: '24px',
+        alignItems: 'stretch'
+      }}>
+        {/* Row 1, Column 1: Wallet cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <CompactWalletCard wallet={wallet} />
+          <div style={{ flex: 1, minHeight: 0 }}>
             <WalletRunwayCard wallet={wallet} />
-          </div>
-          <div className="col-span-8">
-            <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
           </div>
         </div>
 
-        {/* Row 2: Activity feed + Top Budtenders + Needs Attention */}
-        <div className="grid grid-cols-12 gap-6 items-stretch">
-          <div className="col-span-8">
-            <ActivityFeed activities={ACTIVITIES} />
-          </div>
-          <div className="col-span-4 flex flex-col gap-6">
-            <TopBudtenders staff={topBudtenders} />
-            <NeedsAttention staff={needsAttention} />
-          </div>
+        {/* Row 1, Columns 2-3: Metric Cards */}
+        <div style={{ gridColumn: 'span 2' }}>
+          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+        </div>
+
+        {/* Row 2, Columns 1-2: Activity Feed */}
+        <div style={{ gridColumn: 'span 2' }}>
+          <ActivityFeed activities={ACTIVITIES} />
+        </div>
+
+        {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <TopBudtenders staff={topBudtenders} />
+          <NeedsAttention staff={needsAttention} />
         </div>
       </div>
     </div>
