@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { STAFF, CAMPAIGNS, STAFF_AVATARS, PRODUCTS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
@@ -113,38 +113,43 @@ export default function DayAnalytics() {
         {/* Product Breakdown */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Product breakdown</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <PieChart>
-              <Pie
-                data={productBreakdown}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, units }) => `${name} (${units})`}
-                outerRadius={60}
-                fill="#8884d8"
-                dataKey="value"
-                onClick={(data) => {
-                  navigate(`/products/${encodeURIComponent(data.name)}`);
-                }}
-              >
-                {productBreakdown.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} style={{ cursor: 'pointer' }} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            {productBreakdown.map((product, idx) => (
-              <Link
-                key={product.name}
-                to={`/products/${encodeURIComponent(product.name)}`}
-                className="p-2 rounded-lg hover:bg-[#F5F3FC] transition-colors flex items-center gap-2 cursor-pointer"
-              >
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[idx % COLORS.length] }}></div>
-                <span className="text-xs text-[#0c0b0c] font-medium">{product.name}</span>
-              </Link>
-            ))}
+          <div className="space-y-4">
+            {(() => {
+              const maxUnits = Math.max(...productBreakdown.map(p => p.units));
+              const totalUnits = productBreakdown.reduce((sum, p) => sum + p.units, 0);
+
+              return productBreakdown.map((product, idx) => {
+                const percentage = Math.round((product.units / totalUnits) * 100);
+                const barWidth = (product.units / maxUnits) * 100;
+
+                return (
+                  <div key={product.name}>
+                    <div className="flex justify-between items-end mb-2">
+                      <Link
+                        to={`/products/${encodeURIComponent(product.name)}`}
+                        className="text-sm font-bold text-[#0c0b0c] hover:text-[#534AB7] transition-colors"
+                      >
+                        {product.name}
+                      </Link>
+                      <span className="text-xs text-[#5b616e]">{product.units} units · {percentage}%</span>
+                    </div>
+                    <div className="w-full h-2 bg-[#F0EFF5] rounded-full overflow-hidden">
+                      <Link
+                        to={`/products/${encodeURIComponent(product.name)}`}
+                        className="block h-full rounded-full transition-opacity hover:opacity-80"
+                        style={{
+                          width: `${barWidth}%`,
+                          backgroundColor: COLORS[idx % COLORS.length]
+                        }}
+                      />
+                    </div>
+                    {idx !== productBreakdown.length - 1 && (
+                      <div className="border-b border-[#EBEBF0] mt-4" />
+                    )}
+                  </div>
+                );
+              });
+            })()}
           </div>
         </div>
       </div>
