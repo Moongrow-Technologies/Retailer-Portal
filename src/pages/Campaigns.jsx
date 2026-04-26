@@ -78,7 +78,7 @@ export default function Campaigns() {
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
-          <div className="h-full rounded-full" style={{ width: '79%', background: '#534AB7' }} />
+          <div className="h-full rounded-full" style={{ width: '79%', background: '#2977d6' }} />
         </div>
 
         {/* Bar labels */}
@@ -161,7 +161,7 @@ export default function Campaigns() {
                   <div>
                     <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
                     <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
-                      <div className="h-full rounded-full" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#534AB7' }} />
+                      <div className="h-full rounded-full" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#2977d6' }} />
                     </div>
                   </div>
 
@@ -172,7 +172,7 @@ export default function Campaigns() {
                   <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                     <StatusBadge status={campaign.status} />
                     {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
-                      <Switch checked={isActive} onCheckedChange={() => handleTogglePause(campaign)} className="data-[state=checked]:bg-[#796EB2]" />
+                      <Switch checked={isActive} onCheckedChange={() => handleTogglePause(campaign)} className="data-[state=checked]:bg-[#2977d6]" />
                     )}
                   </div>
 

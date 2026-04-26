@@ -114,7 +114,7 @@ export default function BonusDetail() {
                 setBonusStatus(next);
                 setToast(next === 'active' ? "Bonus resumed." : "Bonus paused.");
               }}
-              className="data-[state=checked]:bg-[#796EB2]"
+              className="data-[state=checked]:bg-[#2977d6]"
             />
             <span className="text-sm text-[#7A7893]">{bonusStatus === 'active' ? 'Active' : 'Paused'}</span>
             <button
@@ -135,7 +135,7 @@ export default function BonusDetail() {
             <h2 className="font-semibold text-[#0E0D1E] text-sm">{isActive ? 'Live Leaderboard' : 'Final Standings'}</h2>
           </div>
           {/* Header */}
-          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F7F7]">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Units Sold</span>
@@ -163,7 +163,7 @@ export default function BonusDetail() {
                       <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
                       <p className="text-xs text-[#9490AA]">{entry.store}</p>
                       <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-[180px]">
-                        <div className="h-full bg-[#796EB2] rounded-full" style={{ width: `${pct}%` }} />
+                        <div className="h-full bg-[#2977d6] rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                     </div>
