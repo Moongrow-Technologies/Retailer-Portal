@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, UserX } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import SuccessToast from '@/components/shared/SuccessToast';
+import { ArrowLeft, UserX, AlertTriangle } from 'lucide-react';
 import { STAFF } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { cn } from '@/lib/utils';
@@ -45,7 +47,11 @@ const bonusHistoryByStaff = {
 export default function StaffDetail() {
   const staffId = window.location.pathname.split('/').pop();
   const navigate = useNavigate();
-  const staff = STAFF.find(s => s.id === staffId) || STAFF[0];
+  const baseSta = STAFF.find(s => s.id === staffId) || STAFF[0];
+  const [status, setStatus] = useState(baseSta.status);
+  const staff = { ...baseSta, status };
+  const [showDeactivateModal, setShowDeactivateModal] = useState(false);
+  const [toast, setToast] = useState(null);
 
   useEffect(() => { window.scrollTo(0, 0); }, [staffId]);
 
@@ -88,9 +94,13 @@ export default function StaffDetail() {
           </div>
         </div>
         {staff.status === 'active' && (
-          <Button variant="outline" className="gap-1.5 text-destructive hover:text-destructive">
-            <UserX className="w-4 h-4" /> Deactivate
-          </Button>
+          <button
+            onClick={() => setShowDeactivateModal(true)}
+            className="group flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E0ED] bg-white text-sm font-medium text-[#0E0D1E] hover:bg-red-500 hover:border-red-500 hover:text-white transition-all"
+          >
+            <span className="w-2 h-2 rounded-full bg-red-400 group-hover:bg-white transition-colors" />
+            Deactivate
+          </button>
         )}
       </div>
 
@@ -199,6 +209,29 @@ export default function StaffDetail() {
           <p className="text-sm text-[#9490AA] py-4 text-center">No bonus wins yet.</p>
         )}
       </div>
+
+      <SuccessToast message={toast} onDismiss={() => setToast(null)} />
+
+      <Dialog open={showDeactivateModal} onOpenChange={setShowDeactivateModal}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
+              Deactivate staff member?
+            </DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">Are you sure you want to deactivate <span className="font-medium text-foreground">{staff.name}</span>? This action cannot be undone.</p>
+          <DialogFooter className="mt-2">
+            <Button variant="outline" onClick={() => setShowDeactivateModal(false)}>Cancel</Button>
+            <Button
+              className="bg-red-500 hover:bg-red-600 text-white"
+              onClick={() => { setStatus('deactivated'); setToast("Staff member deactivated."); setShowDeactivateModal(false); }}
+            >
+              Deactivate
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
