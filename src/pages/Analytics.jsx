@@ -138,7 +138,10 @@ export default function Analytics() {
 
         {/* Chart */}
         <div className="px-6 py-6">
-          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Revenue over time</h3>
+          <div className="flex flex-col gap-3 mb-4">
+            <h3 className="text-sm font-semibold text-[#0c0b0c]">Revenue over time</h3>
+            <span className="inline-flex items-center bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full w-fit">↑ 9% vs last period</span>
+          </div>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <defs>
