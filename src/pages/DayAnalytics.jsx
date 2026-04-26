@@ -123,30 +123,32 @@ export default function DayAnalytics() {
                 const barWidth = (product.units / maxUnits) * 100;
 
                 return (
-                  <div key={product.name}>
-                    <div className="flex justify-between items-end mb-2">
-                      <Link
-                        to={`/products/${encodeURIComponent(product.name)}`}
-                        className="text-sm font-bold text-[#0c0b0c] hover:text-[#534AB7] transition-colors"
-                      >
-                        {product.name}
-                      </Link>
-                      <span className="text-xs text-[#5b616e]">{product.units} units · {percentage}%</span>
+                  <Link
+                    key={product.name}
+                    to={`/products/${encodeURIComponent(product.name)}`}
+                    className="block hover:opacity-70 transition-opacity"
+                  >
+                    <div>
+                      <div className="flex justify-between items-end mb-2">
+                        <span className="text-sm font-bold text-[#0c0b0c]">
+                          {product.name}
+                        </span>
+                        <span className="text-xs text-[#5b616e]">{product.units} units · {percentage}%</span>
+                      </div>
+                      <div className="w-full h-2 bg-[#F0EFF5] rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: `${barWidth}%`,
+                            backgroundColor: COLORS[idx % COLORS.length]
+                          }}
+                        />
+                      </div>
+                      {idx !== productBreakdown.length - 1 && (
+                        <div className="border-b border-[#EBEBF0] mt-4" />
+                      )}
                     </div>
-                    <div className="w-full h-2 bg-[#F0EFF5] rounded-full overflow-hidden">
-                      <Link
-                        to={`/products/${encodeURIComponent(product.name)}`}
-                        className="block h-full rounded-full transition-opacity hover:opacity-80"
-                        style={{
-                          width: `${barWidth}%`,
-                          backgroundColor: COLORS[idx % COLORS.length]
-                        }}
-                      />
-                    </div>
-                    {idx !== productBreakdown.length - 1 && (
-                      <div className="border-b border-[#EBEBF0] mt-4" />
-                    )}
-                  </div>
+                  </Link>
                 );
               });
             })()}
