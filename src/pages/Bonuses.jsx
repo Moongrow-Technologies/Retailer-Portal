@@ -51,7 +51,7 @@ export default function Bonuses() {
     completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
-  const filtered = bonuses.filter((b) => b.status === tab);
+  const filtered = bonuses.filter((b) => tab === 'active' ? (b.status === 'active' || b.status === 'paused_manual') : b.status === tab);
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
