@@ -83,7 +83,7 @@ export default function TopBar() {
       </div>
 
       {/* Rest of header */}
-      <div className="flex-1 flex items-center justify-between pl-6 pr-8 h-full">
+      <div className="flex-1 flex items-center justify-between pl-10 pr-8 h-full">
       {/* Breadcrumb */}
        <div className="flex items-center gap-1.5 text-sm">
          {section && section !== label ? (
