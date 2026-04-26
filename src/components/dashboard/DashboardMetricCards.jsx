@@ -439,7 +439,7 @@ function CommissionROICard() {
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
 export default function DashboardMetricCards({ campaigns, bonuses }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 auto-rows-max">
       <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
       <UnitsSoldCard />
       <RevenueCard />
