@@ -129,11 +129,11 @@ export default function BonusDetail() {
             <h2 className="font-semibold text-[#0E0D1E] text-sm">{isActive ? 'Live Leaderboard' : 'Final Standings'}</h2>
           </div>
           {/* Header */}
-          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0]">
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Score</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Prize</span>
+          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Score</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Prize</span>
           </div>
           <div>
             {bonus.leaderboard?.map((entry, i) => {

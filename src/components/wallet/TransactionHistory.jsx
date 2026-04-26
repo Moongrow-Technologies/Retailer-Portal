@@ -71,10 +71,10 @@ export default function TransactionHistory({ transactions }) {
       </div>
 
       {/* Table header */}
-      <div className="px-6 py-3 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-[#EBEBF0]">
-        <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider">Transaction</p>
-        <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider text-right w-32">Type</p>
-        <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wider text-right w-24">Amount</p>
+      <div className="px-6 py-3 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider">Transaction</p>
+        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-right w-32">Type</p>
+        <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider text-right w-24">Amount</p>
       </div>
 
       {/* Rows */}

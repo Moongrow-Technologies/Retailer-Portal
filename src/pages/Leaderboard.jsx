@@ -92,12 +92,12 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-3 border-b border-[#EBEBF0]">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">#</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">Commission</span>
+        <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Movement</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Commission</span>
           <span />
         </div>
 
