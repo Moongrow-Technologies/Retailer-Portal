@@ -109,17 +109,7 @@ export const BONUSES = [
       { rank: 4, name: 'Tom B.',   score: 92,  store: 'Zuid',    prize: null },
     ],
   },
-  {
-    id: 'b5', name: 'Blue Dream Blitz', type: 'threshold', metric: 'units_sold', product_name: 'Blue Dream',
-    scope: 'chain', status: 'paused_manual', start_date: '2026-04-10', end_date: '2026-04-30',
-    threshold_target: 50, threshold_prize: 75, prize_pool: 75, prizes: [{ position: 1, amount: 75, label: 'Threshold' }],
-    participants: 2, current_leader: 'Tom B.', leader_score: 12,
-    leaderboard: [
-      { rank: 1, name: 'Tom B.',   score: 12, store: 'Zuid',    prize: null },
-      { rank: 2, name: 'Nina D.',  score: 0,  store: 'Oost',    prize: null },
-    ],
-  },
-  ];
+];
 
 // Wallet
 // total = €2,000

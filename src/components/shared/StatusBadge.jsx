@@ -3,8 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 const statusStyles = {
-  active: 'bg-[#EAF3DE] text-[#3B6D11] border-[#EAF3DE]',
-  paused_manual: 'bg-[#F1EFE8] text-[#5F5E5A] border-[#F1EFE8]',
+  active: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  paused_manual: 'bg-[#EDE9F8] text-[#796EB2] border-[#D4CDF0]',
   paused_budget: 'bg-[#0c0b0c] text-white border-[#0c0b0c]',
   scheduled: 'bg-amber-50 text-amber-700 border-amber-200',
   completed: 'bg-[#0c0b0c] text-white border-[#0c0b0c]',
