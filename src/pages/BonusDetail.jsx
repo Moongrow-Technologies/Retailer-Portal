@@ -75,7 +75,7 @@ export default function BonusDetail() {
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="outline" className={cn("text-xs font-semibold", cfg.badgeBg)}>{cfg.label}</Badge>
-            <Badge variant="outline" className={isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : bonusStatus === 'completed' ? "bg-[#0c0b0c] text-white border-[#0c0b0c]" : "bg-[#EDE9F8] text-[#796EB2] border-[#D4CDF0]"}>
+            <Badge variant="outline" className={isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : bonusStatus === 'completed' ? "bg-[#F1EFE8] text-[#5F5E5A] border-[#E8E6DC]" : "bg-[#EDE9F8] text-[#796EB2] border-[#D4CDF0]"}>
               {isActive ? 'Active' : bonusStatus === 'completed' ? 'Completed' : 'Paused'}
             </Badge>
             <DropdownMenu>
