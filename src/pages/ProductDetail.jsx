@@ -125,7 +125,7 @@ export default function ProductDetail() {
 
       <div className="grid grid-cols-2 gap-6 mb-6">
         {/* Active Campaigns */}
-        <Link to="/campaigns" className="block bg-white rounded-xl border border-[#EBEBF0] p-5 hover:border-[#534AB7] transition-colors">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-[#0c0b0c]">Active Campaigns</h3>
             <Link to="/campaigns/new">
@@ -171,10 +171,10 @@ export default function ProductDetail() {
               })}
             </div>
           )}
-        </Link>
+        </div>
 
         {/* Staff Leaderboard */}
-        <Link to="/leaderboard" className="block bg-white rounded-xl border border-[#EBEBF0] p-5 hover:border-[#534AB7] transition-colors">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Staff Leaderboard</h3>
           {staffRows.length === 0 ? (
             <p className="text-sm text-[#9490AA] py-8 text-center">No staff data for this product yet.</p>
@@ -200,13 +200,13 @@ export default function ProductDetail() {
                 </div>
               ))}
             </div>
-            )}
-            </Link>
-            </div>
+          )}
+        </div>
+      </div>
 
-            {/* Campaign History */}
-            {pastCampaigns.length > 0 && (
-            <Link to="/campaigns" className="block bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden hover:border-[#534AB7] transition-colors">
+      {/* Campaign History */}
+      {pastCampaigns.length > 0 && (
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
           <div className="px-6 py-4 border-b border-[#EBEBF0]">
             <h3 className="text-sm font-semibold text-[#0c0b0c]">Campaign History</h3>
           </div>
@@ -220,19 +220,19 @@ export default function ProductDetail() {
           </div>
           {pastCampaigns.map((c, idx) => (
             <div key={c.id}>
-              <Link to={`/campaigns/${c.id}`} onClick={(e) => e.stopPropagation()} className="grid grid-cols-[2fr_1.5fr_1fr_1fr_100px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
-                <span className="text-sm font-semibold text-[#0c0b0c] hover:text-[#534AB7]">{c.name}</span>
+              <div className="grid grid-cols-[2fr_1.5fr_1fr_1fr_100px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
+                <Link to={`/campaigns/${c.id}`} className="text-sm font-semibold text-[#0c0b0c] hover:text-[#534AB7] transition-colors">{c.name}</Link>
                 <span className="text-sm text-[#5b616e]">
                   {c.start_date ? format(parseISO(c.start_date), 'MMM d') : '—'} – {c.end_date ? format(parseISO(c.end_date), 'MMM d, yyyy') : '—'}
                 </span>
                 <span className="text-sm text-[#0c0b0c]">{c.units_sold}</span>
                 <span className="text-sm text-[#0c0b0c]">€{c.spent.toFixed(2)}</span>
                 <StatusBadge status={c.status} />
-              </Link>
+              </div>
               {idx < pastCampaigns.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
             </div>
           ))}
-          </Link>
+        </div>
       )}
     </div>
   );
