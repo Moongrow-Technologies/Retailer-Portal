@@ -442,8 +442,8 @@ export default function DashboardMetricCards({ campaigns, bonuses }) {
     <div className="grid grid-cols-2 gap-4">
       <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
       <UnitsSoldCard />
-      <CommissionROICard />
       <RevenueCard />
+      <CommissionROICard />
     </div>);
 
 }
