@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Send } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, Tooltip } from 'recharts';
 import { differenceInDays, parseISO } from 'date-fns';
 
@@ -17,6 +16,32 @@ function progressPct(spent, budget) {
 }
 
 // ─── sub-components ─────────────────────────────────────────────────────────
+
+function LiveRipple() {
+  return (
+    <div className="relative w-8 h-8 flex items-center justify-center">
+      <style>{`
+        @keyframes ripple {
+          0% {
+            transform: scale(0.8);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        .ripple-pulse {
+          animation: ripple 1.5s ease-out infinite;
+        }
+      `}</style>
+      <div className="absolute w-full h-full rounded-lg bg-[#ececee] flex items-center justify-center">
+        <div className="absolute w-2 h-2 rounded-full bg-[#1D9E75]"></div>
+        <div className="absolute w-2 h-2 rounded-full bg-[#1D9E75] ripple-pulse"></div>
+      </div>
+    </div>
+  );
+}
 
 function PeriodPill({ value, onChange }) {
   const opts = ['This week', 'This month'];
@@ -73,11 +98,9 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#5b616e] font-medium">Active now</span>
-        <div className="bg-[#ececee] rounded-lg w-8 h-8 flex items-center justify-center">
-          <Send className="text-[#a1a1a1] w-3.5 h-3.5" />
-        </div>
-      </div>
+         <span className="text-[13px] text-[#5b616e] font-medium">Active now</span>
+         <LiveRipple />
+       </div>
 
       {/* Tabs */}
       <div className="flex gap-2">
