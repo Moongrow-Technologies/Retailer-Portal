@@ -119,7 +119,7 @@ export default function Campaigns() {
 
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
           {/* Table Header */}
-          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_120px_48px] px-6 py-3 bg-[#F7F7F7] border-b border-[#EBEBF0]">
+          <div className="grid grid-cols-[2fr_1fr_1fr_2fr_140px_48px] px-6 py-3 bg-[#F7F7F7] border-b border-[#EBEBF0]">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Product</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rate</span>
@@ -136,7 +136,7 @@ export default function Campaigns() {
             return (
               <div key={campaign.id}>
                 <div
-                  className={`grid grid-cols-[2fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center transition-colors cursor-pointer ${isCompleted ? 'opacity-60' : 'hover:bg-[#F5F3FC]'}`}
+                  className={`grid grid-cols-[2fr_1fr_1fr_2fr_140px_48px] px-6 py-4 items-center transition-colors cursor-pointer ${isCompleted ? 'opacity-60' : 'hover:bg-[#F5F3FC]'}`}
                   onClick={() => navigate(`/campaigns/${campaign.id}`)}>
 
                   {/* Campaign name */}
@@ -160,13 +160,13 @@ export default function Campaigns() {
                   <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
 
                   {/* Progress bar */}
-                  <div className="overflow-hidden max-w-full">
+                  <div className="min-w-0">
                     <div className="w-full h-1.5 rounded-full overflow-hidden mb-1" style={{ background: '#D1D5DB' }}>
                       <div className="h-full rounded-full" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#534AB7' }} />
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#5b616e]">{campaign.units_sold} / {campaign.target_units} units</span>
-                      <span className="text-xs font-medium text-[#0c0b0c]">{Math.round(unitsPct)}%</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs text-[#5b616e] truncate">{campaign.units_sold} / {campaign.target_units} units</span>
+                      <span className="text-xs font-medium text-[#0c0b0c] flex-shrink-0">{Math.round(unitsPct)}%</span>
                     </div>
                   </div>
 
