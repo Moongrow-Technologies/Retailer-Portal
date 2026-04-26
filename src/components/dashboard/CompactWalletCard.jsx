@@ -18,9 +18,9 @@ export default function CompactWalletCard({ wallet }) {
   const activeBonuses = 2;
 
   return (
-    <div className="bg-white px-6 py-6 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col" style={{ alignSelf: 'start' }}>
+    <div className="bg-white px-5 py-5 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col" style={{ alignSelf: 'start' }}>
       {/* Header */}
-      <div className="mb-5">
+      <div className="mb-4">
         <p className="text-[#5b616e] mb-1 text-sm">Moongrow Wallet</p>
         <p className="text-[#0c0b0c] mb-3 text-4xl font-medium tracking-tight">
           €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
@@ -36,7 +36,7 @@ export default function CompactWalletCard({ wallet }) {
       </div>
 
       {/* Rows */}
-      <div className="flex flex-col gap-0">
+      <div className="flex flex-col gap-0 border-t border-[#EBEBF0]">
         {/* Available */}
         <div className="flex items-center justify-between py-3">
           <div>
@@ -47,7 +47,7 @@ export default function CompactWalletCard({ wallet }) {
         </div>
       </div>
 
-      <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-0 block font-semibold">
+      <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-3 block font-semibold">
         View Moongrow Wallet →
       </Link>
 
