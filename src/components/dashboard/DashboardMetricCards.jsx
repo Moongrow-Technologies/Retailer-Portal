@@ -373,12 +373,75 @@ function RevenueCard() {
 
 }
 
+// ─── CARD 5 — Commission ROI ────────────────────────────────────────────────
+function CommissionROICard() {
+  const [period, setPeriod] = useState('This week');
+  
+  const roiData = {
+    'This week': {
+      roi: '6.4',
+      trend: '0.4x vs last period',
+      description: 'Every €1 in commission generated',
+      revenue: '€6.40 in revenue',
+      breakdown: [
+        { label: 'Commission paid', value: '€48.00' },
+        { label: 'Revenue generated', value: '€1,620' },
+        { label: 'Units sold via campaigns', value: '156' }
+      ]
+    },
+    'This month': {
+      roi: '12.5',
+      trend: '1.2x vs last period',
+      description: 'Every €1 in commission generated',
+      revenue: '€12.50 in revenue',
+      breakdown: [
+        { label: 'Commission paid', value: '€487.00' },
+        { label: 'Revenue generated', value: '€6,110' },
+        { label: 'Units sold via campaigns', value: '521' }
+      ]
+    }
+  };
+
+  const d = roiData[period];
+
+  return (
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
+      <div className="flex items-start justify-between">
+        <span className="text-[13px] text-[#5b616e] font-medium">Commission ROI</span>
+        <PeriodPill value={period} onChange={setPeriod} />
+      </div>
+
+      <div>
+        <div className="flex items-baseline gap-1">
+          <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.roi}</p>
+          <span className="text-[18px] text-[#5b616e]">x</span>
+        </div>
+        <TrendBadge value={d.trend} />
+      </div>
+
+      <div className="border-t border-[#F4F3FA] pt-3 space-y-2">
+        <p className="text-[13px] text-[#5b616e]">{d.description}</p>
+        <p className="text-[13px] font-semibold text-[#0c0b0c]">{d.revenue}</p>
+        
+        <div className="border-t border-[#F4F3FA] mt-3 pt-3 space-y-2.5">
+          {d.breakdown.map((item) => (
+            <div key={item.label} className="flex items-center justify-between">
+              <span className="text-[12px] text-[#5b616e]">{item.label}</span>
+              <span className="text-[12px] font-semibold text-[#0c0b0c]">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
 export default function DashboardMetricCards({ campaigns, bonuses }) {
   return (
     <div className="grid grid-cols-2 gap-4">
       <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
-      <CommissionCard />
+      <CommissionROICard />
       <UnitsSoldCard />
       <RevenueCard />
     </div>);
