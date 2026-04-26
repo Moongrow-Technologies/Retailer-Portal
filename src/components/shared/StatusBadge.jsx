@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 const statusStyles = {
   active: 'bg-emerald-50 text-emerald-700 border-emerald-200',
   paused_manual: 'bg-amber-100 text-amber-700 border-amber-200',
-  paused_budget: 'bg-[#9697b4] text-[#1a1a2e] border-[#9697b4]',
+  paused_budget: 'bg-[#9697b4] text-white border-[#9697b4]',
   scheduled: 'bg-amber-50 text-amber-700 border-amber-200',
   completed: 'bg-[#9697b4] text-white border-[#9697b4]',
   pending: 'bg-blue-50 text-blue-700 border-blue-200',
