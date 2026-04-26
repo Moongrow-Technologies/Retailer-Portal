@@ -112,7 +112,7 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
                 <div key={c.id}>
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
-                    <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                    <span className="text-[12px] font-semibold text-[#5b616e]">
                       {dl !== null ? `${dl} days left` : '—'}
                     </span>
                   </div>
@@ -137,12 +137,12 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
                 <div key={b.id}>
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
-                    <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                    <span className="text-[12px] font-semibold text-[#5b616e]">
                       {dl !== null ? `${dl} days left` : '—'}
                     </span>
                   </div>
                   <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1.5">
-                    <div className="rounded-full h-full transition-all" style={{ width: `${prizePct}%`, background: warn ? '#F59E0B' : '#F0997B' }} />
+                    <div className="rounded-full h-full transition-all" style={{ width: `${prizePct}%`, background: '#F0997B' }} />
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
