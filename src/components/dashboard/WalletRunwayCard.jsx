@@ -32,7 +32,7 @@ export default function WalletRunwayCard({ wallet }) {
   const progressPercent = Math.min((daysLeft / maxDays) * 100, 100);
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col flex-1">
       {/* Title */}
       <h3 className="text-sm text-[#5b616e] mb-4 font-medium">Wallet runway</h3>
       

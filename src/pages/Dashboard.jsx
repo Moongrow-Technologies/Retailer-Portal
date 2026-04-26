@@ -37,7 +37,7 @@ export default function Dashboard() {
 
       <div className="flex flex-col gap-6">
         {/* Row 1: Wallet + Metric Cards */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-6 items-stretch">
           <div className="col-span-4 flex flex-col gap-6">
             <CompactWalletCard wallet={wallet} />
             <WalletRunwayCard wallet={wallet} />
