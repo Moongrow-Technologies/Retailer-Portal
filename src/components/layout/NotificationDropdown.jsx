@@ -35,9 +35,9 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
     }
   };
 
-  const handleDismiss = (e, activity) => {
+  const handleDismiss = (e, index) => {
     e.stopPropagation();
-    setDismissed(prev => new Set([...prev, activity.id]));
+    setDismissed(prev => new Set([...prev, index]));
   };
 
   useEffect(() => {
@@ -79,12 +79,13 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
       </div>
 
       <div className="p-3 flex flex-col">
-         {RECENT.filter(n => !dismissed.has(n.id)).map((n, i) => {
+         {RECENT.map((n, i) => {
+           if (dismissed.has(i)) return null;
            const path = getNavigationPath(n);
            const isClickable = !!path;
            return (
              <div
-               key={n.id}
+               key={i}
                onClick={() => isClickable && handleNotificationClick(n)}
                className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors group ${i !== RECENT.length - 1 ? 'border-b border-[#EBEBF0]' : ''} ${isClickable ? 'cursor-pointer hover:bg-[#F8F7FC]' : 'hover:bg-[#F8F7FC]'}`}>
                <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1 flex-shrink-0" style={{ backgroundColor: '#EF4444', boxShadow: '0 0 8px rgba(239, 68, 68, 0.6)' }} />
@@ -93,7 +94,7 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
                  <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(n.created_date), 'MMM d, h:mm a')}</p>
                </div>
                <button
-                 onClick={(e) => handleDismiss(e, n)}
+                 onClick={(e) => handleDismiss(e, i)}
                  className="flex-shrink-0 text-[#9490AA] hover:text-[#0E0D1E] opacity-0 group-hover:opacity-100 transition-opacity"
                >
                  <X className="w-4 h-4" />
