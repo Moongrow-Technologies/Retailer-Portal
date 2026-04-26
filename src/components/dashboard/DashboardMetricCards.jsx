@@ -40,8 +40,8 @@ function LiveRipple() {
         <div className="absolute w-2 h-2 rounded-full bg-[#534AB7]"></div>
         <div className="absolute w-2 h-2 rounded-full bg-[#534AB7] ripple-pulse"></div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function PeriodPill({ value, onChange }) {
@@ -64,8 +64,8 @@ function TrendBadge({ value }) {
   return (
     <span className="inline-flex items-center gap-0.5 mt-1 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">
       ↑ {value}
-    </span>
-  );
+    </span>);
+
 }
 
 function CampaignBar({ name, pct, urgency }) {
@@ -127,14 +127,14 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
 
       {/* Fixed-height content area so the card never grows */}
       <div className="border-t border-[#F4F3FA] pt-3" style={{ minHeight: 140 }}>
-        {tab === 'campaigns' ? (
-          <div className="space-y-4">
+        {tab === 'campaigns' ?
+        <div className="space-y-4">
             {active.slice(0, 2).map((c) => {
-               const dl = daysLeft(c.end_date);
-               const warn = dl !== null && dl <= 5;
-               const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
-               return (
-                 <div key={c.id} onClick={() => navigate(`/campaigns/${c.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+            const dl = daysLeft(c.end_date);
+            const warn = dl !== null && dl <= 5;
+            const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
+            return (
+              <div key={c.id} onClick={() => navigate(`/campaigns/${c.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
                    <div className="flex items-center justify-between mb-1.5">
                      <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
                      <span className="text-[12px] font-semibold text-[#5b616e]">
@@ -148,18 +148,18 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
                      <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
                      <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
                    </div>
-                 </div>
-               );
-             })}
-          </div>
-        ) : (
-          <div className="space-y-4">
+                 </div>);
+
+          })}
+          </div> :
+
+        <div className="space-y-4">
             {activeBonuses.slice(0, 2).map((b) => {
-               const dl = daysLeft(b.end_date);
-               const warn = dl !== null && dl <= 5;
-               const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
-               return (
-                 <div key={b.id} onClick={() => navigate(`/bonuses/${b.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+            const dl = daysLeft(b.end_date);
+            const warn = dl !== null && dl <= 5;
+            const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
+            return (
+              <div key={b.id} onClick={() => navigate(`/bonuses/${b.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
                    <div className="flex items-center justify-between mb-1.5">
                      <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
                      <span className="text-[12px] font-semibold text-[#5b616e]">
@@ -173,14 +173,14 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
                      <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
                      <span className="text-[11px] text-[#5b616e]">€{b.prize_pool} pool</span>
                    </div>
-                 </div>
-               );
-             })}
+                 </div>);
+
+          })}
           </div>
-        )}
+        }
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── CARD 2 — Commission Paid ─────────────────────────────────────────────────
@@ -207,15 +207,15 @@ function CommissionCard() {
       </div>
 
       <div>
-        <p className="text-[#0c0b0c] text-3xl font-medium leading-none">{d.value}</p>
+        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
          {d.breakdown.map((b) => {
-           const campaign = CAMPAIGNS.find(c => c.name === b.name);
-           return (
-             <div key={b.name} onClick={() => campaign && navigate(`/campaigns/${campaign.id}`)} className={campaign ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}>
+          const campaign = CAMPAIGNS.find((c) => c.name === b.name);
+          return (
+            <div key={b.name} onClick={() => campaign && navigate(`/campaigns/${campaign.id}`)} className={campaign ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}>
                <div className="flex items-center justify-between mb-1.5">
                  <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[65%]">{b.name}</span>
                  <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
@@ -223,9 +223,9 @@ function CommissionCard() {
                <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
                  <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#534AB7' }} />
                </div>
-             </div>
-           );
-         })}
+             </div>);
+
+        })}
        </div>
     </div>);
 
@@ -244,8 +244,8 @@ const unitsWeekData = [
 { day: 'S', units: 20 }];
 
 const unitsMonthData = [
-  8,14,18,12,22,28,16,20,24,18,30,22,16,26,34,20,18,24,28,16,22,18,26,20,14,24,18,22,16,20
-].map((units, i) => ({ day: `${i + 1}`, units }));
+8, 14, 18, 12, 22, 28, 16, 20, 24, 18, 30, 22, 16, 26, 34, 20, 18, 24, 28, 16, 22, 18, 26, 20, 14, 24, 18, 22, 16, 20].
+map((units, i) => ({ day: `${i + 1}`, units }));
 
 const unitsSoldData = {
   'This week': { value: '144', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 34 }, today: { day: 'S', value: 20 } },
@@ -319,8 +319,8 @@ const revenueWeekData = [
 { day: 'T', rev: 270 }, { day: 'F', rev: 202 }, { day: 'S', rev: 112 }, { day: 'S', rev: 226 }];
 
 const revenueMonthData = [
-  90,158,202,135,248,315,180,225,270,202,338,248,180,292,382,225,202,270,315,180,248,202,292,225,157,270,202,248,180,225
-].map((rev, i) => ({ day: `${i + 1}`, rev }));
+90, 158, 202, 135, 248, 315, 180, 225, 270, 202, 338, 248, 180, 292, 382, 225, 202, 270, 315, 180, 248, 202, 292, 225, 157, 270, 202, 248, 180, 225].
+map((rev, i) => ({ day: `${i + 1}`, rev }));
 
 const revenueData = {
   'This week': { value: '€1,620', trend: '9% vs last period', chart: revenueWeekData },
