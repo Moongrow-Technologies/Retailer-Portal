@@ -182,7 +182,7 @@ export default function ProductDetail() {
             <p className="text-sm text-[#9490AA] py-8 text-center">No staff data for this product yet.</p>
           ) : (
             <>
-              <div className="grid grid-cols-[40px_1fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+              <div className="grid grid-cols-[40px_2fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Name</span>
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Units Sold</span>
@@ -190,7 +190,7 @@ export default function ProductDetail() {
               </div>
               {staffRows.map((staff, i) => (
                 <div key={staff.id}>
-                  <Link to={`/staff/${staff.id}`} className="grid grid-cols-[40px_1fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
+                  <Link to={`/staff/${staff.id}`} className="grid grid-cols-[40px_2fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
                     <span className="text-sm font-bold text-[#9490AA]">{i + 1}</span>
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
