@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp, MoreVertical, Star } from 'lucide-react';
+import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle, TrendingUp, MoreVertical, Star, AlertTriangle } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { BONUSES, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -32,6 +33,7 @@ export default function BonusDetail() {
   const bonus = baseBonus ? { ...baseBonus, status: bonusStatus } : null;
   const [hoursLeft, setHoursLeft] = useState(baseBonus?.hours_left || 0);
   const [toast, setToast] = useState(null);
+  const [showEndModal, setShowEndModal] = useState(false);
 
   useEffect(() => {
     if (!bonus || bonus.status !== 'active') return;
@@ -115,9 +117,13 @@ export default function BonusDetail() {
               className="data-[state=checked]:bg-primary"
             />
             <span className="text-sm text-[#7A7893]">{bonusStatus === 'active' ? 'Active' : 'Paused'}</span>
-            <Button onClick={() => { setBonusStatus('completed'); setToast("Bonus ended."); }} variant="outline" size="sm" className="gap-1.5 border-red-200 text-red-500 hover:bg-red-50 ml-2">
-              <StopCircle className="w-3.5 h-3.5" /> End Early
-            </Button>
+            <button
+              onClick={() => setShowEndModal(true)}
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E0ED] bg-white text-sm font-medium text-[#0E0D1E] hover:bg-red-500 hover:border-red-500 hover:text-white transition-all ml-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-red-400 group-hover:bg-white transition-colors" />
+              End bonus
+            </button>
           </div>
         )}
       </div>
@@ -212,6 +218,27 @@ export default function BonusDetail() {
         </div>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
+
+      <Dialog open={showEndModal} onOpenChange={setShowEndModal}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
+              End bonus?
+            </DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">Are you sure you want to end <span className="font-medium text-foreground">{bonus.name}</span>? This action cannot be undone.</p>
+          <DialogFooter className="mt-2">
+            <Button variant="outline" onClick={() => setShowEndModal(false)}>Cancel</Button>
+            <Button
+              className="bg-red-500 hover:bg-red-600 text-white"
+              onClick={() => { setBonusStatus('completed'); setToast("Bonus ended."); setShowEndModal(false); }}
+            >
+              End bonus
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
