@@ -43,11 +43,9 @@ export default function Dashboard() {
         alignItems: 'stretch'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <CompactWalletCard wallet={wallet} />
-          <div style={{ alignSelf: 'stretch', height: '100%' }}>
-            <WalletRunwayCard wallet={wallet} />
-          </div>
+          <WalletRunwayCard wallet={wallet} />
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
