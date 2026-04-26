@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import StatusBadge from '@/components/shared/StatusBadge';
 import { cn } from '@/lib/utils';
 import { BONUSES } from '@/lib/sampleData';
 import { format } from 'date-fns';
@@ -54,6 +55,11 @@ export default function Bonuses() {
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
+  };
+
+  const handleTogglePause = (bonus) => {
+    const newStatus = bonus.status === 'active' ? 'paused_manual' : 'active';
+    setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
   };
 
   return (
@@ -187,38 +193,28 @@ export default function Bonuses() {
                     : format(new Date(bonus.end_date), 'MMM d, yyyy')}
                 </span>
 
-                {/* Status */}
-                {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
-                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                    <span className={cn("text-xs font-semibold px-3 py-1 rounded-full", isActive ? "bg-emerald-50 text-emerald-700" : "bg-[#EDE9F8] text-[#796EB2]")}>
-                      {isActive ? 'Active' : 'Paused'}
-                    </span>
-                    <Switch
-                      checked={isActive}
-                      onCheckedChange={() => {
-                        const newStatus = isActive ? 'paused_manual' : 'active';
-                        setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
-                      }}
-                      className="data-[state=checked]:bg-emerald-600"
-                    />
-                  </div>
-                )}
-                {(bonus.status === 'completed' || bonus.status === 'scheduled') && (
-                  <span className="text-sm text-[#5b616e]">—</span>
-                )}
+                {/* Status + toggle */}
+                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <StatusBadge status={bonus.status} />
+                  {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
+                    <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
+                  )}
+                </div>
 
                 {/* Menu */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
-                      <MoreVertical className="w-4 h-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <div onClick={(e) => e.stopPropagation()}>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors">
+                        <MoreVertical className="w-4 h-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
               {idx < filtered.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
             </div>
