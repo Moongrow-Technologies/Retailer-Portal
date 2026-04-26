@@ -21,7 +21,6 @@ const TYPE_STYLES = {
 
 const TABS = [
 { key: 'active', label: 'Active' },
-{ key: 'paused', label: 'Paused' },
 { key: 'scheduled', label: 'Scheduled' },
 { key: 'completed', label: 'Completed' }];
 
@@ -47,14 +46,11 @@ export default function Bonuses() {
 
   const counts = {
     active: bonuses.filter((b) => b.status === 'active').length,
-    paused: bonuses.filter((b) => b.status === 'paused_manual').length,
     scheduled: bonuses.filter((b) => b.status === 'scheduled').length,
     completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
-  const filtered = tab === 'paused' 
-    ? bonuses.filter((b) => b.status === 'paused_manual')
-    : bonuses.filter((b) => b.status === tab);
+  const filtered = bonuses.filter((b) => b.status === tab);
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
@@ -125,7 +121,7 @@ export default function Bonuses() {
             "text-[#5b616e] hover:text-[#12121f]"
           )}>
           
-            {t.label} ({counts[t.key]})
+            {t.label}
           </button>
         )}
       </div>
