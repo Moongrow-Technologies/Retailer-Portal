@@ -182,34 +182,47 @@ export default function Analytics() {
         {/* Top Selling Days */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top selling days</h3>
-          <div>
+          <div className="flex gap-2">
             {(() => {
-              const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-              const daysWithNames = topSellingDays.map((day, idx) => ({
-                ...day,
-                fullName: dayNames[idx] || day.label
-              }));
-              const sorted = [...daysWithNames].sort((a, b) => b.units - a.units);
-              const maxUnits = Math.max(...sorted.map(d => d.units));
+              const dayAbbrevs = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+              const weekData = [
+                { abbr: 'Mon', units: 58 },
+                { abbr: 'Tue', units: 52 },
+                { abbr: 'Wed', units: 84 },
+                { abbr: 'Thu', units: 61 },
+                { abbr: 'Fri', units: 68 },
+                { abbr: 'Sat', units: 72 },
+                { abbr: 'Sun', units: 64 }
+              ];
 
-              return sorted.map((day, idx) => (
-                <div key={day.label} className={cn(idx > 2 && 'opacity-40')}>
-                  <div className="flex items-center gap-4 py-4">
-                    <span className="text-sm font-semibold text-[#0c0b0c] w-6">{idx + 1}</span>
-                    <span className="text-sm font-semibold text-[#0c0b0c] w-24">{day.fullName}</span>
-                    <div className="flex-1">
-                      <div className="h-2 bg-[#E2E0ED] rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-[#534AB7] rounded-full" 
-                          style={{ width: `${(day.units / maxUnits) * 100}%` }}
-                        />
-                      </div>
-                    </div>
-                    <span className="text-sm font-semibold text-[#0c0b0c] w-20 text-right">{day.units} units</span>
+              const maxUnits = Math.max(...weekData.map(d => d.units));
+
+              const getColor = (units) => {
+                const ratio = units / maxUnits;
+                if (ratio === 1) return { bg: '#534AB7', text: 'white' };
+                if (ratio >= 0.85) return { bg: '#7F77DD', text: 'white' };
+                if (ratio >= 0.7) return { bg: '#AFA9EC', text: 'white' };
+                if (ratio >= 0.55) return { bg: '#CECBF6', text: '#534AB7' };
+                return { bg: '#EEEDFE', text: '#534AB7' };
+              };
+
+              return weekData.map((day) => {
+                const color = getColor(day.units);
+                return (
+                  <div 
+                    key={day.abbr}
+                    className="flex-1 rounded-lg p-4 text-center transition-all"
+                    style={{ backgroundColor: color.bg }}
+                  >
+                    <p className="text-xs font-semibold mb-2" style={{ color: color.text }}>
+                      {day.abbr}
+                    </p>
+                    <p className="text-lg font-bold" style={{ color: color.text }}>
+                      {day.units}
+                    </p>
                   </div>
-                  {idx < sorted.length - 1 && <div className="border-b border-[#EBEBF0]" />}
-                </div>
-              ));
+                );
+              });
             })()}
           </div>
         </div>
