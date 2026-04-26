@@ -149,7 +149,7 @@ export default function ProductDetail() {
             <>
               <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Progress</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">% Complete</span>
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Time Left</span>
               </div>
               {activeCampaigns.map((c, idx) => {
@@ -160,12 +160,7 @@ export default function ProductDetail() {
                   <div key={c.id}>
                     <Link to={`/campaigns/${c.id}`} className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
                       <span className="text-sm font-semibold text-[#0c0b0c]">{c.name}</span>
-                      <div className="flex items-center gap-2">
-                        <div className="flex-1 h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-                          <div className="h-full" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
-                        </div>
-                        <span className="text-xs text-[#5b616e] w-10 text-right">{unitsPct}%</span>
-                      </div>
+                      <span className="text-sm text-[#0c0b0c]">{unitsPct}%</span>
                       <span className={`text-sm font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
                         {dl !== null ? `${dl} days` : '—'}
                       </span>
