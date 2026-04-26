@@ -7,7 +7,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,
   BarChart, Bar as RechartsBar } from
 'recharts';
-import { STAFF, CAMPAIGNS, STAFF_AVATARS } from '@/lib/sampleData';
+import { STAFF, CAMPAIGNS, STAFF_AVATARS, PRODUCTS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 // This Month chart: cumulative revenue building up to €6,110 (all campaigns combined)
@@ -163,7 +163,7 @@ export default function Analytics() {
           <div>
             {topProducts.map((product, idx) =>
             <div key={product.name}>
-                <div className="flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors cursor-default">
+                <Link to={`/products/${encodeURIComponent(product.name)}`} className="flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors">
                   <div className="w-10 h-10 rounded-lg border border-[#E2E0ED] overflow-hidden flex-shrink-0">
                     <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
                   </div>
@@ -172,7 +172,7 @@ export default function Analytics() {
                     <p className="text-xs text-[#5b616e] mt-0.5">{product.units} units</p>
                   </div>
                   <p className="font-medium text-[#0c0b0c] text-sm">€{product.revenue.toLocaleString()}</p>
-                </div>
+                </Link>
                 {idx !== topProducts.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>
             )}

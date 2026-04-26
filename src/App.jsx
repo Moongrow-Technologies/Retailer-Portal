@@ -25,6 +25,7 @@ import Notifications from '@/pages/Notifications';
 import Profile from '@/pages/Profile';
 import EditCampaign from '@/pages/EditCampaign';
 import EditBonus from '@/pages/EditBonus';
+import ProductDetail from '@/pages/ProductDetail';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
         <Route path="/bonuses/:id" element={<BonusDetail />} />
         <Route path="/staff" element={<StaffPage />} />
         <Route path="/staff/:id" element={<StaffDetail />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/profile" element={<Profile />} />

@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Progress } from '@/components/ui/progress';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { CAMPAIGNS, PRODUCT_IMAGES } from '@/lib/sampleData';
+import { CAMPAIGNS, PRODUCT_IMAGES, PRODUCTS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const TABS = [
@@ -146,7 +146,13 @@ export default function Campaigns() {
                   </div>
 
                   {/* Product */}
-                  <span className="text-sm text-[#5b616e]">{campaign.product_name}</span>
+                  <Link
+                    to={`/products/${encodeURIComponent(campaign.product_name)}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-sm text-[#5b616e] hover:text-[#534AB7] hover:underline transition-colors"
+                  >
+                    {campaign.product_name}
+                  </Link>
 
                   {/* Rate */}
                   <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
