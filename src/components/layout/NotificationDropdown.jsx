@@ -1,13 +1,38 @@
 import React, { useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { X } from 'lucide-react';
-import { ACTIVITIES } from '@/lib/sampleData';
+import { ACTIVITIES, CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
 
 const RECENT = ACTIVITIES.slice(0, 5);
 
 export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread }) {
   const ref = useRef(null);
+  const navigate = useNavigate();
+
+  const getNavigationPath = (activity) => {
+    if (activity.type === 'sale' && activity.staff_name) {
+      const staff = STAFF.find(s => s.name === activity.staff_name);
+      return staff ? `/staff/${staff.id}` : null;
+    }
+    if (activity.campaign_name) {
+      const campaign = CAMPAIGNS.find(c => c.name === activity.campaign_name);
+      return campaign ? `/campaigns/${campaign.id}` : null;
+    }
+    if (activity.type && activity.type.includes('bonus') && activity.bonus_name) {
+      const bonus = BONUSES.find(b => b.name === activity.bonus_name);
+      return bonus ? `/bonuses/${bonus.id}` : null;
+    }
+    return null;
+  };
+
+  const handleNotificationClick = (activity) => {
+    const path = getNavigationPath(activity);
+    if (path) {
+      navigate(path);
+      onClose();
+    }
+  };
 
   useEffect(() => {
     function handleClick(e) {
@@ -48,15 +73,22 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
       </div>
 
       <div className="p-3 flex flex-col">
-         {RECENT.map((n, i) => (
-           <div key={i} className={`flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-[#F8F7FC] transition-colors ${i !== RECENT.length - 1 ? 'border-b border-[#EBEBF0]' : ''}`}>
-             <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1 flex-shrink-0" style={{ backgroundColor: '#EF4444', boxShadow: '0 0 8px rgba(239, 68, 68, 0.6)' }} />
-             <div className="flex-1 min-w-0">
-               <p className="text-sm text-[#0E0D1E] leading-snug">{n.message}</p>
-               <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(n.created_date), 'MMM d, h:mm a')}</p>
+         {RECENT.map((n, i) => {
+           const path = getNavigationPath(n);
+           const isClickable = !!path;
+           return (
+             <div
+               key={i}
+               onClick={() => isClickable && handleNotificationClick(n)}
+               className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors ${i !== RECENT.length - 1 ? 'border-b border-[#EBEBF0]' : ''} ${isClickable ? 'cursor-pointer hover:bg-[#F8F7FC]' : 'hover:bg-[#F8F7FC]'}`}>
+               <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1 flex-shrink-0" style={{ backgroundColor: '#EF4444', boxShadow: '0 0 8px rgba(239, 68, 68, 0.6)' }} />
+               <div className="flex-1 min-w-0">
+                 <p className="text-sm text-[#0E0D1E] leading-snug">{n.message}</p>
+                 <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(n.created_date), 'MMM d, h:mm a')}</p>
+               </div>
              </div>
-           </div>
-         ))}
+           );
+         })}
        </div>
 
       <div className="border-t border-[#EBEBF0] px-4 py-2.5">
