@@ -197,22 +197,24 @@ export default function Bonuses() {
                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                    <StatusBadge status={bonus.status} />
                    {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
-                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} onClick={(e) => e.stopPropagation()} className="data-[state=checked]:bg-[#796EB2]" />
+                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
                    )}
                  </div>
 
                  {/* Menu */}
-                 <DropdownMenu>
-                   <DropdownMenuTrigger asChild>
-                     <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors" onClick={(e) => e.stopPropagation()}>
-                       <MoreVertical className="w-4 h-4" />
-                     </button>
-                   </DropdownMenuTrigger>
-                   <DropdownMenuContent align="end">
-                     <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
-                     <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
-                   </DropdownMenuContent>
-                 </DropdownMenu>
+                 <div onClick={(e) => e.stopPropagation()}>
+                   <DropdownMenu>
+                     <DropdownMenuTrigger asChild>
+                       <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors">
+                         <MoreVertical className="w-4 h-4" />
+                       </button>
+                     </DropdownMenuTrigger>
+                     <DropdownMenuContent align="end">
+                       <DropdownMenuItem onClick={() => navigate(`/bonuses/${bonus.id}/edit`)}>Edit</DropdownMenuItem>
+                       <DropdownMenuItem onClick={() => handleDelete(bonus)} className="text-destructive">Delete</DropdownMenuItem>
+                     </DropdownMenuContent>
+                   </DropdownMenu>
+                 </div>
                </div>
               {idx < filtered.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
             </div>
