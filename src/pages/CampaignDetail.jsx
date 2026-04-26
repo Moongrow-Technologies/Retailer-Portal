@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical } from 'lucide-react';
+import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical, AlertTriangle } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF, STAFF_AVATARS } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
@@ -28,6 +29,7 @@ export default function CampaignDetail() {
   const [status, setStatus] = useState(baseCampaign.status);
   const campaign = { ...baseCampaign, status };
   const [toast, setToast] = useState(null);
+  const [showEndModal, setShowEndModal] = useState(false);
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
@@ -65,7 +67,7 @@ export default function CampaignDetail() {
           )}
           {status !== 'completed' && (
             <button
-              onClick={() => { setStatus('completed'); setToast("Campaign ended."); }}
+              onClick={() => setShowEndModal(true)}
               className="group flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E0ED] bg-white text-sm font-medium text-[#0E0D1E] hover:bg-red-500 hover:border-red-500 hover:text-white transition-all"
             >
               <span className="w-2 h-2 rounded-full bg-red-400 group-hover:bg-white transition-colors" />
@@ -171,6 +173,27 @@ export default function CampaignDetail() {
         </div>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
+
+      <Dialog open={showEndModal} onOpenChange={setShowEndModal}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
+              End campaign?
+            </DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">Are you sure you want to end <span className="font-medium text-foreground">{campaign.name}</span>? This action cannot be undone.</p>
+          <DialogFooter className="mt-2">
+            <Button variant="outline" onClick={() => setShowEndModal(false)}>Cancel</Button>
+            <Button
+              className="bg-red-500 hover:bg-red-600 text-white"
+              onClick={() => { setStatus('completed'); setToast("Campaign ended."); setShowEndModal(false); }}
+            >
+              End campaign
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
