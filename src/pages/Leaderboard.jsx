@@ -93,12 +93,12 @@ export default function Leaderboard() {
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
         <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Movement</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Commission</span>
-          <span />
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">{metric === 'commission' ? 'Commission' : 'Units Sold'}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Profile</span>
         </div>
 
         {/* Rows */}
@@ -112,7 +112,7 @@ export default function Leaderboard() {
               </div>
 
               {/* Staff */}
-              <div className="flex items-center gap-3">
+              <Link to={`/staff/${staff.id}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
                   {STAFF_AVATARS[staff.name]
                     ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
@@ -121,9 +121,8 @@ export default function Leaderboard() {
                 </div>
                 <div className="min-w-0">
                   <p className="font-semibold text-[#0c0b0c] text-sm">{staff.name}</p>
-                  <p className="text-xs text-[#9490AA]">{staff.store}</p>
                 </div>
-              </div>
+              </Link>
 
               {/* Store */}
               <span className="text-sm text-[#0c0b0c]">{staff.store}</span>
@@ -131,9 +130,9 @@ export default function Leaderboard() {
               {/* Movement */}
               <span className="text-sm text-[#9490AA]">— No change</span>
 
-              {/* Commission */}
+              {/* Metric Value */}
               <span className={cn("text-right font-bold text-sm", i === 0 ? "text-emerald-600" : "text-[#0c0b0c]")}>
-                €{staff.total_commissions.toFixed(2)}
+                {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : staff.total_units_sold}
               </span>
 
               {/* View Link */}
