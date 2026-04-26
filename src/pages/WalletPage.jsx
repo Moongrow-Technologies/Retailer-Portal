@@ -70,7 +70,7 @@ export default function WalletPage() {
             {/* Campaign budgets */}
             <div className="pr-6">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
                 <p className="text-sm text-[#5b616e]">Campaign Fund</p>
               </div>
               <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
@@ -80,7 +80,7 @@ export default function WalletPage() {
             {/* Bonus budgets */}
             <div className="px-6">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
                 <p className="text-sm text-[#5b616e]">Bonus Fund</p>
               </div>
               <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{bonuses.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
