@@ -134,7 +134,7 @@ export default function Campaigns() {
             return (
               <div key={campaign.id}>
                 <div
-                  className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#FAFAF9] transition-colors cursor-pointer"
+                  className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
                   onClick={() => navigate(`/campaigns/${campaign.id}`)}>
 
                   {/* Campaign name */}

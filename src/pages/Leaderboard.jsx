@@ -104,7 +104,7 @@ export default function Leaderboard() {
         {/* Rows */}
         {sorted.map((staff, i) => (
           <div key={staff.id}>
-            <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-6 items-center hover:bg-[#FAFAF9] transition-colors">
+            <div className="grid grid-cols-[60px_2fr_1.5fr_1.5fr_140px_70px] px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors">
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[#9490AA]">{i + 1}</span>

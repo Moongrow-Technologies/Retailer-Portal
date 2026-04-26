@@ -52,7 +52,7 @@ export default function StaffPage() {
           onClick={() => staff.status === 'active' && navigate(`/staff/${staff.id}`)}
           className={cn(
             "grid grid-cols-[1fr_120px_80px] items-center px-6 py-4 transition-colors",
-            staff.status === 'active' && "cursor-pointer hover:bg-[#F5F3FC]",
+            staff.status === 'active' ? "cursor-pointer hover:bg-[#F5F3FC]" : "hover:bg-[#F5F3FC]",
             staff.status === 'pending' && "opacity-75",
             idx !== STAFF.length - 1 && "border-b border-[#EBEBF0]"
           )}>

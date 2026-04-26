@@ -163,7 +163,7 @@ export default function Analytics() {
           <div>
             {topProducts.map((product, idx) =>
             <div key={product.name}>
-                <div className="flex items-center gap-3 py-3">
+                <div className="flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors cursor-default">
                   <div className="w-10 h-10 rounded-lg border border-[#E2E0ED] overflow-hidden flex-shrink-0">
                     <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
                   </div>
@@ -231,7 +231,7 @@ export default function Analytics() {
           <div>
             {activeStaff.map((staff, idx) =>
             <div key={staff.id}>
-                <div className="flex items-center gap-3 py-4">
+                <div className="flex items-center gap-3 py-4 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors cursor-default">
                   <span className="text-xs font-medium text-[#5b616e] w-4">{idx + 1}</span>
                   <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
                     {STAFF_AVATARS[staff.name]
