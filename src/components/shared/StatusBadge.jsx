@@ -24,7 +24,7 @@ const statusLabels = {
 
 export default function StatusBadge({ status }) {
   return (
-    <Badge className={cn("text-xs font-medium border-0", statusStyles[status] || statusStyles.active)}>
+    <Badge className={cn("text-xs font-medium border-0 pointer-events-none select-none", statusStyles[status] || statusStyles.active)}>
       {statusLabels[status] || status}
     </Badge>
   );

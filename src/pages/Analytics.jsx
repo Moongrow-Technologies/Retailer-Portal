@@ -119,28 +119,28 @@ export default function Analytics() {
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Revenue</p>
             <p className="text-[26px] font-medium text-[#0c0b0c]">€6,110</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 9% vs last period</p>
+            <span className="inline-flex items-center mt-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">↑ 9% vs last period</span>
           </div>
 
           {/* Units Sold */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Units Sold</p>
             <p className="text-[26px] font-medium text-[#0c0b0c]">521</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 7% vs last period</p>
+            <span className="inline-flex items-center mt-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">↑ 7% vs last period</span>
           </div>
 
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Commission Paid</p>
             <p className="text-[26px] font-medium text-[#0c0b0c]">€1,032</p>
-            <p className="text-xs font-medium mt-1.5" style={{color:'#16A34A'}}>↑ 11% vs last period</p>
+            <span className="inline-flex items-center mt-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">↑ 11% vs last period</span>
           </div>
 
           {/* ROI */}
           <div className="px-6 py-6">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">ROI</p>
             <p className="text-[26px] font-medium text-[#0c0b0c]">5.9x</p>
-            <p className="text-xs text-[#5b616e] font-medium mt-1.5">per €1 commission</p>
+            <span className="inline-flex items-center mt-1.5 bg-[#F4F3FA] text-[#5b616e] text-[11px] font-semibold px-2 py-0.5 rounded-full">per €1 commission</span>
           </div>
         </div>
 

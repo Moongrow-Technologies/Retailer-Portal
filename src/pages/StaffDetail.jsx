@@ -57,9 +57,9 @@ export default function StaffDetail() {
   const bonusHistory = bonusHistoryByStaff[staff.id] || [];
 
   const stats = [
-    { label: 'Units Sold', value: staff.total_units_sold, sub: 'all campaigns' },
-    { label: 'Revenue Generated', value: `€${revenue}`, sub: 'from commission campaigns' },
-    { label: 'Total Commission Earned', value: `€${staff.total_commissions.toFixed(2)}`, sub: 'lifetime earnings' },
+    { label: 'Units Sold', value: staff.total_units_sold, sub: 'all campaigns', trend: '↑ 8%' },
+    { label: 'Revenue Generated', value: `€${revenue}`, sub: 'from commission campaigns', trend: '↑ 9%' },
+    { label: 'Total Commission Earned', value: `€${staff.total_commissions.toFixed(2)}`, sub: 'lifetime earnings', trend: '↑ 11%' },
     { label: 'Commission ROI', value: roi, sub: 'revenue per €1 commission' },
   ];
 
@@ -101,7 +101,11 @@ export default function StaffDetail() {
             <div key={i} className={cn("px-6 py-5", i > 0 && "border-l border-[#EBEBF0]")} style={{ borderLeftWidth: i > 0 ? '0.5px' : undefined }}>
               <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
               <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight mb-1">{s.value}</p>
-              <p className="text-xs text-[#9490AA]">{s.sub}</p>
+              {s.trend ? (
+                <span className="inline-flex items-center bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">{s.trend}</span>
+              ) : (
+                <p className="text-xs text-[#9490AA]">{s.sub}</p>
+              )}
             </div>
           ))}
         </div>

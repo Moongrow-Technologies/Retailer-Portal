@@ -36,10 +36,10 @@ function PeriodPill({ value, onChange }) {
 
 function TrendBadge({ value }) {
   return (
-    <p className="text-[12px] font-medium text-[#16A34A] mt-0.5">
+    <span className="inline-flex items-center gap-0.5 mt-1 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">
       ↑ {value}
-    </p>);
-
+    </span>
+  );
 }
 
 function CampaignBar({ name, pct, urgency }) {
