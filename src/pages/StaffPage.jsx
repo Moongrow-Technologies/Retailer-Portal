@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import InviteStaffModal from '@/components/staff/InviteStaffModal';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { STAFF } from '@/lib/sampleData';
 import { Send } from 'lucide-react';
 
 export default function StaffPage() {
   const [showInvite, setShowInvite] = useState(false);
+  const navigate = useNavigate();
 
   const totalStaff = STAFF.length;
   const activeStaff = STAFF.filter((s) => s.status === 'active').length;
@@ -48,8 +49,10 @@ export default function StaffPage() {
         {STAFF.map((staff, idx) =>
         <div
           key={staff.id}
+          onClick={() => staff.status === 'active' && navigate(`/staff/${staff.id}`)}
           className={cn(
-            "grid grid-cols-[1fr_120px_80px] items-center px-6 py-4",
+            "grid grid-cols-[1fr_120px_80px] items-center px-6 py-4 transition-colors",
+            staff.status === 'active' && "cursor-pointer hover:bg-[#F5F3FC]",
             staff.status === 'pending' && "opacity-75",
             idx !== STAFF.length - 1 && "border-b border-[#EBEBF0]"
           )}>
@@ -80,7 +83,7 @@ export default function StaffPage() {
             <div className="flex justify-end">
               {staff.status === 'active'
                 ? <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline">View →</Link>
-                : <button onClick={() => setShowInvite(true)} className="text-sm font-medium text-amber-500 hover:underline">Resend →</button>
+                : <button onClick={(e) => { e.stopPropagation(); setShowInvite(true); }} className="text-sm font-medium text-amber-500 hover:underline">Resend →</button>
               }
             </div>
           </div>
