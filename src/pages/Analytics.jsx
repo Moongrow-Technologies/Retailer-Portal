@@ -184,15 +184,14 @@ export default function Analytics() {
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top selling days</h3>
           <div className="flex gap-2">
             {(() => {
-              const dayAbbrevs = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
               const weekData = [
-                { abbr: 'Mon', units: 58 },
-                { abbr: 'Tue', units: 52 },
-                { abbr: 'Wed', units: 84 },
-                { abbr: 'Thu', units: 61 },
-                { abbr: 'Fri', units: 68 },
-                { abbr: 'Sat', units: 72 },
-                { abbr: 'Sun', units: 64 }
+                { id: 'mon', abbr: 'Mon', units: 58 },
+                { id: 'tue', abbr: 'Tue', units: 52 },
+                { id: 'wed', abbr: 'Wed', units: 84 },
+                { id: 'thu', abbr: 'Thu', units: 61 },
+                { id: 'fri', abbr: 'Fri', units: 68 },
+                { id: 'sat', abbr: 'Sat', units: 72 },
+                { id: 'sun', abbr: 'Sun', units: 64 }
               ];
 
               const maxUnits = Math.max(...weekData.map(d => d.units));
@@ -210,7 +209,7 @@ export default function Analytics() {
                 const color = getColor(day.units);
                 return (
                   <div 
-                    key={day.abbr}
+                    key={day.id}
                     className="flex-1 rounded-lg p-4 text-center transition-all"
                     style={{ backgroundColor: color.bg }}
                   >
