@@ -37,27 +37,25 @@ export default function Dashboard() {
 
       <div className="flex flex-col gap-6">
          {/* Row 1: Wallet + Metric Cards */}
-         <div className="grid grid-cols-12 gap-6">
-           <div className="col-span-4 flex flex-col gap-6">
-             <CompactWalletCard wallet={wallet} />
-             <BudgetUtilisation wallet={wallet} />
+         <div className="grid grid-cols-3 gap-6">
+           <CompactWalletCard wallet={wallet} />
+           <div className="col-span-1">
+             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
            </div>
-           <div className="col-span-8">
+           <div className="col-span-1">
              <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
            </div>
          </div>
 
-        {/* Row 2: Activity feed + Top Budtenders + Needs Attention */}
-        <div className="grid grid-cols-12 gap-6 items-stretch">
-          <div className="col-span-8">
-            <ActivityFeed activities={ACTIVITIES} />
-          </div>
-          <div className="col-span-4 flex flex-col gap-6">
-            <TopBudtenders staff={topBudtenders} />
-            <NeedsAttention staff={needsAttention} />
-          </div>
-        </div>
-      </div>
+         {/* Row 2: Budget + Activity + More metrics */}
+         <div className="grid grid-cols-3 gap-6">
+           <BudgetUtilisation wallet={wallet} />
+           <ActivityFeed activities={ACTIVITIES} />
+           <div className="col-span-1">
+             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+           </div>
+         </div>
+       </div>
     </div>
   );
 }
