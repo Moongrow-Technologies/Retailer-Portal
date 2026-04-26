@@ -96,7 +96,7 @@ export default function Campaigns() {
 
       </div>
 
-      <div className="flex items-center mb-6 w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
+      <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
         {TABS.map((t) =>
         <button key={t.key} onClick={() => setTab(t.key)}
         className={cn("px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
