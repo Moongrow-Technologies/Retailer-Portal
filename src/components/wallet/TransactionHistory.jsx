@@ -15,7 +15,7 @@ const typeLabels = {
 
 const typeColors = {
   commission: 'bg-[#EEEDFE] text-[#534AB7]',
-  bonus_payout: 'bg-[#FAECE7] text-[#993C1D]',
+  bonus_payout: 'bg-[#FEF0EA] text-[#F0997B]',
   top_up: 'bg-[#EAF3DE] text-[#3B6D11]',
   budget_commit: 'bg-[#E6F1FB] text-[#185FA5]',
   budget_release: 'bg-[#E6F1FB] text-[#185FA5]',
