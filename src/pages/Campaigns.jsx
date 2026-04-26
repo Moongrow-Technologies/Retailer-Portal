@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import CampaignCard from '@/components/campaigns/CampaignCard';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
+import { Plus, MoreVertical } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import StatusBadge from '@/components/shared/StatusBadge';
+import { Progress } from '@/components/ui/progress';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { CAMPAIGNS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
+
+const PRODUCT_IMAGES = {
+  'Blue Dream':   'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+  'OG Kush':      'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80',
+  'White Widow':  'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80',
+  'Amnesia Haze': 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80',
+  default:        'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+};
 
 const TABS = [
 { key: 'all', label: 'All' },
@@ -15,6 +26,7 @@ const TABS = [
 
 
 export default function Campaigns() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('all');
   const [campaigns, setCampaigns] = useState(CAMPAIGNS);
 
@@ -111,9 +123,81 @@ export default function Campaigns() {
             <p className="text-[#9490AA] text-sm">No {tab} campaigns yet.</p>
           </div> :
 
-        <div className="flex flex-col gap-3">
-            {filtered.map((campaign) => <CampaignCard key={campaign.id} campaign={campaign} onTogglePause={handleTogglePause} onDelete={handleDelete} />)}
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+          {/* Table Header */}
+          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Product</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rate</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Spent</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Budget</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Status</span>
+            <span />
           </div>
+
+          {/* Rows */}
+          {filtered.map((campaign, idx) => {
+            const spendPct = campaign.budget > 0 ? campaign.spent / campaign.budget * 100 : 0;
+            const isActive = campaign.status === 'active';
+            return (
+              <div key={campaign.id}>
+                <div
+                  className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#FAFAF9] transition-colors cursor-pointer"
+                  onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+
+                  {/* Campaign name */}
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
+                      <img src={PRODUCT_IMAGES[campaign.product_name] || PRODUCT_IMAGES.default} alt={campaign.product_name} className="w-full h-full object-cover" />
+                    </div>
+                    <p className="text-sm font-semibold text-[#0c0b0c] truncate">{campaign.name}</p>
+                  </div>
+
+                  {/* Product */}
+                  <span className="text-sm text-[#5b616e]">{campaign.product_name}</span>
+
+                  {/* Rate */}
+                  <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
+
+                  {/* Spent */}
+                  <span className="text-sm text-[#0c0b0c]">€{campaign.spent.toFixed(2)}</span>
+
+                  {/* Budget + bar */}
+                  <div>
+                    <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
+                    <div className="w-24 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden">
+                      <div className="h-full rounded-full bg-[#27272b]" style={{ width: `${spendPct}%` }} />
+                    </div>
+                  </div>
+
+                  {/* Status + toggle */}
+                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                    <StatusBadge status={campaign.status} />
+                    {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
+                      <Switch checked={isActive} onCheckedChange={() => handleTogglePause(campaign)} className="data-[state=checked]:bg-[#796EB2]" />
+                    )}
+                  </div>
+
+                  {/* Menu */}
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="p-2 text-[#5b616e] hover:text-[#796EB2] hover:bg-[#F7F6FB] rounded-lg transition-colors">
+                          <MoreVertical className="w-4 h-4" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleDelete(campaign)} className="text-destructive">Delete</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+                {idx < filtered.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
+              </div>
+            );
+          })}
+        </div>
         }
       </div>
     </div>);
