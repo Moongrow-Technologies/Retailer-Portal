@@ -118,7 +118,9 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Units Progress</span>
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
-          <Progress value={unitsPct} className="h-2" />
+          <div className="w-full h-2 rounded-full bg-[#EDEAF8] overflow-hidden">
+            <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${unitsPct}%` }} />
+          </div>
           <p className="text-xs text-muted-foreground mt-1">{campaign.units_sold} / {campaign.target_units} units</p>
         </div>
         <div className="bg-card rounded-xl border border-border p-5">
@@ -126,7 +128,9 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Budget Spend</span>
             <span className="font-medium">{Math.round(spendPct)}%</span>
           </div>
-          <Progress value={spendPct} className="h-2" />
+          <div className="w-full h-2 rounded-full bg-[#EDEAF8] overflow-hidden">
+            <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${spendPct}%` }} />
+          </div>
           <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)}</p>
         </div>
       </div>
@@ -141,7 +145,7 @@ export default function CampaignDetail() {
               <XAxis dataKey="week" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <Tooltip />
-              <Bar dataKey="sales" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="sales" fill="#5b616e" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
