@@ -18,7 +18,7 @@ export default function CompactWalletCard({ wallet }) {
   const activeBonuses = 2;
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col" style={{ alignSelf: 'start' }}>
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col">
       {/* Header */}
       <div className="mb-5">
         <p className="text-[#5b616e] mb-1 text-sm">Moongrow Wallet</p>
