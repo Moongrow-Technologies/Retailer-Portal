@@ -91,20 +91,19 @@ export default function ProductDetail() {
       </div>
 
       {/* Stat cards */}
-      <div className="bg-white rounded-xl border border-[#EBEBF0] mb-6">
-        <div className="grid grid-cols-3 divide-x divide-[#EBEBF0]">
-          {[
-            { label: 'Total Units Sold', value: totalUnits, sub: 'across all campaigns' },
-            { label: 'Revenue Generated', value: `€${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, sub: `at €${product.price.toFixed(2)}/unit` },
-            { label: 'Commission Paid', value: `€${totalCommission.toFixed(2)}`, sub: 'to staff' },
-          ].map((s, i) => (
-            <div key={i} className="px-6 py-5">
-              <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
-              <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight mb-1">{s.value}</p>
-              <p className="text-xs text-[#9490AA]">{s.sub}</p>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        {[
+          { label: 'REVENUE', value: `€${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`, trend: '↑ 9% vs last period' },
+          { label: 'UNITS SOLD', value: totalUnits, trend: '↑ 7% vs last period' },
+          { label: 'COMMISSION PAID', value: `€${totalCommission.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`, trend: '↑ 11% vs last period' },
+          { label: 'ROI', value: `${(totalRevenue / (totalCommission || 1)).toFixed(1)}x`, trend: `per €1 commission` },
+        ].map((s, i) => (
+          <div key={i} className="bg-white rounded-lg border border-[#EBEBF0] p-5">
+            <p className="text-[11px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
+            <p className="text-[28px] font-bold text-[#0c0b0c] leading-none mb-2">{s.value}</p>
+            <p className="text-[12px] text-emerald-600 font-medium">{s.trend}</p>
+          </div>
+        ))}
       </div>
 
       {/* Sales chart */}
