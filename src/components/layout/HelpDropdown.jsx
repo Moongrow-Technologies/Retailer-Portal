@@ -53,7 +53,7 @@ export default function HelpDropdown({ onClose }) {
     <>
       <div
         ref={ref}
-        className="absolute top-full right-0 mt-2 w-72 bg-white border border-[#E2E0ED] rounded-2xl shadow-lg z-50 overflow-hidden"
+        className="absolute top-full right-0 mt-2 w-72 bg-white border border-[#EBEBF0] rounded-xl shadow-lg z-50 overflow-hidden"
       >
         <div className="px-6 py-4 border-b border-[#EBEBF0]">
           <p className="text-lg font-bold text-[#0E0D1E]">Help & Support</p>
@@ -63,7 +63,7 @@ export default function HelpDropdown({ onClose }) {
           {LINKS.map((link) => (
             <button
               key={link}
-              className="flex items-center justify-between px-4 py-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl hover:bg-[#F0EEF9] transition-colors text-left w-full"
+              className="flex items-center justify-between px-4 py-3 bg-[#F8F7FC] border border-[#EBEBF0] rounded-lg hover:bg-[#F0EEF9] transition-colors text-left w-full"
             >
               <span className="text-sm font-medium text-[#0E0D1E]">{link}</span>
               <span className="text-[#796EB2] flex-shrink-0">→</span>
