@@ -11,6 +11,7 @@ import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, Mor
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { CAMPAIGNS, STAFF, STAFF_AVATARS } from '@/lib/sampleData';
+import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const salesLiftData = [
@@ -118,9 +119,7 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Units Progress</span>
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
-          <div className="w-full h-2 rounded-full bg-[#EDEAF8] overflow-hidden">
-            <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${unitsPct}%` }} />
-          </div>
+          <SegmentedProgress value={unitsPct} segments={12} />
           <p className="text-xs text-muted-foreground mt-1">{campaign.units_sold} / {campaign.target_units} units</p>
         </div>
         <div className="bg-card rounded-xl border border-border p-5">
@@ -128,9 +127,7 @@ export default function CampaignDetail() {
             <span className="text-muted-foreground">Budget Spend</span>
             <span className="font-medium">{Math.round(spendPct)}%</span>
           </div>
-          <div className="w-full h-2 rounded-full bg-[#EDEAF8] overflow-hidden">
-            <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${spendPct}%` }} />
-          </div>
+          <SegmentedProgress value={spendPct} segments={12} />
           <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toFixed(2)} / €{campaign.budget.toFixed(2)}</p>
         </div>
       </div>

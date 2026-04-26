@@ -7,6 +7,7 @@ import StatusBadge from '@/components/shared/StatusBadge';
 import { Progress } from '@/components/ui/progress';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { CAMPAIGNS, PRODUCT_IMAGES, PRODUCTS } from '@/lib/sampleData';
+import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { cn } from '@/lib/utils';
 
 const TABS = [
@@ -160,9 +161,7 @@ export default function Campaigns() {
                   {/* Budget + bar */}
                   <div>
                     <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
-                    <div className="w-24 h-1.5 rounded-full bg-[#E2E0ED] overflow-hidden">
-                      <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${spendPct}%` }} />
-                    </div>
+                    <SegmentedProgress value={spendPct} segments={8} className="w-24" />
                   </div>
 
                   {/* Spent */}
