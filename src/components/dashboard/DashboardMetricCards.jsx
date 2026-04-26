@@ -64,9 +64,11 @@ function CampaignBar({ name, pct, urgency }) {
 
 // ─── CARD 1 — Active Campaigns ───────────────────────────────────────────────
 function ActiveCampaignsCard({ campaigns, bonuses }) {
+  const [tab, setTab] = useState('campaigns');
   const active = campaigns.filter((c) => c.status === 'active');
   const activeBonuses = bonuses ? bonuses.filter((b) => b.status === 'active') : [];
-  const displayed = active.slice(0, 2);
+
+  const count = tab === 'campaigns' ? active.length : activeBonuses.length;
 
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
@@ -77,47 +79,80 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
         </div>
       </div>
 
-      {/* Pills */}
+      {/* Tabs */}
       <div className="flex gap-2">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#E2E0ED] bg-[#FAFAF9] text-[13px] font-semibold text-[#0c0b0c]">
+        <button
+          onClick={() => setTab('campaigns')}
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'campaigns' ? 'border-[#534AB7] bg-[#F5F3FC] text-[#534AB7]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
           <span className="w-2 h-2 rounded-full bg-[#534AB7] flex-shrink-0" />
           {active.length} Campaigns
-        </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#E2E0ED] bg-[#FAFAF9] text-[13px] font-semibold text-[#0c0b0c]">
+        </button>
+        <button
+          onClick={() => setTab('bonuses')}
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'bonuses' ? 'border-[#F0997B] bg-[#FEF5F1] text-[#E07850]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
           <span className="w-2 h-2 rounded-full bg-[#F0997B] flex-shrink-0" />
           {activeBonuses.length} Bonuses
-        </div>
+        </button>
       </div>
 
       <div>
-        <p className="text-[#534AB7] text-4xl font-bold leading-none">{active.length}</p>
+        <p className="text-[#534AB7] text-4xl font-bold leading-none">{count}</p>
         <TrendBadge value="1 new this month" />
       </div>
 
-      <div className="border-t border-[#F4F3FA] pt-3 space-y-4">
-        {displayed.map((c) => {
-          const dl = daysLeft(c.end_date);
-          const warn = dl !== null && dl <= 5;
-          const pct = progressPct(c.spent, c.budget);
-          const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
-          return (
-            <div key={c.id}>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
-                <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
-                  {dl !== null ? `${dl} days left` : '—'}
-                </span>
-              </div>
-              <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
-                <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: warn ? '#F59E0B' : '#534AB7' }} />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
-                <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
-              </div>
-            </div>
-          );
-        })}
+      {/* Fixed-height content area so the card never grows */}
+      <div className="border-t border-[#F4F3FA] pt-3" style={{ minHeight: 140 }}>
+        {tab === 'campaigns' ? (
+          <div className="space-y-4">
+            {active.slice(0, 2).map((c) => {
+              const dl = daysLeft(c.end_date);
+              const warn = dl !== null && dl <= 5;
+              const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
+              return (
+                <div key={c.id}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
+                    <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                      {dl !== null ? `${dl} days left` : '—'}
+                    </span>
+                  </div>
+                  <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
+                    <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: warn ? '#F59E0B' : '#534AB7' }} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
+                    <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {activeBonuses.slice(0, 2).map((b) => {
+              const dl = daysLeft(b.end_date);
+              const warn = dl !== null && dl <= 5;
+              const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
+              return (
+                <div key={b.id}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
+                    <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                      {dl !== null ? `${dl} days left` : '—'}
+                    </span>
+                  </div>
+                  <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1.5">
+                    <div className="rounded-full h-full transition-all" style={{ width: `${prizePct}%`, background: warn ? '#F59E0B' : '#F0997B' }} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
+                    <span className="text-[11px] text-[#5b616e]">€{b.prize_pool} pool</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
