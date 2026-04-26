@@ -36,8 +36,8 @@ function LiveRipple() {
         }
       `}</style>
       <div className="absolute w-full h-full rounded-lg bg-[#ececee] flex items-center justify-center">
-        <div className="absolute w-2 h-2 rounded-full bg-[#1D9E75]"></div>
-        <div className="absolute w-2 h-2 rounded-full bg-[#1D9E75] ripple-pulse"></div>
+        <div className="absolute w-2 h-2 rounded-full bg-[#534AB7]"></div>
+        <div className="absolute w-2 h-2 rounded-full bg-[#534AB7] ripple-pulse"></div>
       </div>
     </div>
   );
