@@ -125,8 +125,8 @@ export default function ProductDetail() {
 
       <div className="grid grid-cols-2 gap-6 mb-6">
         {/* Active Campaigns */}
-        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
+          <div className="px-6 py-4 border-b border-[#EBEBF0] flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#0c0b0c]">Active Campaigns</h3>
             <Link to="/campaigns/new">
               <Button size="sm" variant="outline" className="gap-1.5 border-[#E2E0ED] text-xs h-7">
@@ -146,60 +146,76 @@ export default function ProductDetail() {
               </Link>
             </div>
           ) : (
-            <div className="space-y-4">
-              {activeCampaigns.map((c) => {
+            <>
+              <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Progress</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Time Left</span>
+              </div>
+              {activeCampaigns.map((c, idx) => {
                 const dl = daysLeft(c.end_date);
                 const warn = dl !== null && dl <= 5;
                 const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
                 return (
                   <div key={c.id}>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <Link to={`/campaigns/${c.id}`} className="text-[13px] font-semibold text-[#0c0b0c] hover:text-[#534AB7] transition-colors">{c.name}</Link>
-                      <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
-                        {dl !== null ? `${dl} days left` : '—'}
+                    <Link to={`/campaigns/${c.id}`} className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
+                      <span className="text-sm font-semibold text-[#0c0b0c]">{c.name}</span>
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
+                          <div className="h-full" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
+                        </div>
+                        <span className="text-xs text-[#5b616e] w-10 text-right">{unitsPct}%</span>
+                      </div>
+                      <span className={`text-sm font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                        {dl !== null ? `${dl} days` : '—'}
                       </span>
-                    </div>
-                    <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
-                      <div className="rounded-full h-full" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units · €{c.commission_rate.toFixed(2)}/unit</span>
-                      <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
-                    </div>
+                    </Link>
+                    {idx < activeCampaigns.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
                   </div>
                 );
               })}
-            </div>
+            </>
           )}
         </div>
 
         {/* Staff Leaderboard */}
-        <div className="bg-white rounded-xl border border-[#EBEBF0] p-5">
-          <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Staff Leaderboard</h3>
+        <div className="bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
+          <div className="px-6 py-4 border-b border-[#EBEBF0]">
+            <h3 className="text-sm font-semibold text-[#0c0b0c]">Staff Leaderboard</h3>
+          </div>
           {staffRows.length === 0 ? (
             <p className="text-sm text-[#9490AA] py-8 text-center">No staff data for this product yet.</p>
           ) : (
-            <div className="space-y-3">
+            <>
+              <div className="grid grid-cols-[40px_1fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Name</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Units Sold</span>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Commission</span>
+              </div>
               {staffRows.map((staff, i) => (
-                <div key={staff.id} className="flex items-center gap-3 py-2 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors">
-                  <span className="w-5 text-sm font-bold text-[#9490AA] text-center flex-shrink-0">{i + 1}</span>
-                  <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
-                    {STAFF_AVATARS[staff.name]
-                      ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
-                      : <div className="w-full h-full flex items-center justify-center text-sm font-semibold text-[#7A7893]">{staff.name?.charAt(0)}</div>
-                    }
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-[#0c0b0c]">{staff.name}</p>
-                    <p className="text-xs text-[#9490AA]">{staff.store}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-[#0c0b0c]">{staff.units} units</p>
-                    <p className="text-xs text-[#9490AA]">€{staff.commission.toFixed(2)}</p>
-                  </div>
+                <div key={staff.id}>
+                  <Link to={`/staff/${staff.id}`} className="grid grid-cols-[40px_1fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
+                    <span className="text-sm font-bold text-[#9490AA]">{i + 1}</span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
+                        {STAFF_AVATARS[staff.name]
+                          ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
+                          : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-[#7A7893]">{staff.name?.charAt(0)}</div>
+                        }
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-[#0c0b0c]">{staff.name}</p>
+                        <p className="text-xs text-[#9490AA]">{staff.store}</p>
+                      </div>
+                    </div>
+                    <span className="text-sm text-[#0c0b0c]">{staff.units}</span>
+                    <span className="text-sm text-[#0c0b0c] text-right">€{staff.commission.toFixed(2)}</span>
+                  </Link>
+                  {i < staffRows.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
                 </div>
               ))}
-            </div>
+            </>
           )}
         </div>
       </div>
