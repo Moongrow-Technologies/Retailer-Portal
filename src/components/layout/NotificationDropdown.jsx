@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { X } from 'lucide-react';
@@ -9,6 +9,7 @@ const RECENT = ACTIVITIES.slice(0, 5);
 export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread }) {
   const ref = useRef(null);
   const navigate = useNavigate();
+  const [dismissed, setDismissed] = useState(new Set());
 
   const getNavigationPath = (activity) => {
     if (activity.type === 'sale' && activity.staff_name) {
@@ -32,6 +33,11 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
       navigate(path);
       onClose();
     }
+  };
+
+  const handleDismiss = (e, activity) => {
+    e.stopPropagation();
+    setDismissed(prev => new Set([...prev, activity.id]));
   };
 
   useEffect(() => {
@@ -73,19 +79,25 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
       </div>
 
       <div className="p-3 flex flex-col">
-         {RECENT.map((n, i) => {
+         {RECENT.filter(n => !dismissed.has(n.id)).map((n, i) => {
            const path = getNavigationPath(n);
            const isClickable = !!path;
            return (
              <div
-               key={i}
+               key={n.id}
                onClick={() => isClickable && handleNotificationClick(n)}
-               className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors ${i !== RECENT.length - 1 ? 'border-b border-[#EBEBF0]' : ''} ${isClickable ? 'cursor-pointer hover:bg-[#F8F7FC]' : 'hover:bg-[#F8F7FC]'}`}>
+               className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors group ${i !== RECENT.length - 1 ? 'border-b border-[#EBEBF0]' : ''} ${isClickable ? 'cursor-pointer hover:bg-[#F8F7FC]' : 'hover:bg-[#F8F7FC]'}`}>
                <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1 flex-shrink-0" style={{ backgroundColor: '#EF4444', boxShadow: '0 0 8px rgba(239, 68, 68, 0.6)' }} />
                <div className="flex-1 min-w-0">
                  <p className="text-sm text-[#0E0D1E] leading-snug">{n.message}</p>
                  <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(n.created_date), 'MMM d, h:mm a')}</p>
                </div>
+               <button
+                 onClick={(e) => handleDismiss(e, n)}
+                 className="flex-shrink-0 text-[#9490AA] hover:text-[#0E0D1E] opacity-0 group-hover:opacity-100 transition-opacity"
+               >
+                 <X className="w-4 h-4" />
+               </button>
              </div>
            );
          })}
