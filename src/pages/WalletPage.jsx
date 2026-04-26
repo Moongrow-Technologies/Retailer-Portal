@@ -25,7 +25,7 @@ export default function WalletPage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0c0b0c]">Wallet</h1>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
           <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
         </div>
         <div className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export default function WalletPage() {
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
           {/* Top row: balance */}
           <div className="mb-6">
-            <p className="text-sm text-[#5b616e] mb-1">Wallet balance</p>
+            <p className="text-sm text-[#5b616e] mb-1">Moongrow Wallet</p>
             <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
               €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
             </p>
@@ -71,7 +71,7 @@ export default function WalletPage() {
             <div className="pr-6">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Campaign budgets</p>
+                <p className="text-sm text-[#5b616e]">Campaign Fund</p>
               </div>
               <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{campaigns.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
               <p className="text-xs text-[#5b616e]">3 active campaigns</p>
@@ -81,7 +81,7 @@ export default function WalletPage() {
             <div className="px-6">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Bonus budgets</p>
+                <p className="text-sm text-[#5b616e]">Bonus Fund</p>
               </div>
               <p className="text-[#0c0b0c] text-2xl font-bold mb-1">€{bonuses.toLocaleString('nl-NL', { minimumFractionDigits: 0 })}</p>
               <p className="text-xs text-[#5b616e]">2 active bonuses</p>

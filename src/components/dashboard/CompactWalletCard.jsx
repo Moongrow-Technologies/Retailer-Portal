@@ -21,7 +21,7 @@ export default function CompactWalletCard({ wallet }) {
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       {/* Header */}
       <div className="mb-5">
-        <p className="text-[#5b616e] mb-1 text-sm">Wallet balance</p>
+        <p className="text-[#5b616e] mb-1 text-sm">Moongrow Wallet</p>
         <p className="text-[#0c0b0c] text-4xl font-bold tracking-tight mb-3">
           €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
@@ -42,7 +42,7 @@ export default function CompactWalletCard({ wallet }) {
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-[#796EB2] flex-shrink-0"></div>
             <div>
-              <p className="text-sm font-semibold text-[#0c0b0c]">Campaign budgets</p>
+              <p className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</p>
               <p className="text-xs text-[#5b616e]">{activeCampaigns} active</p>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function CompactWalletCard({ wallet }) {
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></div>
             <div>
-              <p className="text-sm font-semibold text-[#0c0b0c]">Bonus budgets</p>
+              <p className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</p>
               <p className="text-xs text-[#5b616e]">{activeBonuses} active</p>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function CompactWalletCard({ wallet }) {
       </div>
 
       <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-0 block font-semibold">
-        View full wallet →
+        View Moongrow Wallet →
       </Link>
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />

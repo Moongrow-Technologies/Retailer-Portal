@@ -13,7 +13,7 @@ const navItems = [
 { icon: Gift, label: 'Bonuses', path: '/bonuses', sub: true },
 { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
 { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-{ icon: Wallet, label: 'Wallet', path: '/wallet' },
+{ icon: Wallet, label: 'Moongrow Wallet', path: '/wallet' },
 { icon: Users, label: 'Staff', path: '/staff' },
 { icon: Settings, label: 'Settings', path: '/settings' }];
 
