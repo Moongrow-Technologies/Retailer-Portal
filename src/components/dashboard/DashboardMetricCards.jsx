@@ -121,7 +121,7 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
       </div>
 
       <div>
-        <p className="text-[#534AB7] text-4xl font-bold leading-none">{count}</p>
+        <p className="text-[#534AB7] text-4xl font-medium leading-none">{count}</p>
         <TrendBadge value="1 new this month" />
       </div>
 
