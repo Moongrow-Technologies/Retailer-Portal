@@ -136,40 +136,47 @@ export default function ProductDetail() {
           </div>
 
           {activeCampaigns.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <Package className="w-8 h-8 text-[#9490AA] mb-2" />
-              <p className="text-sm text-[#9490AA] mb-3">No active campaigns for this product</p>
-              <Link to="/campaigns/new">
-                <Button size="sm" className="bg-[#27272b] text-white text-xs gap-1.5">
-                  <Plus className="w-3 h-3" /> Create Campaign
-                </Button>
-              </Link>
-            </div>
+           <div className="flex flex-col items-center justify-center py-8 text-center">
+             <p className="text-sm text-[#9490AA] mb-4">No active campaigns for this product</p>
+             <Link to="/campaigns/new">
+               <Button size="sm" className="bg-[#27272b] text-white text-xs gap-1.5">
+                 <Plus className="w-3 h-3" /> Create a campaign
+               </Button>
+             </Link>
+           </div>
           ) : (
-            <>
-              <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">% Complete</span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Time Left</span>
-              </div>
-              {activeCampaigns.map((c, idx) => {
-                const dl = daysLeft(c.end_date);
-                const warn = dl !== null && dl <= 5;
-                const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
-                return (
-                  <div key={c.id}>
-                    <Link to={`/campaigns/${c.id}`} className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
-                      <span className="text-sm font-semibold text-[#0c0b0c]">{c.name}</span>
-                      <span className="text-sm text-[#0c0b0c]">{unitsPct}%</span>
-                      <span className="text-sm font-semibold text-[#5b616e]">
-                        {dl !== null ? `${dl} days` : '—'}
-                      </span>
-                    </Link>
-                    {idx < activeCampaigns.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
-                  </div>
-                );
-              })}
-            </>
+           <div className="px-6 py-4">
+             {activeCampaigns.map((c, idx) => {
+               const dl = daysLeft(c.end_date);
+               const isUrgent = dl !== null && dl <= 7;
+               const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
+               return (
+                 <div key={c.id}>
+                   <Link to={`/campaigns/${c.id}`} className="block hover:bg-[#F5F3FC] transition-colors py-4 -mx-6 px-6">
+                     <div className="flex items-center justify-between mb-3">
+                       <h4 className="text-sm font-bold text-[#0c0b0c]">{c.name}</h4>
+                       <span className={`text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap ml-3 ${
+                         isUrgent 
+                           ? 'bg-[#FAECE7] text-[#D85A30]'
+                           : 'bg-[#F0EFF5] text-[#7A7893]'
+                       }`}>
+                         {dl !== null ? `${dl} days left` : '—'}
+                       </span>
+                     </div>
+                     <div className="w-full h-2 rounded-full bg-[#E2E0ED] overflow-hidden mb-2">
+                       <div className="h-full bg-[#534AB7]" style={{ width: `${unitsPct}%` }} />
+                     </div>
+                     <div className="flex items-center justify-between mb-1">
+                       <span className="text-xs text-[#0c0b0c]">{c.units_sold} / {c.target_units} units</span>
+                       <span className="text-xs font-semibold text-[#0c0b0c]">{unitsPct}%</span>
+                     </div>
+                     <p className="text-xs text-[#9490AA]">€{c.commission_rate.toFixed(2)}/unit commission</p>
+                   </Link>
+                   {idx < activeCampaigns.length - 1 && <div className="h-px bg-[#F0EFF5] -mx-6" />}
+                 </div>
+               );
+             })}
+           </div>
           )}
         </div>
 
