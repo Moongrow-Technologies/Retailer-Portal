@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
+import DisconnectModal from '@/components/shared/DisconnectModal';
 
 export default function Settings() {
   const [notifications, setNotifications] = useState({
@@ -14,9 +15,15 @@ export default function Settings() {
     bonusCompletions: false
   });
   const [toast, setToast] = useState(null);
+  const [showDisconnectModal, setShowDisconnectModal] = useState(false);
   const showToast = (msg) => setToast(msg);
 
   const toggle = (key) => setNotifications((prev) => ({ ...prev, [key]: !prev[key] }));
+
+  const handleDisconnect = () => {
+    setShowDisconnectModal(false);
+    showToast("POS connection disconnected.");
+  };
 
   return (
     <div>
@@ -84,15 +91,20 @@ export default function Settings() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-[#0E0D1E]">Lightspeed POS</span>
-                  <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[11px] font-semibold px-2 py-0">CONNECTED</Badge>
-                </div>
+                   <span className="text-sm font-semibold text-[#0E0D1E]">Lightspeed POS</span>
+                   <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[11px] font-semibold px-2 py-0 pointer-events-none">CONNECTED</Badge>
+                 </div>
                 <p className="text-xs text-[#9490AA]">Last synced: 4 minutes ago</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <button className="text-sm text-[#796EB2] font-medium hover:underline">View Setup Guide</button>
-              <Button variant="outline" size="sm" className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => setShowDisconnectModal(true)}
+                className="text-red-500 border-red-200 hover:bg-red-500 hover:text-white"
+              >
                 Disconnect
               </Button>
             </div>
@@ -181,6 +193,11 @@ export default function Settings() {
         <p className="text-center text-xs text-[#9490AA] py-4">© 2026 Moongrow Technologies. All rights reserved.</p>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
+      <DisconnectModal 
+        open={showDisconnectModal} 
+        onOpenChange={setShowDisconnectModal}
+        onConfirm={handleDisconnect}
+      />
     </div>);
 
 }
