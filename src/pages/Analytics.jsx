@@ -182,46 +182,35 @@ export default function Analytics() {
         {/* Top Selling Days */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top selling days</h3>
-          <div className="flex gap-3 mb-6">
-            {topSellingDays.slice(0, 3).map((day) =>
-            <div
-              key={day.label}
-              className={cn(
-                'flex-1 rounded-lg p-3 text-center',
-                day.rank === 1 ?
-                'bg-[#796EB2] text-white' :
-                'bg-[#EDE9F8] text-[#796EB2]'
-              )}>
-              
-                <p className="text-xs font-semibold mb-1">#{day.rank}</p>
-                <p className="text-xs font-medium">{day.label}</p>
-                <p className={cn(
-                'text-lg font-bold mt-1',
-                day.rank === 1 ? 'text-white' : 'text-[#796EB2]'
-              )}>
-                  {day.units}
-                </p>
-                <p className="text-xs font-medium mt-0.5">units</p>
-              </div>
-            )}
-          </div>
-          <div className="flex justify-center gap-1">
-            {topSellingDays.slice(3).map((day, idx) => {
-              const isTopDay = [0, 5, 2].includes(idx + 3);
-              return (
-                <div
-                  key={idx}
-                  className="flex-1 h-12 rounded-md flex items-center justify-center"
-                  style={{
-                    backgroundColor: isTopDay ?
-                    idx + 3 === 5 ? '#EDE9F8' : idx + 3 === 2 ? '#EDE9F8' : '#796EB2' :
-                    '#E2E0ED'
-                  }}>
-                  
-                  <span className="text-xs font-semibold text-[#0c0b0c]">{day.label}</span>
-                </div>);
+          <div>
+            {(() => {
+              const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+              const daysWithNames = topSellingDays.map((day, idx) => ({
+                ...day,
+                fullName: dayNames[idx] || day.label
+              }));
+              const sorted = [...daysWithNames].sort((a, b) => b.units - a.units);
+              const maxUnits = Math.max(...sorted.map(d => d.units));
 
-            })}
+              return sorted.map((day, idx) => (
+                <div key={day.label} className={cn(idx > 2 && 'opacity-40')}>
+                  <div className="flex items-center gap-4 py-4">
+                    <span className="text-sm font-semibold text-[#0c0b0c] w-6">{idx + 1}</span>
+                    <span className="text-sm font-semibold text-[#0c0b0c] w-24">{day.fullName}</span>
+                    <div className="flex-1">
+                      <div className="h-2 bg-[#E2E0ED] rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-[#534AB7] rounded-full" 
+                          style={{ width: `${(day.units / maxUnits) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                    <span className="text-sm font-semibold text-[#0c0b0c] w-20 text-right">{day.units} units</span>
+                  </div>
+                  {idx < sorted.length - 1 && <div className="border-b border-[#EBEBF0]" />}
+                </div>
+              ));
+            })()}
           </div>
         </div>
 
