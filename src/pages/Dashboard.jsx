@@ -1,5 +1,6 @@
 import React from 'react';
 import CompactWalletCard from '@/components/dashboard/CompactWalletCard';
+import WalletRunwayCard from '@/components/dashboard/WalletRunwayCard';
 import QuickActions from '@/components/dashboard/QuickActions';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import TopBudtenders from '@/components/dashboard/TopBudtenders';
@@ -37,8 +38,9 @@ export default function Dashboard() {
       <div className="flex flex-col gap-6">
         {/* Row 1: Wallet + Metric Cards */}
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-4">
+          <div className="col-span-4 flex flex-col gap-6">
             <CompactWalletCard wallet={wallet} />
+            <WalletRunwayCard wallet={wallet} />
           </div>
           <div className="col-span-8">
             <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
