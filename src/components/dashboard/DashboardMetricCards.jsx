@@ -97,8 +97,8 @@ function ActiveCampaignsCard({ campaigns }) {
                 <div className="bg-[hsl(var(--background))] rounded-full h-full"
 
                 style={{
-                  width: `${progressPct(c.spent, c.budget)}%`,
-                  background: warn ? '#F59E0B' : 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)'
+                width: `${progressPct(c.spent, c.budget)}%`,
+                background: warn ? '#F59E0B' : '#534AB7'
                 }} />
                 
               </div>
@@ -142,7 +142,7 @@ function CommissionCard() {
               <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
             </div>
             <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-              <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: 'linear-gradient(to right, #4B3F8F, #796EB2, #B8B0D8)' }} />
+              <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#534AB7' }} />
             </div>
           </div>
         )}
