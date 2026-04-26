@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import { X } from 'lucide-react';
 import { ACTIVITIES } from '@/lib/sampleData';
 
 const RECENT = ACTIVITIES.slice(0, 5);
@@ -28,14 +29,22 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
     >
       <div className="px-4 py-3 border-b border-[#EBEBF0] flex items-center justify-between">
         <p className="text-sm font-semibold text-[#0E0D1E]">Notifications</p>
-        {hasUnread && (
+        <div className="flex items-center gap-2">
+          {hasUnread && (
+            <button
+              onClick={() => { onMarkAllRead(); }}
+              className="text-xs text-[#796EB2] hover:text-[#6A5FA3] font-medium transition-colors"
+            >
+              Mark all as read
+            </button>
+          )}
           <button
-            onClick={() => { onMarkAllRead(); }}
-            className="text-xs text-[#796EB2] hover:text-[#6A5FA3] font-medium transition-colors"
+            onClick={onClose}
+            className="p-1 text-[#5b616e] hover:text-[#0E0D1E] hover:bg-[#F8F7FC] rounded transition-colors"
           >
-            Mark all as read
+            <X className="w-4 h-4" />
           </button>
-        )}
+        </div>
       </div>
 
       <div className="p-3 flex flex-col">
