@@ -64,6 +64,7 @@ export default function Bonuses() {
   const handleTogglePause = (bonus) => {
     const newStatus = bonus.status === 'active' ? 'paused_manual' : 'active';
     setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
+    setTab(newStatus === 'paused_manual' ? 'paused' : 'active');
   };
 
   const handleDelete = (bonus) => {
