@@ -75,7 +75,7 @@ export default function StaffPage() {
             <div className="flex justify-center">
               {staff.status === 'active'
                 ? <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700">Active</span>
-                : <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700">Pending</span>
+                : <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#EDE9F8] text-[#796EB2]">Pending</span>
               }
             </div>
 
@@ -83,7 +83,7 @@ export default function StaffPage() {
             <div className="flex justify-end">
               {staff.status === 'active'
                 ? <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline">View →</Link>
-                : <button onClick={(e) => { e.stopPropagation(); setShowInvite(true); }} className="text-sm font-medium text-amber-500 hover:underline">Resend →</button>
+                : <button onClick={(e) => { e.stopPropagation(); setShowInvite(true); }} className="text-sm font-medium text-[#796EB2] hover:underline">Resend →</button>
               }
             </div>
           </div>
