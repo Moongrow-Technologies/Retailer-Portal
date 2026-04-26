@@ -231,7 +231,7 @@ export default function Analytics() {
           <div>
             {activeStaff.map((staff, idx) =>
             <div key={staff.id}>
-                <div className="flex items-center gap-3 py-4 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors cursor-default">
+                <Link to={`/staff/${staff.id}`} className="flex items-center gap-3 py-4 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors">
                   <span className="text-xs font-medium text-[#5b616e] w-4">{idx + 1}</span>
                   <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
                     {STAFF_AVATARS[staff.name]
@@ -248,7 +248,7 @@ export default function Analytics() {
                 )}>
                     €{staff.total_commissions.toFixed(2)}
                   </p>
-                </div>
+                </Link>
                 {idx !== activeStaff.length - 1 && <div className="border-b border-[#EBEBF0]" />}
               </div>
             )}
