@@ -50,17 +50,15 @@ export default function StaffPage() {
           
             {/* Avatar + Name + Role */}
             <div className="flex items-center gap-4 flex-1">
-              <div className="bg-[hsl(var(--border))] text-white text-lg font-semibold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-
-
-              
-                {staff.name.split(' ').map((n) => n[0]).join('').slice(0, 1)}
+              <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-[hsl(var(--border))]">
+                {staff.avatar_url
+                  ? <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
+                  : <div className="w-full h-full flex items-center justify-center text-white text-lg font-semibold">{staff.name.charAt(0)}</div>
+                }
               </div>
               <div className="min-w-0">
                 <p className="font-semibold text-[#0c0b0c]">{staff.name}</p>
-                <p className="text-sm text-[#5b616e] capitalize">
-                  {staff.role} · {staff.store}
-                </p>
+                <p className="text-sm text-[#5b616e]">{staff.store}</p>
               </div>
             </div>
 

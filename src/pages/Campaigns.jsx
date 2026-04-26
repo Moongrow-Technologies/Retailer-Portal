@@ -6,16 +6,8 @@ import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Progress } from '@/components/ui/progress';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { CAMPAIGNS } from '@/lib/sampleData';
+import { CAMPAIGNS, PRODUCT_IMAGES } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
-
-const PRODUCT_IMAGES = {
-  'Blue Dream':   'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
-  'OG Kush':      'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80',
-  'White Widow':  'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80',
-  'Amnesia Haze': 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80',
-  default:        'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
-};
 
 const TABS = [
 { key: 'all', label: 'All' },

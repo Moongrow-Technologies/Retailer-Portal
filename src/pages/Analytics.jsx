@@ -7,7 +7,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,
   BarChart, Bar as RechartsBar } from
 'recharts';
-import { STAFF, CAMPAIGNS } from '@/lib/sampleData';
+import { STAFF, CAMPAIGNS, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 // This Month chart: cumulative revenue building up to €6,110 (all campaigns combined)
@@ -55,14 +55,6 @@ const topSellingDays = [
 const activeStaff = [...STAFF].
 filter((s) => s.status === 'active').
 sort((a, b) => b.total_commissions - a.total_commissions);
-
-const staffAvatarMap = {
-  's1': 'bg-amber-500',
-  's2': 'bg-blue-600',
-  's3': 'bg-emerald-600',
-  's4': 'bg-slate-500',
-  's5': 'bg-slate-400'
-};
 
 export default function Analytics() {
   const [period, setPeriod] = useState('This Month');
@@ -241,11 +233,11 @@ export default function Analytics() {
             <div key={staff.id}>
                 <div className="flex items-center gap-3 py-4">
                   <span className="text-xs font-medium text-[#5b616e] w-4">{idx + 1}</span>
-                  <div className={cn(
-                  'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0',
-                  staffAvatarMap[staff.id] || 'bg-[#796EB2]'
-                )}>
-                    {staff.name[0]}
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
+                    {STAFF_AVATARS[staff.name]
+                      ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
+                      : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-[#7A7893]">{staff.name[0]}</div>
+                    }
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-[#0c0b0c]">{staff.name}</p>

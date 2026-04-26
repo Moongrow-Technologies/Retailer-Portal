@@ -9,7 +9,7 @@ import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { CAMPAIGNS, STAFF } from '@/lib/sampleData';
+import { CAMPAIGNS, STAFF, STAFF_AVATARS } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const salesLiftData = [
@@ -145,8 +145,11 @@ export default function CampaignDetail() {
             {staffLeaderboard.map((staff, i) => (
               <div key={staff.id} className="flex items-center gap-3">
                 <span className="w-6 text-sm font-bold text-muted-foreground text-right">{i + 1}</span>
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
-                  {staff.name.charAt(0)}
+                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-primary/10">
+                  {STAFF_AVATARS[staff.name]
+                    ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
+                    : <div className="w-full h-full flex items-center justify-center text-sm font-semibold text-primary">{staff.name.charAt(0)}</div>
+                  }
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{staff.name}</p>

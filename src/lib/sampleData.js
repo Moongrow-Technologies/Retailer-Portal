@@ -7,12 +7,31 @@ export const STORE = {
 };
 
 export const PRODUCTS = [
-  { id: 'p1', name: 'OG Kush', sku: 'OGK-001', category: 'Flower', price: 12.50 },
-  { id: 'p2', name: 'Blue Dream', sku: 'BLD-002', category: 'Flower', price: 11.00 },
-  { id: 'p3', name: 'Amnesia Haze', sku: 'AMH-003', category: 'Flower', price: 13.00 },
-  { id: 'p4', name: 'White Widow', sku: 'WTW-004', category: 'Flower', price: 10.50 },
-  { id: 'p5', name: 'Gorilla Glue', sku: 'GRG-005', category: 'Flower', price: 14.00 },
+  { id: 'p1', name: 'OG Kush',      sku: 'OGK-001', category: 'Flower', price: 12.50, img: 'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80' },
+  { id: 'p2', name: 'Blue Dream',   sku: 'BLD-002', category: 'Flower', price: 11.00, img: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80' },
+  { id: 'p3', name: 'Amnesia Haze', sku: 'AMH-003', category: 'Flower', price: 13.00, img: 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80' },
+  { id: 'p4', name: 'White Widow',  sku: 'WTW-004', category: 'Flower', price: 10.50, img: 'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80' },
+  { id: 'p5', name: 'Gorilla Glue', sku: 'GRG-005', category: 'Flower', price: 14.00, img: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=200&q=80' },
 ];
+
+// Centralised product image lookup
+export const PRODUCT_IMAGES = {
+  'OG Kush':      'https://images.unsplash.com/photo-1611842436244-04dce8f32a13?w=200&q=80',
+  'Blue Dream':   'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+  'Amnesia Haze': 'https://images.unsplash.com/photo-1598511726551-56291c3339c0?w=200&q=80',
+  'White Widow':  'https://images.unsplash.com/photo-1616270099083-d7a83a6b68af?w=200&q=80',
+  'Gorilla Glue': 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=200&q=80',
+  default:        'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=200&q=80',
+};
+
+// Centralised staff avatar lookup by name
+export const STAFF_AVATARS = {
+  'Lisa V.':  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
+  'Ahmed R.': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
+  'Sarah K.': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face',
+  'Tom B.':   'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face',
+  'Nina D.':  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face',
+};
 
 // Staff
 // total_commissions per person derived from campaign shares

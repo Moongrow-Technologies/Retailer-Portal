@@ -4,7 +4,7 @@ import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Download, Trophy, Star, ArrowUp, ArrowDown } from 'lucide-react';
-import { STAFF, CAMPAIGNS, STORE } from '@/lib/sampleData';
+import { STAFF, CAMPAIGNS, STORE, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 export default function Leaderboard() {
@@ -113,8 +113,11 @@ export default function Leaderboard() {
 
               {/* Staff */}
               <div className="flex items-center gap-3">
-                <div className="bg-[#E2E0ED] text-[#7A7893] text-sm font-semibold rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                  {staff.name.charAt(0)}
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
+                  {STAFF_AVATARS[staff.name]
+                    ? <img src={STAFF_AVATARS[staff.name]} alt={staff.name} className="w-full h-full object-cover" />
+                    : <div className="w-full h-full flex items-center justify-center text-[#7A7893] text-sm font-semibold">{staff.name.charAt(0)}</div>
+                  }
                 </div>
                 <div className="min-w-0">
                   <p className="font-semibold text-[#0c0b0c] text-sm">{staff.name}</p>

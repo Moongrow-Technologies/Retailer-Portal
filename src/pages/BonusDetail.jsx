@@ -6,7 +6,7 @@ import { ArrowLeft, Trophy, Zap, Target, Crown, Medal, Award, Clock, StopCircle,
 import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { BONUSES } from '@/lib/sampleData';
+import { BONUSES, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const typeConfig = {
@@ -146,12 +146,20 @@ export default function BonusDetail() {
                       <span className="text-sm text-[#9490AA]">{i + 1}</span>
                       {i === 0 && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />}
                     </div>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
+                        {STAFF_AVATARS[entry.name]
+                          ? <img src={STAFF_AVATARS[entry.name]} alt={entry.name} className="w-full h-full object-cover" />
+                          : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-[#7A7893]">{entry.name.charAt(0)}</div>
+                        }
+                      </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
                       <p className="text-xs text-[#9490AA]">{entry.store}</p>
                       <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-[180px]">
                         <div className="h-full bg-[#796EB2] rounded-full" style={{ width: `${pct}%` }} />
                       </div>
+                    </div>
                     </div>
                     <div className="text-right">
                       <span className="text-sm font-bold text-[#0E0D1E]">{entry.score} units</span>
