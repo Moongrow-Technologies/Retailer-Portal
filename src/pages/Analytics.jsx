@@ -182,7 +182,7 @@ export default function Analytics() {
         {/* Top Selling Days */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6">
           <h3 className="text-sm font-semibold text-[#0c0b0c] mb-4">Top selling days</h3>
-          <div className="flex gap-2">
+          <div className="space-y-3">
             {(() => {
               const weekData = [
                 { id: 'mon', abbr: 'Mon', units: 58 },
@@ -194,31 +194,41 @@ export default function Analytics() {
                 { id: 'sun', abbr: 'Sun', units: 64 }
               ];
 
-              const maxUnits = Math.max(...weekData.map(d => d.units));
+              const sorted = [...weekData].sort((a, b) => b.units - a.units);
+              const maxUnits = Math.max(...sorted.map(d => d.units));
 
-              const getColor = (units) => {
-                const ratio = units / maxUnits;
-                if (ratio === 1) return { bg: '#534AB7', text: 'white' };
-                if (ratio >= 0.85) return { bg: '#7F77DD', text: 'white' };
-                if (ratio >= 0.7) return { bg: '#AFA9EC', text: 'white' };
-                if (ratio >= 0.55) return { bg: '#CECBF6', text: '#534AB7' };
-                return { bg: '#EEEDFE', text: '#534AB7' };
+              const getRowColor = (index) => {
+                if (index === 0) return { bg: '#534AB7', text: 'white' };
+                if (index === 1) return { bg: '#7F77DD', text: 'white' };
+                if (index === 2) return { bg: '#AFA9EC', text: 'white' };
+                return { bg: '#EEEDFE', text: '#5B5B8A' };
               };
 
-              return weekData.map((day) => {
-                const color = getColor(day.units);
+              return sorted.map((day, index) => {
+                const rowColor = getRowColor(index);
+                const barWidth = (day.units / maxUnits) * 100;
+
                 return (
                   <div 
                     key={day.id}
-                    className="flex-1 rounded-lg p-4 text-center transition-all"
-                    style={{ backgroundColor: color.bg }}
+                    className="rounded-lg p-4 flex items-center gap-4"
+                    style={{ backgroundColor: rowColor.bg }}
                   >
-                    <p className="text-xs font-semibold mb-2" style={{ color: color.text }}>
+                    <span className="text-sm font-semibold w-12" style={{ color: rowColor.text }}>
                       {day.abbr}
-                    </p>
-                    <p className="text-lg font-bold" style={{ color: color.text }}>
+                    </span>
+                    <div className="flex-1 h-2 bg-white/40 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full rounded-full transition-all"
+                        style={{ 
+                          width: `${barWidth}%`,
+                          backgroundColor: rowColor.text === 'white' ? 'rgba(255,255,255,0.6)' : '#AFA9EC'
+                        }}
+                      />
+                    </div>
+                    <span className="text-sm font-bold w-12 text-right" style={{ color: rowColor.text }}>
                       {day.units}
-                    </p>
+                    </span>
                   </div>
                 );
               });
