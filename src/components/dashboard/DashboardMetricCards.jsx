@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, Tooltip } from 'recharts';
 import { differenceInDays, parseISO } from 'date-fns';
 
@@ -89,6 +90,7 @@ function CampaignBar({ name, pct, urgency }) {
 
 // ─── CARD 1 — Active Campaigns ───────────────────────────────────────────────
 function ActiveCampaignsCard({ campaigns, bonuses }) {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('campaigns');
   const active = campaigns.filter((c) => c.status === 'active');
   const activeBonuses = bonuses ? bonuses.filter((b) => b.status === 'active') : [];
@@ -128,52 +130,52 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
         {tab === 'campaigns' ? (
           <div className="space-y-4">
             {active.slice(0, 2).map((c) => {
-              const dl = daysLeft(c.end_date);
-              const warn = dl !== null && dl <= 5;
-              const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
-              return (
-                <div key={c.id}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
-                    <span className="text-[12px] font-semibold text-[#5b616e]">
-                      {dl !== null ? `${dl} days left` : '—'}
-                    </span>
-                  </div>
-                  <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
-                    <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
-                    <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
-                  </div>
-                </div>
-              );
-            })}
+               const dl = daysLeft(c.end_date);
+               const warn = dl !== null && dl <= 5;
+               const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
+               return (
+                 <div key={c.id} onClick={() => navigate(`/campaigns/${c.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+                   <div className="flex items-center justify-between mb-1.5">
+                     <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
+                     <span className="text-[12px] font-semibold text-[#5b616e]">
+                       {dl !== null ? `${dl} days left` : '—'}
+                     </span>
+                   </div>
+                   <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
+                     <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
+                   </div>
+                   <div className="flex items-center justify-between">
+                     <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
+                     <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
+                   </div>
+                 </div>
+               );
+             })}
           </div>
         ) : (
           <div className="space-y-4">
             {activeBonuses.slice(0, 2).map((b) => {
-              const dl = daysLeft(b.end_date);
-              const warn = dl !== null && dl <= 5;
-              const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
-              return (
-                <div key={b.id}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
-                    <span className="text-[12px] font-semibold text-[#5b616e]">
-                      {dl !== null ? `${dl} days left` : '—'}
-                    </span>
-                  </div>
-                  <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1.5">
-                    <div className="rounded-full h-full transition-all" style={{ width: `${prizePct}%`, background: '#F0997B' }} />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
-                    <span className="text-[11px] text-[#5b616e]">€{b.prize_pool} pool</span>
-                  </div>
-                </div>
-              );
-            })}
+               const dl = daysLeft(b.end_date);
+               const warn = dl !== null && dl <= 5;
+               const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
+               return (
+                 <div key={b.id} onClick={() => navigate(`/bonuses/${b.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+                   <div className="flex items-center justify-between mb-1.5">
+                     <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
+                     <span className="text-[12px] font-semibold text-[#5b616e]">
+                       {dl !== null ? `${dl} days left` : '—'}
+                     </span>
+                   </div>
+                   <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1.5">
+                     <div className="rounded-full h-full transition-all" style={{ width: `${prizePct}%`, background: '#F0997B' }} />
+                   </div>
+                   <div className="flex items-center justify-between">
+                     <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
+                     <span className="text-[11px] text-[#5b616e]">€{b.prize_pool} pool</span>
+                   </div>
+                 </div>
+               );
+             })}
           </div>
         )}
       </div>
@@ -184,12 +186,16 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
 // ─── CARD 2 — Commission Paid ─────────────────────────────────────────────────
 // This week: 14 OG units × €2 + 8 Amnesia × €2.50 = €28 + €20 = €48
 // This month: 156 OG × €2 + 70 Amnesia × €2.50 = €312 + €175 = €487 (active campaigns only)
+// Import CAMPAIGNS for commission card navigation
+import { CAMPAIGNS } from '@/lib/sampleData';
+
 const commissionData = {
   'This week': { value: '€48.00', trend: '11% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28.00', pct: 58 }, { name: 'Amnesia Haze Launch', amount: '€20.00', pct: 42 }] },
   'This month': { value: '€487.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€312.00', pct: 64 }, { name: 'Amnesia Haze Launch', amount: '€175.00', pct: 36 }] }
 };
 
 function CommissionCard() {
+  const navigate = useNavigate();
   const [period, setPeriod] = useState('This week');
   const d = commissionData[period];
 
@@ -206,18 +212,21 @@ function CommissionCard() {
       </div>
 
       <div className="border-t border-[#F4F3FA] pt-3 space-y-3">
-        {d.breakdown.map((b) =>
-        <div key={b.name}>
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[65%]">{b.name}</span>
-              <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
-            </div>
-            <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-              <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#534AB7' }} />
-            </div>
-          </div>
-        )}
-      </div>
+         {d.breakdown.map((b) => {
+           const campaign = CAMPAIGNS.find(c => c.name === b.name);
+           return (
+             <div key={b.name} onClick={() => campaign && navigate(`/campaigns/${campaign.id}`)} className={campaign ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}>
+               <div className="flex items-center justify-between mb-1.5">
+                 <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[65%]">{b.name}</span>
+                 <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
+               </div>
+               <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
+                 <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#534AB7' }} />
+               </div>
+             </div>
+           );
+         })}
+       </div>
     </div>);
 
 }
