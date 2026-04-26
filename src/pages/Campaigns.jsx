@@ -64,37 +64,37 @@ export default function Campaigns() {
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
 
 
-         {/* Two columns: Commission paid out | Remaining in fund */}
-         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
-           <div className="pr-6">
-             <p className="text-xs text-[#5b616e] mb-1">Commission paid out</p>
-             <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,032</p>
-           </div>
-           <div className="pl-6 text-right">
-             <p className="text-xs text-[#5b616e] mb-1">Remaining in fund</p>
-             <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€368</p>
-           </div>
-         </div>
+        {/* Two columns: Committed | Remaining */}
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
+          <div className="pr-6">
+            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,400</p>
+          </div>
+          <div className="pl-6 text-right">
+            <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€375</p>
+          </div>
+        </div>
 
-         {/* Progress bar */}
-         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
-           <div className="h-full rounded-full" style={{ width: '73.7%', background: '#534AB7' }} />
-         </div>
+        {/* Progress bar */}
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
+          <div className="h-full rounded-full" style={{ width: '79%', background: '#534AB7' }} />
+        </div>
 
-         {/* Bar labels */}
-         <div className="flex items-center justify-between mb-4">
-           <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
-             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-             73.7% paid out of €1,400 Campaign Fund
-           </p>
-           <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
-             26.3% remaining
-             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
-           </p>
-         </div>
+        {/* Bar labels */}
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+            79% committed
+          </p>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+            21% remaining
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
+          </p>
+        </div>
 
 
-       </div>
+      </div>
 
       <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
          {TABS.map((t) =>
@@ -119,35 +119,24 @@ export default function Campaigns() {
 
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
           {/* Table Header */}
-          <div className="grid grid-cols-[2fr_1fr_1fr_1.2fr_120px_48px] px-6 py-3 bg-[#F7F7F7] border-b border-[#EBEBF0]">
+          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-3 bg-[#F7F7F7] border-b border-[#EBEBF0]">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Product</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rate</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Progress</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Budget</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Spent</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Status</span>
             <span />
           </div>
 
           {/* Rows */}
           {filtered.map((campaign, idx) => {
-            const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
+            const spendPct = campaign.budget > 0 ? campaign.spent / campaign.budget * 100 : 0;
             const isActive = campaign.status === 'active';
-            const barColor = campaign.status === 'completed' ? '#5F5E5A' : campaign.status.startsWith('paused') ? '#BA7517' : '#534AB7';
-            const rowOpacity = campaign.status === 'completed' ? 0.6 : 1;
-            
-            const statusStyles = {
-              active: { bg: '#EAF3DE', text: '#3B6D11' },
-              paused_manual: { bg: '#FAEEDA', text: '#854F0B' },
-              paused_budget: { bg: '#FAEEDA', text: '#854F0B' },
-              completed: { bg: '#F1EFE8', text: '#5F5E5A' }
-            };
-            const statusStyle = statusStyles[campaign.status] || statusStyles.active;
-            
             return (
               <div key={campaign.id}>
                 <div
-                  className="grid grid-cols-[2fr_1fr_1fr_1.2fr_120px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
-                  style={{ opacity: rowOpacity }}
+                  className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
                   onClick={() => navigate(`/campaigns/${campaign.id}`)}>
 
                   {/* Campaign name */}
@@ -170,22 +159,20 @@ export default function Campaigns() {
                   {/* Rate */}
                   <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
 
-                  {/* Progress bar */}
+                  {/* Budget + bar */}
                   <div>
-                    <div className="w-full h-1.5 rounded-full overflow-hidden mb-1" style={{ background: '#D1D5DB' }}>
-                      <div className="h-full rounded-full" style={{ width: `${Math.min(unitsPct, 100)}%`, background: barColor }} />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#5b616e]">{campaign.units_sold} / {campaign.target_units} units</span>
-                      <span className="text-xs font-medium text-[#0c0b0c]">{Math.round(unitsPct)}%</span>
+                    <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
+                    <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
+                      <div className="h-full rounded-full" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#534AB7' }} />
                     </div>
                   </div>
 
-                  {/* Status badge (custom styling) */}
+                  {/* Spent */}
+                  <span className="text-sm text-[#0c0b0c]">€{campaign.spent.toFixed(2)}</span>
+
+                  {/* Status + toggle */}
                   <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold" style={{ backgroundColor: statusStyle.bg, color: statusStyle.text }}>
-                      {campaign.status === 'paused_manual' ? 'Paused' : campaign.status === 'paused_budget' ? 'Paused' : campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}
-                    </span>
+                    <StatusBadge status={campaign.status} />
                     {campaign.status !== 'completed' && campaign.status !== 'paused_budget' && campaign.status !== 'scheduled' && (
                       <Switch checked={isActive} onCheckedChange={() => handleTogglePause(campaign)} className="data-[state=checked]:bg-[#796EB2]" />
                     )}
