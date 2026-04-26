@@ -64,7 +64,13 @@ export default function CampaignDetail() {
             />
           )}
           {status !== 'completed' && (
-            <Button onClick={() => { setStatus('completed'); setToast("Campaign ended."); }} variant="outline" size="sm" className="gap-1.5 text-destructive hover:text-destructive"><Square className="w-3.5 h-3.5" /> End</Button>
+            <button
+              onClick={() => { setStatus('completed'); setToast("Campaign ended."); }}
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E0ED] bg-white text-sm font-medium text-[#0E0D1E] hover:bg-red-500 hover:border-red-500 hover:text-white transition-all"
+            >
+              <span className="w-2 h-2 rounded-full bg-red-400 group-hover:bg-white transition-colors" />
+              End campaign
+            </button>
           )}
 
           <DropdownMenu>
