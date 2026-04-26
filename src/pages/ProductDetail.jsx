@@ -161,7 +161,7 @@ export default function ProductDetail() {
                     <Link to={`/campaigns/${c.id}`} className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
                       <span className="text-sm font-semibold text-[#0c0b0c]">{c.name}</span>
                       <span className="text-sm text-[#0c0b0c]">{unitsPct}%</span>
-                      <span className={`text-sm font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                      <span className="text-sm font-semibold text-[#5b616e]">
                         {dl !== null ? `${dl} days` : '—'}
                       </span>
                     </Link>
