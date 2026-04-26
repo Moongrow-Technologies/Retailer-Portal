@@ -89,37 +89,39 @@ export default function Notifications() {
   };
 
   return (
-    <div className="max-w-2xl">
+    <div>
       {/* Page header */}
-      <div className="mb-5">
-        <h1 className="text-2xl font-bold text-[#0E0D1E]">Notifications</h1>
-        <p className="text-sm text-[#7A7893] mt-1">All recent activity and alerts.</p>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-[#0c0b0c] text-2xl font-bold">Notifications</h1>
+          <p className="text-sm text-[#5b616e] mt-2">All recent activity and alerts</p>
+        </div>
       </div>
 
       {/* Filter tabs */}
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-1.5 flex gap-1 mb-5">
-        {TABS.map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={cn(
-              'flex-1 text-sm font-medium py-1.5 rounded-lg transition-colors',
-              activeTab === tab
-                ? 'bg-[#EDE9F8] text-[#796EB2]'
-                : 'text-[#7A7893] hover:text-[#0E0D1E] hover:bg-[#F8F7FC]'
-            )}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+      <div className="flex items-center gap-0.5 bg-[#F4F3F4] rounded-xl p-1 mb-6">
+         {TABS.map(tab => (
+           <button
+             key={tab}
+             onClick={() => setActiveTab(tab)}
+             className={cn(
+               'px-4 py-1.5 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap',
+               activeTab === tab
+                 ? 'bg-white text-[#12121f] shadow-sm'
+                 : 'text-[#5b616e] hover:text-[#12121f]'
+             )}
+           >
+             {tab}
+           </button>
+         ))}
+       </div>
 
       {/* Mark all as read */}
       {hasUnread && (
-        <div className="flex justify-end mb-3">
+        <div className="flex justify-end mb-4">
           <button
             onClick={markAllRead}
-            className="text-xs font-medium text-[#796EB2] hover:underline"
+            className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors"
           >
             Mark all as read
           </button>
@@ -132,16 +134,16 @@ export default function Notifications() {
           if (!items.length) return null;
           return (
             <div key={label}>
-              <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-2">{label}</p>
-              <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-4 flex flex-col gap-2">
-                {items.map((n) => {
+              <p className="text-xs font-semibold text-[#5b616e] uppercase tracking-wide mb-3">{label}</p>
+              <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col">
+                {items.map((n, idx) => {
                   const Icon = iconMap[n.type] || ShoppingCart;
                   const isUnread = unreadIds.has(n._id) && !read.has(n._id);
                   return (
                     <div
                       key={n._id}
                       onClick={() => navigate(typeToPath[n.type] || '/')}
-                      className="flex items-start gap-3 px-3 py-2.5 bg-background border border-[#E2E0ED] rounded-xl cursor-pointer hover:bg-[#F5F3FC] transition-colors"
+                      className={`flex items-start gap-3 px-3 py-3 rounded-lg cursor-pointer hover:bg-[#F5F3FC] transition-colors ${idx !== items.length - 1 ? 'border-b border-[#EBEBF0]' : ''}`}
                     >
                       {/* Unread dot */}
                       <div className="flex items-center self-center w-2 flex-shrink-0">
@@ -177,7 +179,7 @@ export default function Notifications() {
         })}
 
         {visible.length === 0 && (
-          <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-8 text-center text-sm text-[#9490AA]">
+          <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-8 text-center text-sm text-[#5b616e]">
             No notifications.
           </div>
         )}
