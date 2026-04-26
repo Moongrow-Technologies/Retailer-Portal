@@ -39,21 +39,27 @@ export default function StaffPage() {
 
       {/* Staff List */}
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
+        {/* Column Header */}
+        <div className="grid grid-cols-[1fr_120px_80px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff Member</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-center">Status</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Action</span>
+        </div>
         {STAFF.map((staff, idx) =>
         <div
           key={staff.id}
           className={cn(
-            "flex items-center justify-between px-6 py-5",
+            "grid grid-cols-[1fr_120px_80px] items-center px-6 py-4",
             staff.status === 'pending' && "opacity-75",
             idx !== STAFF.length - 1 && "border-b border-[#EBEBF0]"
           )}>
           
-            {/* Avatar + Name + Role */}
-            <div className="flex items-center gap-4 flex-1">
-              <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-[hsl(var(--border))]">
+            {/* Avatar + Name + Store */}
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[hsl(var(--border))]">
                 {staff.avatar_url
                   ? <img src={staff.avatar_url} alt={staff.name} className="w-full h-full object-cover" />
-                  : <div className="w-full h-full flex items-center justify-center text-white text-lg font-semibold">{staff.name.charAt(0)}</div>
+                  : <div className="w-full h-full flex items-center justify-center text-white text-base font-semibold">{staff.name.charAt(0)}</div>
                 }
               </div>
               <div className="min-w-0">
@@ -62,27 +68,20 @@ export default function StaffPage() {
               </div>
             </div>
 
-            {/* Status + Action */}
-            <div className="flex items-center gap-4 flex-shrink-0">
-              {staff.status === 'active' ?
-            <>
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700">
-                    Active
-                  </span>
-                  <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline">
-                    View →
-                  </Link>
-                </> :
+            {/* Status */}
+            <div className="flex justify-center">
+              {staff.status === 'active'
+                ? <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700">Active</span>
+                : <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700">Pending</span>
+              }
+            </div>
 
-            <>
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700">
-                    Pending
-                  </span>
-                  <button onClick={() => setShowInvite(true)} className="text-sm font-medium text-amber-500 hover:underline">
-                    Resend →
-                  </button>
-                </>
-            }
+            {/* Action */}
+            <div className="flex justify-end">
+              {staff.status === 'active'
+                ? <Link to={`/staff/${staff.id}`} className="text-sm font-medium text-[#796EB2] hover:underline">View →</Link>
+                : <button onClick={() => setShowInvite(true)} className="text-sm font-medium text-amber-500 hover:underline">Resend →</button>
+              }
             </div>
           </div>
         )}
