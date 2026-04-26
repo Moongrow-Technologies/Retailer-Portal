@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, MoreVertical } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 import { BONUSES } from '@/lib/sampleData';
 import { format } from 'date-fns';
@@ -53,6 +54,11 @@ export default function Bonuses() {
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
+  };
+
+  const handleToggleActive = (bonus) => {
+    const newStatus = bonus.status === 'active' ? 'completed' : 'active';
+    setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
   };
 
   return (
@@ -138,7 +144,7 @@ export default function Bonuses() {
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
+        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_140px_48px] px-6 py-3 bg-[#F7F6FB] border-b border-[#EBEBF0]">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Bonus</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Type</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Target</span>
@@ -146,6 +152,7 @@ export default function Bonuses() {
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">
             {tab === 'scheduled' ? 'Starts' : 'Ends'}
           </span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Status</span>
           <span />
         </div>
 
@@ -155,7 +162,7 @@ export default function Bonuses() {
           return (
             <div key={bonus.id}>
               <div
-                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
+                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_140px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
                 onClick={() => navigate(`/bonuses/${bonus.id}`)}>
 
                 {/* Bonus name + product */}
@@ -183,6 +190,21 @@ export default function Bonuses() {
                     ? <span className="text-[#5b616e] italic">On completion</span>
                     : format(new Date(bonus.end_date), 'MMM d, yyyy')}
                 </span>
+
+                {/* Status + Toggle */}
+                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <span className={cn(
+                    "text-xs font-semibold px-2.5 py-1 rounded-full",
+                    bonus.status === 'active'
+                      ? 'bg-[#EAF3DE] text-[#3B6D11]'
+                      : 'bg-[#F1EFE8] text-[#5F5E5A]'
+                  )}>
+                    {bonus.status === 'active' ? 'Active' : 'Completed'}
+                  </span>
+                  {bonus.status === 'active' && (
+                    <Switch checked={true} onCheckedChange={() => handleToggleActive(bonus)} className="data-[state=checked]:bg-[#534AB7]" />
+                  )}
+                </div>
 
                 {/* Menu */}
                 <DropdownMenu>
