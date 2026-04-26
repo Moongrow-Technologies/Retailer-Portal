@@ -83,7 +83,7 @@ export default function EditCampaign() {
                   onClick={() => setData({ ...data, product: p.name, name: `${p.name} Campaign` })}
                   className={cn(
                     "flex items-center justify-between p-4 rounded-lg border transition-all text-left",
-                    data.product === p.name ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
+                    data.product === p.name ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
                   )}
                 >
                   <div>
@@ -107,7 +107,7 @@ export default function EditCampaign() {
                   onClick={() => toggleStore(store)}
                   className={cn(
                     "flex items-center gap-3 p-4 rounded-lg border transition-all text-left",
-                    data.stores.includes(store) ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
+                    data.stores.includes(store) ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
                   )}
                 >
                   <Checkbox checked={data.stores.includes(store)} />
