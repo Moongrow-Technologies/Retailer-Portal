@@ -20,25 +20,25 @@ export default function CompactWalletCard({ wallet }) {
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 h-full flex flex-col">
       {/* Header */}
-      <div className="mb-5">
-        <p className="text-[#5b616e] mb-1 text-sm">Moongrow Wallet</p>
-        <p className="text-[#0c0b0c] mb-3 text-4xl font-medium tracking-tight">
+      <div className="mb-6">
+        <p className="text-[#0c0b0c] text-lg font-semibold mb-3">Moongrow Wallet</p>
+        <p className="text-[#0c0b0c] mb-4 text-4xl font-bold tracking-tight">
           €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
-        <div className="flex gap-2">
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
-            <Plus className="w-3 h-3" /> Top Up
+        <div className="flex gap-3 w-full">
+          <Button variant="outline" className="flex-1 gap-2 border-[#EBEBF0] text-[#0c0b0c] text-sm px-3 py-2.5 h-auto font-semibold rounded-xl" onClick={() => setShowTopUp(true)}>
+            <Plus className="w-4 h-4" /> Top Up
           </Button>
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
-            <ArrowDownFromLine className="w-3 h-3" /> Withdraw
+          <Button variant="outline" className="flex-1 gap-2 border-[#EBEBF0] text-[#0c0b0c] text-sm px-3 py-2.5 h-auto font-semibold rounded-xl" onClick={() => setShowWithdraw(true)}>
+            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
           </Button>
         </div>
       </div>
 
       {/* Rows */}
-      <div className="flex flex-col gap-0 flex-1">
+      <div className="flex flex-col gap-0 flex-1 mb-4">
         {/* Campaigns */}
-        <div className="flex items-center justify-between py-3 border-b border-[#EBEBF0]">
+        <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0"></div>
             <div>
@@ -50,7 +50,7 @@ export default function CompactWalletCard({ wallet }) {
         </div>
 
         {/* Bonuses */}
-        <div className="flex items-center justify-between py-3 border-b border-[#EBEBF0]">
+        <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0"></div>
             <div>
