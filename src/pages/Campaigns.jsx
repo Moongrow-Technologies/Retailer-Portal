@@ -129,8 +129,8 @@ export default function Campaigns() {
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Campaign</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Product</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rate</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Spent</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Budget</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Spent</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Status</span>
             <span />
           </div>
@@ -159,9 +159,6 @@ export default function Campaigns() {
                   {/* Rate */}
                   <span className="text-sm font-medium text-[#0c0b0c]">€{campaign.commission_rate.toFixed(2)}/unit</span>
 
-                  {/* Spent */}
-                  <span className="text-sm text-[#0c0b0c]">€{campaign.spent.toFixed(2)}</span>
-
                   {/* Budget + bar */}
                   <div>
                     <p className="text-sm text-[#0c0b0c] mb-1">€{campaign.budget.toFixed(2)}</p>
@@ -169,6 +166,9 @@ export default function Campaigns() {
                       <div className="h-full rounded-full bg-[#27272b]" style={{ width: `${spendPct}%` }} />
                     </div>
                   </div>
+
+                  {/* Spent */}
+                  <span className="text-sm text-[#0c0b0c]">€{campaign.spent.toFixed(2)}</span>
 
                   {/* Status + toggle */}
                   <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
