@@ -197,7 +197,7 @@ export default function Bonuses() {
                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                    <StatusBadge status={bonus.status} />
                    {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
-                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
+                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} onClick={(e) => e.stopPropagation()} className="data-[state=checked]:bg-[#796EB2]" />
                    )}
                  </div>
 
