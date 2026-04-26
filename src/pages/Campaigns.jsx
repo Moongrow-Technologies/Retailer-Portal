@@ -78,7 +78,7 @@ export default function Campaigns() {
 
         {/* Progress bar */}
         <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
-          <div className="h-full rounded-full" style={{ width: '79%', background: '#6B7280' }} />
+          <div className="h-full rounded-full" style={{ width: '79%', background: '#9697b4' }} />
         </div>
 
         {/* Bar labels */}

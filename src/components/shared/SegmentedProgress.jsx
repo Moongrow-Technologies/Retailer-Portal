@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SegmentedProgress({ value, segments = 10, color = '#6B7280', bgColor = '#D1D5DB', className = '' }) {
+export default function SegmentedProgress({ value, segments = 10, color = '#9697b4', bgColor = '#D1D5DB', className = '' }) {
   const filled = Math.round((value / 100) * segments);
 
   return (
