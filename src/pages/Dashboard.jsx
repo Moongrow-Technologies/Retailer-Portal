@@ -42,12 +42,9 @@ export default function Dashboard() {
         gap: '24px',
         alignItems: 'stretch'
       }}>
-        {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        {/* Row 1, Column 1: Compact Wallet */}
+        <div>
           <CompactWalletCard wallet={wallet} />
-          <div style={{ flex: 1, minHeight: 0 }}>
-            <WalletRunwayCard wallet={wallet} />
-          </div>
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
@@ -58,6 +55,11 @@ export default function Dashboard() {
         {/* Row 2, Columns 1-2: Activity Feed */}
         <div style={{ gridColumn: 'span 2' }}>
           <ActivityFeed activities={ACTIVITIES} />
+        </div>
+
+        {/* Row 2, Column 1: Wallet Runway */}
+        <div>
+          <WalletRunwayCard wallet={wallet} />
         </div>
 
         {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
