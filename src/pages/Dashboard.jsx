@@ -11,8 +11,8 @@ import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData'
 
 export default function Dashboard() {
   const wallet = WALLET;
-  const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
-  const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
+  const topBudtenders = [...STAFF].filter((s) => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
+  const needsAttention = [...STAFF].filter((s) => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const zeroBalance = wallet.total_balance === 0;
 
   return (
@@ -25,29 +25,27 @@ export default function Dashboard() {
         <QuickActions />
       </div>
 
-      {zeroBalance && (
-        <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
+      {zeroBalance &&
+      <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-6 flex items-center gap-3">
           <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />
           <div>
             <p className="text-sm font-semibold text-red-700">All campaigns auto-paused</p>
             <p className="text-xs text-red-600">Your wallet balance has hit zero. Top up to resume campaigns.</p>
           </div>
         </div>
-      )}
+      }
 
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        gridTemplateRows: 'auto auto auto',
-        gap: '16px',
-        alignItems: 'start'
+        gridTemplateRows: 'auto auto',
+        gap: '24px',
+        alignItems: 'stretch'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }} className="mx-1">
           <CompactWalletCard wallet={wallet} />
-          <div style={{ alignSelf: 'start' }}>
-            <WalletRunwayCard wallet={wallet} />
-          </div>
+          <WalletRunwayCard wallet={wallet} />
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
@@ -66,6 +64,6 @@ export default function Dashboard() {
           <NeedsAttention staff={needsAttention} />
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
