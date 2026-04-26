@@ -1,9 +1,29 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { STAFF } from '@/lib/sampleData';
+import { Link } from 'react-router-dom';
+import { STAFF, CAMPAIGNS, BONUSES } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const staffByName = Object.fromEntries(STAFF.map(s => [s.name, s]));
+const campaignByName = Object.fromEntries(CAMPAIGNS.map(c => [c.name, c]));
+const bonusByName = Object.fromEntries(BONUSES.map(b => [b.name, b]));
+
+function getActivityLink(activity) {
+  if (activity.type === 'sale' || activity.type === 'campaign_paused' || activity.type === 'campaign_created' || activity.type === 'campaign_resumed') {
+    const campaign = activity.campaign_name && campaignByName[activity.campaign_name];
+    if (campaign) return `/campaigns/${campaign.id}`;
+  }
+  if (activity.type === 'bonus_completed' || activity.type === 'bonus_created') {
+    const bonus = activity.campaign_name && bonusByName[activity.campaign_name];
+    if (bonus) return `/bonuses/${bonus.id}`;
+  }
+  if (activity.type === 'staff_joined') {
+    const staff = activity.actor && staffByName[activity.actor];
+    if (staff) return `/staff/${staff.id}`;
+  }
+  if (activity.type === 'top_up') return '/wallet';
+  return null;
+}
 
 const avatarColors = [
   'bg-amber-400',
@@ -26,30 +46,35 @@ export default function ActivityFeed({ activities }) {
             : '?';
           const colorClass = avatarColors[i % avatarColors.length];
 
+          const link = getActivityLink(activity);
+          const rowContent = (
+            <div className="flex items-center gap-4 py-4 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors">
+              <span className="text-sm text-[#9490AA] w-4 text-right flex-shrink-0">{i + 1}</span>
+              {staffMember?.avatar_url ? (
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                  <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className={cn("w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold", colorClass)}>
+                  {initials}
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-[#0E0D1E]">{activity.message}</p>
+                <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(activity.created_date), 'MMM d, h:mm a')}</p>
+              </div>
+              {activity.amount != null && (
+                <span className={cn("text-sm font-bold flex-shrink-0", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>
+                  €{activity.amount.toFixed(2)}
+                </span>
+              )}
+            </div>
+          );
+
           return (
             <div key={i}>
-              <div className="flex items-center gap-4 py-4">
-                <span className="text-sm text-[#9490AA] w-4 text-right flex-shrink-0">{i + 1}</span>
-                {staffMember?.avatar_url ? (
-                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                    <img src={staffMember.avatar_url} alt={staffMember.name} className="w-full h-full object-cover" />
-                  </div>
-                ) : (
-                  <div className={cn("w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold", colorClass)}>
-                    {initials}
-                  </div>
-                )}
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#0E0D1E]">{activity.message}</p>
-                  <p className="text-xs text-[#9490AA] mt-0.5">{format(new Date(activity.created_date), 'MMM d, h:mm a')}</p>
-                </div>
-                {activity.amount != null && (
-                  <span className={cn("text-sm font-bold flex-shrink-0", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>
-                    €{activity.amount.toFixed(2)}
-                  </span>
-                )}
-              </div>
-              {i < activities.length - 1 && <div className="h-px bg-[#F0EFF5]" />}
+              {link ? <Link to={link} className="block cursor-pointer">{rowContent}</Link> : rowContent}
+                {i < activities.length - 1 && <div className="h-px bg-[#F0EFF5]" />}
             </div>
           );
         })}

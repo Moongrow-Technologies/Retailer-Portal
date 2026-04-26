@@ -12,7 +12,7 @@ export default function NeedsAttention({ staff }) {
         {staff.map((member, i) => (
           <Link key={member.id} to={`/staff/${member.id}`}>
             <div>
-              <div className="flex items-center gap-4 py-4">
+              <div className="flex items-center gap-4 py-4 px-2 rounded-lg hover:bg-[#F5F3FC] transition-colors">
                 <span className="text-sm text-[#9490AA] w-4 text-right flex-shrink-0">{i + 1}</span>
                 <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                   {member.avatar_url ? (
