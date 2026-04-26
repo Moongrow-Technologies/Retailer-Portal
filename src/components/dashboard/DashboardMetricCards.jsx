@@ -63,51 +63,64 @@ function CampaignBar({ name, pct, urgency }) {
 }
 
 // ─── CARD 1 — Active Campaigns ───────────────────────────────────────────────
-function ActiveCampaignsCard({ campaigns }) {
+function ActiveCampaignsCard({ campaigns, bonuses }) {
   const active = campaigns.filter((c) => c.status === 'active');
+  const activeBonuses = bonuses ? bonuses.filter((b) => b.status === 'active') : [];
   const displayed = active.slice(0, 2);
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
       <div className="flex items-start justify-between">
-        <span className="text-[13px] text-[#5b616e] font-medium">Active campaigns</span>
-        <div className="bg-[#ececee] rounded-full w-8 h-8 flex items-center justify-center">
-          <Send className="text-[#a1a1a1] lucide lucide-send w-3.5 h-3.5" />
+        <span className="text-[13px] text-[#5b616e] font-medium">Active now</span>
+        <div className="bg-[#ececee] rounded-lg w-8 h-8 flex items-center justify-center">
+          <Send className="text-[#a1a1a1] w-3.5 h-3.5" />
+        </div>
+      </div>
+
+      {/* Pills */}
+      <div className="flex gap-2">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#E2E0ED] bg-[#FAFAF9] text-[13px] font-semibold text-[#0c0b0c]">
+          <span className="w-2 h-2 rounded-full bg-[#534AB7] flex-shrink-0" />
+          {active.length} Campaigns
+        </div>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#E2E0ED] bg-[#FAFAF9] text-[13px] font-semibold text-[#0c0b0c]">
+          <span className="w-2 h-2 rounded-full bg-[#F0997B] flex-shrink-0" />
+          {activeBonuses.length} Bonuses
         </div>
       </div>
 
       <div>
-        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{active.length}</p>
+        <p className="text-[#534AB7] text-4xl font-bold leading-none">{active.length}</p>
         <TrendBadge value="1 new this month" />
       </div>
 
-      <div className="border-t border-[#F4F3FA] pt-3 mt-1 space-y-3">
+      <div className="border-t border-[#F4F3FA] pt-3 space-y-4">
         {displayed.map((c) => {
           const dl = daysLeft(c.end_date);
           const warn = dl !== null && dl <= 5;
+          const pct = progressPct(c.spent, c.budget);
+          const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
           return (
             <div key={c.id}>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[13px] font-semibold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
-                <span className={`text-[12px] font-medium ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
+                <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
+                <span className={`text-[12px] font-semibold ${warn ? 'text-[#F59E0B]' : 'text-[#5b616e]'}`}>
                   {dl !== null ? `${dl} days left` : '—'}
                 </span>
               </div>
-              <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-                <div className="bg-[hsl(var(--background))] rounded-full h-full"
-
-                style={{
-                width: `${progressPct(c.spent, c.budget)}%`,
-                background: warn ? '#F59E0B' : '#534AB7'
-                }} />
-                
+              <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
+                <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: warn ? '#F59E0B' : '#534AB7' }} />
               </div>
-            </div>);
-
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
+                <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
+              </div>
+            </div>
+          );
         })}
       </div>
-    </div>);
-
+    </div>
+  );
 }
 
 // ─── CARD 2 — Commission Paid ─────────────────────────────────────────────────
@@ -294,10 +307,10 @@ function RevenueCard() {
 }
 
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
-export default function DashboardMetricCards({ campaigns }) {
+export default function DashboardMetricCards({ campaigns, bonuses }) {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <ActiveCampaignsCard campaigns={campaigns} />
+      <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
       <CommissionCard />
       <UnitsSoldCard />
       <RevenueCard />

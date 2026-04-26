@@ -41,7 +41,7 @@ export default function Dashboard() {
             <CompactWalletCard wallet={wallet} />
           </div>
           <div className="col-span-8">
-            <DashboardMetricCards campaigns={CAMPAIGNS} />
+            <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
           </div>
         </div>
 
