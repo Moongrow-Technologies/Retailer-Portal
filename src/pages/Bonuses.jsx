@@ -190,7 +190,7 @@ export default function Bonuses() {
                 {/* Status */}
                 {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
                   <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                    <span className={cn("text-xs font-semibold px-3 py-1 rounded-full", isActive ? "bg-[#EDE9F8] text-[#796EB2]" : "bg-[#EDE9F8] text-[#796EB2]")}>
+                    <span className={cn("text-xs font-semibold px-3 py-1 rounded-full", isActive ? "bg-emerald-50 text-emerald-700" : "bg-[#EDE9F8] text-[#796EB2]")}>
                       {isActive ? 'Active' : 'Paused'}
                     </span>
                     <Switch
@@ -199,7 +199,7 @@ export default function Bonuses() {
                         const newStatus = isActive ? 'paused_manual' : 'active';
                         setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
                       }}
-                      className="data-[state=checked]:bg-[#796EB2]"
+                      className="data-[state=checked]:bg-emerald-600"
                     />
                   </div>
                 )}
