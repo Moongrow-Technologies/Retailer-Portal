@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { format, subDays, startOfMonth, isAfter } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
 
 const typeLabels = {
   commission: 'Commission',
@@ -28,8 +30,25 @@ function parseDescription(description) {
   return null;
 }
 
+function getTransactionLink(tx) {
+  if (tx.campaign_name) {
+    const c = CAMPAIGNS.find(c => c.name === tx.campaign_name);
+    if (c) return `/campaigns/${c.id}`;
+  }
+  if (tx.bonus_name) {
+    const b = BONUSES.find(b => b.name === tx.bonus_name);
+    if (b) return `/bonuses/${b.id}`;
+  }
+  if (tx.staff_name) {
+    const s = STAFF.find(s => s.name === tx.staff_name);
+    if (s) return `/staff/${s.id}`;
+  }
+  return null;
+}
+
 export default function TransactionHistory({ transactions }) {
   const [period, setPeriod] = useState('all');
+  const navigate = useNavigate();
 
   const filterTransactions = () => {
     const now = new Date();
@@ -91,10 +110,15 @@ export default function TransactionHistory({ transactions }) {
               title = `${parsed.actor} sold ${parsed.qty}× ${parsed.product}`;
             }
 
+            const link = getTransactionLink(tx);
             return (
               <div
                 key={i}
-                className="px-6 py-4 grid grid-cols-[1fr_160px_120px] items-center hover:bg-[#FAFAFA] transition-colors"
+                onClick={() => link && navigate(link)}
+                className={cn(
+                  "px-6 py-4 grid grid-cols-[1fr_160px_120px] items-center transition-colors",
+                  link ? "cursor-pointer hover:bg-[#F5F3FC]" : "hover:bg-[#FAFAFA]"
+                )}
               >
                 {/* Left: icon + text */}
                 <div className="flex items-center gap-3 min-w-0">
