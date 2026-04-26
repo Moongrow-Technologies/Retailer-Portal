@@ -97,17 +97,19 @@ export default function Campaigns() {
       </div>
 
       <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
-        {TABS.map((t) =>
-        <button key={t.key} onClick={() => setTab(t.key)}
-        className={cn("px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
-        tab === t.key ?
-        "bg-white text-[#12121f] shadow-sm" :
-        "text-[#5b616e] hover:text-[#12121f]"
-        )}>
-            {t.label}
-          </button>
-        )}
-      </div>
+         {TABS.map((t) =>
+         <button key={t.key} onClick={() => setTab(t.key)}
+         className={cn("px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
+         t.key === 'completed' && tab === t.key ?
+         "bg-[#F1EFE8] text-[#5F5E5A] shadow-sm" :
+         tab === t.key ?
+         "bg-white text-[#12121f] shadow-sm" :
+         "text-[#5b616e] hover:text-[#12121f]"
+         )}>
+             {t.label}
+           </button>
+         )}
+       </div>
 
       <div>
         {filtered.length === 0 ?
