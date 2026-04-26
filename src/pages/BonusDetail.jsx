@@ -114,7 +114,7 @@ export default function BonusDetail() {
                 setBonusStatus(next);
                 setToast(next === 'active' ? "Bonus resumed." : "Bonus paused.");
               }}
-              className="data-[state=checked]:bg-primary"
+              className="data-[state=checked]:bg-[#796EB2]"
             />
             <span className="text-sm text-[#7A7893]">{bonusStatus === 'active' ? 'Active' : 'Paused'}</span>
             <button
@@ -138,7 +138,7 @@ export default function BonusDetail() {
           <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Score</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Units Sold</span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Prize</span>
           </div>
           <div>
