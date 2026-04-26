@@ -92,19 +92,19 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]" style={{ gridTemplateColumns: '50px 2fr 1fr 1fr 1fr 80px', gap: '0' }}>
+        <div className="grid gap-4 px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Movement</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">{metric === 'commission' ? 'Commission' : 'Units Sold'}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Profile</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Profile</span>
         </div>
 
         {/* Rows */}
         {sorted.map((staff, i) => (
           <div key={staff.id}>
-            <div className="grid px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors" style={{ gridTemplateColumns: '50px 2fr 1fr 1fr 1fr 80px', gap: '0' }}>
+            <div className="grid gap-4 px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[#9490AA]">{i + 1}</span>
@@ -131,7 +131,7 @@ export default function Leaderboard() {
               <span className="text-sm text-[#9490AA]">— No change</span>
 
               {/* Metric Value */}
-              <span className={cn("text-right font-bold text-sm pr-4", i === 0 ? "text-emerald-600" : "text-[#0c0b0c]")}>
+              <span className={cn("text-right font-bold text-sm", i === 0 ? "text-emerald-600" : "text-[#0c0b0c]")}>
                 {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : staff.total_units_sold}
               </span>
 
