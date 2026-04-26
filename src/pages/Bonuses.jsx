@@ -115,7 +115,7 @@ export default function Bonuses() {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center mb-6 w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
+      <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
         {TABS.map((t) =>
         <button
           key={t.key}

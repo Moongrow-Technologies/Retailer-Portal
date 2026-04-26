@@ -73,7 +73,7 @@ export default function Leaderboard() {
 
       {/* Metric Toggle */}
       <div className="mb-4">
-        <div className="flex items-center w-fit bg-[#F4F3F4] rounded-2xl p-1 gap-0.5">
+        <div className="flex items-center w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
           {['commission', 'units'].map((m) =>
           <button
             key={m}
