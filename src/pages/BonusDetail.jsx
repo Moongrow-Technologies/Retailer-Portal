@@ -100,7 +100,7 @@ export default function BonusDetail() {
           </div>
           <div className="px-6 py-4">
             <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">{isActive ? 'Time Remaining' : 'Status'}</p>
-            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">{isActive ? formatTimeLeft(hoursLeft) : 'Ended'}</p>
+            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">{isActive ? formatTimeLeft(hoursLeft) : bonusStatus === 'completed' ? 'Ended' : 'Paused'}</p>
           </div>
         </div>
 
