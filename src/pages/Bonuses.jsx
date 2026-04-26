@@ -51,7 +51,12 @@ export default function Bonuses() {
     completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
-  const filtered = bonuses.filter((b) => b.status === tab);
+  const filtered = bonuses.filter((b) => {
+    if (tab === 'active') return b.status === 'active';
+    if (tab === 'scheduled') return b.status === 'scheduled';
+    if (tab === 'completed') return b.status === 'completed';
+    return b.status === tab;
+  });
 
   const handleTogglePause = (bonus) => {
     const newStatus = bonus.status === 'active' ? 'paused_manual' : 'active';
@@ -197,7 +202,11 @@ export default function Bonuses() {
                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                    <StatusBadge status={bonus.status} />
                    {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
-                     <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
+                     <Switch 
+                       checked={isActive} 
+                       onCheckedChange={() => handleTogglePause(bonus)}
+                       className={isActive ? 'data-[state=checked]:bg-[#534AB7]' : 'bg-[#D3D1D8]'}
+                     />
                    )}
                  </div>
 
