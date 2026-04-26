@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award, Clock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
@@ -59,7 +60,7 @@ export default function CreateBonus() {
         </p>
         <div className="flex gap-3 justify-center">
           <Button variant="outline" onClick={() => navigate('/bonuses')} className="border-[#E2E0ED]">View Bonuses</Button>
-          <Button className="bg-[#12121f] hover:bg-[#12121f]/90 text-white" onClick={() => navigate('/')}>Dashboard</Button>
+          <Button className="bg-primary hover:bg-primary/90" onClick={() => navigate('/')}>Dashboard</Button>
         </div>
       </div>
     );
@@ -81,19 +82,15 @@ export default function CreateBonus() {
 
       {/* Progress */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-3">
-          <h1 className="text-xl font-bold text-[#0E0D1E]">Create Bonus Competition</h1>
-          <span className="text-sm text-[#9490AA]">Step {step + 1} of {STEPS.length}</span>
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-xl font-bold">Create Bonus Competition</h1>
+          <span className="text-sm text-muted-foreground">Step {step + 1} of {STEPS.length}</span>
         </div>
-        <div className="flex gap-1.5">
-          {STEPS.map((s, i) => (
-            <div key={i} className={cn("h-1.5 flex-1 rounded-full transition-all", i <= step ? "bg-[#796EB2]" : "bg-[#E2E0ED]")} />
-          ))}
-        </div>
-        <p className="text-sm font-semibold text-[#796EB2] mt-2">{STEPS[step]}</p>
+        <Progress value={((step + 1) / STEPS.length) * 100} className="h-1" />
+        <p className="text-sm font-medium text-primary mt-2">{STEPS[step]}</p>
       </div>
 
-      <div className="bg-white rounded-xl border border-[#EBEBF0] shadow-sm p-6 min-h-[320px]">
+      <div className="bg-card rounded-xl border border-border p-6 min-h-[300px]">
 
         {/* Step 1 — Bonus Type */}
         {step === 0 && (
@@ -103,7 +100,7 @@ export default function CreateBonus() {
               <button key={t.value} onClick={() => setData({ ...data, type: t.value, name: `${t.label} Challenge` })}
                 className={cn(
                   "w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left",
-                  data.type === t.value ? "border-[#796EB2] bg-[#F5F3FC]" : "border-[#EBEBF0] hover:border-[#C8C3E0] bg-white"
+                  data.type === t.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30 bg-white"
                 )}>
                 <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", t.bg)}>
                   <t.icon className={cn("w-5 h-5", t.color)} />
@@ -137,7 +134,7 @@ export default function CreateBonus() {
                 ].map(m => (
                   <button key={m.value} onClick={() => setData({ ...data, metric: m.value })}
                     className={cn("p-4 rounded-xl border-2 text-left transition-all",
-                      data.metric === m.value ? "border-[#796EB2] bg-[#F5F3FC]" : "border-[#EBEBF0] hover:border-[#C8C3E0]"
+                      data.metric === m.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
                     )}>
                     <p className="font-semibold text-sm text-[#0E0D1E]">{m.label}</p>
                     <p className="text-xs text-[#9490AA] mt-0.5">{m.sub}</p>
@@ -170,7 +167,7 @@ export default function CreateBonus() {
                 {[{ value: 'chain', label: 'Chain-wide', sub: 'All stores compete together' }, ...STORE.locations.map(l => ({ value: l, label: l, sub: 'Single store' }))].map(opt => (
                   <button key={opt.value} onClick={() => setData({ ...data, scope: opt.value })}
                     className={cn("w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 text-left transition-all",
-                      data.scope === opt.value ? "border-[#796EB2] bg-[#F5F3FC]" : "border-[#EBEBF0] hover:border-[#C8C3E0]"
+                      data.scope === opt.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
                     )}>
                     <div>
                       <p className="text-sm font-medium text-[#0E0D1E]">{opt.label}</p>
@@ -289,7 +286,7 @@ export default function CreateBonus() {
                     {[{ value: 'split', label: 'Split equally' }, { value: 'all_win', label: 'All tied players win' }].map(tb => (
                       <button key={tb.value} onClick={() => setData({ ...data, tiebreaker: tb.value })}
                         className={cn("py-2 px-3 rounded-xl border-2 text-sm transition-all",
-                          data.tiebreaker === tb.value ? "border-[#796EB2] bg-[#F5F3FC] text-[#796EB2] font-semibold" : "border-[#EBEBF0] text-[#7A7893]"
+                          data.tiebreaker === tb.value ? "border-[#796EB2] bg-[#F0EEF9] text-[#796EB2] font-semibold" : "border-border text-[#7A7893]"
                         )}>
                         {tb.label}
                       </button>
@@ -357,7 +354,7 @@ export default function CreateBonus() {
         <Button
           onClick={() => { if (step === 4) { setDone(true); setToast("Bonus launched successfully."); } else setStep(step + 1); }}
           disabled={!canContinue()}
-          className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold px-6"
+          className="bg-primary hover:bg-primary/90 gap-2"
         >
           {step === 4 ? (isScheduled ? 'Schedule Bonus' : 'Launch Bonus') : 'Continue'} <ArrowRight className="w-4 h-4" />
         </Button>
