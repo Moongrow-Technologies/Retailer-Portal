@@ -7,7 +7,7 @@ const statusStyles = {
   paused_manual: 'bg-amber-100 text-amber-700 border-amber-200',
   paused_budget: 'bg-[#9697b4] text-white border-[#9697b4]',
   scheduled: 'bg-amber-50 text-amber-700 border-amber-200',
-  completed: 'bg-[#9697b4] text-white border-[#9697b4]',
+  completed: 'bg-[#F1EFE8] text-[#5F5E5A] border-[#E8E6DC]',
   pending: 'bg-blue-50 text-blue-700 border-blue-200',
   deactivated: 'bg-slate-50 text-slate-500 border-slate-200',
 };
