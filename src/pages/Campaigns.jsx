@@ -62,28 +62,39 @@ export default function Campaigns() {
       </div>
 
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
-         <h3 className="text-xs font-semibold uppercase tracking-widest text-[#5b616e] mb-4">Progress</h3>
-         <div className="space-y-4">
-           {campaigns.map((campaign) => {
-             const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
-             const barColor = campaign.status === 'completed' ? '#5F5E5A' : 
-                             campaign.status === 'active' ? '#534AB7' : 
-                             campaign.status === 'paused_budget' ? '#5F5E5A' :
-                             '#9697B4';
-             return (
-               <div key={campaign.id}>
-                 <div className="w-full h-2 rounded-full overflow-hidden mb-2" style={{ background: '#E5E5E5' }}>
-                   <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: barColor }} />
-                 </div>
-                 <div className="flex items-center justify-between">
-                   <span className="text-sm text-[#5b616e]">{campaign.units_sold} / {campaign.target_units} units</span>
-                   <span className="text-sm font-medium text-[#5b616e]">{Math.round(unitsPct)}%</span>
-                 </div>
-               </div>
-             );
-           })}
-         </div>
-       </div>
+
+
+        {/* Two columns: Committed | Remaining */}
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
+          <div className="pr-6">
+            <p className="text-xs text-[#5b616e] mb-1">Committed</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€1,400</p>
+          </div>
+          <div className="pl-6 text-right">
+            <p className="text-xs text-[#5b616e] mb-1">Remaining</p>
+            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€375</p>
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
+          <div className="h-full rounded-full" style={{ width: '79%', background: '#534AB7' }} />
+        </div>
+
+        {/* Bar labels */}
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+            79% committed
+          </p>
+          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+            21% remaining
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
+          </p>
+        </div>
+
+
+      </div>
 
       <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
          {TABS.map((t) =>
