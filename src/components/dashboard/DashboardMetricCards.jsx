@@ -187,6 +187,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
 // This week: 14 OG units × €2 + 8 Amnesia × €2.50 = €28 + €20 = €48
 // This month: 156 OG × €2 + 70 Amnesia × €2.50 = €312 + €175 = €487 (active campaigns only)
 // Import CAMPAIGNS for commission card navigation
+import { Link } from 'react-router-dom';
 import { CAMPAIGNS } from '@/lib/sampleData';
 
 const commissionData = {
@@ -369,6 +370,9 @@ function RevenueCard({ cardRef }) {
           </AreaChart>
         </ResponsiveContainer>
       </div>
+      <Link to="/analytics" className="text-sm text-[#796EB2] hover:underline block font-semibold">
+        View Analytics →
+      </Link>
     </div>);
 
 }
