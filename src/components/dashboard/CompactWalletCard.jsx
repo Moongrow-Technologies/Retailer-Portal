@@ -21,7 +21,7 @@ export default function CompactWalletCard({ wallet }) {
     <div className="bg-white px-6 py-6 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col h-full">
       {/* Header */}
       <div className="mb-5">
-        <p className="text-[#5b616e] mb-4 text-sm">Moongrow Wallet</p>
+        <p className="text-[#5b616e] mb-4 text-sm">Total balance</p>
         <p className="text-[#0c0b0c] mb-3 text-4xl font-medium tracking-tight">
           €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
@@ -35,16 +35,13 @@ export default function CompactWalletCard({ wallet }) {
         </div>
       </div>
 
-      {/* Rows */}
-      <div className="flex flex-col gap-0">
-        {/* Available */}
-        <div className="flex items-center justify-between py-3">
-          <div>
-            <p className="text-sm font-semibold text-[#0c0b0c]">Unbudgeted</p>
-            <p className="text-xs text-[#5b616e]">free to budget</p>
-          </div>
-          <span className="text-sm font-bold text-[#0c0b0c]">€{available.toLocaleString('en-US')}</span>
-        </div>
+      {/* Estimated runway */}
+      <div className="bg-[#F7F7F8] rounded-xl p-4">
+        <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
+        <p className="text-2xl font-bold text-[#0c0b0c] leading-none mb-1">
+          24 <span className="text-base font-semibold">days left</span>
+        </p>
+        <p className="text-xs text-[#5b616e]">At current spend rate · ~May 20</p>
       </div>
 
       <div className="mt-auto pt-4">
