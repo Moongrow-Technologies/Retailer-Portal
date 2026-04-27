@@ -104,6 +104,11 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
          <LiveRipple />
        </div>
 
+      <div>
+        <p className="text-[#534AB7] text-4xl font-medium leading-none">{count}</p>
+        <TrendBadge value="1 new this month" />
+      </div>
+
       {/* Tabs */}
       <div className="flex gap-2">
         <button
@@ -118,11 +123,6 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
           <span className="w-2 h-2 rounded-full bg-[#F0997B] flex-shrink-0" />
           {activeBonuses.length} Bonuses
         </button>
-      </div>
-
-      <div>
-        <p className="text-[#534AB7] text-4xl font-medium leading-none">{count}</p>
-        <TrendBadge value="1 new this month" />
       </div>
 
       {/* Fixed-height content area so the card never grows */}
