@@ -23,7 +23,7 @@ export default function CompactWalletCard({ wallet }) {
       <div className="mb-5">
         <p className="text-[#5b616e] mb-1 text-sm">Moongrow Wallet</p>
         <p className="text-[#0c0b0c] mb-3 text-4xl font-medium tracking-tight">
-          €{total.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+          €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
@@ -43,7 +43,7 @@ export default function CompactWalletCard({ wallet }) {
             <p className="text-sm font-semibold text-[#0c0b0c]">Unbudgeted</p>
             <p className="text-xs text-[#5b616e]">free to budget</p>
           </div>
-          <span className="text-sm font-bold text-[#0c0b0c]">€{available.toLocaleString('nl-NL')}</span>
+          <span className="text-sm font-bold text-[#0c0b0c]">€{available.toLocaleString('en-US')}</span>
         </div>
       </div>
 
