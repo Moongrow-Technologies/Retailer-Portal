@@ -263,24 +263,51 @@ const CustomBar = (props) => {
 
 function UnitsSoldCard() {
   const [period, setPeriod] = useState('This week');
+  const [selectedIdx, setSelectedIdx] = useState(null);
   const d = unitsSoldData[period];
   const maxVal = Math.max(...d.chart.map((v) => v.units));
+
+  const selectedEntry = selectedIdx !== null ? d.chart[selectedIdx] : null;
+  const displayValue = selectedEntry ? String(selectedEntry.units) : d.value;
+
+  // Reset selection when period changes
+  const handlePeriodChange = (val) => {
+    setPeriod(val);
+    setSelectedIdx(null);
+  };
 
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Units sold</span>
-        <PeriodPill value={period} onChange={setPeriod} />
+        <PeriodPill value={period} onChange={handlePeriodChange} />
       </div>
 
       <div>
-        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.value}</p>
-        <TrendBadge value={d.trend} />
+        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">
+          {displayValue}
+          {selectedEntry && <span className="text-[15px] text-[#5b616e] font-normal ml-2">on {selectedEntry.day}</span>}
+        </p>
+        {!selectedEntry && <TrendBadge value={d.trend} />}
+        {selectedEntry && (
+          <button onClick={() => setSelectedIdx(null)} className="text-[11px] text-[#796EB2] hover:underline mt-0.5">
+            ← Show total
+          </button>
+        )}
       </div>
 
       <div className="h-24">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={d.chart} barCategoryGap="30%" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+          <BarChart
+            data={d.chart}
+            barCategoryGap="30%"
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            onClick={(e) => {
+              if (e && e.activeTooltipIndex !== undefined) {
+                setSelectedIdx(prev => prev === e.activeTooltipIndex ? null : e.activeTooltipIndex);
+              }
+            }}
+          >
             <XAxis
               dataKey="day"
               axisLine={false}
@@ -294,9 +321,16 @@ function UnitsSoldCard() {
             
             <Bar
               dataKey="units"
+              style={{ cursor: 'pointer' }}
               shape={(props) => {
+                const idx = d.chart.findIndex((item, i) => props.x === props.x && props.index === i);
+                const isSelected = selectedIdx === props.index;
                 const isBest = props.units === maxVal;
-                const fill = isBest ? '#5b616e' : '#E2E0ED';
+                let fill;
+                if (isSelected) fill = '#534AB7';
+                else if (selectedIdx !== null) fill = '#E2E0ED';
+                else if (isBest) fill = '#5b616e';
+                else fill = '#E2E0ED';
                 return <CustomBar {...props} fill={fill} />;
               }} />
             
