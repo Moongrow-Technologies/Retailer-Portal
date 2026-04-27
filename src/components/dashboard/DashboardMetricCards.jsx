@@ -261,19 +261,28 @@ const CustomBar = (props) => {
 
 };
 
+// Map chart day labels to DayAnalytics route keys
+const weekDayKeys = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
 function UnitsSoldCard() {
+  const navigate = useNavigate();
   const [period, setPeriod] = useState('This week');
-  const [selectedIdx, setSelectedIdx] = useState(null);
+  const [hoveredIdx, setHoveredIdx] = useState(null);
   const d = unitsSoldData[period];
   const maxVal = Math.max(...d.chart.map((v) => v.units));
 
-  const selectedEntry = selectedIdx !== null ? d.chart[selectedIdx] : null;
-  const displayValue = selectedEntry ? String(selectedEntry.units) : d.value;
+  const hoveredEntry = hoveredIdx !== null ? d.chart[hoveredIdx] : null;
+  const displayValue = hoveredEntry ? String(hoveredEntry.units) : d.value;
 
-  // Reset selection when period changes
   const handlePeriodChange = (val) => {
     setPeriod(val);
-    setSelectedIdx(null);
+    setHoveredIdx(null);
+  };
+
+  const handleBarClick = (data, index) => {
+    if (period === 'This week') {
+      navigate(`/analytics/${weekDayKeys[index]}`);
+    }
   };
 
   return (
@@ -283,16 +292,14 @@ function UnitsSoldCard() {
         <PeriodPill value={period} onChange={handlePeriodChange} />
       </div>
 
-      <div>
+      <div style={{ minHeight: 44 }}>
         <p className="text-[#0c0b0c] text-4xl font-medium leading-none">
           {displayValue}
-          {selectedEntry && <span className="text-[15px] text-[#5b616e] font-normal ml-2">on {selectedEntry.day}</span>}
+          {hoveredEntry && <span className="text-[15px] text-[#5b616e] font-normal ml-2">{hoveredEntry.day}</span>}
         </p>
-        {!selectedEntry && <TrendBadge value={d.trend} />}
-        {selectedEntry && (
-          <button onClick={() => setSelectedIdx(null)} className="text-[11px] text-[#796EB2] hover:underline mt-0.5">
-            ← Show total
-          </button>
+        {!hoveredEntry && <TrendBadge value={d.trend} />}
+        {hoveredEntry && period === 'This week' && (
+          <span className="text-[11px] text-[#796EB2]">Click to view day →</span>
         )}
       </div>
 
@@ -302,9 +309,10 @@ function UnitsSoldCard() {
             data={d.chart}
             barCategoryGap="30%"
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            onMouseLeave={() => setHoveredIdx(null)}
             onClick={(e) => {
               if (e && e.activeTooltipIndex !== undefined) {
-                setSelectedIdx(prev => prev === e.activeTooltipIndex ? null : e.activeTooltipIndex);
+                handleBarClick(e.activePayload?.[0]?.payload, e.activeTooltipIndex);
               }
             }}
           >
@@ -313,27 +321,23 @@ function UnitsSoldCard() {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 11, fill: '#5b616e' }} />
-            
-            <Tooltip
-              cursor={false}
-              contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
-              formatter={(val) => [val, 'Units']} />
-            
+
+            <Tooltip content={() => null} cursor={false} />
+
             <Bar
               dataKey="units"
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: period === 'This week' ? 'pointer' : 'default' }}
+              onMouseEnter={(_, index) => setHoveredIdx(index)}
               shape={(props) => {
-                const idx = d.chart.findIndex((item, i) => props.x === props.x && props.index === i);
-                const isSelected = selectedIdx === props.index;
+                const isHovered = hoveredIdx === props.index;
                 const isBest = props.units === maxVal;
                 let fill;
-                if (isSelected) fill = '#534AB7';
-                else if (selectedIdx !== null) fill = '#E2E0ED';
+                if (isHovered) fill = '#534AB7';
+                else if (hoveredIdx !== null) fill = '#E2E0ED';
                 else if (isBest) fill = '#5b616e';
                 else fill = '#E2E0ED';
                 return <CustomBar {...props} fill={fill} />;
               }} />
-            
           </BarChart>
         </ResponsiveContainer>
       </div>
