@@ -78,18 +78,6 @@ export default function WalletRunwayCard() {
           <span className="text-xs font-bold text-[#0c0b0c]">€{bonusRemaining} left</span>
         </div>
       </Link>
-
-      <div className="border-t border-[#EBEBF0] mt-4"></div>
-
-      {/* Unbudgeted */}
-      <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#EBEBF0] flex-shrink-0"></div>
-          <p className="text-sm font-bold text-[#0c0b0c]">Unbudgeted</p>
-        </div>
-        <span className="text-sm font-bold text-[#5b616e]">€{2000 - campaignBudget - bonusBudget}</span>
-      </div>
-      <p className="text-xs text-[#5b616e] mt-0.5 ml-5">free to budget</p>
     </div>
   );
 }
