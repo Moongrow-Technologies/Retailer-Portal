@@ -260,13 +260,13 @@ const CustomBar = (props) => {
 
 };
 
-function UnitsSoldCard({ cardRef }) {
+function UnitsSoldCard() {
   const [period, setPeriod] = useState('This week');
   const d = unitsSoldData[period];
   const maxVal = Math.max(...d.chart.map((v) => v.units));
 
   return (
-    <div ref={cardRef} className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Units sold</span>
         <PeriodPill value={period} onChange={setPeriod} />
@@ -327,12 +327,12 @@ const revenueData = {
   'This month': { value: '€6,110', trend: '11% vs last period', chart: revenueMonthData }
 };
 
-function RevenueCard() {
+function RevenueCard({ cardRef }) {
   const [period, setPeriod] = useState('This week');
   const d = revenueData[period];
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
+    <div ref={cardRef} className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-1.5">
       <div className="flex items-start justify-between">
         <span className="text-[13px] text-[#5b616e] font-medium">Revenue generated</span>
         <PeriodPill value={period} onChange={setPeriod} />
@@ -437,12 +437,12 @@ function CommissionROICard() {
 }
 
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
-export default function DashboardMetricCards({ campaigns, bonuses, activeCampaignsCardRef, unitsSoldCardRef }) {
+export default function DashboardMetricCards({ campaigns, bonuses, activeCampaignsCardRef, revenueCardRef }) {
   return (
     <div className="grid grid-cols-2 gap-4" style={{ gridTemplateRows: 'auto auto' }}>
       <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} cardRef={activeCampaignsCardRef} />
-      <UnitsSoldCard cardRef={unitsSoldCardRef} />
-      <RevenueCard />
+      <UnitsSoldCard />
+      <RevenueCard cardRef={revenueCardRef} />
       <CommissionROICard />
     </div>);
 

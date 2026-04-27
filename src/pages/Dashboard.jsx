@@ -16,7 +16,7 @@ export default function Dashboard() {
   const zeroBalance = wallet.total_balance === 0;
 
   const activeCampaignsCardRef = useRef(null);
-  const unitsSoldCardRef = useRef(null);
+  const revenueCardRef = useRef(null);
   const [walletCardHeight, setWalletCardHeight] = useState(null);
   const [runwayCardHeight, setRunwayCardHeight] = useState(null);
 
@@ -33,7 +33,7 @@ export default function Dashboard() {
       observers.push(obs);
     };
     observe(activeCampaignsCardRef, setWalletCardHeight);
-    observe(unitsSoldCardRef, setRunwayCardHeight);
+    observe(revenueCardRef, setRunwayCardHeight);
     return () => observers.forEach(o => o.disconnect());
   }, []);
 
@@ -76,7 +76,7 @@ export default function Dashboard() {
 
         {/* Row 1, Columns 2-3: Metric Cards */}
         <div style={{ gridColumn: 'span 2' }}>
-          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} activeCampaignsCardRef={activeCampaignsCardRef} unitsSoldCardRef={unitsSoldCardRef} />
+          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} activeCampaignsCardRef={activeCampaignsCardRef} revenueCardRef={revenueCardRef} />
         </div>
 
         {/* Row 2, Columns 1-2: Activity Feed */}
