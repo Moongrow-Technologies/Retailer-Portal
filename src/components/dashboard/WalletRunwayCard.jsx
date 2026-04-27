@@ -1,14 +1,14 @@
 import React from 'react';
 
 export default function WalletRunwayCard() {
-  // Campaign Fund data
+  // Campaign data
   const campaignBudget = 1400;
   const campaignPaidOut = 487;
   const campaignRemaining = campaignBudget - campaignPaidOut;
   const campaignPercent = Math.round((campaignPaidOut / campaignBudget) * 100);
   const activeCampaigns = 3;
   
-  // Bonus Fund data
+  // Bonus data
   const bonusBudget = 225;
   const bonusPaidOut = 100;
   const bonusRemaining = bonusBudget - bonusPaidOut;
@@ -17,13 +17,13 @@ export default function WalletRunwayCard() {
 
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden h-full">
-      {/* Campaign Fund Section */}
+      {/* Campaign Section */}
       <div className="mb-4">
         {/* Header: Title + Budget */}
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#534AB7] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c]">Campaign Fund</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c]">Campaign</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{campaignBudget}</span>
         </div>
@@ -48,13 +48,13 @@ export default function WalletRunwayCard() {
 
       <div className="border-t border-[#EBEBF0]"></div>
 
-      {/* Bonus Fund Section */}
+      {/* Bonus Section */}
       <div className="mt-4">
         {/* Header: Title + Budget */}
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#F0997B] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c]">Bonus Fund</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c]">Bonus</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{bonusBudget}</span>
         </div>
