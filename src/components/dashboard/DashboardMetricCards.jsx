@@ -98,7 +98,7 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
   const count = tab === 'campaigns' ? active.length : activeBonuses.length;
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3 h-full">
       <div className="flex items-start justify-between">
          <span className="text-[13px] text-[#5b616e] font-medium">Active now</span>
          <LiveRipple />
@@ -439,7 +439,7 @@ function CommissionROICard() {
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
 export default function DashboardMetricCards({ campaigns, bonuses }) {
   return (
-    <div className="grid grid-cols-2 gap-4 auto-rows-max">
+    <div className="grid grid-cols-2 gap-4" style={{ gridTemplateRows: 'auto auto' }}>
       <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
       <UnitsSoldCard />
       <RevenueCard />

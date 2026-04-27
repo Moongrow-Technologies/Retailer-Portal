@@ -40,7 +40,7 @@ export default function Dashboard() {
         gridTemplateColumns: '1fr 1fr 1fr',
         gridTemplateRows: 'auto auto',
         gap: '24px',
-        alignItems: 'start'
+        alignItems: 'stretch'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'stretch' }}>
@@ -49,7 +49,7 @@ export default function Dashboard() {
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
-        <div style={{ gridColumn: 'span 2', alignSelf: 'start' }}>
+        <div style={{ gridColumn: 'span 2' }}>
           <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
         </div>
 
