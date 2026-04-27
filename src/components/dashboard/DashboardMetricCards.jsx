@@ -308,6 +308,9 @@ function UnitsSoldCard() {
         <span className="w-2.5 h-2.5 rounded-sm bg-[#5b616e] inline-block" />
         <span className="text-[11px] text-[#5b616e]">Best — {d.best.day} ({d.best.value})</span>
       </div>
+      <Link to="/analytics" className="text-xs text-[#796EB2] hover:underline block font-semibold mt-8" onClick={() => window.scrollTo(0, 0)}>
+        View Analytics →
+      </Link>
     </div>);
 
 }
