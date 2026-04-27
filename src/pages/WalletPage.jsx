@@ -16,6 +16,9 @@ export default function WalletPage() {
   const campaigns = wallet.committed_campaigns || 0;
   const bonuses = wallet.committed_bonuses || 0;
   const available = wallet.available || 0;
+  const runwayDays = 24;
+  const runwayColor = runwayDays <= 10 ? '#DC2626' : '#16A34A';
+
   const campaignsPct = total > 0 ? Math.round(campaigns / total * 100) : 0;
   const bonusesPct = total > 0 ? Math.round(bonuses / total * 100) : 0;
   const availablePct = total > 0 ? Math.round(available / total * 100) : 0;
@@ -62,8 +65,8 @@ export default function WalletPage() {
             {/* Estimated runway box */}
             <div className="bg-[#F7F7F8] rounded-xl p-4">
               <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
-              <p className="text-2xl font-bold text-[#0c0b0c] leading-none mb-1">
-                24 <span className="text-base font-semibold">days left</span>
+              <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
+                {runwayDays} <span className="text-base font-semibold">days left</span>
               </p>
               <p className="text-xs text-[#5b616e]">At current spend rate · ~May 20</p>
             </div>
