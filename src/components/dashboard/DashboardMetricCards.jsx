@@ -370,7 +370,7 @@ function RevenueCard({ cardRef }) {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <Link to="/analytics" className="text-sm text-[#796EB2] hover:underline block font-semibold mt-2">
+      <Link to="/analytics" className="text-sm text-[#796EB2] hover:underline block font-semibold mt-4">
         View Analytics →
       </Link>
     </div>);
