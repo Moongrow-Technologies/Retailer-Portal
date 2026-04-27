@@ -3,7 +3,7 @@ import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Button } from '@/components/ui/button';
-import { ArrowDownFromLine, Plus, AlertTriangle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
 
 export default function WalletPage() {
@@ -23,25 +23,9 @@ export default function WalletPage() {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
-          <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button
-            onClick={() => setShowTopUp(true)}
-            variant="outline" className="bg-[#27272b] text-[#fafafa] px-4 py-2 text-sm font-semibold rounded-md inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:text-accent-foreground h-9 gap-2 border-[#E2E0ED] hover:bg-[#F4F3FA]">
-            
-            <Plus className="w-4 h-4" /> Top Up
-          </Button>
-          <Button
-            onClick={() => setShowWithdraw(true)}
-            variant="outline"
-            className="gap-2 font-semibold border-[#E2E0ED] text-[#12121f] bg-white hover:bg-[#F4F3FA]">
-            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
-          </Button>
-        </div>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
+        <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
       </div>
 
       {zeroBalance &&
@@ -56,42 +40,67 @@ export default function WalletPage() {
 
       <div className="space-y-4">
         {/* Wallet Card */}
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6">
-          {/* Top row: balance */}
-          <div className="mb-6">
-            <p className="text-sm text-[#5b616e] mb-1">Moongrow Wallet</p>
-            <p className="text-[#0c0b0c] text-5xl font-semibold tracking-tight">
-              €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-            </p>
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex gap-6">
+          {/* Left: balance + buttons */}
+          <div className="flex flex-col justify-between min-w-[200px] border-r border-[#EBEBF0] pr-6">
+            <div>
+              <p className="text-sm text-[#5b616e] mb-2">Total balance</p>
+              <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight mb-5">
+                €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Button variant="outline" className="w-full justify-center font-semibold border-[#E2E0ED] text-[#0c0b0c]" onClick={() => setShowTopUp(true)}>
+                + Top Up
+              </Button>
+              <Button variant="outline" className="w-full justify-center font-semibold border-[#E2E0ED] text-[#0c0b0c]" onClick={() => setShowWithdraw(true)}>
+                ↓ Withdraw
+              </Button>
+            </div>
           </div>
 
-          {/* Bottom row: three columns */}
-          <div className="grid grid-cols-3 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] pt-6">
-            {/* Campaign budgets */}
-            <div className="pr-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Campaign Fund</p>
+          {/* Right: allocated funds */}
+          <div className="flex-1">
+            <p className="text-sm font-bold text-[#0c0b0c] mb-4">Allocated funds</p>
+            <div className="space-y-4">
+              {/* Campaign Fund */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
+                    <span className="text-sm font-medium text-[#0c0b0c]">Campaign Fund</span>
+                  </div>
+                  <span className="text-sm font-bold text-[#0c0b0c]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
+                </div>
+                <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1">
+                  <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${campaignsPct}%` }} />
+                </div>
+                <p className="text-xs text-[#5b616e]">€487 paid out · €913 remaining</p>
               </div>
-              <p className="text-[#0c0b0c] mb-1 text-2xl font-semibold">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">3 active campaigns</p>
-            </div>
 
-            {/* Bonus budgets */}
-            <div className="px-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
-                <p className="text-sm text-[#5b616e]">Bonus Fund</p>
+              {/* Bonus Fund */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
+                    <span className="text-sm font-medium text-[#0c0b0c]">Bonus Fund</span>
+                  </div>
+                  <span className="text-sm font-bold text-[#0c0b0c]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
+                </div>
+                <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1">
+                  <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusesPct}%` }} />
+                </div>
+                <p className="text-xs text-[#5b616e]">€100 paid out · €125 remaining</p>
               </div>
-              <p className="text-[#0c0b0c] mb-1 text-2xl font-semibold">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">2 active bonuses</p>
-            </div>
 
-            {/* Unbudgeted */}
-            <div className="pl-6">
-              <p className="text-sm text-[#5b616e] mb-2">Unbudgeted</p>
-              <p className="text-[#0c0b0c] mb-1 text-2xl font-semibold">€{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
-              <p className="text-xs text-[#5b616e]">free to budget</p>
+              {/* Unbudgeted */}
+              <div className="flex items-center justify-between pt-1">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#D1D0D8] flex-shrink-0" />
+                  <span className="text-sm font-medium text-[#5b616e]">Unbudgeted</span>
+                </div>
+                <span className="text-sm font-bold text-[#0c0b0c]">€{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
+              </div>
             </div>
           </div>
         </div>
