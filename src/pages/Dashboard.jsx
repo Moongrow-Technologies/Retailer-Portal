@@ -61,11 +61,11 @@ export default function Dashboard() {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
         gridTemplateRows: 'auto auto',
-        gap: '24px',
+        gap: '18px',
         alignItems: 'start'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div style={walletCardHeight ? { height: walletCardHeight, display: 'flex', flexDirection: 'column' } : { display: 'flex', flexDirection: 'column' }}>
             <CompactWalletCard wallet={wallet} />
           </div>
@@ -85,7 +85,7 @@ export default function Dashboard() {
         </div>
 
         {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <TopBudtenders staff={topBudtenders} />
           <NeedsAttention staff={needsAttention} />
         </div>
