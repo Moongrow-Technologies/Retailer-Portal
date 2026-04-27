@@ -20,12 +20,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!activeCampaignsCardRef.current) return;
-    const observer = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        setWalletCardHeight(entry.contentRect.height);
+    const measure = () => {
+      if (activeCampaignsCardRef.current) {
+        setWalletCardHeight(activeCampaignsCardRef.current.getBoundingClientRect().height);
       }
-    });
+    };
+    const observer = new ResizeObserver(measure);
     observer.observe(activeCampaignsCardRef.current);
+    measure();
     return () => observer.disconnect();
   }, []);
 
@@ -58,7 +60,7 @@ export default function Dashboard() {
       }}>
         {/* Row 1, Column 1: Wallet cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={walletCardHeight ? { height: walletCardHeight } : {}}>
+          <div style={walletCardHeight ? { height: walletCardHeight, display: 'flex', flexDirection: 'column' } : { display: 'flex', flexDirection: 'column' }}>
             <CompactWalletCard wallet={wallet} />
           </div>
           <WalletRunwayCard wallet={wallet} />
