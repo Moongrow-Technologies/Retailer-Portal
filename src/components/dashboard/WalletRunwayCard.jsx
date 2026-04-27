@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function WalletRunwayCard() {
   // Campaign data
@@ -19,12 +20,12 @@ export default function WalletRunwayCard() {
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden h-full">
       <p className="text-[13px] text-[#5b616e] font-medium mb-4">Allocated funds</p>
       {/* Campaign Section */}
-      <div className="mb-4">
+      <Link to="/campaigns" className="mb-4 block group">
         {/* Header: Title + Budget */}
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#534AB7] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c]">Campaign</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#534AB7] transition-colors">Campaign</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{campaignBudget}</span>
         </div>
@@ -45,17 +46,17 @@ export default function WalletRunwayCard() {
           <span className="text-xs font-bold text-[#534AB7]">€{campaignPaidOut} paid out</span>
           <span className="text-xs font-bold text-[#0c0b0c]">€{campaignRemaining} left</span>
         </div>
-      </div>
+      </Link>
 
       <div className="border-t border-[#EBEBF0]"></div>
 
       {/* Bonus Section */}
-      <div className="mt-4">
+      <Link to="/bonuses" className="mt-4 block group">
         {/* Header: Title + Budget */}
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#F0997B] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c]">Bonus</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#F0997B] transition-colors">Bonus</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{bonusBudget}</span>
         </div>
@@ -76,7 +77,7 @@ export default function WalletRunwayCard() {
           <span className="text-xs font-bold text-[#F0997B]">€{bonusPaidOut} paid out</span>
           <span className="text-xs font-bold text-[#0c0b0c]">€{bonusRemaining} left</span>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
