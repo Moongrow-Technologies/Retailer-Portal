@@ -17,6 +17,7 @@ export default function WalletRunwayCard() {
 
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden h-full">
+      <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Allocated funds</h3>
       {/* Campaign Section */}
       <div className="mb-4">
         {/* Header: Title + Budget */}
