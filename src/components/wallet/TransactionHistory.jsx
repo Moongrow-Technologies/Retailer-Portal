@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format, subDays, startOfMonth, isAfter } from 'date-fns';
 import { cn } from '@/lib/utils';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, ArrowRightLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
 
@@ -126,10 +126,14 @@ export default function TransactionHistory({ transactions }) {
                     "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
                     tx.type === 'commission' ? "bg-emerald-50" : "bg-[#F4F3FA]"
                   )}>
-                    <TrendingUp className={cn(
-                      "w-4 h-4",
-                      tx.type === 'commission' ? "text-emerald-600" : "text-[#796EB2]"
-                    )} />
+                    {tx.type === 'budget_commit' || tx.type === 'budget_release' ? (
+                      <ArrowRightLeft className="w-4 h-4 text-[#185FA5]" />
+                    ) : (
+                      <TrendingUp className={cn(
+                        "w-4 h-4",
+                        tx.type === 'commission' ? "text-emerald-600" : "text-[#796EB2]"
+                      )} />
+                    )}
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-[#0E0D1E] truncate">{title}</p>
@@ -154,7 +158,7 @@ export default function TransactionHistory({ transactions }) {
                   "text-sm font-semibold tabular-nums text-right",
                   tx.type === 'top_up' ? "text-emerald-600" : "text-[#0E0D1E]"
                 )}>
-                  {tx.type === 'top_up' ? '+' : ''}€{Math.abs(tx.amount).toFixed(2)}
+                  {tx.type === 'top_up' ? '+' : tx.type === 'commission' || tx.type === 'bonus_payout' ? '-' : ''}€{Math.abs(tx.amount).toFixed(2)}
                 </p>
               </div>
             );
