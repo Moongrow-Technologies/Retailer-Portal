@@ -38,7 +38,7 @@ export default function CompactWalletCard({ wallet }) {
       {/* Estimated runway */}
       <div className="bg-[#F7F7F8] rounded-xl p-4">
         <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
-        <p className="text-2xl font-bold text-[#0c0b0c] leading-none mb-1">
+        <p className="text-2xl font-bold text-[#534AB7] leading-none mb-1">
           24 <span className="text-base font-semibold">days left</span>
         </p>
         <p className="text-xs text-[#5b616e]">At current spend rate · ~May 20</p>
