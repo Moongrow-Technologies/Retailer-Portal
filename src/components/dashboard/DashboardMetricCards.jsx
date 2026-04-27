@@ -104,7 +104,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
          <LiveRipple />
        </div>
 
-      <div>
+      <div className="flex items-baseline gap-3">
         <p className="text-[#534AB7] text-4xl font-medium leading-none">{count}</p>
         <TrendBadge value="1 new this month" />
       </div>
