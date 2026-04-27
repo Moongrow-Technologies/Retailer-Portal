@@ -89,7 +89,7 @@ function CampaignBar({ name, pct, urgency }) {
 }
 
 // ─── CARD 1 — Active Campaigns ───────────────────────────────────────────────
-function ActiveCampaignsCard({ campaigns, bonuses }) {
+function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
   const navigate = useNavigate();
   const [tab, setTab] = useState('campaigns');
   const active = campaigns.filter((c) => c.status === 'active');
@@ -98,7 +98,7 @@ function ActiveCampaignsCard({ campaigns, bonuses }) {
   const count = tab === 'campaigns' ? active.length : activeBonuses.length;
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3 h-full">
+    <div ref={cardRef} className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col gap-3">
       <div className="flex items-start justify-between">
          <span className="text-[13px] text-[#5b616e] font-medium">Active now</span>
          <LiveRipple />
@@ -437,10 +437,10 @@ function CommissionROICard() {
 }
 
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
-export default function DashboardMetricCards({ campaigns, bonuses }) {
+export default function DashboardMetricCards({ campaigns, bonuses, activeCampaignsCardRef }) {
   return (
     <div className="grid grid-cols-2 gap-4" style={{ gridTemplateRows: 'auto auto' }}>
-      <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} />
+      <ActiveCampaignsCard campaigns={campaigns} bonuses={bonuses} cardRef={activeCampaignsCardRef} />
       <UnitsSoldCard />
       <RevenueCard />
       <CommissionROICard />

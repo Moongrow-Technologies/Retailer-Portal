@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import CompactWalletCard from '@/components/dashboard/CompactWalletCard';
 import WalletRunwayCard from '@/components/dashboard/WalletRunwayCard';
 import QuickActions from '@/components/dashboard/QuickActions';
@@ -14,6 +14,20 @@ export default function Dashboard() {
   const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
   const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const zeroBalance = wallet.total_balance === 0;
+
+  const activeCampaignsCardRef = useRef(null);
+  const [walletCardHeight, setWalletCardHeight] = useState(null);
+
+  useEffect(() => {
+    if (!activeCampaignsCardRef.current) return;
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        setWalletCardHeight(entry.contentRect.height);
+      }
+    });
+    observer.observe(activeCampaignsCardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div>
@@ -40,17 +54,19 @@ export default function Dashboard() {
         gridTemplateColumns: '1fr 1fr 1fr',
         gridTemplateRows: 'auto auto',
         gap: '24px',
-        alignItems: 'stretch'
+        alignItems: 'start'
       }}>
         {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'stretch' }}>
-          <CompactWalletCard wallet={wallet} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={walletCardHeight ? { height: walletCardHeight } : {}}>
+            <CompactWalletCard wallet={wallet} />
+          </div>
           <WalletRunwayCard wallet={wallet} />
         </div>
 
         {/* Row 1, Columns 2-3: Metric Cards */}
         <div style={{ gridColumn: 'span 2' }}>
-          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} />
+          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} activeCampaignsCardRef={activeCampaignsCardRef} />
         </div>
 
         {/* Row 2, Columns 1-2: Activity Feed */}
