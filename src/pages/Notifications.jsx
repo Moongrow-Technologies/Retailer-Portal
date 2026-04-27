@@ -73,7 +73,7 @@ export default function Notifications() {
   const [read, setRead] = useState(new Set());
 
   // Seed first 2 as unread for demo
-  const unreadIds = new Set(ACTIVITIES.slice(0, 2).map((_, i) => i));
+  const [unreadIds, setUnreadIds] = useState(new Set(ACTIVITIES.slice(0, 2).map((_, i) => i)));
 
   const visible = ACTIVITIES
     .map((a, i) => ({ ...a, _id: i }))
@@ -85,7 +85,11 @@ export default function Notifications() {
   const hasUnread = visible.some(a => unreadIds.has(a._id) && !read.has(a._id));
 
   const markAllRead = () => {
-    setRead(new Set(visible.map(a => a._id)));
+    setUnreadIds(new Set());
+  };
+
+  const markOneRead = (id) => {
+    setUnreadIds(prev => { const next = new Set(prev); next.delete(id); return next; });
   };
 
   return (
@@ -138,11 +142,11 @@ export default function Notifications() {
               <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 flex flex-col">
                 {items.map((n, idx) => {
                   const Icon = iconMap[n.type] || ShoppingCart;
-                  const isUnread = unreadIds.has(n._id) && !read.has(n._id);
+                  const isUnread = unreadIds.has(n._id);
                   return (
                     <div
                       key={n._id}
-                      onClick={() => navigate(typeToPath[n.type] || '/')}
+                      onClick={() => { markOneRead(n._id); navigate(typeToPath[n.type] || '/'); }}
                       className={`flex items-start gap-3 px-3 py-3 rounded-lg cursor-pointer hover:bg-[#F5F3FC] transition-colors ${idx !== items.length - 1 ? 'border-b border-[#EBEBF0]' : ''}`}
                     >
                       {/* Unread dot */}
