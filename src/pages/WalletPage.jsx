@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
-import { AlertTriangle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { AlertTriangle, Plus, ArrowDownFromLine } from 'lucide-react';
 import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
 
 export default function WalletPage() {
@@ -22,9 +23,19 @@ export default function WalletPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
-        <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
+          <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button onClick={() => setShowTopUp(true)} className="gap-2 font-semibold bg-[#27272b] text-white hover:bg-[#3a3a3f]">
+            <Plus className="w-4 h-4" /> Top Up
+          </Button>
+          <Button onClick={() => setShowWithdraw(true)} variant="outline" className="gap-2 font-semibold border-[#E2E0ED] text-[#0c0b0c] hover:bg-[#F4F3FA]">
+            <ArrowDownFromLine className="w-4 h-4" /> Withdraw
+          </Button>
+        </div>
       </div>
 
       {zeroBalance &&
