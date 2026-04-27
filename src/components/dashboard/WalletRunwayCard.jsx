@@ -25,7 +25,7 @@ export default function WalletRunwayCard() {
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#534AB7] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#534AB7] transition-colors">Campaign</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#534AB7] transition-colors">Campaigns</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{campaignBudget}</span>
         </div>
@@ -56,7 +56,7 @@ export default function WalletRunwayCard() {
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#F0997B] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#F0997B] transition-colors">Bonus</h3>
+            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#F0997B] transition-colors">Bonuses</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">€{bonusBudget}</span>
         </div>
