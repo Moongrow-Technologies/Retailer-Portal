@@ -28,8 +28,13 @@ export default function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-14 h-[calc(100vh-56px)] w-[200px] bg-white border-r border-[#EBEBF0] flex flex-col z-40">
+      {/* Retailer Portal label */}
+      <div className="px-8 pt-5 pb-1">
+        <div className="text-[10px] text-[#9490AA] uppercase tracking-widest leading-tight">Retailer Portal</div>
+      </div>
+
       {/* Navigation */}
-      <nav className="flex-1 pb-4 px-5 space-y-1 overflow-y-auto" style={{paddingTop: '27px'}}>
+      <nav className="flex-1 pb-4 px-5 space-y-1 overflow-y-auto" style={{paddingTop: '16px'}}>
         {navItems.map((item) => {
           const active = isActive(item.path);
           return (
