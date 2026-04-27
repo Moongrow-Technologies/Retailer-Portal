@@ -47,9 +47,11 @@ export default function CompactWalletCard({ wallet }) {
         </div>
       </div>
 
-      <Link to="/wallet" className="text-sm text-[#796EB2] hover:underline mt-0 block font-semibold">
-        View Moongrow Wallet →
-      </Link>
+      <div className="mt-auto pt-4">
+        <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline block font-semibold" onClick={() => window.scrollTo(0, 0)}>
+          View Moongrow Wallet →
+        </Link>
+      </div>
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
       <WithdrawModal open={showWithdraw} onClose={() => setShowWithdraw(false)} />
