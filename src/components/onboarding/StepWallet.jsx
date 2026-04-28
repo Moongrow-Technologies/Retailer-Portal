@@ -26,11 +26,13 @@ export default function StepWallet({ onSkip, onBack }) {
 
       {/* Wallet card */}
       <div className="rounded-2xl p-6 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #5B67CA 0%, #9B8FC4 50%, #E8E6F5 100%)' }}>
-        <img
-          src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
-          alt="Moongrow"
-          className="absolute -top-8 -right-12 w-48 h-48 object-contain opacity-20"
-        />
+        <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full flex items-center justify-center opacity-15">
+          <img
+            src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
+            alt="Moongrow"
+            className="w-32 h-32 object-contain"
+          />
+        </div>
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
             <Wallet className="w-4 h-4 text-white" />
