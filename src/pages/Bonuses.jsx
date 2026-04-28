@@ -161,10 +161,11 @@ export default function Bonuses() {
         {filtered.map((bonus, idx) => {
           const typeStyle = TYPE_STYLES[bonus.type] || TYPE_STYLES.ranked;
           const isActive = bonus.status === 'active';
+          const isCompleted = bonus.status === 'completed';
           return (
             <div key={bonus.id}>
               <div
-                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors cursor-pointer"
+                className={`grid grid-cols-[2fr_1fr_1fr_1fr_1fr_120px_48px] px-6 py-4 items-center transition-colors cursor-pointer ${isCompleted ? 'opacity-60' : 'hover:bg-[#F5F3FC]'}`}
                 onClick={() => navigate(`/bonuses/${bonus.id}`)}>
 
                 {/* Bonus name + product */}
