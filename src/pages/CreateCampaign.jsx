@@ -220,7 +220,7 @@ export default function CreateCampaign() {
             <div className="p-4 bg-[#EDE9F8] border border-[#C8C3E0] rounded-xl">
               <p className="text-xs font-semibold text-[#796EB2] uppercase tracking-wide mb-1">Financial Commitment</p>
               <p className="text-2xl font-bold text-[#0E0D1E]">€{Number(data.budget).toFixed(2)}</p>
-              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be locked from your wallet when the campaign starts' : 'will be locked from your wallet upon launch'}</p>
+              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be allocated to your campaign fund when the campaign goes live' : 'will be allocated to your campaign fund upon launch'}</p>
             </div>
           </div>
         )}
