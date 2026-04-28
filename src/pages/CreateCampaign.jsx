@@ -228,7 +228,28 @@ export default function CreateCampaign() {
 
       <div className="flex justify-end mt-6">
         <Button
-          onClick={() => { if (step === 4) setToast("Campaign launched successfully."); setStep(step + 1); }}
+          onClick={() => {
+            if (step === 4) {
+              setToast("Campaign launched successfully.");
+              const newCampaign = {
+                id: `c_${Date.now()}`,
+                name: data.name || `${data.product} Campaign`,
+                product_name: data.product,
+                stores: data.stores,
+                commission_rate: Number(data.commission_rate),
+                budget: Number(data.budget),
+                spent: 0,
+                units_sold: 0,
+                target_units: Math.floor(Number(data.budget) / Number(data.commission_rate)),
+                status: isScheduled ? 'scheduled' : 'active',
+                start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.start_date,
+                end_date: data.end_date,
+              };
+              const existing = JSON.parse(sessionStorage.getItem('newCampaigns') || '[]');
+              sessionStorage.setItem('newCampaigns', JSON.stringify([...existing, newCampaign]));
+            }
+            setStep(step + 1);
+          }}
           disabled={!canNext()}
           className="bg-primary hover:bg-primary/90 gap-2"
         >

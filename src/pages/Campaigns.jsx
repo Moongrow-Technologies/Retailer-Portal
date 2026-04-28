@@ -21,7 +21,10 @@ const TABS = [
 export default function Campaigns() {
   const navigate = useNavigate();
   const [tab, setTab] = useState('all');
-  const [campaigns, setCampaigns] = useState(CAMPAIGNS);
+  const [campaigns, setCampaigns] = useState(() => {
+    const extra = JSON.parse(sessionStorage.getItem('newCampaigns') || '[]');
+    return [...CAMPAIGNS, ...extra];
+  });
 
   const filtered = tab === 'all' ? campaigns : campaigns.filter((c) => {
     if (tab === 'active') return c.status === 'active';
