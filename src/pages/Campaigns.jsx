@@ -77,7 +77,7 @@ export default function Campaigns() {
         </div>
 
         {/* Progress bar */}
-        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-2" style={{ background: '#D1D5DB' }}>
+        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#D1D5DB' }}>
           <div className="h-full rounded-full" style={{ width: `${campaigns.reduce((sum, c) => sum + c.spent, 0) / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100}%`, background: '#534AB7' }} />
         </div>
 
