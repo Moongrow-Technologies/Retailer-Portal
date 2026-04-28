@@ -200,37 +200,25 @@ export default function Analytics() {
               const sorted = [...weekData].sort((a, b) => b.units - a.units);
               const maxUnits = Math.max(...sorted.map(d => d.units));
 
-              const getRowColor = (index) => {
-                if (index === 0) return { bg: '#534AB7', text: 'white' };
-                if (index === 1) return { bg: '#7F77DD', text: 'white' };
-                if (index === 2) return { bg: '#AFA9EC', text: 'white' };
-                return { bg: '#EEEDFE', text: '#5B5B8A' };
-              };
-
               return sorted.map((day, index) => {
-                const rowColor = getRowColor(index);
                 const barWidth = (day.units / maxUnits) * 100;
 
                 return (
                   <Link
                     key={day.id}
                     to={`/analytics/${day.id}`}
-                    className="rounded-lg p-4 flex items-center gap-4 transition-opacity hover:opacity-80 cursor-pointer"
-                    style={{ backgroundColor: rowColor.bg }}
+                    className="rounded-lg p-3 flex items-center gap-4 transition-colors hover:bg-[#F5F3FC] cursor-pointer bg-white border border-[#EBEBF0]"
                   >
-                    <span className="text-sm font-semibold w-12" style={{ color: rowColor.text }}>
+                    <span className="text-sm font-semibold w-12 text-[#0c0b0c]">
                       {day.abbr}
                     </span>
-                    <div className="flex-1 h-2 bg-white/40 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-[#D1D5DB] rounded-full overflow-hidden">
                       <div 
                         className="h-full rounded-full transition-all"
-                        style={{ 
-                          width: `${barWidth}%`,
-                          backgroundColor: rowColor.text === 'white' ? 'rgba(255,255,255,0.6)' : '#AFA9EC'
-                        }}
+                        style={{ width: `${barWidth}%`, backgroundColor: '#534AB7' }}
                       />
                     </div>
-                    <span className="text-sm font-bold w-12 text-right" style={{ color: rowColor.text }}>
+                    <span className="text-sm font-semibold w-12 text-right text-[#0c0b0c]">
                       {day.units}
                     </span>
                   </Link>
