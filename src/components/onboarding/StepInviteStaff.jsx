@@ -135,7 +135,7 @@ export default function StepInviteStaff({ onNext, onSkip, onBack }) {
           )}
           <button
             onClick={onSkip}
-            className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
+            className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors underline"
           >
             Skip for now
           </button>
