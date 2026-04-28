@@ -26,17 +26,14 @@ export default function CreateBonus() {
   const [data, setData] = useState({
     name: '', type: '', metric: 'units_sold', product: '',
     scope: 'chain', stores: [], duration: 'custom',
-    customStart: '', customEnd: '',
+    startNow: true, customStart: '', customEnd: '',
     prizes: [{ position: 1, amount: '' }, { position: 2, amount: '' }, { position: 3, amount: '' }],
     tiebreaker: 'split',
     threshold_target: '', threshold_prize: '',
     sprint_prize: '',
   });
 
-  const isScheduled = (() => {
-    if (!data.customStart) return false;
-    return new Date(data.customStart) > new Date();
-  })();
+  const isScheduled = !data.startNow;
 
   const totalPrize = (() => {
     if (data.type === 'threshold') return Number(data.threshold_prize) || 0;
@@ -180,12 +177,29 @@ export default function CreateBonus() {
             </div>
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Duration</Label>
+              {/* Start Now / Schedule toggle */}
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                <button
+                  onClick={() => setData({ ...data, startNow: true, customStart: '' })}
+                  className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
+                >
+                  Start Now
+                </button>
+                <button
+                  onClick={() => setData({ ...data, startNow: false })}
+                  className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", !data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
+                >
+                  Schedule for later
+                </button>
+              </div>
               {data.type === 'sprint' || data.type === 'threshold' ? (
                 <div className="space-y-3">
-                  <div>
-                    <Label className="text-xs text-[#7A7893]">Start Date</Label>
-                    <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
-                  </div>
+                  {!data.startNow && (
+                    <div>
+                      <Label className="text-xs text-[#7A7893]">Start Date</Label>
+                      <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                    </div>
+                  )}
                   <div className="p-4 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
                     <p className="text-sm font-medium text-[#0E0D1E]">Ends on completion</p>
                     <p className="text-xs text-[#9490AA] mt-1">{data.type === 'sprint' ? 'Sprint' : 'Threshold'} bonuses end when the target is reached</p>
@@ -199,11 +213,13 @@ export default function CreateBonus() {
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <Label className="text-xs text-[#7A7893]">Start Date</Label>
-                      <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
-                    </div>
+                  <div className={cn("grid gap-3", data.startNow ? "grid-cols-1" : "grid-cols-2")}>
+                    {!data.startNow && (
+                      <div>
+                        <Label className="text-xs text-[#7A7893]">Start Date</Label>
+                        <Input type="date" value={data.customStart} onChange={e => setData({ ...data, customStart: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
+                      </div>
+                    )}
                     <div>
                       <Label className="text-xs text-[#7A7893]">End Date</Label>
                       <Input type="date" value={data.customEnd} onChange={e => setData({ ...data, customEnd: e.target.value })} className="mt-1 bg-[#F8F7FC] border-[#E2E0ED]" />
@@ -326,7 +342,7 @@ export default function CreateBonus() {
                 { label: 'Metric', value: data.metric === 'units_sold' ? 'Units Sold' : 'Commission Earned' },
                 { label: 'Product', value: data.product || 'All Products' },
                 { label: 'Scope', value: data.scope === 'chain' ? 'Chain-wide' : data.scope },
-                { label: 'Duration', value: data.type === 'sprint' || data.type === 'threshold' ? 'Ends on completion' : (data.customStart && data.customEnd) ? `${data.customStart} → ${data.customEnd}` : data.customStart || data.customEnd || '—' },
+                { label: 'Duration', value: data.type === 'sprint' || data.type === 'threshold' ? `${data.startNow ? 'Now' : data.customStart} → completion` : (data.customEnd) ? `${data.startNow ? 'Now' : data.customStart} → ${data.customEnd}` : '—' },
               ].map(row => (
                 <div key={row.label} className="bg-[#F8F7FC] rounded-xl p-3 border border-[#E2E0ED] rounded-xl">
                   <p className="text-[11px] text-[#9490AA] uppercase tracking-wide">{row.label}</p>
@@ -343,7 +359,7 @@ export default function CreateBonus() {
             <div className="p-4 bg-[#EDE9F8] border border-[#C8C3E0] rounded-xl">
               <p className="text-xs font-semibold text-[#796EB2] uppercase tracking-wide mb-1">Financial Commitment</p>
               <p className="text-2xl font-bold text-[#0E0D1E]">€{totalPrize.toFixed(2)}</p>
-              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be locked from your wallet when the bonus starts' : 'will be locked from your wallet upon launch'}</p>
+              <p className="text-xs text-[#796EB2] mt-0.5">{isScheduled ? 'will be allocated to your bonus fund when the bonus goes live' : 'will be allocated to your bonus fund upon launch'}</p>
             </div>
           </div>
         )}
