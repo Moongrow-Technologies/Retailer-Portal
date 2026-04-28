@@ -22,6 +22,7 @@ import StaffPage from '@/pages/StaffPage';
 import StaffDetail from '@/pages/StaffDetail';
 import Settings from '@/pages/Settings';
 import Onboarding from '@/pages/Onboarding';
+import Register from '@/pages/Register';
 import Notifications from '@/pages/Notifications';
 import Profile from '@/pages/Profile';
 import EditCampaign from '@/pages/EditCampaign';
@@ -54,6 +55,7 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
+      <Route path="/register" element={<Register />} />
       <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
