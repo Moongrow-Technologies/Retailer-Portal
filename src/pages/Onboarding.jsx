@@ -84,10 +84,10 @@ export default function Onboarding() {
               </div>
               <h1 className="text-3xl font-bold mb-3">Welcome to Moongrow</h1>
               <p className="text-muted-foreground mb-2 max-w-md mx-auto">
-                Run real-time commission campaigns for your staff. Commissions settle instantly in EURC — your team earns the moment a qualifying sale is made.
+                Run real-time commission campaigns for your staff. Commissions settle instantly in USDC — your team earns the moment a qualifying sale is made.
               </p>
               <div className="grid grid-cols-3 gap-3 mt-8 mb-8">
-                {['Instant EURC payouts', 'Real-time leaderboards', 'Boost sales & retention'].map(item => (
+                {['Instant USDC payouts', 'Real-time leaderboards', 'Boost sales & retention'].map(item => (
                   <div key={item} className="p-3 bg-card border border-border rounded-lg">
                     <p className="text-sm font-medium">{item}</p>
                   </div>
@@ -107,10 +107,10 @@ export default function Onboarding() {
                 <p className="text-xs font-medium text-primary">Required to continue</p>
               </div>
               <h2 className="text-2xl font-bold mb-2">Fund Your Wallet</h2>
-              <p className="text-muted-foreground mb-6">Your wallet powers everything — campaign budgets and bonus prizes. Add EURC to get started.</p>
+              <p className="text-muted-foreground mb-6">Your wallet powers everything — campaign budgets and bonus prizes. Add USDC to get started.</p>
               <div className="bg-card border border-border rounded-xl p-6 space-y-4">
                 <div>
-                  <Label>Amount (EURC)</Label>
+                  <Label>Amount (USDC)</Label>
                   <Input type="number" placeholder="Enter amount to fund" className="mt-1.5 text-lg font-semibold" />
                 </div>
                 <div className="flex gap-2">
@@ -157,7 +157,7 @@ export default function Onboarding() {
                   </div>
                 )}
                 <div>
-                  <Label>Commission Rate (EURC per unit)</Label>
+                  <Label>Commission Rate (USDC per unit)</Label>
                   <Input type="number" step="0.25" placeholder="e.g. 2.00" value={commission} onChange={e => setCommission(e.target.value)} className="mt-1.5" />
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function Onboarding() {
               <p className="text-muted-foreground mb-6">Set a budget and go live.</p>
               <div className="bg-card border border-border rounded-xl p-6 space-y-4">
                 <div>
-                  <Label>Campaign Budget (EURC)</Label>
+                  <Label>Campaign Budget (USDC)</Label>
                   <Input type="number" placeholder="e.g. 500" value={budget} onChange={e => setBudget(e.target.value)} className="mt-1.5" />
                 </div>
                 {product && commission && budget && (
