@@ -81,13 +81,13 @@ export default function Bonuses() {
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
 
         {/* Two columns: Prizes paid out | Remaining in fund */}
-        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
+        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Bonuses paid out</p>
+            <p className="text-xs text-[#5b616e] mb-2">Bonuses paid out</p>
             <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€100</p>
           </div>
           <div className="pl-6 text-right">
-            <p className="text-xs text-[#5b616e] mb-1">Remaining in fund</p>
+            <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
             <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€125</p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function Bonuses() {
         </div>
 
         {/* Bar labels */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-0">
           <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
             44% paid out of €225 Bonus Fund
