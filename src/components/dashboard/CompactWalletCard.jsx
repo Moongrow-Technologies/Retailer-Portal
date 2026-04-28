@@ -25,7 +25,7 @@ export default function CompactWalletCard({ wallet }) {
       {/* Header */}
       <div className="mb-5">
         <p className="text-[#5b616e] mb-4 text-sm">Moongrow Wallet</p>
-        <p className="text-[#0c0b0c] mb-3 text-4xl font-medium tracking-tight">
+        <p className="text-[#0c0b0c] mb-3 text-3xl font-medium tracking-tight">
           €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
         <div className="flex gap-2">

@@ -105,7 +105,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
        </div>
 
       <div className="flex items-baseline gap-3">
-        <p className="text-[#534AB7] text-4xl font-medium leading-none">{count}</p>
+        <p className="text-[#534AB7] text-3xl font-medium leading-none">{count}</p>
         <TrendBadge value="1 new this month" />
       </div>
 
@@ -293,14 +293,14 @@ function UnitsSoldCard() {
       </div>
 
       <div style={{ minHeight: 44 }}>
-        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">
+        <p className="text-[#0c0b0c] text-3xl font-medium leading-none">
           {displayValue}
           {hoveredEntry && <span className="text-[15px] text-[#5b616e] font-normal ml-2">{hoveredEntry.day}</span>}
         </p>
         {!hoveredEntry && <TrendBadge value={d.trend} />}
-        {hoveredEntry && period === 'This week' && (
-          <span className="text-[11px] text-[#796EB2]">Click to view day →</span>
-        )}
+        {hoveredEntry && period === 'This week' &&
+        <span className="text-[11px] text-[#796EB2]">Click to view day →</span>
+        }
       </div>
 
       <div className="h-24">
@@ -314,8 +314,8 @@ function UnitsSoldCard() {
               if (e && e.activeTooltipIndex !== undefined) {
                 handleBarClick(e.activePayload?.[0]?.payload, e.activeTooltipIndex);
               }
-            }}
-          >
+            }}>
+            
             <XAxis
               dataKey="day"
               axisLine={false}
@@ -332,10 +332,10 @@ function UnitsSoldCard() {
                 const isHovered = hoveredIdx === props.index;
                 const isBest = props.units === maxVal;
                 let fill;
-                if (isHovered) fill = '#534AB7';
-                else if (hoveredIdx !== null) fill = '#E2E0ED';
-                else if (isBest) fill = '#5b616e';
-                else fill = '#E2E0ED';
+                if (isHovered) fill = '#534AB7';else
+                if (hoveredIdx !== null) fill = '#E2E0ED';else
+                if (isBest) fill = '#5b616e';else
+                fill = '#E2E0ED';
                 return <CustomBar {...props} fill={fill} />;
               }} />
           </BarChart>
@@ -381,7 +381,7 @@ function RevenueCard({ cardRef }) {
       </div>
 
       <div>
-        <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.value}</p>
+        <p className="text-[#0c0b0c] text-3xl font-medium leading-none">{d.value}</p>
         <TrendBadge value={d.trend} />
       </div>
 
@@ -421,7 +421,7 @@ function RevenueCard({ cardRef }) {
 // ─── CARD 5 — Commission ROI ────────────────────────────────────────────────
 function CommissionROICard() {
   const [period, setPeriod] = useState('This week');
-  
+
   const roiData = {
     'This week': {
       roi: '6.4',
@@ -429,10 +429,10 @@ function CommissionROICard() {
       description: 'Every €1 in commission generated',
       revenue: '€6.40 in revenue',
       breakdown: [
-        { label: 'Commission paid', value: '€48.00' },
-        { label: 'Revenue generated', value: '€1,620' },
-        { label: 'Units sold via campaigns', value: '156' }
-      ]
+      { label: 'Commission paid', value: '€48.00' },
+      { label: 'Revenue generated', value: '€1,620' },
+      { label: 'Units sold via campaigns', value: '156' }]
+
     },
     'This month': {
       roi: '12.5',
@@ -440,10 +440,10 @@ function CommissionROICard() {
       description: 'Every €1 in commission generated',
       revenue: '€12.50 in revenue',
       breakdown: [
-        { label: 'Commission paid', value: '€487.00' },
-        { label: 'Revenue generated', value: '€6,110' },
-        { label: 'Units sold via campaigns', value: '521' }
-      ]
+      { label: 'Commission paid', value: '€487.00' },
+      { label: 'Revenue generated', value: '€6,110' },
+      { label: 'Units sold via campaigns', value: '521' }]
+
     }
   };
 
@@ -458,7 +458,7 @@ function CommissionROICard() {
 
       <div>
         <div className="flex items-baseline gap-1">
-          <p className="text-[#0c0b0c] text-4xl font-medium leading-none">{d.roi}</p>
+          <p className="text-[#0c0b0c] text-3xl font-medium leading-none">{d.roi}</p>
           <span className="text-[18px] text-[#5b616e]">x</span>
         </div>
         <TrendBadge value={d.trend} />
@@ -469,16 +469,16 @@ function CommissionROICard() {
         <p className="text-[13px] font-semibold text-[#0c0b0c]">{d.revenue}</p>
         
         <div className="border-t border-[#F4F3FA] mt-3 pt-3 space-y-2.5">
-          {d.breakdown.map((item) => (
-            <div key={item.label} className="flex items-center justify-between">
+          {d.breakdown.map((item) =>
+          <div key={item.label} className="flex items-center justify-between">
               <span className="text-[12px] text-[#5b616e]">{item.label}</span>
               <span className="text-[12px] font-semibold text-[#0c0b0c]">{item.value}</span>
             </div>
-          ))}
+          )}
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── EXPORT ──────────────────────────────────────────────────────────────────
