@@ -46,7 +46,7 @@ export default function Bonuses() {
   const [bonuses, setBonuses] = useState(BONUSES);
 
   const counts = {
-    active: bonuses.filter((b) => b.status === 'active').length,
+    active: bonuses.filter((b) => b.status === 'active' || b.status === 'paused_manual').length,
     scheduled: bonuses.filter((b) => b.status === 'scheduled').length,
     completed: bonuses.filter((b) => b.status === 'completed').length
   };

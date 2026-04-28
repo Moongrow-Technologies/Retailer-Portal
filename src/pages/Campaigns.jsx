@@ -28,15 +28,15 @@ export default function Campaigns() {
 
   const filtered = tab === 'all' ? campaigns : campaigns.filter((c) => {
     if (tab === 'active') return c.status === 'active';
-    if (tab === 'paused') return c.status === 'paused_manual' || c.status === 'paused_budget';
+    if (tab === 'paused') return c.status === 'paused_manual';
     if (tab === 'scheduled') return c.status === 'scheduled';
-    if (tab === 'completed') return c.status === 'completed';
+    if (tab === 'completed') return c.status === 'completed' || c.status === 'paused_budget';
     return true;
   });
 
   const count = (key) => {
     if (key === 'all') return campaigns.length;
-    if (key === 'paused') return campaigns.filter((c) => c.status.startsWith('paused')).length;
+    if (key === 'paused') return campaigns.filter((c) => c.status === 'paused_manual').length;
     if (key === 'scheduled') return campaigns.filter((c) => c.status === 'scheduled').length;
     return campaigns.filter((c) => c.status === key).length;
   };
