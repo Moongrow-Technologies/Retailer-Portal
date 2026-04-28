@@ -82,7 +82,7 @@ export default function Profile() {
             <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Personal Details</h3>
 
             <div className="flex flex-col gap-3">
-              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
+              <div className="bg-[hsl(var(--background))] hover:bg-[#F5F3FC] transition-colors px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Full Name</p>
                 <Input
                   value={fullName}
@@ -91,7 +91,7 @@ export default function Profile() {
                 
               </div>
 
-              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
+              <div className="bg-[hsl(var(--background))] hover:bg-[#F5F3FC] transition-colors px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Email Address</p>
                 <Input
                   value={email}
@@ -107,12 +107,12 @@ export default function Profile() {
                 Change Email →
               </button>
 
-              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
+              <div className="bg-[hsl(var(--background))] hover:bg-[#F5F3FC] transition-colors px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Role</p>
                 <p className="text-sm font-medium text-[#0E0D1E] capitalize">{user?.role || 'Admin'}</p>
               </div>
 
-              <div className="bg-[hsl(var(--background))] px-4 py-3 rounded-xl border border-[#E2E0ED]">
+              <div className="bg-[hsl(var(--background))] hover:bg-[#F5F3FC] transition-colors px-4 py-3 rounded-xl border border-[#E2E0ED]">
                 <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide mb-1">Location</p>
                 <p className="text-sm font-medium text-[#0E0D1E]">{STORE.city}, Netherlands</p>
               </div>
