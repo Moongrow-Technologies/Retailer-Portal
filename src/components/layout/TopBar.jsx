@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import NotificationDropdown from '@/components/layout/NotificationDropdown';
 import HelpDropdown from '@/components/layout/HelpDropdown';
-import { ACTIVITIES } from '@/lib/sampleData';
+import { subscribe, getUnreadCount, markAllRead } from '@/lib/notificationStore';
 
 const routeLabels = {
   '/': 'Dashboard',
@@ -41,8 +41,10 @@ export default function TopBar() {
   const [showHelp, setShowHelp] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [readCount, setReadCount] = useState(0);
+  const [, forceUpdate] = useState(0);
   const profileRef = useRef(null);
+
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -53,7 +55,8 @@ export default function TopBar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  const unreadCount = Math.max(0, ACTIVITIES.length - readCount);
+
+  const unreadCount = getUnreadCount();
 
   const { data: user } = useQuery({
     queryKey: ['me'],
@@ -65,7 +68,7 @@ export default function TopBar() {
     : 'U';
 
   function handleMarkAllRead() {
-    setReadCount(ACTIVITIES.length);
+    markAllRead();
   }
 
   return (

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ACTIVITIES } from '@/lib/sampleData';
 import { useNavigate } from 'react-router-dom';
 import { getNotificationPrefs, getEnabledActivityTypes } from '@/lib/notificationPrefs';
+import { subscribe, getDismissed, getUnreadIds, dismissNotification, markOneRead, markAllRead } from '@/lib/notificationStore';
 
 const iconMap = {
   sale: ShoppingCart,
@@ -70,11 +71,12 @@ function groupByDate(items) {
 export default function Notifications() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('All');
-  const [dismissed, setDismissed] = useState(new Set());
-  const [read, setRead] = useState(new Set());
+  const [, forceUpdate] = useState(0);
 
-  // Seed first 2 as unread for demo
-  const [unreadIds, setUnreadIds] = useState(new Set(ACTIVITIES.slice(0, 2).map((_, i) => i)));
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const dismissed = getDismissed();
+  const unreadIds = getUnreadIds();
 
   const enabledTypes = getEnabledActivityTypes(getNotificationPrefs());
 
@@ -86,15 +88,7 @@ export default function Notifications() {
 
   const groups = groupByDate(visible);
 
-  const hasUnread = visible.some(a => unreadIds.has(a._id) && !read.has(a._id));
-
-  const markAllRead = () => {
-    setUnreadIds(new Set());
-  };
-
-  const markOneRead = (id) => {
-    setUnreadIds(prev => { const next = new Set(prev); next.delete(id); return next; });
-  };
+  const hasUnread = visible.some(a => unreadIds.has(a._id));
 
   return (
     <div>
@@ -128,7 +122,7 @@ export default function Notifications() {
       {hasUnread && (
         <div className="flex justify-end mb-4">
           <button
-            onClick={markAllRead}
+            onClick={() => markAllRead()}
             className="text-xs font-semibold text-[#796EB2] hover:text-[#6A5FA3] transition-colors"
           >
             Mark all as read
@@ -173,7 +167,7 @@ export default function Notifications() {
 
                       {/* Dismiss */}
                       <button
-                        onClick={(e) => { e.stopPropagation(); setDismissed(prev => new Set([...prev, n._id])); }}
+                        onClick={(e) => { e.stopPropagation(); dismissNotification(n._id); }}
                         className="text-[#C4C0D6] hover:text-[#7A7893] transition-colors flex-shrink-0 mt-0.5"
                       >
                         <X className="w-4 h-4" />
