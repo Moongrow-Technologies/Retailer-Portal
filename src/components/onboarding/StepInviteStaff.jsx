@@ -83,7 +83,7 @@ export default function StepInviteStaff({ onNext, onSkip, onBack }) {
               <button
                 type="button"
                 onClick={e => { e.stopPropagation(); removeStaff(i); }}
-                className="text-[#C0BDCE] hover:text-red-400 transition-colors p-1 shrink-0"
+                className="text-black hover:text-red-400 transition-colors p-1 shrink-0"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
@@ -116,7 +116,7 @@ export default function StepInviteStaff({ onNext, onSkip, onBack }) {
               disabled={!newName.trim() || !newEmail.trim()}
               className="shrink-0 border-[#EBEBF0] hover:bg-white hover:border-[#796EB2]/40"
             >
-              <Plus className="w-4 h-4 text-[#796EB2]" />
+              <Plus className="w-4 h-4 text-black" />
             </Button>
           </div>
         </div>
