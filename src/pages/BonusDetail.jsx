@@ -96,7 +96,7 @@ export default function BonusDetail() {
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] mt-5">
           <div className="px-6 py-4">
             <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">Prize Pool</p>
-            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">€{bonus.prize_pool.toLocaleString('en-US')}</p>
+            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">€{bonus.prize_pool.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
           </div>
           <div className="px-6 py-4">
             <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">{isActive ? 'Time Remaining' : 'Status'}</p>
@@ -172,7 +172,7 @@ export default function BonusDetail() {
                       {gap !== null && isActive && <p className="text-xs text-[#9490AA]">-{gap} behind</p>}
                     </div>
                     <div className="text-right">
-                      {entry.prize && <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{entry.prize}</span>}
+                      {entry.prize && <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{Number(entry.prize).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>}
                     </div>
                   </div>
                   {i < (bonus.leaderboard?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
@@ -197,7 +197,7 @@ export default function BonusDetail() {
                       <RankIcon className={cn("w-4 h-4", i === 0 ? "text-amber-500" : i === 1 ? "text-slate-400" : "text-orange-400")} />
                       <span className="text-sm text-[#5b616e]">{prize.label}</span>
                     </div>
-                    <span className="text-sm font-bold text-[#0E0D1E]">€{prize.amount}</span>
+                    <span className="text-sm font-bold text-[#0E0D1E]">€{Number(prize.amount).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
                   </div>
                   {i < (bonus.prizes?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-5" />}
                 </div>
@@ -212,7 +212,7 @@ export default function BonusDetail() {
                 <Crown className="w-4 h-4 text-amber-500" />
                 <span className="font-semibold text-[#0E0D1E] text-sm">{bonus.winner_name}</span>
               </div>
-              <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout.toLocaleString('en-US')} paid out</p>
+              <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} paid out</p>
             </div>
           )}
         </div>

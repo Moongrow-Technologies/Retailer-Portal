@@ -34,9 +34,10 @@ function getTarget(bonus) {
 }
 
 function getPrize(bonus) {
-  if (bonus.threshold_prize) return `€${bonus.threshold_prize}`;
-  if (bonus.prizes && bonus.prizes.length) return `€${bonus.prizes[0].amount}`;
-  if (bonus.prize_pool) return `€${bonus.prize_pool}`;
+  const fmt = (n) => `€${Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+  if (bonus.threshold_prize) return fmt(bonus.threshold_prize);
+  if (bonus.prizes && bonus.prizes.length) return fmt(bonus.prizes[0].amount);
+  if (bonus.prize_pool) return fmt(bonus.prize_pool);
   return '—';
 }
 
@@ -88,11 +89,11 @@ export default function Bonuses() {
             <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
               <div className="pr-6">
                 <p className="text-xs text-[#5b616e] mb-2">Bonuses paid out</p>
-                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
               </div>
               <div className="pl-6 text-right">
                 <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
-                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{remaining.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{remaining.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
               </div>
             </div>
             <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#E2E0ED' }}>

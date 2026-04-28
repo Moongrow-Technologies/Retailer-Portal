@@ -55,9 +55,9 @@ export default function StaffDetail() {
 
   useEffect(() => { window.scrollTo(0, 0); }, [staffId]);
 
-  const revenue = (staff.total_units_sold * 12.5).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const revenue = (staff.total_units_sold * 12.5).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   const roi = staff.total_commissions > 0
-    ? (parseFloat(revenue) / staff.total_commissions).toFixed(1) + 'x'
+    ? (parseFloat(revenue.replace(/,/g, '')) / staff.total_commissions).toFixed(1) + '×'
     : '—';
 
   const bonusHistory = bonusHistoryByStaff[staff.id] || [];
@@ -65,7 +65,7 @@ export default function StaffDetail() {
   const stats = [
     { label: 'Units Sold', value: staff.total_units_sold, sub: 'all campaigns', trend: '↑ 8%' },
     { label: 'Revenue Generated', value: `€${revenue}`, sub: 'from commission campaigns', trend: '↑ 9%' },
-    { label: 'Total Commission Earned', value: `€${staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, sub: 'lifetime earnings', trend: '↑ 11%' },
+    { label: 'Total Commission Earned', value: `€${staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`, sub: 'lifetime earnings', trend: '↑ 11%' },
     { label: 'Commission ROI', value: roi, sub: 'revenue per €1 commission' },
   ];
 

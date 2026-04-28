@@ -171,7 +171,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
                    </div>
                    <div className="flex items-center justify-between">
                      <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
-                     <span className="text-[11px] text-[#5b616e]">€{b.prize_pool.toLocaleString('en-US')} pool</span>
+                     <span className="text-[11px] text-[#5b616e]">€{b.prize_pool.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} pool</span>
                    </div>
                  </div>);
 
@@ -191,8 +191,8 @@ import { Link } from 'react-router-dom';
 import { CAMPAIGNS } from '@/lib/sampleData';
 
 const commissionData = {
-  'This week': { value: '€48.00', trend: '11% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28.00', pct: 58 }, { name: 'Amnesia Haze Launch', amount: '€20.00', pct: 42 }] },
-  'This month': { value: '€487.00', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€312.00', pct: 64 }, { name: 'Amnesia Haze Launch', amount: '€175.00', pct: 36 }] }
+  'This week': { value: '€48', trend: '11% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28', pct: 58 }, { name: 'Amnesia Haze Launch', amount: '€20', pct: 42 }] },
+  'This month': { value: '€487', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€312', pct: 64 }, { name: 'Amnesia Haze Launch', amount: '€175', pct: 36 }] }
 };
 
 function CommissionCard() {
@@ -425,22 +425,22 @@ function CommissionROICard() {
   const roiData = {
     'This week': {
       roi: '6.4',
-      trend: '0.4x vs last period',
+      trend: '0.4× vs last period',
       description: 'Every €1 in commission generated',
       revenue: '€6.40 in revenue',
       breakdown: [
-      { label: 'Commission paid', value: '€48.00' },
+      { label: 'Commission paid', value: '€48' },
       { label: 'Revenue generated', value: '€1,620' },
       { label: 'Units sold via campaigns', value: '156' }]
 
     },
     'This month': {
       roi: '12.5',
-      trend: '1.2x vs last period',
+      trend: '1.2× vs last period',
       description: 'Every €1 in commission generated',
       revenue: '€12.50 in revenue',
       breakdown: [
-      { label: 'Commission paid', value: '€487.00' },
+      { label: 'Commission paid', value: '€487' },
       { label: 'Revenue generated', value: '€6,110' },
       { label: 'Units sold via campaigns', value: '521' }]
 
@@ -459,7 +459,7 @@ function CommissionROICard() {
       <div>
         <div className="flex items-baseline gap-1">
           <p className="text-[#0c0b0c] text-3xl font-medium leading-none">{d.roi}</p>
-          <span className="text-[18px] text-[#5b616e]">x</span>
+          <span className="text-[18px] text-[#5b616e]">×</span>
         </div>
         <TrendBadge value={d.trend} />
       </div>

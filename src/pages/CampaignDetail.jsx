@@ -100,7 +100,7 @@ export default function CampaignDetail() {
         <div className="grid grid-cols-3 divide-x divide-[#EBEBF0]">
           {[
             { label: 'Units Sold', value: campaign.units_sold, sub: `of ${campaign.target_units} target` },
-            { label: 'Commission Spend', value: `€${campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, sub: `of €${campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} budget` },
+            { label: 'Commission Spend', value: `€${campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`, sub: `of €${campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} budget` },
             { label: 'ROI', value: campaign.status === 'completed' ? '2.4×' : '—', sub: campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion' },
           ].map((s, i) => (
             <div key={i} className="px-6 py-5">
@@ -132,7 +132,7 @@ export default function CampaignDetail() {
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
             <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#534AB7' }} />
           </div>
-          <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / €{campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+          <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} / €{campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ export default function CampaignDetail() {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold">{staff.total_units_sold} units</p>
-                  <p className="text-xs text-muted-foreground">€{staff.total_commissions.toFixed(2)}</p>
+                  <p className="text-xs text-muted-foreground">€{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
                 </div>
               </div>
             ))}

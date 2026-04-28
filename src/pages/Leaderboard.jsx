@@ -132,7 +132,7 @@ export default function Leaderboard() {
 
               {/* Metric Value */}
               <span className={cn("text-right font-bold text-sm", i === 0 ? "text-emerald-600" : "text-[#0c0b0c]")}>
-                {metric === 'commission' ? `€${staff.total_commissions.toFixed(2)}` : staff.total_units_sold}
+                {metric === 'commission' ? `€${staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}` : staff.total_units_sold}
               </span>
 
               {/* View Link */}

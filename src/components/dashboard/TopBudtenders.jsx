@@ -28,7 +28,7 @@ export default function TopBudtenders({ staff }) {
                   <p className="text-xs text-[#9490AA] truncate">{member.store.split('—')[1]?.trim() || member.store}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className={cn("text-sm font-bold", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>€{member.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                  <p className={cn("text-sm font-bold", i === 0 ? "text-emerald-600" : "text-[#0E0D1E]")}>€{member.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
                   <p className="text-xs text-[#9490AA]">{member.total_units_sold} units</p>
                 </div>
               </div>
