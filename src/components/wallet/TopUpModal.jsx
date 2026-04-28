@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Wallet } from 'lucide-react';
+import { topUpWallet } from '@/lib/appStore';
 
 export default function TopUpModal({ open, onClose }) {
   const [amount, setAmount] = useState('');
@@ -47,7 +48,8 @@ export default function TopUpModal({ open, onClose }) {
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button className="bg-primary hover:bg-primary/90" disabled={!amount || Number(amount) <= 0}>
+          <Button className="bg-primary hover:bg-primary/90" disabled={!amount || Number(amount) <= 0}
+            onClick={() => { topUpWallet(Number(amount)); setAmount(''); onClose(); }}>
             Top Up €{amount || '0'}
           </Button>
         </DialogFooter>

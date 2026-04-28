@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { cn } from '@/lib/utils';
-import { BONUSES, WALLET } from '@/lib/sampleData';
 import { format } from 'date-fns';
 import {
   DropdownMenu,
@@ -13,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger } from
 '@/components/ui/dropdown-menu';
+import { getBonuses, getWallet, toggleBonusStatus, deleteBonus, subscribe } from '@/lib/appStore';
 
 const TYPE_STYLES = {
   ranked: { label: 'Ranked', className: 'bg-[#FAEEDA] text-[#854F0B] border-[#FAC775]' },
@@ -43,23 +43,21 @@ function getPrize(bonus) {
 export default function Bonuses() {
   const navigate = useNavigate();
   const [tab, setTab] = useState('active');
-  const [bonuses, setBonuses] = useState(BONUSES);
+  const [, forceUpdate] = useState(0);
 
-  const counts = {
-    active: bonuses.filter((b) => b.status === 'active' || b.status === 'paused_manual').length,
-    scheduled: bonuses.filter((b) => b.status === 'scheduled').length,
-    completed: bonuses.filter((b) => b.status === 'completed').length
-  };
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const bonuses = getBonuses();
+  const wallet = getWallet();
 
   const filtered = bonuses.filter((b) => tab === 'active' ? b.status === 'active' || b.status === 'paused_manual' : b.status === tab);
 
   const handleDelete = (bonus) => {
-    setBonuses(bonuses.filter((b) => b.id !== bonus.id));
+    deleteBonus(bonus.id);
   };
 
   const handleTogglePause = (bonus) => {
-    const newStatus = bonus.status === 'active' ? 'paused_manual' : 'active';
-    setBonuses(bonuses.map((b) => b.id === bonus.id ? { ...b, status: newStatus } : b));
+    toggleBonusStatus(bonus.id);
   };
 
   return (
@@ -82,8 +80,8 @@ export default function Bonuses() {
 
         {/* Two columns: Prizes paid out | Remaining in fund */}
         {(() => {
-          const paidOut = WALLET.bonus_paid_out;
-          const fundTotal = WALLET.bonus_fund_total;
+          const paidOut = wallet.bonus_paid_out;
+          const fundTotal = wallet.bonus_fund_total;
           const remaining = fundTotal - paidOut;
           const pct = Math.round(paidOut / fundTotal * 100);
           return (<>

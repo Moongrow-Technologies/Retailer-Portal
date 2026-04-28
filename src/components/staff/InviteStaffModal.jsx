@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Mail, Link2, Copy, Check } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 
-export default function InviteStaffModal({ open, onClose }) {
+export default function InviteStaffModal({ open, onClose, onInvite }) {
   const [email, setEmail] = useState('');
   const [copied, setCopied] = useState(false);
   const [toast, setToast] = useState(false);
@@ -37,7 +37,12 @@ export default function InviteStaffModal({ open, onClose }) {
               <Input type="email" placeholder="team@degroenehoek.nl" value={email} onChange={e => setEmail(e.target.value)} className="mt-1.5" />
             </div>
             <p className="text-xs text-muted-foreground">The staff member will receive an invite to join your team. Their store will be auto-assigned.</p>
-            <Button onClick={() => { setToast(true); setTimeout(() => { setToast(false); onClose(); }, 1500); }} className="w-full bg-primary hover:bg-primary/90" disabled={!email}>Send Invite</Button>
+            <Button onClick={() => {
+              if (onInvite) onInvite({ name: email.split('@')[0], email });
+              setToast(true);
+              setEmail('');
+              setTimeout(() => { setToast(false); onClose(); }, 1500);
+            }} className="w-full bg-primary hover:bg-primary/90" disabled={!email}>Send Invite</Button>
           </TabsContent>
           <TabsContent value="link" className="mt-4 space-y-3">
             <div>

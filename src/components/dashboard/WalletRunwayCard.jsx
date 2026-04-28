@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fmtEur } from '@/lib/utils';
-import { WALLET, CAMPAIGNS, BONUSES } from '@/lib/sampleData';
+import { getWallet, getCampaigns, getBonuses, subscribe } from '@/lib/appStore';
 
 export default function WalletRunwayCard() {
+  const [, forceUpdate] = useState(0);
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const WALLET = getWallet();
+  const CAMPAIGNS = getCampaigns();
+  const BONUSES = getBonuses();
+
   // Campaign data — derived from WALLET spec values
   const campaignBudget = WALLET.campaign_fund_total;
   const campaignPaidOut = WALLET.campaign_paid_out;
   const campaignRemaining = campaignBudget - campaignPaidOut;
-  const campaignPercent = Math.round((campaignPaidOut / campaignBudget) * 100);
+  const campaignPercent = campaignBudget > 0 ? Math.round((campaignPaidOut / campaignBudget) * 100) : 0;
   const activeCampaigns = CAMPAIGNS.filter(c => c.status === 'active').length;
   
   // Bonus data — derived from WALLET spec values
   const bonusBudget = WALLET.bonus_fund_total;
   const bonusPaidOut = WALLET.bonus_paid_out;
   const bonusRemaining = bonusBudget - bonusPaidOut;
-  const bonusPercent = Math.round((bonusPaidOut / bonusBudget) * 100);
+  const bonusPercent = bonusBudget > 0 ? Math.round((bonusPaidOut / bonusBudget) * 100) : 0;
   const activeBonuses = BONUSES.filter(b => b.status === 'active').length;
 
   return (

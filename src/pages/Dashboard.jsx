@@ -7,11 +7,14 @@ import TopBudtenders from '@/components/dashboard/TopBudtenders';
 import NeedsAttention from '@/components/dashboard/NeedsAttention';
 import DashboardMetricCards from '@/components/dashboard/DashboardMetricCards';
 import { AlertTriangle } from 'lucide-react';
-import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData';
+import { getWallet, getCampaigns, getBonuses, getStaff, getActivities, subscribe } from '@/lib/appStore';
 
 export default function Dashboard() {
-  const wallet = WALLET;
-  const activeStaff = STAFF.filter(s => s.status === 'active');
+  const [, forceUpdate] = useState(0);
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const wallet = getWallet();
+  const activeStaff = getStaff().filter(s => s.status === 'active');
   const topBudtenders = [...activeStaff].sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
   const needsAttention = [...activeStaff].sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const zeroBalance = wallet.total_balance === 0;
@@ -77,12 +80,12 @@ export default function Dashboard() {
 
         {/* Row 1, Columns 2-3: Metric Cards */}
         <div style={{ gridColumn: 'span 2' }}>
-          <DashboardMetricCards campaigns={CAMPAIGNS} bonuses={BONUSES} activeCampaignsCardRef={activeCampaignsCardRef} revenueCardRef={revenueCardRef} />
+          <DashboardMetricCards campaigns={getCampaigns()} bonuses={getBonuses()} activeCampaignsCardRef={activeCampaignsCardRef} revenueCardRef={revenueCardRef} />
         </div>
 
         {/* Row 2, Columns 1-2: Activity Feed */}
         <div style={{ gridColumn: 'span 2' }}>
-          <ActivityFeed activities={ACTIVITIES} />
+          <ActivityFeed activities={getActivities()} />
         </div>
 
         {/* Row 2, Column 3: Top Budtenders + Needs Attention */}

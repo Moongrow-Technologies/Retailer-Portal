@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, ArrowDownFromLine } from 'lucide-react';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Link } from 'react-router-dom';
+import { subscribe } from '@/lib/appStore';
 
 export default function CompactWalletCard({ wallet }) {
   const [showTopUp, setShowTopUp] = useState(false);
   const [showWithdraw, setShowWithdraw] = useState(false);
+  const [, forceUpdate] = useState(0);
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
 
   const total = wallet.total_balance || 0;
   const campaigns = wallet.committed_campaigns || 0;

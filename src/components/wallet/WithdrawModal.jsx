@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ArrowUpFromLine } from 'lucide-react';
+import { withdrawWallet } from '@/lib/appStore';
 
 export default function WithdrawModal({ open, onClose }) {
   const [amount, setAmount] = useState('');
@@ -47,7 +48,8 @@ export default function WithdrawModal({ open, onClose }) {
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button className="bg-primary hover:bg-primary/90" disabled={!amount || Number(amount) <= 0}>
+          <Button className="bg-primary hover:bg-primary/90" disabled={!amount || Number(amount) <= 0}
+            onClick={() => { withdrawWallet(Number(amount)); setAmount(''); onClose(); }}>
             Withdraw €{amount || '0'}
           </Button>
         </DialogFooter>

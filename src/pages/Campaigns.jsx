@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, MoreVertical } from 'lucide-react';
@@ -6,9 +6,10 @@ import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Progress } from '@/components/ui/progress';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { CAMPAIGNS, PRODUCT_IMAGES, PRODUCTS, WALLET } from '@/lib/sampleData';
+import { PRODUCT_IMAGES } from '@/lib/sampleData';
 import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { cn } from '@/lib/utils';
+import { getCampaigns, getWallet, toggleCampaignStatus, deleteCampaign, subscribe } from '@/lib/appStore';
 
 const TABS = [
 { key: 'all', label: 'All' },
@@ -21,10 +22,12 @@ const TABS = [
 export default function Campaigns() {
   const navigate = useNavigate();
   const [tab, setTab] = useState('all');
-  const [campaigns, setCampaigns] = useState(() => {
-    const extra = JSON.parse(sessionStorage.getItem('newCampaigns') || '[]');
-    return [...CAMPAIGNS, ...extra];
-  });
+  const [, forceUpdate] = useState(0);
+
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const campaigns = getCampaigns();
+  const wallet = getWallet();
 
   const filtered = tab === 'all' ? campaigns : campaigns.filter((c) => {
     if (tab === 'active') return c.status === 'active';
@@ -34,20 +37,12 @@ export default function Campaigns() {
     return true;
   });
 
-  const count = (key) => {
-    if (key === 'all') return campaigns.length;
-    if (key === 'paused') return campaigns.filter((c) => c.status === 'paused_manual').length;
-    if (key === 'scheduled') return campaigns.filter((c) => c.status === 'scheduled').length;
-    return campaigns.filter((c) => c.status === key).length;
-  };
-
   const handleTogglePause = (campaign) => {
-    const newStatus = campaign.status === 'active' ? 'paused_manual' : 'active';
-    setCampaigns(campaigns.map((c) => c.id === campaign.id ? { ...c, status: newStatus } : c));
+    toggleCampaignStatus(campaign.id);
   };
 
   const handleDelete = (campaign) => {
-    setCampaigns(campaigns.filter((c) => c.id !== campaign.id));
+    deleteCampaign(campaign.id);
   };
 
   return (
@@ -69,8 +64,8 @@ export default function Campaigns() {
 
         {/* Two columns: Commission paid out | Remaining in fund */}
         {(() => {
-          const paidOut = WALLET.campaign_paid_out;
-          const fundTotal = WALLET.campaign_fund_total;
+          const paidOut = wallet.campaign_paid_out;
+          const fundTotal = wallet.campaign_fund_total;
           const remaining = fundTotal - paidOut;
           const pct = Math.round(paidOut / fundTotal * 100);
           return (<>

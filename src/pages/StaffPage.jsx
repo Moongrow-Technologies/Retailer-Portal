@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InviteStaffModal from '@/components/staff/InviteStaffModal';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { STAFF } from '@/lib/sampleData';
+import { getStaff, addStaffMember, subscribe } from '@/lib/appStore';
 import { Send } from 'lucide-react';
 
 export default function StaffPage() {
   const [showInvite, setShowInvite] = useState(false);
-  const [staff, setStaff] = useState(STAFF);
+  const [, forceUpdate] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const staff = getStaff();
 
   const totalStaff = staff.length;
   const activeStaff = staff.filter((s) => s.status === 'active').length;
@@ -82,7 +86,7 @@ export default function StaffPage() {
         )}
       </div>
 
-      <InviteStaffModal open={showInvite} onClose={() => setShowInvite(false)} />
+      <InviteStaffModal open={showInvite} onClose={() => setShowInvite(false)} onInvite={(member) => addStaffMember(member)} />
     </div>);
 
 }

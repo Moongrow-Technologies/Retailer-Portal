@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TransactionHistory from '@/components/wallet/TransactionHistory';
 import TopUpModal from '@/components/wallet/TopUpModal';
 import WithdrawModal from '@/components/wallet/WithdrawModal';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Plus, ArrowDownFromLine } from 'lucide-react';
-import { WALLET, TRANSACTIONS } from '@/lib/sampleData';
+import { getWallet, getTransactions, subscribe, getCampaigns, getBonuses } from '@/lib/appStore';
 
 export default function WalletPage() {
   const [showTopUp, setShowTopUp] = useState(false);
   const [showWithdraw, setShowWithdraw] = useState(false);
-  const wallet = WALLET;
+  const [, forceUpdate] = useState(0);
+
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const wallet = getWallet();
   const zeroBalance = wallet.total_balance === 0;
+  const activeCampaigns = getCampaigns().filter(c => c.status === 'active').length;
+  const activeBonuses = getBonuses().filter(b => b.status === 'active').length;
 
   const total = wallet.total_balance || 0;
   const available = wallet.available || 0;
@@ -91,7 +97,7 @@ export default function WalletPage() {
                   </div>
                   <span className="text-sm font-bold text-[#0c0b0c]">€{campaignFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
-                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">2 active campaigns</p>
+                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">{activeCampaigns} active campaign{activeCampaigns !== 1 ? 's' : ''}</p>
                 <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1">
                   <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${campaignPct}%` }} />
                 </div>
@@ -110,7 +116,7 @@ export default function WalletPage() {
                   </div>
                   <span className="text-sm font-bold text-[#0c0b0c]">€{bonusFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
-                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">2 active bonuses</p>
+                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">{activeBonuses} active bonus{activeBonuses !== 1 ? 'es' : ''}</p>
                 <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1">
                   <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusPct}%` }} />
                 </div>
@@ -137,7 +143,7 @@ export default function WalletPage() {
 
         {/* Transaction History */}
         <div id="tx-history">
-          <TransactionHistory transactions={TRANSACTIONS} />
+          <TransactionHistory transactions={getTransactions()} />
         </div>
       </div>
 

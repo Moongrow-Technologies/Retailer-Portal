@@ -8,8 +8,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, ArrowRight, Check, Megaphone, Clock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
+import { PRODUCTS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
+import { addCampaign, getWallet } from '@/lib/appStore';
 
 const STEPS = ['Select Product', 'Choose Stores', 'Set Commission', 'Budget & Duration', 'Review'];
 
@@ -144,7 +145,7 @@ export default function CreateCampaign() {
               <Label>Total Budget (EURC)</Label>
               <Input type="number" placeholder="e.g. 500" value={data.budget} onChange={e => setData({ ...data, budget: e.target.value })} className="mt-1.5" />
               <p className="text-xs text-muted-foreground mt-1">
-                Available: €{WALLET.available.toFixed(2)}. This amount will be committed from your wallet.
+                Available: €{getWallet().available.toFixed(2)}. This amount will be committed from your wallet.
               </p>
             </div>
             {/* Start option */}
