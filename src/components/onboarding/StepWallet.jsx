@@ -18,9 +18,9 @@ export default function StepWallet({ onSkip, onBack }) {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-2xl font-bold text-[#0E0D1E]">Your funds, always ready</h2>
+        <h2 className="text-2xl font-bold text-[#0E0D1E]">Meet your wallet</h2>
         <p className="text-sm text-[#7A7893] mt-1.5 leading-relaxed">
-          Add money to your wallet and it's automatically used to pay your staff the moment they make a qualifying sale. No delays, no manual transfers.
+          A Moongrow Wallet has been automatically created for your account.
         </p>
       </div>
 
@@ -38,7 +38,15 @@ export default function StepWallet({ onSkip, onBack }) {
         </div>
       </div>
 
-      {/* How it works */}
+      {/* Your funds, always ready */}
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 hover:border-[#796EB2]/20 transition-colors">
+        <h3 className="text-sm font-semibold text-[#0E0D1E] mb-2">Your funds, always ready</h3>
+        <p className="text-xs text-[#9490AA] leading-relaxed">
+          Add money to your wallet and it's automatically used to pay your staff the moment they make a qualifying sale. No delays, no manual transfers.
+        </p>
+      </div>
+
+      {/* Features */}
       <div className="space-y-3.5">
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 hover:border-[#796EB2]/20 transition-colors">
           <div className="flex items-start gap-3">
