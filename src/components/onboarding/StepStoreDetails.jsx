@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { STORE } from '@/lib/sampleData';
 import { ArrowRight, Plus, Trash2, Store, MapPin } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function StepStoreDetails({ onNext }) {
   const [businessName, setBusinessName] = useState(STORE.name);
@@ -46,7 +47,7 @@ export default function StepStoreDetails({ onNext }) {
           <Input
             value={businessName}
             onChange={e => setBusinessName(e.target.value)}
-            className="mt-2 border-[#EBEBF0] focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2]"
+            className="mt-2 border-[#EBEBF0] focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2] hover:border-[#796EB2]/40 transition-colors"
           />
         </div>
 
@@ -61,7 +62,7 @@ export default function StepStoreDetails({ onNext }) {
                 <Input
                   value={loc}
                   onChange={e => updateLocation(i, e.target.value)}
-                  className="border-[#EBEBF0] focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2]"
+                  className="border-[#EBEBF0] focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2] hover:border-[#796EB2]/40 transition-colors"
                 />
                 {locations.length > 1 && (
                   <Button
@@ -85,7 +86,7 @@ export default function StepStoreDetails({ onNext }) {
               value={newLocation}
               onChange={e => setNewLocation(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addLocation())}
-              className="border-[#EBEBF0] border-dashed focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2]"
+              className="border-[#EBEBF0] border-dashed focus-visible:ring-[#796EB2]/30 focus-visible:border-[#796EB2] hover:border-[#796EB2]/40 transition-colors"
             />
             <Button
               type="button"

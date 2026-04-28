@@ -14,12 +14,12 @@ export default function Onboarding() {
   const handleDone = () => navigate('/');
 
   return (
-    <OnboardingShell step={step} onBack={step > 0 ? () => setStep(s => s - 1) : null}>
+    <OnboardingShell step={step}>
       {step === 0 && (
         <StepStoreDetails onNext={handleStepNext} />
       )}
       {step === 1 && (
-        <StepInviteStaff onNext={handleStepNext} onSkip={handleSkip} />
+        <StepInviteStaff onNext={handleStepNext} onSkip={handleSkip} onBack={() => setStep(0)} />
       )}
       {step === 2 && (
         <StepWallet onSkip={handleDone} />

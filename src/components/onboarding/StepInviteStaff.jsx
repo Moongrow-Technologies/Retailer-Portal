@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { STAFF, STAFF_AVATARS } from '@/lib/sampleData';
-import { ArrowRight, Plus, Trash2, Check, Users, Mail } from 'lucide-react';
+import { ArrowRight, Plus, Trash2, Check, Users, Mail, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function StepInviteStaff({ onNext, onSkip }) {
+export default function StepInviteStaff({ onNext, onSkip, onBack }) {
   // Pre-populate from POS staff sample data (exclude one to simulate "not on list")
   const [staffList, setStaffList] = useState(
     STAFF.map(s => ({ name: s.name, email: s.email, selected: true }))
@@ -123,12 +123,23 @@ export default function StepInviteStaff({ onNext, onSkip }) {
       </div>
 
       <div className="flex items-center justify-between">
-        <button
-          onClick={onSkip}
-          className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
-        >
-          Skip for now
-        </button>
+        <div className="flex gap-4 items-center">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1.5 text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+          )}
+          <button
+            onClick={onSkip}
+            className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
+          >
+            Skip for now
+          </button>
+        </div>
         <Button
           onClick={handleSendInvites}
           disabled={selectedCount === 0 || sent}
