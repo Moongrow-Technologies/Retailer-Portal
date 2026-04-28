@@ -96,7 +96,7 @@ export default function BonusDetail() {
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] border-t border-[#EBEBF0] mt-5">
           <div className="px-6 py-4">
             <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">Prize Pool</p>
-            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">€{bonus.prize_pool}</p>
+            <p className="text-[22px] font-bold tracking-tight text-[#0E0D1E] leading-tight">€{bonus.prize_pool.toLocaleString('en-US')}</p>
           </div>
           <div className="px-6 py-4">
             <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-1">{isActive ? 'Time Remaining' : 'Status'}</p>
@@ -212,7 +212,7 @@ export default function BonusDetail() {
                 <Crown className="w-4 h-4 text-amber-500" />
                 <span className="font-semibold text-[#0E0D1E] text-sm">{bonus.winner_name}</span>
               </div>
-              <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout} paid out</p>
+              <p className="text-sm text-emerald-600 font-semibold mt-1">€{bonus.winner_payout.toLocaleString('en-US')} paid out</p>
             </div>
           )}
         </div>

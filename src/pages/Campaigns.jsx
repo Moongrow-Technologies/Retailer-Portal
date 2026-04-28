@@ -71,7 +71,7 @@ export default function Campaigns() {
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
           <div className="pr-6">
             <p className="text-xs text-[#5b616e] mb-2">Commission paid out</p>
-            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{campaigns.reduce((sum, c) => sum + c.spent, 0).toFixed(2)}</p>
+            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{campaigns.reduce((sum, c) => sum + c.spent, 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
@@ -88,7 +88,7 @@ export default function Campaigns() {
         <div className="flex items-center justify-between mb-0">
           <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-            {Math.round(campaigns.reduce((sum, c) => sum + c.spent, 0) / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100)}% paid out of €{(campaigns.reduce((sum, c) => sum + c.spent, 0) + 375).toFixed(0)} Campaign Fund
+            {Math.round(campaigns.reduce((sum, c) => sum + c.spent, 0) / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100)}% paid out of €{(campaigns.reduce((sum, c) => sum + c.spent, 0) + 375).toLocaleString('en-US')} Campaign Fund
           </p>
           <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
             {Math.round(375 / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100)}% remaining

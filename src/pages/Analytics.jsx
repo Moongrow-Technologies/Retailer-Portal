@@ -124,7 +124,7 @@ export default function Analytics() {
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Commission Paid</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,032</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,032.00</p>
             <span className="inline-flex items-center mt-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">↑ 11% vs last period</span>
           </div>
 
@@ -249,7 +249,7 @@ export default function Analytics() {
                   'text-sm font-semibold',
                   idx === 0 ? 'text-emerald-600' : 'text-[#0c0b0c]'
                 )}>
-                    €{staff.total_commissions.toFixed(2)}
+                    €{staff.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </p>
                 </Link>
                 {idx !== activeStaff.length - 1 && <div className="border-b border-[#EBEBF0]" />}

@@ -171,7 +171,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
                    </div>
                    <div className="flex items-center justify-between">
                      <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
-                     <span className="text-[11px] text-[#5b616e]">€{b.prize_pool} pool</span>
+                     <span className="text-[11px] text-[#5b616e]">€{b.prize_pool.toLocaleString('en-US')} pool</span>
                    </div>
                  </div>);
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { fmtEur } from '@/lib/utils';
 
 export default function WalletRunwayCard() {
   // Campaign data
@@ -27,7 +28,7 @@ export default function WalletRunwayCard() {
             <div className="w-3 h-3 rounded-full bg-[#534AB7] flex-shrink-0"></div>
             <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#534AB7] transition-colors">Campaigns</h3>
           </div>
-          <span className="text-sm font-bold text-[#0c0b0c]">€{campaignBudget}</span>
+          <span className="text-sm font-bold text-[#0c0b0c]">{fmtEur(campaignBudget)}</span>
         </div>
         
         {/* Active count */}
@@ -43,8 +44,8 @@ export default function WalletRunwayCard() {
         
         {/* Paid out and Remaining */}
         <div className="flex justify-between">
-          <span className="text-xs font-bold text-[#534AB7]">€{campaignPaidOut} paid out</span>
-          <span className="text-xs font-bold text-[#0c0b0c]">€{campaignRemaining} left</span>
+          <span className="text-xs font-bold text-[#534AB7]">{fmtEur(campaignPaidOut)} paid out</span>
+          <span className="text-xs font-bold text-[#0c0b0c]">{fmtEur(campaignRemaining)} left</span>
         </div>
       </Link>
 
@@ -58,7 +59,7 @@ export default function WalletRunwayCard() {
             <div className="w-3 h-3 rounded-full bg-[#F0997B] flex-shrink-0"></div>
             <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#F0997B] transition-colors">Bonuses</h3>
           </div>
-          <span className="text-sm font-bold text-[#0c0b0c]">€{bonusBudget}</span>
+          <span className="text-sm font-bold text-[#0c0b0c]">{fmtEur(bonusBudget)}</span>
         </div>
         
         {/* Active count */}
@@ -74,8 +75,8 @@ export default function WalletRunwayCard() {
         
         {/* Paid out and Remaining */}
         <div className="flex justify-between">
-          <span className="text-xs font-bold text-[#F0997B]">€{bonusPaidOut} paid out</span>
-          <span className="text-xs font-bold text-[#0c0b0c]">€{bonusRemaining} left</span>
+          <span className="text-xs font-bold text-[#F0997B]">{fmtEur(bonusPaidOut)} paid out</span>
+          <span className="text-xs font-bold text-[#0c0b0c]">{fmtEur(bonusRemaining)} left</span>
         </div>
       </Link>
     </div>

@@ -28,7 +28,7 @@ export default function NeedsAttention({ staff }) {
                   <p className="text-xs text-[#9490AA] truncate">{member.store.split('—')[1]?.trim() || member.store}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-sm font-bold text-[#0E0D1E]">€{member.total_commissions.toFixed(2)}</p>
+                  <p className="text-sm font-bold text-[#0E0D1E]">€{member.total_commissions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                   <p className="text-xs text-[#9490AA]">{member.total_units_sold} units</p>
                 </div>
               </div>

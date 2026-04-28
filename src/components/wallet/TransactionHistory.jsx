@@ -158,7 +158,7 @@ export default function TransactionHistory({ transactions }) {
                   "text-sm font-semibold tabular-nums text-right",
                   tx.type === 'top_up' ? "text-emerald-600" : "text-[#0E0D1E]"
                 )}>
-                  {tx.type === 'top_up' ? '+' : tx.type === 'commission' || tx.type === 'bonus_payout' ? '-' : ''}€{Math.abs(tx.amount).toFixed(2)}
+                  {tx.type === 'top_up' ? '+' : tx.type === 'commission' || tx.type === 'bonus_payout' ? '-' : ''}€{Math.abs(tx.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
               </div>
             );
