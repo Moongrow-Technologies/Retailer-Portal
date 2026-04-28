@@ -81,7 +81,7 @@ export default function WalletPage() {
                 <div className="flex items-center justify-between mb-0.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
-                    <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
+                    <span className="text-sm font-semibold text-[#0c0b0c]">Campaigns</span>
                   </div>
                   <span className="text-sm font-bold text-[#0c0b0c]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
@@ -100,7 +100,7 @@ export default function WalletPage() {
                 <div className="flex items-center justify-between mb-0.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
-                    <span className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</span>
+                    <span className="text-sm font-semibold text-[#0c0b0c]">Bonuses</span>
                   </div>
                   <span className="text-sm font-bold text-[#0c0b0c]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
