@@ -58,7 +58,7 @@ export default function WalletPage() {
           <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6">
             <div>
               <p className="text-sm text-[#5b616e] mb-1">Total balance</p>
-              <p className="text-[#0c0b0c] text-5xl font-bold tracking-tight">
+              <p className="text-[#0c0b0c] text-3xl font-medium tracking-tight">
                 €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
               </p>
             </div>
