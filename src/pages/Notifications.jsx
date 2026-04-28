@@ -4,6 +4,7 @@ import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone, X } from 'luc
 import { cn } from '@/lib/utils';
 import { ACTIVITIES } from '@/lib/sampleData';
 import { useNavigate } from 'react-router-dom';
+import { getNotificationPrefs, getEnabledActivityTypes } from '@/lib/notificationPrefs';
 
 const iconMap = {
   sale: ShoppingCart,
@@ -75,9 +76,12 @@ export default function Notifications() {
   // Seed first 2 as unread for demo
   const [unreadIds, setUnreadIds] = useState(new Set(ACTIVITIES.slice(0, 2).map((_, i) => i)));
 
+  const enabledTypes = getEnabledActivityTypes(getNotificationPrefs());
+
   const visible = ACTIVITIES
     .map((a, i) => ({ ...a, _id: i }))
     .filter(a => !dismissed.has(a._id))
+    .filter(a => enabledTypes.has(a.type) || !['sale', 'top_up', 'payout', 'campaign_paused', 'bonus_completed'].includes(a.type))
     .filter(a => activeTab === 'All' || typeToTab[a.type] === activeTab);
 
   const groups = groupByDate(visible);

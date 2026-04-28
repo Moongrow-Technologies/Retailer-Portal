@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Plus, Upload, Zap, Building2, Shield, Lock } from 'lucide-react';
+import { MapPin, Plus, Zap, Building2, Shield } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import DisconnectModal from '@/components/shared/DisconnectModal';
+import { getNotificationPrefs, saveNotificationPrefs } from '@/lib/notificationPrefs';
 
 export default function Settings() {
-  const [notifications, setNotifications] = useState({
-    newSales: true,
-    budgetWarnings: true,
-    bonusCompletions: false
-  });
+  const [notifications, setNotifications] = useState(getNotificationPrefs);
   const [toast, setToast] = useState(null);
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
+  const [logoUrl, setLogoUrl] = useState(null);
+  const fileInputRef = useRef(null);
   const showToast = (msg) => setToast(msg);
 
-  const toggle = (key) => setNotifications((prev) => ({ ...prev, [key]: !prev[key] }));
+  const toggle = (key) => {
+    setNotifications((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      saveNotificationPrefs(next);
+      return next;
+    });
+  };
+
+  const handleLogoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setLogoUrl(url);
+    showToast('Logo uploaded successfully.');
+  };
 
   const handleDisconnect = () => {
     setShowDisconnectModal(false);
@@ -63,16 +76,29 @@ export default function Settings() {
             </div>
 
             <div className="w-[220px] flex-shrink-0">
-              <div className="border border-dashed border-[#C8C3E0] rounded-2xl p-7 flex flex-col items-center text-center h-full justify-center">
+            <div className="border border-dashed border-[#C8C3E0] rounded-2xl p-7 flex flex-col items-center text-center h-full justify-center">
+              {logoUrl ? (
+                <img src={logoUrl} alt="Store logo" className="w-16 h-16 rounded-full object-cover mb-4" />
+              ) : (
                 <div className="bg-[hsl(var(--muted))] mb-4 rounded-full w-16 h-16 flex items-center justify-center">
                   <Building2 className="w-7 h-7 text-[#796EB2]" />
                 </div>
-                <p className="text-sm font-semibold text-[#0E0D1E] mb-1">Store Logo</p>
-                <p className="text-xs text-[#9490AA] mb-4">SVG, PNG, or JPG (max. 2MB)</p>
-                <button className="text-sm text-[#796EB2] font-medium border border-[#C8C3E0] rounded-xl px-4 py-2 hover:bg-[#EDE9F8] transition-colors">
-                  Upload Logo
-                </button>
-              </div>
+              )}
+              <p className="text-sm font-semibold text-[#0E0D1E] mb-1">Store Logo</p>
+              <p className="text-xs text-[#9490AA] mb-4">SVG, PNG, or JPG (max. 2MB)</p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/svg+xml,image/png,image/jpeg"
+                className="hidden"
+                onChange={handleLogoUpload}
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="text-sm text-[#796EB2] font-medium border border-[#C8C3E0] rounded-xl px-4 py-2 hover:bg-[#EDE9F8] transition-colors">
+                {logoUrl ? 'Change Logo' : 'Upload Logo'}
+              </button>
+            </div>
             </div>
           </div>
         </div>
