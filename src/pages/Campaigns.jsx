@@ -132,7 +132,7 @@ export default function Campaigns() {
           {filtered.map((campaign, idx) => {
             const unitsPct = campaign.target_units > 0 ? campaign.units_sold / campaign.target_units * 100 : 0;
             const isActive = campaign.status === 'active';
-            const isCompleted = campaign.status === 'completed';
+            const isCompleted = campaign.status === 'completed' || campaign.status === 'paused_budget';
             return (
               <div key={campaign.id}>
                 <div
