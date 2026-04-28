@@ -11,8 +11,9 @@ import { WALLET, CAMPAIGNS, BONUSES, STAFF, ACTIVITIES } from '@/lib/sampleData'
 
 export default function Dashboard() {
   const wallet = WALLET;
-  const topBudtenders = [...STAFF].filter(s => s.status === 'active').sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
-  const needsAttention = [...STAFF].filter(s => s.status === 'active').sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
+  const activeStaff = STAFF.filter(s => s.status === 'active');
+  const topBudtenders = [...activeStaff].sort((a, b) => b.total_commissions - a.total_commissions).slice(0, 3);
+  const needsAttention = [...activeStaff].sort((a, b) => a.total_commissions - b.total_commissions).slice(0, 3);
   const zeroBalance = wallet.total_balance === 0;
 
   const activeCampaignsCardRef = useRef(null);

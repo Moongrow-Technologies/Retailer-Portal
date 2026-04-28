@@ -124,14 +124,14 @@ export default function Analytics() {
           {/* Commission Paid */}
           <div className="px-6 py-6 border-r border-[#EBEBF0]">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">Commission Paid</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">€1,032.00</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">€937.00</p>
             <span className="inline-flex items-center mt-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">↑ 11% vs last period</span>
           </div>
 
           {/* ROI */}
           <div className="px-6 py-6">
             <p className="text-xs uppercase font-semibold text-[#5b616e] tracking-wide mb-2">ROI</p>
-            <p className="text-[26px] font-medium text-[#0c0b0c]">5.9x</p>
+            <p className="text-[26px] font-medium text-[#0c0b0c]">6.4x</p>
             <span className="inline-flex items-center mt-1.5 bg-[#F4F3FA] text-[#5b616e] text-[11px] font-semibold px-2 py-0.5 rounded-full">per €1 commission</span>
           </div>
         </div>

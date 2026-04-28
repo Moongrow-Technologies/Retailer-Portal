@@ -44,7 +44,7 @@ export default function CompactWalletCard({ wallet }) {
         <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
           {runwayDays} <span className="text-base font-semibold">days left</span>
         </p>
-        <p className="text-xs text-[#5b616e]">At current spend rate · ~May 20</p>
+        <p className="text-xs text-[#5b616e]">At current spend rate · ~May 22</p>
       </div>
 
       <div className="mt-auto pt-4">

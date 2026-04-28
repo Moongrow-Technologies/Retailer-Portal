@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { Progress } from '@/components/ui/progress';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { CAMPAIGNS, PRODUCT_IMAGES, PRODUCTS } from '@/lib/sampleData';
+import { CAMPAIGNS, PRODUCT_IMAGES, PRODUCTS, WALLET } from '@/lib/sampleData';
 import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { cn } from '@/lib/utils';
 
@@ -68,33 +68,37 @@ export default function Campaigns() {
 
 
         {/* Two columns: Commission paid out | Remaining in fund */}
-        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
-          <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-2">Commission paid out</p>
-            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{campaigns.reduce((sum, c) => sum + c.spent, 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-          <div className="pl-6 text-right">
-            <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
-            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€375</p>
-          </div>
-        </div>
-
-        {/* Progress bar */}
-        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#D1D5DB' }}>
-          <div className="h-full rounded-full" style={{ width: `${campaigns.reduce((sum, c) => sum + c.spent, 0) / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100}%`, background: '#534AB7' }} />
-        </div>
-
-        {/* Bar labels */}
-        <div className="flex items-center justify-between mb-0">
-          <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-            {Math.round(campaigns.reduce((sum, c) => sum + c.spent, 0) / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100)}% paid out of €{(campaigns.reduce((sum, c) => sum + c.spent, 0) + 375).toLocaleString('en-US')} Campaign Fund
-          </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            {Math.round(375 / (campaigns.reduce((sum, c) => sum + c.spent, 0) + 375) * 100)}% remaining
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
-          </p>
-        </div>
+        {(() => {
+          const paidOut = WALLET.campaign_paid_out;
+          const fundTotal = WALLET.campaign_fund_total;
+          const remaining = fundTotal - paidOut;
+          const pct = Math.round(paidOut / fundTotal * 100);
+          return (<>
+            <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
+              <div className="pr-6">
+                <p className="text-xs text-[#5b616e] mb-2">Commission paid out</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              </div>
+              <div className="pl-6 text-right">
+                <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{remaining.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              </div>
+            </div>
+            <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#D1D5DB' }}>
+              <div className="h-full rounded-full" style={{ width: `${pct}%`, background: '#534AB7' }} />
+            </div>
+            <div className="flex items-center justify-between mb-0">
+              <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+                {pct}% paid out of €{fundTotal.toLocaleString('en-US')} Campaign Fund
+              </p>
+              <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+                {100 - pct}% remaining
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
+              </p>
+            </div>
+          </>);
+        })()}
 
 
       </div>

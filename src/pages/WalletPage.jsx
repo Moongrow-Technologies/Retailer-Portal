@@ -13,15 +13,21 @@ export default function WalletPage() {
   const zeroBalance = wallet.total_balance === 0;
 
   const total = wallet.total_balance || 0;
-  const campaigns = wallet.committed_campaigns || 0;
-  const bonuses = wallet.committed_bonuses || 0;
   const available = wallet.available || 0;
   const runwayDays = 24;
   const runwayColor = runwayDays <= 10 ? '#DC2626' : '#16A34A';
 
-  const campaignsPct = total > 0 ? Math.round(campaigns / total * 100) : 0;
-  const bonusesPct = total > 0 ? Math.round(bonuses / total * 100) : 0;
-  const availablePct = total > 0 ? Math.round(available / total * 100) : 0;
+  // Per spec: Campaign Fund total / paid out / remaining
+  const campaignFundTotal = wallet.campaign_fund_total || 0;
+  const campaignPaidOut = wallet.campaign_paid_out || 0;
+  const campaignRemaining = campaignFundTotal - campaignPaidOut;
+  const campaignPct = campaignFundTotal > 0 ? Math.round(campaignPaidOut / campaignFundTotal * 100) : 0;
+
+  // Per spec: Bonus Fund total / paid out / remaining
+  const bonusFundTotal = wallet.bonus_fund_total || 0;
+  const bonusPaidOut = wallet.bonus_paid_out || 0;
+  const bonusRemaining = bonusFundTotal - bonusPaidOut;
+  const bonusPct = bonusFundTotal > 0 ? Math.round(bonusPaidOut / bonusFundTotal * 100) : 0;
 
   return (
     <div>
@@ -68,7 +74,7 @@ export default function WalletPage() {
               <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
                 {runwayDays} <span className="text-base font-semibold">days left</span>
               </p>
-              <p className="text-xs text-[#5b616e]">At current spend rate · ~May 20</p>
+              <p className="text-xs text-[#5b616e]">At current spend rate · ~May 22</p>
             </div>
           </div>
 
@@ -81,17 +87,17 @@ export default function WalletPage() {
                 <div className="flex items-center justify-between mb-0.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
-                    <span className="text-sm font-semibold text-[#0c0b0c]">Campaigns</span>
+                    <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
                   </div>
-                  <span className="text-sm font-bold text-[#0c0b0c]">€{campaigns.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
+                  <span className="text-sm font-bold text-[#0c0b0c]">€{campaignFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
-                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">3 active campaigns</p>
+                <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">2 active campaigns</p>
                 <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1">
-                  <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${campaignsPct}%` }} />
+                  <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${campaignPct}%` }} />
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-xs text-[#5b616e]">€487 paid out</p>
-                  <p className="text-xs text-[#5b616e]">€913 remaining</p>
+                  <p className="text-xs text-[#5b616e]">€{campaignPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
+                  <p className="text-xs text-[#5b616e]">€{campaignRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
                 </div>
               </div>
 
@@ -100,17 +106,17 @@ export default function WalletPage() {
                 <div className="flex items-center justify-between mb-0.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
-                    <span className="text-sm font-semibold text-[#0c0b0c]">Bonuses</span>
+                    <span className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</span>
                   </div>
-                  <span className="text-sm font-bold text-[#0c0b0c]">€{bonuses.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
+                  <span className="text-sm font-bold text-[#0c0b0c]">€{bonusFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
                 <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">2 active bonuses</p>
                 <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-1">
-                  <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusesPct}%` }} />
+                  <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusPct}%` }} />
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-xs text-[#5b616e]">€100 paid out</p>
-                  <p className="text-xs text-[#5b616e]">€125 remaining</p>
+                  <p className="text-xs text-[#5b616e]">€{bonusPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
+                  <p className="text-xs text-[#5b616e]">€{bonusRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
                 </div>
               </div>
 

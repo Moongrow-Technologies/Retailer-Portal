@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { fmtEur } from '@/lib/utils';
+import { WALLET, CAMPAIGNS, BONUSES } from '@/lib/sampleData';
 
 export default function WalletRunwayCard() {
-  // Campaign data
-  const campaignBudget = 1400;
-  const campaignPaidOut = 487;
+  // Campaign data — derived from WALLET spec values
+  const campaignBudget = WALLET.campaign_fund_total;
+  const campaignPaidOut = WALLET.campaign_paid_out;
   const campaignRemaining = campaignBudget - campaignPaidOut;
   const campaignPercent = Math.round((campaignPaidOut / campaignBudget) * 100);
-  const activeCampaigns = 3;
+  const activeCampaigns = CAMPAIGNS.filter(c => c.status === 'active').length;
   
-  // Bonus data
-  const bonusBudget = 225;
-  const bonusPaidOut = 100;
+  // Bonus data — derived from WALLET spec values
+  const bonusBudget = WALLET.bonus_fund_total;
+  const bonusPaidOut = WALLET.bonus_paid_out;
   const bonusRemaining = bonusBudget - bonusPaidOut;
   const bonusPercent = Math.round((bonusPaidOut / bonusBudget) * 100);
-  const activeBonuses = 2;
+  const activeBonuses = BONUSES.filter(b => b.status === 'active').length;
 
   return (
     <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-5 flex flex-col overflow-hidden h-full">

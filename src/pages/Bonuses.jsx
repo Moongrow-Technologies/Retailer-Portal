@@ -5,7 +5,7 @@ import { Plus, MoreVertical } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import StatusBadge from '@/components/shared/StatusBadge';
 import { cn } from '@/lib/utils';
-import { BONUSES } from '@/lib/sampleData';
+import { BONUSES, WALLET } from '@/lib/sampleData';
 import { format } from 'date-fns';
 import {
   DropdownMenu,
@@ -81,34 +81,37 @@ export default function Bonuses() {
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
 
         {/* Two columns: Prizes paid out | Remaining in fund */}
-        <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
-          <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-2">Bonuses paid out</p>
-            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€100</p>
-          </div>
-          <div className="pl-6 text-right">
-            <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
-            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€125</p>
-          </div>
-        </div>
-
-        {/* Progress bar */}
-        <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#E2E0ED' }}>
-          <div className="h-full" style={{ width: '44%', background: '#F0997B' }} />
-          <div className="h-full flex-1" style={{ background: '#e2e2e2' }} />
-        </div>
-
-        {/* Bar labels */}
-        <div className="flex items-center justify-between mb-0">
-          <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
-            44% paid out of €225 Bonus Fund
-          </p>
-          <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
-            56% remaining
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
-          </p>
-        </div>
+        {(() => {
+          const paidOut = WALLET.bonus_paid_out;
+          const fundTotal = WALLET.bonus_fund_total;
+          const remaining = fundTotal - paidOut;
+          const pct = Math.round(paidOut / fundTotal * 100);
+          return (<>
+            <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
+              <div className="pr-6">
+                <p className="text-xs text-[#5b616e] mb-2">Bonuses paid out</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              </div>
+              <div className="pl-6 text-right">
+                <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{remaining.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              </div>
+            </div>
+            <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#E2E0ED' }}>
+              <div className="h-full" style={{ width: `${pct}%`, background: '#F0997B' }} />
+            </div>
+            <div className="flex items-center justify-between mb-0">
+              <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+                {pct}% paid out of €{fundTotal.toLocaleString('en-US')} Bonus Fund
+              </p>
+              <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+                {100 - pct}% remaining
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
+              </p>
+            </div>
+          </>);
+        })()}
 
       </div>
 
