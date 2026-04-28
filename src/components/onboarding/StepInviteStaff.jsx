@@ -53,7 +53,7 @@ export default function StepInviteStaff({ onNext, onSkip }) {
             <div
               key={i}
               className={cn(
-                "flex items-center gap-3 px-5 py-3.5 transition-colors cursor-pointer",
+                "flex items-center gap-3 px-5 py-3.5 transition-colors cursor-pointer hover:bg-[#F4F3FA]",
                 s.selected ? "bg-white" : "bg-[#FAFAFA]"
               )}
               onClick={() => toggleStaff(i)}
@@ -125,7 +125,7 @@ export default function StepInviteStaff({ onNext, onSkip }) {
       <div className="flex items-center justify-between">
         <button
           onClick={onSkip}
-          className="text-sm text-[#9490AA] hover:text-[#7A7893] transition-colors"
+          className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
         >
           Skip for now
         </button>

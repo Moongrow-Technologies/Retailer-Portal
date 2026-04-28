@@ -39,7 +39,7 @@ export default function StepWallet({ onSkip }) {
       </div>
 
       {/* How it works */}
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 space-y-4">
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 space-y-4 hover:border-[#796EB2]/20 transition-colors">
         <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">How it works</p>
         <div className="space-y-3.5">
           <div className="flex items-start gap-3">
@@ -81,7 +81,7 @@ export default function StepWallet({ onSkip }) {
       <div className="flex items-center justify-between">
         <button
           onClick={handleDone}
-          className="text-sm text-[#9490AA] hover:text-[#7A7893] transition-colors"
+          className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
         >
           Skip, go to dashboard
         </button>
