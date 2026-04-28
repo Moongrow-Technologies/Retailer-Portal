@@ -14,7 +14,7 @@ export default function Onboarding() {
   const handleDone = () => navigate('/');
 
   return (
-    <OnboardingShell step={step}>
+    <OnboardingShell step={step} onBack={step > 0 ? () => setStep(s => s - 1) : null}>
       {step === 0 && (
         <StepStoreDetails onNext={handleStepNext} />
       )}

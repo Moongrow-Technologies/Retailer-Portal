@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
+import { Check, ArrowLeft } from 'lucide-react';
 
 const STEPS = [
   { label: 'Store details' },
@@ -8,11 +8,20 @@ const STEPS = [
   { label: 'Your wallet' },
 ];
 
-export default function OnboardingShell({ step, children }) {
+export default function OnboardingShell({ step, onBack, children }) {
   return (
     <div className="min-h-screen bg-[#F0F0F5] flex flex-col font-outfit">
       {/* Top bar */}
       <header className="fixed top-0 left-0 right-0 h-14 bg-white border-b border-[#EBEBF0] flex items-center px-6 z-50">
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="mr-4 flex items-center gap-1.5 text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">Back</span>
+          </button>
+        )}
         <img
           src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/f5253c7da_MoongrowLogo.png"
           alt="Moongrow"

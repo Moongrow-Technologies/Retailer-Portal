@@ -37,7 +37,7 @@ export default function StepStoreDetails({ onNext }) {
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-6 space-y-5">
+      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-6 space-y-5 hover:border-[#796EB2]/30 transition-colors">
         {/* Business name */}
         <div>
           <Label className="text-xs font-semibold text-[#4A4761] uppercase tracking-wide flex items-center gap-1.5">
