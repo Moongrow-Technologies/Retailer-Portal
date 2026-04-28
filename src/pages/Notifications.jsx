@@ -173,7 +173,7 @@ export default function Notifications() {
 
                       {/* Dismiss */}
                       <button
-                        onClick={() => setDismissed(prev => new Set([...prev, n._id]))}
+                        onClick={(e) => { e.stopPropagation(); setDismissed(prev => new Set([...prev, n._id])); }}
                         className="text-[#C4C0D6] hover:text-[#7A7893] transition-colors flex-shrink-0 mt-0.5"
                       >
                         <X className="w-4 h-4" />
