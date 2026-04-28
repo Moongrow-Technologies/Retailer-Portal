@@ -30,7 +30,7 @@ export default function StepWallet({ onSkip, onBack }) {
         <div className="absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-[#796EB2]/10" />
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
-            <Wallet className="w-4 h-4 text-[#796EB2]" />
+            <Wallet className="w-4 h-4 text-white" />
             <span className="text-xs font-semibold text-white/50 uppercase tracking-wide">Moongrow Wallet</span>
           </div>
           <p className="text-4xl font-bold tracking-tight">€0.00</p>
