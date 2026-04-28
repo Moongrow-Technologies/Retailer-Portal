@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { X } from 'lucide-react';
 import { ACTIVITIES, CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
+import { dismissNotification } from '@/lib/notificationStore';
 
 const RECENT = ACTIVITIES.slice(0, 5);
 
@@ -38,6 +39,7 @@ export default function NotificationDropdown({ onClose, onMarkAllRead, hasUnread
   const handleDismiss = (e, index) => {
     e.stopPropagation();
     setDismissed(prev => new Set([...prev, index]));
+    dismissNotification(index);
   };
 
   useEffect(() => {
