@@ -25,7 +25,7 @@ export default function StepWallet({ onSkip, onBack }) {
       </div>
 
       {/* Wallet card */}
-      <div className="bg-[#0E0D1E] rounded-2xl p-6 text-white relative overflow-hidden">
+      <div className="rounded-2xl p-6 text-white relative overflow-hidden" style={{ background: 'linear-gradient(to right, #4A7BA7, #E8E8F0)' }}>
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[#796EB2]/20" />
         <div className="absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-[#796EB2]/10" />
         <div className="relative z-10">
