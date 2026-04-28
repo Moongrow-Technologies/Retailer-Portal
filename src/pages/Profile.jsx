@@ -18,6 +18,7 @@ export default function Profile() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
+  const [saving, setSaving] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const fileInputRef = useRef(null);
@@ -26,6 +27,7 @@ export default function Profile() {
     if (user) {
       setFullName(user.full_name || '');
       setEmail(user.email || '');
+      setAvatarUrl(user.avatar_url || '');
     }
   }, [user]);
 
@@ -38,9 +40,13 @@ export default function Profile() {
     if (!file) return;
     const { file_url } = await base44.integrations.Core.UploadFile({ file });
     setAvatarUrl(file_url);
+    await base44.auth.updateMe({ avatar_url: file_url });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    setSaving(true);
+    await base44.auth.updateMe({ avatar_url: avatarUrl });
+    setSaving(false);
     setShowToast(true);
   };
 
@@ -119,9 +125,9 @@ export default function Profile() {
 
               <Button
                 onClick={handleSave}
+                disabled={saving}
                 className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
-                
-                Save Changes
+                {saving ? 'Saving…' : 'Save Changes'}
               </Button>
             </div>
           </div>

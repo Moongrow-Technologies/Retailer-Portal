@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { base44 } from '@/api/base44Client';
 
 export default function ChangeEmailModal({ onClose }) {
   const [newEmail, setNewEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const handleUpdate = async () => {
+    if (!newEmail || newEmail !== confirmEmail) {
+      setError('Emails do not match.');
+      return;
+    }
+    setSaving(true);
+    await base44.auth.updateMe({ email: newEmail });
+    setSaving(false);
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
@@ -31,8 +45,9 @@ export default function ChangeEmailModal({ onClose }) {
               className="border-0 bg-transparent p-0 h-auto text-sm font-medium text-[#0E0D1E] focus-visible:ring-0 shadow-none placeholder:text-[#C4C1D8]"
             />
           </div>
-          <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
-            Update Email
+          {error && <p className="text-xs text-red-500 -mt-1">{error}</p>}
+          <Button onClick={handleUpdate} disabled={saving} className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold mt-1">
+            {saving ? 'Saving…' : 'Update Email'}
           </Button>
           <button
             onClick={onClose}
