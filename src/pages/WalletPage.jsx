@@ -55,7 +55,7 @@ export default function WalletPage() {
         {/* Wallet Card */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex gap-6">
           {/* Left: balance + runway */}
-          <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6">
+          <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6 justify-center">
             <div>
               <p className="text-sm text-[#5b616e] mb-1">Total balance</p>
               <p className="text-[#0c0b0c] text-3xl font-medium tracking-tight">
