@@ -108,19 +108,34 @@ export default function Onboarding() {
               </div>
               <h2 className="text-2xl font-bold mb-2">Fund Your Wallet</h2>
               <p className="text-muted-foreground mb-6">Your wallet powers everything — campaign budgets and bonus prizes. Add USDC to get started.</p>
-              <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-                <div>
-                  <Label>Amount (USDC)</Label>
-                  <Input type="number" placeholder="Enter amount to fund" className="mt-1.5 text-lg font-semibold" />
-                </div>
-                <div className="flex gap-2">
-                  {[250, 500, 1000, 2500].map(a => (
-                    <button key={a} className="flex-1 py-2 rounded-lg border border-border text-sm font-medium hover:bg-primary/5 hover:border-primary/30 transition-colors">€{a}</button>
-                  ))}
-                </div>
-                <Button onClick={() => setWalletFunded(true)} className="w-full bg-primary hover:bg-primary/90">
-                  {walletFunded ? <><Check className="w-4 h-4 mr-2" /> Wallet Funded</> : 'Fund Wallet'}
-                </Button>
+              <div className="bg-card border border-border rounded-xl p-6 space-y-3">
+                <p className="text-sm text-muted-foreground">Choose a provider to buy USDC with your card or bank transfer:</p>
+                <button
+                  onClick={() => setWalletFunded(true)}
+                  className="w-full flex items-center justify-between p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-primary/5 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-[#7B3FE4] flex items-center justify-center text-white font-bold text-sm">M</div>
+                    <div className="text-left">
+                      <p className="font-semibold text-sm">MoonPay</p>
+                      <p className="text-xs text-muted-foreground">Buy USDC with card or bank transfer</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                </button>
+                <button
+                  className="w-full flex items-center justify-between p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-primary/5 transition-all group opacity-50 cursor-not-allowed"
+                  disabled
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-[#0052FF] flex items-center justify-center text-white font-bold text-sm">C</div>
+                    <div className="text-left">
+                      <p className="font-semibold text-sm">Coinbase Pay</p>
+                      <p className="text-xs text-muted-foreground">Coming soon</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </button>
                 {walletFunded && <p className="text-sm text-emerald-600 font-medium text-center">Wallet funded successfully!</p>}
               </div>
             </div>
