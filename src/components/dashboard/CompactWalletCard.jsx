@@ -24,11 +24,11 @@ export default function CompactWalletCard({ wallet }) {
   const runwayColor = runwayDays <= 10 ? '#DC2626' : '#16A34A';
 
   return (
-    <div className="px-6 py-6 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col h-full text-white" style={{ background: 'linear-gradient(135deg, #5B67CA 0%, #9B8FC4 50%, #E8E6F5 100%)' }}>
+    <div className="bg-white px-6 py-6 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col h-full">
       {/* Header */}
       <div className="mb-5">
-        <p className="text-white/60 mb-4 text-sm">Moongrow Wallet</p>
-        <p className="text-white mb-3 text-3xl font-medium tracking-tight">
+        <p className="text-[#5b616e] mb-4 text-sm">Moongrow Wallet</p>
+        <p className="text-[#0c0b0c] mb-3 text-3xl font-medium tracking-tight">
           €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </p>
         <div className="flex gap-2">
@@ -42,12 +42,12 @@ export default function CompactWalletCard({ wallet }) {
       </div>
 
       {/* Estimated runway */}
-      <div className="bg-white/20 rounded-xl p-4">
-        <p className="text-xs text-white/70 mb-1">Estimated runway</p>
+      <div className="bg-[#F7F7F8] rounded-xl p-4">
+        <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
         <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
           {runwayDays} <span className="text-base font-semibold">days left</span>
         </p>
-        <p className="text-xs text-white/70">At current spend rate · ~May 22</p>
+        <p className="text-xs text-[#5b616e]">At current spend rate · ~May 22</p>
       </div>
 
       <div className="mt-auto pt-4">
