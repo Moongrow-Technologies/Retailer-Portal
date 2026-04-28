@@ -18,9 +18,9 @@ export default function StepWallet({ onSkip, onBack }) {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-2xl font-bold text-[#0E0D1E]">Meet your wallet</h2>
+        <h2 className="text-2xl font-bold text-[#0E0D1E]">Your funds, always ready</h2>
         <p className="text-sm text-[#7A7893] mt-1.5 leading-relaxed">
-          A Moongrow Wallet has been automatically created for your account.
+          Add money to your wallet and it's automatically used to pay your staff the moment they make a qualifying sale. No delays, no manual transfers.
         </p>
       </div>
 
@@ -39,39 +39,29 @@ export default function StepWallet({ onSkip, onBack }) {
       </div>
 
       {/* How it works */}
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 space-y-4 hover:border-[#796EB2]/20 transition-colors">
-        <p className="text-xs font-semibold text-[#9490AA] uppercase tracking-wide">How it works</p>
-        <div className="space-y-3.5">
-          <div className="flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center shrink-0 mt-0.5">
-              <Shield className="w-3.5 h-3.5 text-[#796EB2]" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Budget is reserved automatically</p>
-              <p className="text-xs text-[#9490AA] mt-0.5 leading-relaxed">
-                When you create a campaign with a budget, that amount is locked in your wallet so commissions can always be paid.
-              </p>
-            </div>
-          </div>
+      <div className="space-y-3.5">
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 hover:border-[#796EB2]/20 transition-colors">
           <div className="flex items-start gap-3">
             <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center shrink-0 mt-0.5">
               <Zap className="w-3.5 h-3.5 text-[#796EB2]" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Commissions pay out instantly</p>
+              <p className="text-sm font-semibold text-[#0E0D1E]">Top up via MoonPay</p>
               <p className="text-xs text-[#9490AA] mt-0.5 leading-relaxed">
-                The moment a staff member makes a qualifying sale, their commission is sent to their Moongrow app wallet in USDC — no delays.
+                Add funds from your bank account or card. Your money converts to USDC and lands in your wallet in minutes.
               </p>
             </div>
           </div>
+        </div>
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 hover:border-[#796EB2]/20 transition-colors">
           <div className="flex items-start gap-3">
             <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center shrink-0 mt-0.5">
               <Clock className="w-3.5 h-3.5 text-[#796EB2]" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#0E0D1E]">Top up anytime</p>
+              <p className="text-sm font-semibold text-[#0E0D1E]">Instant staff payouts</p>
               <p className="text-xs text-[#9490AA] mt-0.5 leading-relaxed">
-                Add funds from your bank account via MoonPay — fiat converts to USDC and lands in your wallet in minutes.
+                The moment a staff member makes a qualifying sale, their commission hits their Moongrow app wallet automatically.
               </p>
             </div>
           </div>
