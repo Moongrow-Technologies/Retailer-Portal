@@ -70,7 +70,7 @@ export default function StepStoreDetails({ onNext }) {
                     variant="ghost"
                     size="icon"
                     onClick={() => removeLocation(i)}
-                    className="shrink-0 text-[#C0BDCE] hover:text-red-400 hover:bg-red-50"
+                    className="shrink-0 text-black hover:text-red-400 hover:bg-red-50"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -96,7 +96,7 @@ export default function StepStoreDetails({ onNext }) {
               disabled={!newLocation.trim()}
               className="shrink-0 border-[#EBEBF0] hover:bg-[#F8F7FC] hover:border-[#796EB2]/40"
             >
-              <Plus className="w-4 h-4 text-[#796EB2]" />
+              <Plus className="w-4 h-4 text-black" />
             </Button>
           </div>
         </div>
