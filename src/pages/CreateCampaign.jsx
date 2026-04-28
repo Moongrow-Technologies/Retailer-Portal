@@ -11,25 +11,25 @@ import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
-const STEPS = ['Select Product', 'Choose Stores', 'Set Commission', 'Budget & Duration', 'Review', 'Success'];
+const STEPS = ['Select Product', 'Choose Stores', 'Set Commission', 'Budget & Duration', 'Review'];
 
 export default function CreateCampaign() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [toast, setToast] = useState(null);
   const [data, setData] = useState({
-    product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: ''
+    product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: '', startNow: true
   });
 
   const product = PRODUCTS.find(p => p.name === data.product);
   const progress = ((step + 1) / STEPS.length) * 100;
-  const isScheduled = data.start_date && new Date(data.start_date) > new Date();
+  const isScheduled = !data.startNow && data.start_date && new Date(data.start_date) > new Date();
 
   const canNext = () => {
     if (step === 0) return !!data.product;
     if (step === 1) return data.stores.length > 0;
     if (step === 2) return data.commission_rate && Number(data.commission_rate) > 0;
-    if (step === 3) return data.budget && data.start_date && data.end_date && Number(data.budget) > 0;
+    if (step === 3) return data.budget && (data.startNow || (data.start_date && data.end_date)) && Number(data.budget) > 0;
     return true;
   };
 
@@ -42,7 +42,7 @@ export default function CreateCampaign() {
     }));
   };
 
-  if (step === 5) {
+  if (step === STEPS.length) {
     return (
       <div className="max-w-lg mx-auto text-center py-20">
         <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-5">
@@ -72,6 +72,7 @@ export default function CreateCampaign() {
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-xl font-bold">Create Campaign</h1>
           <span className="text-sm text-muted-foreground">Step {step + 1} of {STEPS.length}</span>
+
         </div>
         <Progress value={progress} className="h-1" />
         <p className="text-sm font-medium text-primary mt-2">{STEPS[step]}</p>
@@ -146,11 +147,31 @@ export default function CreateCampaign() {
                 Available: €{WALLET.available.toFixed(2)}. This amount will be committed from your wallet.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <Label>Start Date</Label>
-                <Input type="date" value={data.start_date} onChange={e => setData({ ...data, start_date: e.target.value })} className="mt-1.5" />
+            {/* Start option */}
+            <div>
+              <Label>Start</Label>
+              <div className="grid grid-cols-2 gap-2 mt-1.5">
+                <button
+                  onClick={() => setData({ ...data, startNow: true, start_date: '' })}
+                  className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
+                >
+                  Start Now
+                </button>
+                <button
+                  onClick={() => setData({ ...data, startNow: false })}
+                  className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", !data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
+                >
+                  Schedule for later
+                </button>
               </div>
+            </div>
+            <div className={cn("grid gap-3", data.startNow ? "grid-cols-1" : "grid-cols-2")}>
+              {!data.startNow && (
+                <div>
+                  <Label>Start Date</Label>
+                  <Input type="date" value={data.start_date} onChange={e => setData({ ...data, start_date: e.target.value })} className="mt-1.5" />
+                </div>
+              )}
               <div>
                 <Label>End Date</Label>
                 <Input type="date" value={data.end_date} onChange={e => setData({ ...data, end_date: e.target.value })} className="mt-1.5" />
@@ -183,7 +204,7 @@ export default function CreateCampaign() {
               </div>
               <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
                 <p className="text-xs text-[#9490AA]">Duration</p>
-                <p className="font-medium text-[#0E0D1E]">{data.start_date} → {data.end_date}</p>
+                <p className="font-medium text-[#0E0D1E]">{data.startNow ? 'Now' : data.start_date} → {data.end_date}</p>
               </div>
               <div className="col-span-2 p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
                 <p className="text-xs text-[#9490AA]">Stores</p>
