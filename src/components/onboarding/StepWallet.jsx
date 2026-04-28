@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Wallet, ArrowRight, Zap, Shield, Clock, ArrowLeft } from 'lucide-react';
+import { Wallet, ArrowRight, Zap, Shield, Clock, ArrowLeft, Banknote } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function StepWallet({ onSkip, onBack }) {
@@ -40,10 +40,17 @@ export default function StepWallet({ onSkip, onBack }) {
 
       {/* Your funds, always ready */}
       <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-sm p-5 hover:border-[#796EB2]/20 transition-colors">
-        <h3 className="text-sm font-semibold text-[#0E0D1E] mb-2">Your funds, always ready</h3>
-        <p className="text-xs text-[#9490AA] leading-relaxed">
-          Add money to your wallet and it's automatically used to pay your staff the moment they make a qualifying sale. No delays, no manual transfers.
-        </p>
+        <div className="flex items-start gap-3">
+          <div className="w-7 h-7 rounded-lg bg-[#EDE9F8] flex items-center justify-center shrink-0 mt-0.5">
+            <Banknote className="w-3.5 h-3.5 text-[#796EB2]" />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-[#0E0D1E] mb-0.5">Your funds, always ready</h3>
+            <p className="text-xs text-[#9490AA] leading-relaxed">
+              Add money to your wallet and it's automatically used to pay your staff the moment they make a qualifying sale. No delays, no manual transfers.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Features */}
