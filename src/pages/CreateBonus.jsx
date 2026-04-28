@@ -7,8 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award, Clock } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { PRODUCTS, STORE, WALLET } from '@/lib/sampleData';
+import { PRODUCTS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
+import { addBonus, getWallet } from '@/lib/appStore';
 
 const STEPS = ['Bonus Type', 'Ranking Metric', 'Scope & Duration', 'Prize Structure', 'Review & Confirm'];
 
@@ -41,7 +42,7 @@ export default function CreateBonus() {
     return data.prizes.reduce((s, p) => s + (Number(p.amount) || 0), 0);
   })();
 
-  const remaining = WALLET.available - totalPrize;
+  const remaining = getWallet().available - totalPrize;
 
   if (done) {
     return (
@@ -321,7 +322,7 @@ export default function CreateBonus() {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[#7A7893]">Available balance</span>
-                <span className="font-semibold text-[#0E0D1E]">€{WALLET.available.toFixed(2)}</span>
+                <span className="font-semibold text-[#0E0D1E]">€{getWallet().available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
               </div>
               <div className="border-t border-[#E2E0ED] pt-2 flex items-center justify-between text-sm">
                 <span className="text-[#7A7893]">Remaining after bonus</span>
@@ -368,7 +369,31 @@ export default function CreateBonus() {
       {/* Footer */}
       <div className="flex justify-end mt-6">
         <Button
-          onClick={() => { if (step === 4) { setDone(true); setToast("Bonus launched successfully."); } else setStep(step + 1); }}
+          onClick={() => {
+            if (step === 4) {
+              addBonus({
+                id: `b_${Date.now()}`,
+                name: data.name,
+                type: data.type,
+                metric: data.metric,
+                product_name: data.product || null,
+                scope: data.scope === 'chain' ? 'chain' : 'store',
+                store: data.scope !== 'chain' ? data.scope : null,
+                status: isScheduled ? 'scheduled' : 'active',
+                start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.customStart,
+                end_date: data.customEnd || null,
+                prize_pool: totalPrize,
+                prizes: data.type === 'ranked' ? data.prizes.filter(p => p.amount).map((p, i) => ({ position: i + 1, amount: Number(p.amount), label: ['1st Place', '2nd Place', '3rd Place', '4th Place', '5th Place'][i] })) : [],
+                threshold_target: data.threshold_target ? Number(data.threshold_target) : null,
+                threshold_prize: data.threshold_prize ? Number(data.threshold_prize) : null,
+                tiebreaker: data.tiebreaker,
+                participants: 0,
+              });
+              setDone(true);
+            } else {
+              setStep(step + 1);
+            }
+          }}
           disabled={!canContinue()}
           className="bg-primary hover:bg-primary/90 gap-2"
         >

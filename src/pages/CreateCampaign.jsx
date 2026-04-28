@@ -231,8 +231,7 @@ export default function CreateCampaign() {
         <Button
           onClick={() => {
             if (step === 4) {
-              setToast("Campaign launched successfully.");
-              const newCampaign = {
+              addCampaign({
                 id: `c_${Date.now()}`,
                 name: data.name || `${data.product} Campaign`,
                 product_name: data.product,
@@ -245,9 +244,7 @@ export default function CreateCampaign() {
                 status: isScheduled ? 'scheduled' : 'active',
                 start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.start_date,
                 end_date: data.end_date,
-              };
-              const existing = JSON.parse(sessionStorage.getItem('newCampaigns') || '[]');
-              sessionStorage.setItem('newCampaigns', JSON.stringify([...existing, newCampaign]));
+              });
             }
             setStep(step + 1);
           }}
