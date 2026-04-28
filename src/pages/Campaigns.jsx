@@ -67,11 +67,11 @@ export default function Campaigns() {
         {/* Two columns: Commission paid out | Remaining in fund */}
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
           <div className="pr-6">
-            <p className="text-xs text-[#5b616e] mb-1">Commission paid out</p>
+            <p className="text-xs text-[#5b616e] mb-2">Commission paid out</p>
             <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{campaigns.reduce((sum, c) => sum + c.spent, 0).toFixed(2)}</p>
           </div>
           <div className="pl-6 text-right">
-            <p className="text-xs text-[#5b616e] mb-1">Remaining in fund</p>
+            <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
             <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€375</p>
           </div>
         </div>
