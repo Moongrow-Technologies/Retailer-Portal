@@ -51,7 +51,7 @@ export default function Bonuses() {
     completed: bonuses.filter((b) => b.status === 'completed').length
   };
 
-  const filtered = bonuses.filter((b) => tab === 'active' ? (b.status === 'active' || b.status === 'paused_manual') : b.status === tab);
+  const filtered = bonuses.filter((b) => tab === 'active' ? b.status === 'active' || b.status === 'paused_manual' : b.status === tab);
 
   const handleDelete = (bonus) => {
     setBonuses(bonuses.filter((b) => b.id !== bonus.id));
@@ -84,7 +84,7 @@ export default function Bonuses() {
         <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-4">
           <div className="pr-6">
             <p className="text-xs text-[#5b616e] mb-1">Bonuses paid out</p>
-            <p className="text-3xl font-bold tracking-tight mb-1" style={{ color: '#27272b' }}>€100</p>
+            <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€100</p>
           </div>
           <div className="pl-6 text-right">
             <p className="text-xs text-[#5b616e] mb-1">Remaining in fund</p>
@@ -115,21 +115,21 @@ export default function Bonuses() {
       {/* Tabs */}
       <div className="flex items-center mb-6 w-fit bg-[#F7F7F7] rounded-2xl p-1 gap-0.5">
          {TABS.map((t) =>
-         <button
-           key={t.key}
-           onClick={() => setTab(t.key)}
-           className={cn(
-             "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
-             t.key === 'completed' && tab === t.key ?
-             "bg-[#F1EFE8] text-[#5F5E5A] shadow-sm" :
-             tab === t.key ?
-             "bg-white text-[#12121f] shadow-sm" :
-             "text-[#5b616e] hover:text-[#12121f]"
-           )}>
+        <button
+          key={t.key}
+          onClick={() => setTab(t.key)}
+          className={cn(
+            "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all",
+            t.key === 'completed' && tab === t.key ?
+            "bg-[#F1EFE8] text-[#5F5E5A] shadow-sm" :
+            tab === t.key ?
+            "bg-white text-[#12121f] shadow-sm" :
+            "text-[#5b616e] hover:text-[#12121f]"
+          )}>
 
              {t.label}
            </button>
-         )}
+        )}
        </div>
 
       {/* Bonus list */}
@@ -186,19 +186,19 @@ export default function Bonuses() {
 
                 {/* Date */}
                 <span className="text-sm text-[#0c0b0c]">
-                  {bonus.status === 'scheduled' && bonus.start_date
-                    ? <span className="text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</span>
-                    : bonus.type === 'sprint' || !bonus.end_date
-                    ? <span className="text-[#5b616e] italic">On completion</span>
-                    : format(new Date(bonus.end_date), 'MMM d, yyyy')}
+                  {bonus.status === 'scheduled' && bonus.start_date ?
+                  <span className="text-amber-600">{format(new Date(bonus.start_date), 'MMM d, yyyy')}</span> :
+                  bonus.type === 'sprint' || !bonus.end_date ?
+                  <span className="text-[#5b616e] italic">On completion</span> :
+                  format(new Date(bonus.end_date), 'MMM d, yyyy')}
                 </span>
 
                 {/* Status + toggle */}
                 <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                   <StatusBadge status={bonus.status} />
-                  {bonus.status !== 'completed' && bonus.status !== 'scheduled' && (
-                    <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
-                  )}
+                  {bonus.status !== 'completed' && bonus.status !== 'scheduled' &&
+                  <Switch checked={isActive} onCheckedChange={() => handleTogglePause(bonus)} className="data-[state=checked]:bg-[#796EB2]" />
+                  }
                 </div>
 
                 {/* Menu */}
@@ -217,8 +217,8 @@ export default function Bonuses() {
                 </div>
               </div>
               {idx < filtered.length - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
-            </div>
-          );
+            </div>);
+
         })}
       </div>
       }
