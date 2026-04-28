@@ -22,7 +22,7 @@ export default function Onboarding() {
         <StepInviteStaff onNext={handleStepNext} onSkip={handleSkip} onBack={() => setStep(0)} />
       )}
       {step === 2 && (
-        <StepWallet onSkip={handleDone} />
+        <StepWallet onSkip={handleDone} onBack={() => setStep(1)} />
       )}
     </OnboardingShell>
   );

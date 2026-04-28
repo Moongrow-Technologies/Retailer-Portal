@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Wallet, ArrowRight, Zap, Shield, Clock } from 'lucide-react';
+import { Wallet, ArrowRight, Zap, Shield, Clock, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function StepWallet({ onSkip }) {
+export default function StepWallet({ onSkip, onBack }) {
   const navigate = useNavigate();
 
   const handleTopUp = () => {
@@ -79,12 +79,23 @@ export default function StepWallet({ onSkip }) {
       </div>
 
       <div className="flex items-center justify-between">
-        <button
-          onClick={handleDone}
-          className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
-        >
-          Skip, go to dashboard
-        </button>
+        <div className="flex gap-4 items-center">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1.5 text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+          )}
+          <button
+            onClick={handleDone}
+            className="text-sm text-[#9490AA] hover:text-[#796EB2] transition-colors underline"
+          >
+            Skip, go to dashboard
+          </button>
+        </div>
         <Button
           onClick={handleTopUp}
           className="bg-[#796EB2] hover:bg-[#6A5FA3] text-white gap-2"
