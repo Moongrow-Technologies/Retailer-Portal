@@ -100,7 +100,7 @@ export default function CreateBonus() {
               <button key={t.value} onClick={() => setData({ ...data, type: t.value, name: `${t.label} Challenge` })}
                 className={cn(
                   "w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left",
-                  data.type === t.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30 bg-white"
+                  data.type === t.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC] bg-white"
                 )}>
                 <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", t.bg)}>
                   <t.icon className={cn("w-5 h-5", t.color)} />
@@ -134,7 +134,7 @@ export default function CreateBonus() {
                 ].map(m => (
                   <button key={m.value} onClick={() => setData({ ...data, metric: m.value })}
                     className={cn("p-4 rounded-xl border-2 text-left transition-all",
-                      data.metric === m.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
+                      data.metric === m.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                     )}>
                     <p className="font-semibold text-sm text-[#0E0D1E]">{m.label}</p>
                     <p className="text-xs text-[#9490AA] mt-0.5">{m.sub}</p>
@@ -167,7 +167,7 @@ export default function CreateBonus() {
                 {[{ value: 'chain', label: 'Chain-wide', sub: 'All stores compete together' }, ...STORE.locations.map(l => ({ value: l, label: l, sub: 'Single store' }))].map(opt => (
                   <button key={opt.value} onClick={() => setData({ ...data, scope: opt.value })}
                     className={cn("w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 text-left transition-all",
-                      data.scope === opt.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-primary/30"
+                      data.scope === opt.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                     )}>
                     <div>
                       <p className="text-sm font-medium text-[#0E0D1E]">{opt.label}</p>
