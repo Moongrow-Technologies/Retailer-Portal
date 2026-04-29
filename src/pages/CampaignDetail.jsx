@@ -173,7 +173,7 @@ export default function CampaignDetail() {
             {staffLeaderboard.map((staff, i) => (
               <div
                 key={staff.id}
-                className="flex items-center gap-3 cursor-pointer hover:bg-muted/50 rounded-lg px-2 py-1 -mx-2 transition-colors"
+                className="flex items-center gap-3 cursor-pointer hover:bg-[#F0EEF8] rounded-lg px-2 py-1 -mx-2 transition-colors"
                 onClick={() => navigate(`/staff/${staff.id}`)}
               >
                 <span className="w-6 text-sm font-bold text-muted-foreground text-right">{i + 1}</span>
