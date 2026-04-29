@@ -129,15 +129,15 @@ export default function StaffDetail() {
             <AreaChart data={earningsOverTime}>
               <defs>
                 <linearGradient id="earningsGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#796eb2" stopOpacity={0.15} />
-                  <stop offset="95%" stopColor="#796eb2" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#16A34A" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="#16A34A" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" vertical={false} />
               <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <Tooltip />
-              <Area type="monotone" dataKey="earnings" stroke="#796eb2" strokeWidth={2} fill="url(#earningsGrad)" dot={{ r: 3, fill: '#796eb2' }} />
+              <Area type="monotone" dataKey="earnings" stroke="#16A34A" strokeWidth={2} fill="url(#earningsGrad)" dot={{ r: 3, fill: '#16A34A' }} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
