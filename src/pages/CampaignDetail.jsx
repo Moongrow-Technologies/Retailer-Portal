@@ -95,13 +95,9 @@ export default function CampaignDetail() {
         </div>
       </div>
 
-      {(campaign.status === 'paused_budget' || campaign.status === 'completed') && (
+      {campaign.status === 'paused_budget' && (
         <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-3 mb-6">
-          <p className="text-sm font-medium text-red-700">
-            {campaign.status === 'paused_budget'
-              ? 'Campaign paused — budget exhausted. Top up your wallet to resume.'
-              : 'Campaign completed.'}
-          </p>
+          <p className="text-sm font-medium text-red-700">Campaign paused — budget exhausted. Top up your wallet to resume.</p>
         </div>
       )}
 
@@ -175,7 +171,11 @@ export default function CampaignDetail() {
           <h3 className="text-sm font-semibold mb-4">Staff Leaderboard</h3>
           <div className="space-y-3">
             {staffLeaderboard.map((staff, i) => (
-              <div key={staff.id} className="flex items-center gap-3">
+              <div
+                key={staff.id}
+                className="flex items-center gap-3 cursor-pointer hover:bg-muted/50 rounded-lg px-2 py-1 -mx-2 transition-colors"
+                onClick={() => navigate(`/staff/${staff.id}`)}
+              >
                 <span className="w-6 text-sm font-bold text-muted-foreground text-right">{i + 1}</span>
                 <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-primary/10">
                   {STAFF_AVATARS[staff.name]
