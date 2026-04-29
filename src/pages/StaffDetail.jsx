@@ -146,10 +146,10 @@ export default function StaffDetail() {
           <h3 className="text-sm font-semibold text-[#0E0D1E] mb-4">Commission by product</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={commissionByProduct} layout="vertical" margin={{ left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" horizontal={false} />
-              <XAxis type="number" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="product" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} width={85} />
-              <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" horizontal={false} />
+            <XAxis type="number" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
+            <YAxis type="category" dataKey="product" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} width={85} />
+            <Tooltip cursor={false} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }} />
               <Bar
                 dataKey="commission"
                 fill="#796eb2"
