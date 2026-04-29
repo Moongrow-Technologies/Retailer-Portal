@@ -134,39 +134,46 @@ export default function BonusDetail() {
           <div className="px-6 py-4 border-b border-[#EBEBF0]">
             <h2 className="font-semibold text-[#0E0D1E] text-sm">{isActive ? 'Live Leaderboard' : 'Final Standings'}</h2>
           </div>
-
+          {/* Header */}
+          <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">#</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Units Sold</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Prize</span>
+          </div>
           <div>
             {bonus.leaderboard?.map((entry, i) => {
               const pct = Math.round((entry.score / maxScore) * 100);
               const gap = i > 0 ? bonus.leaderboard[i - 1].score - entry.score : null;
               return (
                 <div key={entry.rank}>
-                  <div className="px-6 py-4 hover:bg-[#FAFAF9] transition-colors">
-                    {/* Name + avatar row */}
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-[#9490AA] w-5 text-center">{i + 1}</span>
-                        <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
-                          {STAFF_AVATARS[entry.name]
-                            ? <img src={STAFF_AVATARS[entry.name]} alt={entry.name} className="w-full h-full object-cover" />
-                            : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-[#7A7893]">{entry.name.charAt(0)}</div>
-                          }
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
-                          {i === 0 && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />}
-                        </div>
+                  <div className="grid grid-cols-[40px_1fr_100px_80px] px-6 py-5 items-center hover:bg-[#FAFAF9] transition-colors">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm text-[#9490AA]">{i + 1}</span>
+                      {i === 0 && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />}
+                    </div>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
+                        {STAFF_AVATARS[entry.name]
+                          ? <img src={STAFF_AVATARS[entry.name]} alt={entry.name} className="w-full h-full object-cover" />
+                          : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-[#7A7893]">{entry.name.charAt(0)}</div>
+                        }
                       </div>
-                      <div className="flex items-center gap-3 text-right">
-                        <span className="text-sm font-bold text-[#0E0D1E]">{entry.score} units</span>
-                        {entry.prize && <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{Number(entry.prize).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>}
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
+                      <p className="text-xs text-[#9490AA]">{entry.store}</p>
+                      <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-full">
+                        <div className="h-full bg-[#796EB2] rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
-                    {/* Full-width progress bar */}
-                    <div className="h-2 bg-[#F0EFF5] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#796EB2] rounded-full transition-all" style={{ width: `${pct}%` }} />
                     </div>
-                    <p className="text-xs text-[#9490AA] mt-1">{pct}% of target{gap !== null && isActive ? ` · ${gap} behind` : ''}</p>
+                    <div className="text-right">
+                      <span className="text-sm font-bold text-[#0E0D1E]">{entry.score} units</span>
+                      {gap !== null && isActive && <p className="text-xs text-[#9490AA]">-{gap} behind</p>}
+                    </div>
+                    <div className="text-right">
+                      {entry.prize && <span className="text-xs font-bold text-[#796EB2] bg-[#EDE9F8] px-2 py-0.5 rounded-lg">€{Number(entry.prize).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>}
+                    </div>
                   </div>
                   {i < (bonus.leaderboard?.length ?? 0) - 1 && <div className="h-px bg-[#F0EFF5] mx-6" />}
                 </div>
