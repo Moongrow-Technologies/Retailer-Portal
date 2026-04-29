@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format, subDays, startOfMonth, isAfter } from 'date-fns';
 import { cn } from '@/lib/utils';
-import { TrendingUp, ArrowRightLeft } from 'lucide-react';
+import { TrendingUp, ArrowRightLeft, Trophy, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
 
@@ -124,10 +124,17 @@ export default function TransactionHistory({ transactions }) {
                 <div className="flex items-center gap-3 min-w-0">
                   <div className={cn(
                     "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
-                    tx.type === 'commission' ? "bg-emerald-50" : "bg-[#F4F3FA]"
+                    tx.type === 'commission' ? "bg-emerald-50"
+                    : tx.type === 'bonus_payout' ? "bg-[#FEF0EA]"
+                    : tx.type === 'top_up' ? "bg-[#EAF3DE]"
+                    : "bg-[#F4F3FA]"
                   )}>
                     {tx.type === 'budget_commit' || tx.type === 'budget_release' ? (
                       <ArrowRightLeft className="w-4 h-4 text-[#185FA5]" />
+                    ) : tx.type === 'bonus_payout' ? (
+                      <Trophy className="w-4 h-4 text-[#F0997B]" />
+                    ) : tx.type === 'top_up' ? (
+                      <Plus className="w-4 h-4 text-[#3B6D11]" />
                     ) : (
                       <TrendingUp className={cn(
                         "w-4 h-4",
