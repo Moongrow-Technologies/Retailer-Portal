@@ -10,7 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ArrowLeft, Square, Download, Target, TrendingUp, DollarSign, Users, MoreVertical, AlertTriangle } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { CAMPAIGNS, STAFF, STAFF_AVATARS } from '@/lib/sampleData';
+import { CAMPAIGNS, STAFF, STAFF_AVATARS, PRODUCTS } from '@/lib/sampleData';
 import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
@@ -34,6 +34,10 @@ export default function CampaignDetail() {
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
+
+  const product = PRODUCTS.find(p => p.name === campaign.product_name);
+  const revenue = (product?.price || 0) * campaign.units_sold;
+  const roi = campaign.spent > 0 ? (revenue / campaign.spent) : null;
 
   const staffLeaderboard = STAFF
     .filter(s => s.status === 'active')
@@ -101,7 +105,7 @@ export default function CampaignDetail() {
           {[
             { label: 'Units Sold', value: campaign.units_sold, sub: `of ${campaign.target_units} target` },
             { label: 'Commission Spend', value: `€${campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`, sub: `of €${campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} budget` },
-            { label: 'ROI', value: campaign.status === 'completed' ? '2.4×' : '—', sub: campaign.status === 'completed' ? 'Revenue multiplier' : 'Available on completion' },
+            { label: 'ROI', value: roi !== null ? `${roi.toFixed(1)}×` : '—', sub: roi !== null ? 'Revenue per €1 commission' : 'No spend yet' },
           ].map((s, i) => (
             <div key={i} className="px-6 py-5">
               <p className="text-[10px] font-semibold text-[#7A7893] uppercase tracking-widest mb-2">{s.label}</p>
