@@ -151,44 +151,15 @@ export const WALLET = {
 };
 
 // ─── TRANSACTIONS ─────────────────────────────────────────────────────────────
-// Spread across 60 days, per spec requirements
 export const TRANSACTIONS = [
-  // Recent commissions
-  { id: 't01', type: 'commission',    amount: -2.00,   description: 'Commission: Lisa V. sold 1× OG Kush',           staff_name: 'Lisa V.',   campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-28T11:08:00' },
-  { id: 't02', type: 'commission',    amount: -2.50,   description: 'Commission: Ahmed R. sold 1× Amnesia Haze',     staff_name: 'Ahmed R.',  campaign_name: 'Amnesia Haze Launch',  product_name: 'Amnesia Haze', created_date: '2026-04-28T09:44:00' },
-  { id: 't03', type: 'commission',    amount: -2.00,   description: 'Commission: Sarah K. sold 1× OG Kush',          staff_name: 'Sarah K.',  campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-27T15:21:00' },
-  { id: 't04', type: 'commission',    amount: -2.50,   description: 'Commission: Lisa V. sold 1× Amnesia Haze',      staff_name: 'Lisa V.',   campaign_name: 'Amnesia Haze Launch',  product_name: 'Amnesia Haze', created_date: '2026-04-27T10:33:00' },
-  { id: 't05', type: 'commission',    amount: -3.00,   description: 'Commission: Marco D. sold 1× Gorilla Glue',     staff_name: 'Marco D.',  campaign_name: 'Gorilla Glue Promo',   product_name: 'Gorilla Glue', created_date: '2026-04-26T14:05:00' },
-  { id: 't06', type: 'commission',    amount: -2.00,   description: 'Commission: Tom B. sold 1× OG Kush',            staff_name: 'Tom B.',    campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-25T16:40:00' },
-  { id: 't07', type: 'commission',    amount: -2.50,   description: 'Commission: Fatima A. sold 1× Amnesia Haze',    staff_name: 'Fatima A.', campaign_name: 'Amnesia Haze Launch',  product_name: 'Amnesia Haze', created_date: '2026-04-25T11:18:00' },
-  { id: 't08', type: 'commission',    amount: -2.50,   description: 'Commission: Javier L. sold 1× Amnesia Haze',    staff_name: 'Javier L.', campaign_name: 'Amnesia Haze Launch',  product_name: 'Amnesia Haze', created_date: '2026-04-24T13:52:00' },
-  { id: 't09', type: 'commission',    amount: -2.00,   description: 'Commission: Ahmed R. sold 1× OG Kush',          staff_name: 'Ahmed R.',  campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-23T10:09:00' },
-  { id: 't10', type: 'commission',    amount: -2.00,   description: 'Commission: Lisa V. sold 1× OG Kush',           staff_name: 'Lisa V.',   campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-22T09:30:00' },
-  // Top-ups per spec
-  { id: 't11', type: 'top_up',        amount: 2000.00, description: 'Wallet top-up via EURC transfer',                                                                                                                  created_date: '2026-04-01T09:00:00' },
-  { id: 't12', type: 'top_up',        amount: 1200.00, description: 'Initial wallet funding via EURC transfer',                                                                                                          created_date: '2026-02-28T09:00:00' },
-  // Bonus payouts for completed bonuses
-  { id: 't13', type: 'bonus_payout',  amount: -100.00, description: 'Bonus payout: March Top Seller — Lisa V. (1st place)',   staff_name: 'Lisa V.',   bonus_name: 'March Top Seller',       created_date: '2026-04-01T10:00:00' },
-  { id: 't14', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: March Top Seller — Ahmed R. (2nd place)',  staff_name: 'Ahmed R.',  bonus_name: 'March Top Seller',       created_date: '2026-04-01T10:00:00' },
-  { id: 't15', type: 'bonus_payout',  amount: -25.00,  description: 'Bonus payout: March Top Seller — Sarah K. (3rd place)',  staff_name: 'Sarah K.',  bonus_name: 'March Top Seller',       created_date: '2026-04-01T10:00:00' },
-  { id: 't16', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Lisa V.',           staff_name: 'Lisa V.',   bonus_name: 'Blue Dream Challenge',   created_date: '2026-03-02T10:00:00' },
-  { id: 't17', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Ahmed R.',          staff_name: 'Ahmed R.',  bonus_name: 'Blue Dream Challenge',   created_date: '2026-03-02T10:00:00' },
-  { id: 't18', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Sarah K.',          staff_name: 'Sarah K.',  bonus_name: 'Blue Dream Challenge',   created_date: '2026-03-02T10:00:00' },
-  { id: 't19', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Tom B.',            staff_name: 'Tom B.',    bonus_name: 'Blue Dream Challenge',   created_date: '2026-03-02T10:00:00' },
-  // Budget commits per campaign
-  { id: 't20', type: 'budget_commit', amount: -400.00, description: 'Budget committed: OG Kush Spring Push',           campaign_name: 'OG Kush Spring Push',  created_date: '2026-03-15T08:00:00' },
-  { id: 't21', type: 'budget_commit', amount: -500.00, description: 'Budget committed: Amnesia Haze Launch',           campaign_name: 'Amnesia Haze Launch',  created_date: '2026-04-01T08:00:00' },
-  { id: 't22', type: 'budget_commit', amount: -300.00, description: 'Budget committed: Blue Dream Blitz',              campaign_name: 'Blue Dream Blitz',     created_date: '2026-02-01T08:00:00' },
-  { id: 't23', type: 'budget_commit', amount: -200.00, description: 'Budget committed: White Widow Weekend',           campaign_name: 'White Widow Weekend',  created_date: '2026-04-05T08:00:00' },
-  { id: 't24', type: 'budget_commit', amount: -300.00, description: 'Budget committed: Gorilla Glue Promo',            campaign_name: 'Gorilla Glue Promo',   created_date: '2026-04-10T08:00:00' },
-  // More historical commissions spread across 60 days
-  { id: 't25', type: 'commission',    amount: -1.50,   description: 'Commission: Tom B. sold 1× Blue Dream',          staff_name: 'Tom B.',    campaign_name: 'Blue Dream Blitz',     product_name: 'Blue Dream',   created_date: '2026-03-28T14:55:00' },
-  { id: 't26', type: 'commission',    amount: -1.50,   description: 'Commission: Sarah K. sold 1× Blue Dream',        staff_name: 'Sarah K.',  campaign_name: 'Blue Dream Blitz',     product_name: 'Blue Dream',   created_date: '2026-03-25T11:30:00' },
-  { id: 't27', type: 'commission',    amount: -2.50,   description: 'Commission: Lisa V. sold 1× White Widow',        staff_name: 'Lisa V.',   campaign_name: 'White Widow Weekend',  product_name: 'White Widow',  created_date: '2026-04-18T09:15:00' },
-  { id: 't28', type: 'commission',    amount: -2.50,   description: 'Commission: Javier L. sold 1× White Widow',      staff_name: 'Javier L.', campaign_name: 'White Widow Weekend',  product_name: 'White Widow',  created_date: '2026-04-17T14:22:00' },
-  { id: 't29', type: 'commission',    amount: -3.00,   description: 'Commission: Ahmed R. sold 1× Gorilla Glue',      staff_name: 'Ahmed R.',  campaign_name: 'Gorilla Glue Promo',   product_name: 'Gorilla Glue', created_date: '2026-04-12T10:45:00' },
-  { id: 't30', type: 'commission',    amount: -2.00,   description: 'Commission: Fatima A. sold 1× OG Kush',          staff_name: 'Fatima A.', campaign_name: 'OG Kush Spring Push',  product_name: 'OG Kush',      created_date: '2026-04-20T16:08:00' },
-  { id: 't31', type: 'budget_release', amount: 88.00,  description: 'Budget released: OG Kush Spring Push (remaining)', campaign_name: 'OG Kush Spring Push', created_date: '2026-04-30T23:59:00' },
+  { id: 't01', type: 'commission',     amount: -2.00,   description: 'Commission: Lisa V. sold 1× OG Kush',                  staff_name: 'Lisa V.',   campaign_name: 'OG Kush Spring Push', product_name: 'OG Kush',      created_date: '2026-04-28T11:08:00' },
+  { id: 't02', type: 'top_up',         amount: 2000.00, description: 'Wallet top-up via EURC transfer',                                                                                                                   created_date: '2026-04-01T09:00:00' },
+  { id: 't03', type: 'bonus_payout',   amount: -100.00, description: 'Bonus payout: March Top Seller — Lisa V. (1st place)', staff_name: 'Lisa V.',   bonus_name: 'March Top Seller',                                     created_date: '2026-04-01T10:00:00' },
+  { id: 't04', type: 'budget_commit',  amount: -500.00, description: 'Budget committed: Amnesia Haze Launch',                campaign_name: 'Amnesia Haze Launch',                                                       created_date: '2026-04-01T08:00:00' },
+  { id: 't05', type: 'commission',     amount: -2.50,   description: 'Commission: Ahmed R. sold 1× Amnesia Haze',            staff_name: 'Ahmed R.',  campaign_name: 'Amnesia Haze Launch', product_name: 'Amnesia Haze', created_date: '2026-04-28T09:44:00' },
+  { id: 't06', type: 'bonus_payout',   amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Ahmed R.',        staff_name: 'Ahmed R.',  bonus_name: 'Blue Dream Challenge',                                 created_date: '2026-03-02T10:00:00' },
+  { id: 't07', type: 'budget_commit',  amount: -400.00, description: 'Budget committed: OG Kush Spring Push',                campaign_name: 'OG Kush Spring Push',                                                       created_date: '2026-03-15T08:00:00' },
+  { id: 't08', type: 'top_up',         amount: 1200.00, description: 'Initial wallet funding via EURC transfer',                                                                                                           created_date: '2026-02-28T09:00:00' },
 ];
 
 // ─── ACTIVITIES ───────────────────────────────────────────────────────────────
