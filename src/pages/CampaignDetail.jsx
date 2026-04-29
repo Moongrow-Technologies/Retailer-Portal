@@ -120,7 +120,7 @@ export default function CampaignDetail() {
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#534AB7' }} />
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#796eb2' }} />
           </div>
           <p className="text-xs text-muted-foreground mt-1">{campaign.units_sold} / {campaign.target_units} units</p>
         </div>
@@ -130,7 +130,7 @@ export default function CampaignDetail() {
             <span className="font-medium">{Math.round(spendPct)}%</span>
           </div>
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#534AB7' }} />
+            <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(spendPct, 100)}%`, background: '#796eb2' }} />
           </div>
           <p className="text-xs text-muted-foreground mt-1">€{campaign.spent.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} / €{campaign.budget.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
         </div>
@@ -146,7 +146,7 @@ export default function CampaignDetail() {
               <XAxis dataKey="week" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <Tooltip />
-              <Bar dataKey="sales" fill="#5b616e" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="sales" fill="#796eb2" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
