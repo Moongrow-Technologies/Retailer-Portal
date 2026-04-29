@@ -85,7 +85,7 @@ export default function Dashboard() {
 
         {/* Row 2, Columns 1-2: Activity Feed */}
         <div style={{ gridColumn: 'span 2' }}>
-          <ActivityFeed activities={getActivities()} />
+          <ActivityFeed activities={getActivities().slice(0, 8)} />
         </div>
 
         {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
