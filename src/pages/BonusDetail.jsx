@@ -54,7 +54,7 @@ export default function BonusDetail() {
   const maxScore = bonus.leaderboard?.[0]?.score || 1;
 
   return (
-    <div className="max-w-3xl">
+    <div>
       {/* Back */}
       <button onClick={() => navigate('/bonuses')}
         className="flex items-center gap-1.5 text-sm text-[#7A7893] hover:text-[#796EB2] mb-6 transition-colors">
