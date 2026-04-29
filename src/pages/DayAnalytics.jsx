@@ -43,7 +43,7 @@ const getProductBreakdown = () => [
   { name: 'Others', units: 8, value: 8 }
 ];
 
-const COLORS = ['#534AB7', '#7F77DD', '#AFA9EC', '#D4CDF0'];
+const COLORS = ['#796eb2', '#9b92c8', '#bcb5dd', '#dedaf0'];
 
 export default function DayAnalytics() {
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ export default function DayAnalytics() {
               <XAxis dataKey="hour" tick={{ fontSize: 11, fill: '#5b616e' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: '#5b616e' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '8px', fontSize: 12 }} />
-              <Bar dataKey="units" fill="#534AB7" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="units" fill="#796eb2" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
