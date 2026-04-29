@@ -92,19 +92,19 @@ export default function Leaderboard() {
 
       <div className="w-full bg-white rounded-xl border border-[#EBEBF0] overflow-hidden">
         {/* Table Header */}
-        <div className="grid gap-4 px-6 py-3 border-b border-[#EBEBF0] bg-[#F7F6FB]" style={{ gridTemplateColumns: '48px 1fr 140px 140px 120px 80px' }}>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Rank</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Staff</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Store</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]">Movement</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA] text-right">{metric === 'commission' ? 'Commission' : 'Units Sold'}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9490AA]"></span>
+        <div className="grid gap-4 px-8 py-3 border-b border-[#EBEBF0] bg-[#F7F7F7]" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Rank</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Staff</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Movement</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">{metric === 'commission' ? 'Commission' : 'Units Sold'}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Profile</span>
         </div>
 
         {/* Rows */}
         {sorted.map((staff, i) => (
           <div key={staff.id}>
-            <div className="grid gap-4 px-6 py-4 items-center hover:bg-accent transition-colors" style={{ gridTemplateColumns: '48px 1fr 140px 140px 120px 80px' }}>
+            <div className="grid gap-4 px-8 py-6 items-center hover:bg-[#F5F3FC] transition-colors" style={{ gridTemplateColumns: '50px 1fr 1fr 1fr 1fr 1fr' }}>
               {/* Rank */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[#9490AA]">{i + 1}</span>
