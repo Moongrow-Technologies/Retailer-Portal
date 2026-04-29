@@ -80,14 +80,14 @@ export default function Campaigns() {
               </div>
             </div>
             <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#D1D5DB' }}>
-              <div className="h-full rounded-full" style={{ width: `${pct}%`, background: '#534AB7' }} />
+              <div className="h-full rounded-full" style={{ width: `${pct}%`, background: '#796eb2' }} />
             </div>
             <div className="flex items-center justify-between mb-0">
-              <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
-                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+              <p className="text-xs flex items-center gap-1.5" style={{ color: '#796eb2' }}>
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#796eb2' }}></span>
                 {pct}% paid out of €{fundTotal.toLocaleString('en-US')} Campaign Fund
               </p>
-              <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+              <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#796eb2' }}>
                 {100 - pct}% remaining
                 <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
               </p>
@@ -164,11 +164,11 @@ export default function Campaigns() {
                   {/* Progress bar */}
                   <div className="min-w-0 pr-14">
                     <div className="w-full h-1.5 rounded-full overflow-hidden mb-1" style={{ background: '#D1D5DB' }}>
-                      <div className="h-full rounded-full" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#534AB7' }} />
+                      <div className="h-full rounded-full" style={{ width: `${Math.min(unitsPct, 100)}%`, background: '#796eb2' }} />
                     </div>
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-xs text-[#5b616e] truncate">{campaign.units_sold} / {campaign.target_units} units</span>
-                      <span className="text-xs font-medium text-[#0c0b0c] flex-shrink-0">{Math.round(unitsPct)}%</span>
+                      <span className="text-xs font-medium flex-shrink-0" style={{ color: '#796eb2' }}>{Math.round(unitsPct)}%</span>
                     </div>
                   </div>
 
