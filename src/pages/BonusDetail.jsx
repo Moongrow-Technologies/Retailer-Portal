@@ -162,7 +162,7 @@ export default function BonusDetail() {
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-[#0E0D1E]">{entry.name}</p>
                       <p className="text-xs text-[#9490AA]">{entry.store}</p>
-                      <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-[180px]">
+                      <div className="h-1 bg-[#F0EFF5] rounded-full overflow-hidden mt-2 max-w-full">
                         <div className="h-full bg-[#796EB2] rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
