@@ -145,6 +145,7 @@ export default function BonusDetail() {
                     {/* Name + avatar row */}
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
+                        <span className="text-sm font-bold text-[#9490AA] w-5 text-center">{i + 1}</span>
                         <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-[#E2E0ED]">
                           {STAFF_AVATARS[entry.name]
                             ? <img src={STAFF_AVATARS[entry.name]} alt={entry.name} className="w-full h-full object-cover" />
