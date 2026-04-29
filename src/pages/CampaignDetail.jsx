@@ -116,7 +116,7 @@ export default function CampaignDetail() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="bg-card rounded-xl border border-border p-5">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Units Progress</span>
+            <span className="text-muted-foreground">Units Sold</span>
             <span className="font-medium">{Math.round(unitsPct)}%</span>
           </div>
           <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: '#D1D5DB' }}>
