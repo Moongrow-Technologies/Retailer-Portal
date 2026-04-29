@@ -71,7 +71,7 @@ export default function CampaignDetail() {
               className="data-[state=checked]:bg-[#796EB2]"
             />
           )}
-          {status !== 'completed' && (
+          {status !== 'completed' && status !== 'paused_budget' && (
             <button
               onClick={() => setShowEndModal(true)}
               className="group flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E0ED] bg-white text-sm font-medium text-[#0E0D1E] hover:bg-red-500 hover:border-red-500 hover:text-white transition-all"
@@ -95,9 +95,13 @@ export default function CampaignDetail() {
         </div>
       </div>
 
-      {campaign.status === 'paused_budget' && (
+      {(campaign.status === 'paused_budget' || campaign.status === 'completed') && (
         <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-3 mb-6">
-          <p className="text-sm font-medium text-red-700">Campaign paused — budget exhausted. Top up your wallet to resume.</p>
+          <p className="text-sm font-medium text-red-700">
+            {campaign.status === 'paused_budget'
+              ? 'Campaign paused — budget exhausted. Top up your wallet to resume.'
+              : 'Campaign completed.'}
+          </p>
         </div>
       )}
 
