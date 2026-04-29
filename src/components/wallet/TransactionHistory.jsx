@@ -124,9 +124,10 @@ export default function TransactionHistory({ transactions }) {
                 <div className="flex items-center gap-3 min-w-0">
                   <div className={cn(
                     "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
-                    tx.type === 'commission' ? "bg-emerald-50"
+                    tx.type === 'commission' ? "bg-[#EEEDFE]"
                     : tx.type === 'bonus_payout' ? "bg-[#FEF0EA]"
                     : tx.type === 'top_up' ? "bg-[#EAF3DE]"
+                    : tx.type === 'budget_commit' || tx.type === 'budget_release' ? "bg-[#E6F1FB]"
                     : "bg-[#F4F3FA]"
                   )}>
                     {tx.type === 'budget_commit' || tx.type === 'budget_release' ? (
@@ -136,10 +137,7 @@ export default function TransactionHistory({ transactions }) {
                     ) : tx.type === 'top_up' ? (
                       <Plus className="w-4 h-4 text-[#3B6D11]" />
                     ) : (
-                      <TrendingUp className={cn(
-                        "w-4 h-4",
-                        tx.type === 'commission' ? "text-emerald-600" : "text-[#796EB2]"
-                      )} />
+                      <TrendingUp className="w-4 h-4 text-[#796eb2]" />
                     )}
                   </div>
                   <div className="min-w-0">
