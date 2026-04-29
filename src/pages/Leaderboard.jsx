@@ -98,7 +98,7 @@ export default function Leaderboard() {
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Store</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Movement</span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">{metric === 'commission' ? 'Commission' : 'Units Sold'}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c]">Profile</span>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0c0b0c] text-right">Profile</span>
         </div>
 
         {/* Rows */}
