@@ -31,6 +31,7 @@ export default function CampaignDetail() {
   const campaign = { ...baseCampaign, status };
   const [toast, setToast] = useState(null);
   const [showEndModal, setShowEndModal] = useState(false);
+  const [hoveredBar, setHoveredBar] = useState(null);
 
   const spendPct = campaign.budget > 0 ? (campaign.spent / campaign.budget) * 100 : 0;
   const unitsPct = campaign.target_units > 0 ? (campaign.units_sold / campaign.target_units) * 100 : 0;
@@ -150,7 +151,17 @@ export default function CampaignDetail() {
               <XAxis dataKey="week" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <Tooltip cursor={false} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }} />
-              <Bar dataKey="sales" fill="#796eb2" radius={[4, 4, 0, 0]} />
+              <Bar
+                dataKey="sales"
+                radius={[4, 4, 0, 0]}
+                onMouseEnter={(_, index) => setHoveredBar(index)}
+                onMouseLeave={() => setHoveredBar(null)}
+                shape={(props) => {
+                  const { x, y, width, height, index } = props;
+                  const fill = hoveredBar === index ? '#0c0b0c' : '#796eb2';
+                  return <rect x={x} y={y} width={width} height={height} rx={4} ry={4} fill={fill} />;
+                }}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>

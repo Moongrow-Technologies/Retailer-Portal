@@ -50,6 +50,7 @@ const STAFF_PRODUCT_DATA = {
 
 export default function ProductDetail() {
   const [timePeriod, setTimePeriod] = useState('week');
+  const [hoveredBar, setHoveredBar] = useState(null);
   const navigate = useNavigate();
   const productId = window.location.pathname.split('/').pop();
 
@@ -171,7 +172,17 @@ export default function ProductDetail() {
               contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
               formatter={(val) => [val, 'Units']}
             />
-            <Bar dataKey="units" fill="#796eb2" radius={[4, 4, 0, 0]} />
+            <Bar
+              dataKey="units"
+              radius={[4, 4, 0, 0]}
+              onMouseEnter={(_, index) => setHoveredBar(index)}
+              onMouseLeave={() => setHoveredBar(null)}
+              shape={(props) => {
+                const { x, y, width, height, index } = props;
+                const fill = hoveredBar === index ? '#0c0b0c' : '#796eb2';
+                return <rect x={x} y={y} width={width} height={height} rx={4} ry={4} fill={fill} />;
+              }}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

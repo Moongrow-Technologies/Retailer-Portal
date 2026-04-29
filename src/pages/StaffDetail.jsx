@@ -61,6 +61,7 @@ export default function StaffDetail() {
     : '—';
 
   const bonusHistory = bonusHistoryByStaff[staff.id] || [];
+  const [hoveredBar, setHoveredBar] = useState(null);
 
   const stats = [
     { label: 'Units Sold', value: staff.total_units_sold, sub: 'all campaigns', trend: '↑ 8%' },
@@ -152,12 +153,18 @@ export default function StaffDetail() {
             <Tooltip cursor={false} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }} />
               <Bar
                 dataKey="commission"
-                fill="#796eb2"
                 radius={[0, 4, 4, 0]}
                 cursor="pointer"
+                onMouseEnter={(_, index) => setHoveredBar(index)}
+                onMouseLeave={() => setHoveredBar(null)}
                 onClick={(data) => {
                   const product = PRODUCTS.find(p => p.name === data.product);
                   if (product) navigate(`/products/${product.id}`);
+                }}
+                shape={(props) => {
+                  const { x, y, width, height, index } = props;
+                  const fill = hoveredBar === index ? '#0c0b0c' : '#796eb2';
+                  return <rect x={x} y={y} width={width} height={height} rx={4} ry={4} fill={fill} />;
                 }}
               />
             </BarChart>
