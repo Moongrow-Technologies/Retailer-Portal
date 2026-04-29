@@ -37,8 +37,8 @@ function LiveRipple() {
         }
       `}</style>
       <div className="absolute w-full h-full rounded-lg bg-[#ececee] flex items-center justify-center">
-        <div className="absolute w-2 h-2 rounded-full bg-[#534AB7]"></div>
-        <div className="absolute w-2 h-2 rounded-full bg-[#534AB7] ripple-pulse"></div>
+        <div className="absolute w-2 h-2 rounded-full bg-[#796eb2]"></div>
+        <div className="absolute w-2 h-2 rounded-full bg-[#796eb2] ripple-pulse"></div>
       </div>
     </div>);
 
@@ -105,7 +105,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
        </div>
 
       <div className="flex items-baseline gap-3">
-        <p className="text-[#534AB7] text-3xl font-medium leading-none">{count}</p>
+        <p className="text-[#796eb2] text-3xl font-medium leading-none">{count}</p>
         <TrendBadge value="1 new this month" />
       </div>
 
@@ -113,8 +113,8 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
       <div className="flex gap-2">
         <button
           onClick={() => setTab('campaigns')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'campaigns' ? 'border-[#534AB7] bg-[#F5F3FC] text-[#534AB7]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
-          <span className="w-2 h-2 rounded-full bg-[#534AB7] flex-shrink-0" />
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'campaigns' ? 'border-[#796eb2] bg-[#F5F3FC] text-[#796eb2]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
+          <span className="w-2 h-2 rounded-full bg-[#796eb2] flex-shrink-0" />
           {active.length} Campaigns
         </button>
         <button
@@ -142,7 +142,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
                      </span>
                    </div>
                    <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1.5">
-                     <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: '#534AB7' }} />
+                     <div className="rounded-full h-full transition-all" style={{ width: `${unitsPct}%`, background: '#796eb2' }} />
                    </div>
                    <div className="flex items-center justify-between">
                      <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
@@ -222,7 +222,7 @@ function CommissionCard() {
                  <span className="text-[13px] font-semibold text-[#0c0b0c]">{b.amount}</span>
                </div>
                <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden">
-                 <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#534AB7' }} />
+                 <div className="rounded-full h-full" style={{ width: `${b.pct}%`, background: '#796eb2' }} />
                </div>
              </div>);
 
@@ -332,7 +332,7 @@ function UnitsSoldCard() {
                 const isHovered = hoveredIdx === props.index;
                 const isBest = props.units === maxVal;
                 let fill;
-                if (isHovered) fill = '#534AB7';else
+                if (isHovered) fill = '#796eb2';else
                 if (hoveredIdx !== null) fill = '#E2E0ED';else
                 if (isBest) fill = '#5b616e';else
                 fill = '#E2E0ED';

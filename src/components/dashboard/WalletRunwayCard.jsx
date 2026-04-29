@@ -33,8 +33,8 @@ export default function WalletRunwayCard() {
         {/* Header: Title + Budget */}
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#534AB7] flex-shrink-0"></div>
-            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#534AB7] transition-colors">Campaigns</h3>
+            <div className="w-3 h-3 rounded-full bg-[#796eb2] flex-shrink-0"></div>
+            <h3 className="text-sm font-bold text-[#0c0b0c] group-hover:text-[#796eb2] transition-colors">Campaigns</h3>
           </div>
           <span className="text-sm font-bold text-[#0c0b0c]">{fmtEur(campaignBudget)}</span>
         </div>
@@ -45,14 +45,14 @@ export default function WalletRunwayCard() {
         {/* Progress bar */}
         <div className="w-full bg-[#EBEBF0] rounded-full h-1.5 overflow-hidden mb-2">
           <div
-            className="bg-[#534AB7] h-full rounded-full transition-all"
+            className="bg-[#796eb2] h-full rounded-full transition-all"
             style={{ width: `${campaignPercent}%` }}
           ></div>
         </div>
         
         {/* Paid out and Remaining */}
         <div className="flex justify-between">
-          <span className="text-xs font-bold text-[#534AB7]">{fmtEur(campaignPaidOut)} paid out</span>
+          <span className="text-xs font-bold text-[#796eb2]">{fmtEur(campaignPaidOut)} paid out</span>
           <span className="text-xs font-bold text-[#0c0b0c]">{fmtEur(campaignRemaining)} left</span>
         </div>
       </Link>
