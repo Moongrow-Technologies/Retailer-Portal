@@ -129,15 +129,15 @@ export default function StaffDetail() {
             <AreaChart data={earningsOverTime}>
               <defs>
                 <linearGradient id="earningsGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.15} />
-                  <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#796eb2" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="#796eb2" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#F0EFF5" vertical={false} />
               <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <Tooltip />
-              <Area type="monotone" dataKey="earnings" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#earningsGrad)" dot={{ r: 3, fill: 'hsl(var(--primary))' }} />
+              <Area type="monotone" dataKey="earnings" stroke="#796eb2" strokeWidth={2} fill="url(#earningsGrad)" dot={{ r: 3, fill: '#796eb2' }} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -150,7 +150,7 @@ export default function StaffDetail() {
               <XAxis type="number" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <YAxis type="category" dataKey="product" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} width={85} />
               <Tooltip />
-              <Bar dataKey="commission" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="commission" fill="#796eb2" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
