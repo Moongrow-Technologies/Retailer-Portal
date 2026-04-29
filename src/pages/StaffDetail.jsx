@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { ArrowLeft, UserX, AlertTriangle } from 'lucide-react';
-import { STAFF } from '@/lib/sampleData';
+import { STAFF, PRODUCTS } from '@/lib/sampleData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { cn } from '@/lib/utils';
 
@@ -150,7 +150,16 @@ export default function StaffDetail() {
               <XAxis type="number" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} />
               <YAxis type="category" dataKey="product" tick={{ fontSize: 11, fill: '#9490AA' }} axisLine={false} tickLine={false} width={85} />
               <Tooltip />
-              <Bar dataKey="commission" fill="#796eb2" radius={[0, 4, 4, 0]} />
+              <Bar
+                dataKey="commission"
+                fill="#796eb2"
+                radius={[0, 4, 4, 0]}
+                cursor="pointer"
+                onClick={(data) => {
+                  const product = PRODUCTS.find(p => p.name === data.product);
+                  if (product) navigate(`/products/${product.id}`);
+                }}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
