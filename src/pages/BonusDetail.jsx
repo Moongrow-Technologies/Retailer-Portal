@@ -7,7 +7,7 @@ import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import SuccessToast from '@/components/shared/SuccessToast';
-import { BONUSES, STAFF_AVATARS } from '@/lib/sampleData';
+import { BONUSES, STAFF, STAFF_AVATARS } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
 
 const typeConfig = {
@@ -52,6 +52,7 @@ export default function BonusDetail() {
   const Icon = cfg.icon;
   const isActive = bonus.status === 'active';
   const maxScore = bonus.leaderboard?.[0]?.score || 1;
+  const staffById = Object.fromEntries(STAFF.map(s => [s.name, s.id]));
 
   return (
     <div>
@@ -148,7 +149,10 @@ export default function BonusDetail() {
               const initials = entry.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
               return (
                 <div key={entry.rank}>
-                  <div className="grid grid-cols-[40px_1fr_120px_90px] px-6 py-4 items-center hover:bg-accent transition-colors">
+                  <div
+                    className="grid grid-cols-[40px_1fr_120px_90px] px-6 py-4 items-center hover:bg-[#F0EEF8] transition-colors cursor-pointer"
+                    onClick={() => staffById[entry.name] && navigate(`/staff/${staffById[entry.name]}`)}
+                  >
                     {/* Rank */}
                     <div className="flex items-center gap-1">
                       <span className="text-sm text-[#9490AA] font-medium">{i + 1}</span>
