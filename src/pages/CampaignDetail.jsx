@@ -149,7 +149,7 @@ export default function CampaignDetail() {
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="week" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
               <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
-              <Tooltip />
+              <Tooltip cursor={false} contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }} />
               <Bar dataKey="sales" fill="#796eb2" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
