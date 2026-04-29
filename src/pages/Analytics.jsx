@@ -215,7 +215,7 @@ export default function Analytics() {
                     <div className="flex-1 h-1.5 bg-[#D1D5DB] rounded-full overflow-hidden">
                       <div 
                         className="h-full rounded-full transition-all"
-                        style={{ width: `${barWidth}%`, backgroundColor: '#534AB7' }}
+                        style={{ width: `${barWidth}%`, backgroundColor: '#796eb2' }}
                       />
                     </div>
                     <span className="text-sm font-semibold w-12 text-right text-[#0c0b0c]">

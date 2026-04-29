@@ -92,14 +92,14 @@ export default function WalletPage() {
               <div>
                 <div className="flex items-center justify-between mb-0.5">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#534AB7] flex-shrink-0" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#796eb2] flex-shrink-0" />
                     <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
                   </div>
                   <span className="text-sm font-bold text-[#0c0b0c]">€{campaignFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</span>
                 </div>
                 <p className="text-xs text-[#5b616e] mb-2 ml-[18px]">{activeCampaigns} active campaign{activeCampaigns !== 1 ? 's' : ''}</p>
                 <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-1">
-                  <div className="h-full rounded-full bg-[#534AB7]" style={{ width: `${campaignPct}%` }} />
+                  <div className="h-full rounded-full bg-[#796eb2]" style={{ width: `${campaignPct}%` }} />
                 </div>
                 <div className="flex justify-between">
                   <p className="text-xs text-[#5b616e]">€{campaignPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
