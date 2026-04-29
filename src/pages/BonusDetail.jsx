@@ -148,7 +148,7 @@ export default function BonusDetail() {
               const initials = entry.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
               return (
                 <div key={entry.rank}>
-                  <div className="grid grid-cols-[48px_1fr_160px_120px] px-6 py-5 items-center hover:bg-[#FAFAF9] transition-colors">
+                  <div className="grid grid-cols-[48px_1fr_160px_120px] px-6 py-5 items-center hover:bg-accent transition-colors">
                     {/* Rank */}
                     <div className="flex items-center gap-1">
                       <span className="text-sm text-[#9490AA] font-medium">{i + 1}</span>
