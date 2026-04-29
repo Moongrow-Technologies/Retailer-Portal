@@ -152,7 +152,7 @@ export default function ProductDetail() {
                 onClick={() => setTimePeriod(period.value)}
                 className={`text-xs font-medium px-3 py-1.5 rounded-md transition-colors ${
                   timePeriod === period.value
-                    ? 'bg-[#534AB7] text-white'
+                    ? 'bg-[#796eb2] text-white'
                     : 'bg-[#F0EFF5] text-[#7A7893] hover:bg-[#E8E5F5]'
                 }`}
               >
@@ -170,7 +170,7 @@ export default function ProductDetail() {
               contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', fontSize: 12 }}
               formatter={(val) => [val, 'Units']}
             />
-            <Bar dataKey="units" fill="#534AB7" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="units" fill="#796eb2" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -216,7 +216,7 @@ export default function ProductDetail() {
                        </span>
                      </div>
                      <div className="w-full h-2 rounded-full bg-[#E2E0ED] overflow-hidden mb-2">
-                       <div className="h-full bg-[#534AB7]" style={{ width: `${unitsPct}%` }} />
+                     <div className="h-full bg-[#796eb2]" style={{ width: `${unitsPct}%` }} />
                      </div>
                      <div className="flex items-center justify-between mb-1">
                        <span className="text-xs text-[#0c0b0c]">{c.units_sold} / {c.target_units} units</span>
@@ -291,7 +291,7 @@ export default function ProductDetail() {
           {pastCampaigns.map((c, idx) => (
             <div key={c.id}>
               <div className="grid grid-cols-[2fr_1.5fr_1fr_1fr_100px] px-6 py-4 items-center hover:bg-[#F5F3FC] transition-colors">
-                <Link to={`/campaigns/${c.id}`} className="text-sm font-semibold text-[#0c0b0c] hover:text-[#534AB7] transition-colors">{c.name}</Link>
+                <Link to={`/campaigns/${c.id}`} className="text-sm font-semibold text-[#0c0b0c] hover:text-[#796eb2] transition-colors">{c.name}</Link>
                 <span className="text-sm text-[#5b616e]">
                   {c.start_date ? format(parseISO(c.start_date), 'MMM d') : '—'} – {c.end_date ? format(parseISO(c.end_date), 'MMM d, yyyy') : '—'}
                 </span>
