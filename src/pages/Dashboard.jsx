@@ -61,37 +61,40 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gridTemplateRows: 'auto auto',
-        gap: '18px',
-        alignItems: 'start'
-      }}>
-        {/* Row 1, Column 1: Wallet cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <div style={walletCardHeight ? { height: walletCardHeight, display: 'flex', flexDirection: 'column' } : { display: 'flex', flexDirection: 'column' }}>
-            <CompactWalletCard wallet={wallet} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        {/* Row 1: Full-width Wallet Card */}
+        <CompactWalletCard wallet={wallet} />
+
+        {/* Row 2: Metric Cards + Runway */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gap: '18px',
+          alignItems: 'start'
+        }}>
+          {/* Column 1: Runway */}
+          <WalletRunwayCard wallet={wallet} />
+
+          {/* Columns 2-3: Metric Cards */}
+          <div style={{ gridColumn: 'span 2' }}>
+            <DashboardMetricCards campaigns={getCampaigns()} bonuses={getBonuses()} activeCampaignsCardRef={activeCampaignsCardRef} revenueCardRef={revenueCardRef} />
           </div>
-          <div style={runwayCardHeight ? { height: runwayCardHeight, display: 'flex', flexDirection: 'column' } : { display: 'flex', flexDirection: 'column' }}>
-            <WalletRunwayCard wallet={wallet} />
+        </div>
+
+        {/* Row 3: Activity Feed + Top Budtenders */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gap: '18px',
+          alignItems: 'start'
+        }}>
+          <div style={{ gridColumn: 'span 2' }}>
+            <ActivityFeed activities={getActivities().slice(0, 8)} />
           </div>
-        </div>
-
-        {/* Row 1, Columns 2-3: Metric Cards */}
-        <div style={{ gridColumn: 'span 2' }}>
-          <DashboardMetricCards campaigns={getCampaigns()} bonuses={getBonuses()} activeCampaignsCardRef={activeCampaignsCardRef} revenueCardRef={revenueCardRef} />
-        </div>
-
-        {/* Row 2, Columns 1-2: Activity Feed */}
-        <div style={{ gridColumn: 'span 2' }}>
-          <ActivityFeed activities={getActivities().slice(0, 8)} />
-        </div>
-
-        {/* Row 2, Column 3: Top Budtenders + Needs Attention */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <TopBudtenders staff={topBudtenders} />
-          <NeedsAttention staff={needsAttention} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <TopBudtenders staff={topBudtenders} />
+            <NeedsAttention staff={needsAttention} />
+          </div>
         </div>
       </div>
     </div>
