@@ -65,7 +65,7 @@ export default function TransactionHistory({ transactions }) {
   return (
     <div>
       {/* Header — outside the card */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-3 mt-4">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction history</h3>
         <div className="flex items-center gap-0.5 bg-[#F7F7F7] rounded-xl p-1">
           {[
