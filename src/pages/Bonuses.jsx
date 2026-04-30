@@ -86,7 +86,7 @@ export default function Bonuses() {
           const remaining = fundTotal - paidOut;
           const pct = Math.round(paidOut / fundTotal * 100);
           return (<>
-            <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
+            <div className="grid grid-cols-2 mb-2">
               <div className="pr-6">
                 <p className="text-xs text-white/70 mb-2">Bonuses paid out</p>
                 <p className="mb-1 text-3xl font-medium tracking-tight text-white">€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
