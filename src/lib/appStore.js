@@ -173,6 +173,24 @@ export function deleteCampaign(id) {
   notify();
 }
 
+export function restartCampaign(id) {
+  const c = state.campaigns.find(c => c.id === id);
+  if (!c) return;
+  state = {
+    ...state,
+    campaigns: state.campaigns.map(c => c.id === id ? { ...c, status: 'active', spent: 0, units_sold: 0 } : c),
+    activities: [{
+      type: 'campaign_resumed',
+      message: `${c.name} restarted`,
+      actor: 'Admin',
+      campaign_name: c.name,
+      created_date: new Date().toISOString(),
+    }, ...state.activities],
+  };
+  recalcWallet();
+  notify();
+}
+
 export function toggleCampaignStatus(id) {
   const c = state.campaigns.find(c => c.id === id);
   if (!c) return;

@@ -9,7 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { PRODUCT_IMAGES } from '@/lib/sampleData';
 import SegmentedProgress from '@/components/shared/SegmentedProgress';
 import { cn } from '@/lib/utils';
-import { getCampaigns, getWallet, toggleCampaignStatus, deleteCampaign, subscribe } from '@/lib/appStore';
+import { getCampaigns, getWallet, toggleCampaignStatus, deleteCampaign, restartCampaign, subscribe } from '@/lib/appStore';
 
 const TABS = [
 { key: 'all', label: 'All' },
@@ -190,6 +190,9 @@ export default function Campaigns() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => navigate(`/campaigns/${campaign.id}/edit`)}>Edit</DropdownMenuItem>
+                        {isCompleted && (
+                          <DropdownMenuItem onClick={() => restartCampaign(campaign.id)}>Restart</DropdownMenuItem>
+                        )}
                         <DropdownMenuItem onClick={() => handleDelete(campaign)} className="text-destructive">Delete</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
