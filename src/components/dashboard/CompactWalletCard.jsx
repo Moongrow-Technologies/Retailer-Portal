@@ -48,15 +48,15 @@ export default function CompactWalletCard({ wallet }) {
       </div>
 
       {/* Bottom — white */}
-      <div className="bg-white px-6 py-4 flex items-center justify-between">
-        <div>
+      <div className="bg-white px-6 py-4 flex flex-col flex-1">
+        <div className="mb-4">
           <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
           <p className="text-lg font-bold leading-none text-[#5b616e]">
             {runwayDays} <span className="text-sm font-semibold">days left</span>
           </p>
           <p className="text-xs text-[#5b616e]">At current spend · ~May 22</p>
         </div>
-        <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline font-semibold" onClick={() => window.scrollTo(0, 0)}>
+        <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline font-semibold mt-auto" onClick={() => window.scrollTo(0, 0)}>
           View Wallet →
         </Link>
       </div>
