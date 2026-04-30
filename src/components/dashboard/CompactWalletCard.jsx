@@ -45,20 +45,19 @@ export default function CompactWalletCard({ wallet }) {
             </button>
           </div>
         </div>
-        {/* Runway card */}
-        <div className="flex flex-col justify-center px-4 py-3 rounded-xl border border-white/20 self-start ml-4 flex-shrink-0">
-          <p className="text-white/70 text-xs mb-1">Estimated runway</p>
-          <p className="text-white text-xl font-bold leading-none mb-1">
-            {runwayDays} <span className="text-sm font-semibold">days left</span>
-          </p>
-          <p className="text-white/60 text-xs">At current spend · ~May 22</p>
-        </div>
       </div>
 
       {/* Bottom — white */}
-      <div className="bg-white px-6 py-4 mt-auto">
-        <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline block font-semibold" onClick={() => window.scrollTo(0, 0)}>
-          View Moongrow Wallet →
+      <div className="bg-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
+          <p className="text-lg font-bold leading-none" style={{ color: runwayColor }}>
+            {runwayDays} <span className="text-sm font-semibold">days left</span>
+          </p>
+          <p className="text-xs text-[#5b616e]">At current spend · ~May 22</p>
+        </div>
+        <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline font-semibold" onClick={() => window.scrollTo(0, 0)}>
+          View Wallet →
         </Link>
       </div>
 
