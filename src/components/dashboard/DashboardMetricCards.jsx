@@ -116,7 +116,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
         </button>
         <button
           onClick={() => setTab('bonuses')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'bonuses' ? 'border-[#F0997B] bg-[#FEF5F1] text-[#E07850]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'bonuses' ? 'border-[#C5C3D0] bg-[#F4F4F4] text-[#0c0b0c]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
           <span className="w-2 h-2 rounded-full bg-[#F0997B] flex-shrink-0" />
           {activeBonuses.length} Bonuses
         </button>
