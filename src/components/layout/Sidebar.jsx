@@ -43,7 +43,7 @@ export default function Sidebar() {
                 "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#f7f7fb]"
               )}>
               
-              <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} fill="currentColor" />
+              <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
               <span className={cn("font-medium", active ? "text-[#796EB2]" : "text-[#4A4761]")}>{item.label}</span>
             </Link>);
 
