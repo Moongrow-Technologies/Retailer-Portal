@@ -51,7 +51,7 @@ export default function CompactWalletCard({ wallet }) {
       <div className="bg-white px-6 py-4 flex items-center justify-between">
         <div>
           <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
-          <p className="text-lg font-bold leading-none" style={{ color: runwayColor }}>
+          <p className="text-lg font-bold leading-none text-[#5b616e]">
             {runwayDays} <span className="text-sm font-semibold">days left</span>
           </p>
           <p className="text-xs text-[#5b616e]">At current spend · ~May 22</p>
