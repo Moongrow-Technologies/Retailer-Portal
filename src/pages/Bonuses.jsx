@@ -77,7 +77,7 @@ export default function Bonuses() {
       </div>
 
       {/* Budget card */}
-      <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6">
+      <div className="rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6" style={{ background: 'linear-gradient(135deg, #E8753A 0%, #F0997B 60%, #F5B89A 100%)' }}>
 
         {/* Two columns: Prizes paid out | Remaining in fund */}
         {(() => {
@@ -88,25 +88,25 @@ export default function Bonuses() {
           return (<>
             <div className="grid grid-cols-2 divide-x divide-[#EBEBF0] mb-2">
               <div className="pr-6">
-                <p className="text-xs text-[#5b616e] mb-2">Bonuses paid out</p>
-                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
+                <p className="text-xs text-white/70 mb-2">Bonuses paid out</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight text-white">€{paidOut.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
               </div>
               <div className="pl-6 text-right">
-                <p className="text-xs text-[#5b616e] mb-2">Remaining in fund</p>
-                <p className="mb-1 text-3xl font-medium tracking-tight" style={{ color: '#27272b' }}>€{remaining.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
+                <p className="text-xs text-white/70 mb-2">Remaining in fund</p>
+                <p className="mb-1 text-3xl font-medium tracking-tight text-white">€{remaining.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
               </div>
             </div>
-            <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: '#E2E0ED' }}>
-              <div className="h-full" style={{ width: `${pct}%`, background: '#F0997B' }} />
+            <div className="w-full h-1.5 rounded-full overflow-hidden flex mb-4" style={{ background: 'rgba(255,255,255,0.3)' }}>
+              <div className="h-full" style={{ width: `${pct}%`, background: 'rgba(255,255,255,0.85)' }} />
             </div>
             <div className="flex items-center justify-between mb-0">
-              <p className="text-xs flex items-center gap-1.5" style={{ color: '#27272b' }}>
-                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#27272b' }}></span>
+              <p className="text-xs flex items-center gap-1.5 text-white/80">
+                <span className="w-1.5 h-1.5 rounded-full inline-block bg-white/80"></span>
                 {pct}% paid out of €{fundTotal.toLocaleString('en-US')} Bonus Fund
               </p>
-              <p className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#27272b' }}>
+              <p className="text-xs font-medium flex items-center gap-1.5 text-white/80">
                 {100 - pct}% remaining
-                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e2e2e2' }}></span>
+                <span className="w-1.5 h-1.5 rounded-full inline-block bg-white/40"></span>
               </p>
             </div>
           </>);
