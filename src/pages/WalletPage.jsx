@@ -70,33 +70,33 @@ export default function WalletPage() {
           style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}
         >
 
-          <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-4">
-              <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
-              <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
+          <div className="relative z-10 flex items-start justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
+                <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
+              </div>
+              <p className="text-white text-5xl font-bold tracking-tight leading-none mb-2">
+                €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </p>
+              <p className="text-white/70 text-sm">Available balance</p>
             </div>
-            <p className="text-white text-5xl font-bold tracking-tight leading-none mb-2">
-              €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </p>
-            <p className="text-white/70 text-sm">Available balance</p>
+            {/* Divider + Runway */}
+            <div className="flex items-stretch gap-0 self-stretch ml-6">
+              <div className="w-px bg-white/20 mx-6" />
+              <div className="flex flex-col justify-center">
+                <p className="text-white/70 text-xs mb-1">Estimated runway</p>
+                <p className="text-white text-2xl font-bold leading-none mb-1">
+                  {runwayDays} <span className="text-base font-semibold">days left</span>
+                </p>
+                <p className="text-white/60 text-xs">At current spend · ~May 22</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Allocated funds + runway — below the hero */}
         <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex gap-6">
-          {/* Left: runway */}
-          <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6 justify-center">
-            {/* Estimated runway box */}
-            <div className="bg-[#F7F7F8] rounded-xl p-4">
-              <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
-              <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
-                {runwayDays} <span className="text-base font-semibold">days left</span>
-              </p>
-              <p className="text-xs text-[#5b616e]">At current spend rate · ~May 22</p>
-            </div>
-          </div>
-
-          {/* Right: allocated funds */}
           <div className="flex-1">
             <p className="text-sm font-bold text-[#0c0b0c] mb-4">Allocated funds</p>
             <div className="space-y-4">
