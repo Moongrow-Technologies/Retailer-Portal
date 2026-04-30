@@ -143,7 +143,7 @@ export default function WalletPage() {
         </div>
 
       {/* Transaction History */}
-      <div id="tx-history" className="mt-12">
+      <div id="tx-history" className="mt-8">
         <TransactionHistory transactions={getTransactions()} />
       </div>
 
