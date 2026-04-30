@@ -126,12 +126,14 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
       <div className="border-t border-[#F4F3FA] pt-3" style={{ minHeight: 140 }}>
         {tab === 'campaigns' ?
         <div className="space-y-4">
-            {active.slice(0, 2).map((c) => {
+            {active.slice(0, 2).map((c, index) => {
             const dl = daysLeft(c.end_date);
             const warn = dl !== null && dl <= 5;
             const unitsPct = c.target_units > 0 ? Math.round(c.units_sold / c.target_units * 100) : 0;
             return (
-              <div key={c.id} onClick={() => navigate(`/campaigns/${c.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+              <React.Fragment key={c.id}>
+                {index > 0 && <div className="h-px bg-[#F0EFF5]" />}
+                <div onClick={() => navigate(`/campaigns/${c.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
                    <div className="flex items-center justify-between mb-1.5">
                      <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{c.name}</span>
                      <span className="text-[12px] font-semibold text-[#5b616e]">
@@ -145,7 +147,8 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
                      <span className="text-[11px] text-[#5b616e]">{c.units_sold} / {c.target_units} units</span>
                      <span className="text-[11px] text-[#5b616e]">{unitsPct}%</span>
                    </div>
-                 </div>);
+                 </div>
+              </React.Fragment>);
 
           })}
           </div> :
