@@ -295,7 +295,7 @@ function UnitsSoldCard() {
         <PeriodPill value={period} onChange={handlePeriodChange} />
       </div>
 
-      <div style={{ minHeight: 44 }}>
+      <div style={{ minHeight: 44 }} className="mb-4">
         <p className="text-[#0c0b0c] text-3xl font-medium leading-none">
           {displayValue}
           {hoveredEntry && <span className="text-[15px] text-[#5b616e] font-normal ml-2">{hoveredEntry.day}</span>}
