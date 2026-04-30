@@ -59,7 +59,7 @@ export default function Campaigns() {
         </Link>
       </div>
 
-      <div className="rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6" style={{ background: 'linear-gradient(135deg, #5B4FCF 0%, #796eb2 60%, #9E95CC 100%)' }}>
+      <div className="rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mb-6" style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}>
 
 
         {/* Two columns: Commission paid out | Remaining in fund */}
