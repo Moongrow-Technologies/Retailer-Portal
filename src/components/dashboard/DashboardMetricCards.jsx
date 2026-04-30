@@ -106,7 +106,6 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
 
       <div className="flex items-baseline gap-3">
         <p className="text-[#796eb2] text-3xl font-medium leading-none">{count}</p>
-        <TrendBadge value="1 new this month" />
       </div>
 
       {/* Tabs */}
