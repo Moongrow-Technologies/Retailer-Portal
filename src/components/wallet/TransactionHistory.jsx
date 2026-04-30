@@ -161,7 +161,7 @@ export default function TransactionHistory({ transactions }) {
                 {/* Amount */}
                 <p className={cn(
                   "text-sm font-semibold tabular-nums text-right",
-                  tx.type === 'top_up' ? "text-emerald-600" : tx.amount < 0 ? "text-[#EF4444]" : "text-[#0E0D1E]"
+                  tx.type === 'top_up' ? "text-emerald-600" : tx.type === 'budget_commit' || tx.type === 'budget_release' ? "text-[#0E0D1E]" : tx.amount < 0 ? "text-[#EF4444]" : "text-[#0E0D1E]"
                 )}>
                   {tx.type === 'top_up' ? '+' : tx.type === 'commission' || tx.type === 'bonus_payout' ? '-' : ''}€{Math.abs(tx.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
