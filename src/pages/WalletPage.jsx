@@ -98,9 +98,6 @@ export default function WalletPage() {
 
           {/* Allocated funds — three vertical sections */}
           <div className="bg-white">
-            <div className="px-6 py-4 border-b border-[#EBEBF0]">
-              <p className="text-sm font-bold text-[#0c0b0c]">Allocated funds</p>
-            </div>
             <div className="flex divide-x divide-[#EBEBF0]">
               {/* Campaign Fund */}
               <div className="flex-1 p-6">
