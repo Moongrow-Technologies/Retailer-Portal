@@ -69,8 +69,7 @@ export default function WalletPage() {
           className="rounded-2xl p-6 relative overflow-hidden"
           style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}
         >
-          {/* decorative circle */}
-          <div className="absolute right-[-40px] bottom-[-40px] w-[200px] h-[200px] rounded-full opacity-20" style={{ background: 'rgba(255,255,255,0.4)' }} />
+
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-4">
               <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
