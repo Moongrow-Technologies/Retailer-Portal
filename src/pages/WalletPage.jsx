@@ -63,9 +63,8 @@ export default function WalletPage() {
         </div>
       }
 
-      <div className="space-y-4">
-        {/* Combined Wallet Card */}
-        <div className="rounded-2xl overflow-hidden border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)]">
+      {/* Combined Wallet Card */}
+      <div className="rounded-2xl overflow-hidden border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)]">
           {/* Purple gradient hero */}
           <div
             className="p-6"
@@ -143,10 +142,9 @@ export default function WalletPage() {
           </div>
         </div>
 
-        {/* Transaction History */}
-        <div id="tx-history" className="mt-14">
-          <TransactionHistory transactions={getTransactions()} />
-        </div>
+      {/* Transaction History */}
+      <div id="tx-history" className="mt-12">
+        <TransactionHistory transactions={getTransactions()} />
       </div>
 
       <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
