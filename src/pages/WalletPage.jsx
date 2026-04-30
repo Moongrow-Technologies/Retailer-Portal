@@ -100,7 +100,7 @@ export default function WalletPage() {
           <div className="bg-white">
             <div className="flex divide-x divide-[#EBEBF0]">
               {/* Campaign Fund */}
-              <div className="flex-1 p-6">
+              <div className="flex-[2] p-6">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#796eb2] flex-shrink-0" />
                   <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
@@ -117,7 +117,7 @@ export default function WalletPage() {
               </div>
 
               {/* Bonus Fund */}
-              <div className="flex-1 p-6">
+              <div className="flex-[2] p-6">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
                   <span className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</span>
@@ -134,7 +134,7 @@ export default function WalletPage() {
               </div>
 
               {/* Unbudgeted */}
-              <div className="flex-1 p-6">
+              <div className="flex-[1] p-6">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#D1D0D8] flex-shrink-0" />
                   <span className="text-sm font-semibold text-[#5b616e]">Unbudgeted</span>
