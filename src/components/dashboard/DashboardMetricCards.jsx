@@ -104,9 +104,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
          <LiveRipple />
        </div>
 
-      <div className="flex items-baseline gap-3">
-        <p className="text-[#796eb2] text-3xl font-medium leading-none">{count}</p>
-      </div>
+      
 
       {/* Tabs */}
       <div className="flex gap-2">
