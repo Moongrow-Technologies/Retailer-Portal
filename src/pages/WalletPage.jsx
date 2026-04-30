@@ -83,7 +83,7 @@ export default function WalletPage() {
                 <p className="text-white/70 text-sm">Available balance</p>
               </div>
               {/* Runway card */}
-              <div className="flex flex-col justify-center px-5 py-4 rounded-xl border border-white/20 bg-white/10 self-center ml-6">
+              <div className="flex flex-col justify-center px-5 py-4 rounded-xl border border-white/20 self-center ml-6">
                 <p className="text-white/70 text-xs mb-1">Estimated runway</p>
                 <p className="text-white text-2xl font-bold leading-none mb-1">
                   {runwayDays} <span className="text-base font-semibold">days left</span>
