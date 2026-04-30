@@ -64,16 +64,29 @@ export default function WalletPage() {
       }
 
       <div className="space-y-4">
-        {/* Wallet Card */}
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex gap-6">
-          {/* Left: balance + runway */}
-          <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6 justify-center">
-            <div>
-              <p className="text-sm text-[#5b616e] mb-1">Total balance</p>
-              <p className="text-[#0c0b0c] text-3xl font-medium tracking-tight">
-                €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-              </p>
+        {/* Wallet Card — hero banner */}
+        <div
+          className="rounded-2xl p-6 relative overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}
+        >
+          {/* decorative circle */}
+          <div className="absolute right-[-40px] bottom-[-40px] w-[200px] h-[200px] rounded-full opacity-20" style={{ background: 'rgba(255,255,255,0.4)' }} />
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-4">
+              <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
+              <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
             </div>
+            <p className="text-white text-5xl font-bold tracking-tight leading-none mb-2">
+              €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </p>
+            <p className="text-white/70 text-sm">Available balance</p>
+          </div>
+        </div>
+
+        {/* Allocated funds + runway — below the hero */}
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] p-6 flex gap-6">
+          {/* Left: runway */}
+          <div className="flex flex-col gap-4 min-w-[220px] border-r border-[#EBEBF0] pr-6 justify-center">
             {/* Estimated runway box */}
             <div className="bg-[#F7F7F8] rounded-xl p-4">
               <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
