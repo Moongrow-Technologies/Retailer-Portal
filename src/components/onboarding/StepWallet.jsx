@@ -25,17 +25,13 @@ export default function StepWallet({ onSkip, onBack }) {
       </div>
 
       {/* Wallet card */}
-      <div className="rounded-2xl p-6 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #5B67CA 0%, #9B8FC4 50%, #E8E6F5 100%)' }}>
-        <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[#796EB2]/20" />
-        <div className="absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-[#796EB2]/10" />
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-4">
-            <Wallet className="w-4 h-4 text-white" />
-            <span className="text-xs font-semibold text-white/50 uppercase tracking-wide">Moongrow Wallet</span>
-          </div>
-          <p className="text-4xl font-bold tracking-tight">€0.00</p>
-          <p className="text-sm text-white/40 mt-1">Available balance</p>
+      <div className="rounded-2xl p-6 text-white" style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}>
+        <div className="flex items-center gap-2 mb-4">
+          <Wallet className="w-4 h-4 text-white" />
+          <span className="text-xs font-semibold text-white/50 uppercase tracking-wide">Moongrow Wallet</span>
         </div>
+        <p className="text-4xl font-bold tracking-tight">€0.00</p>
+        <p className="text-sm text-white/40 mt-1">Available balance</p>
       </div>
 
       {/* Your funds, always ready */}
