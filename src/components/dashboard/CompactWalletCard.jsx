@@ -24,33 +24,39 @@ export default function CompactWalletCard({ wallet }) {
   const runwayColor = runwayDays <= 10 ? '#DC2626' : '#16A34A';
 
   return (
-    <div className="bg-white px-6 py-6 rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] flex flex-col h-full">
-      {/* Header */}
-      <div className="mb-5">
-        <p className="text-[#5b616e] mb-4 text-sm">Moongrow Wallet</p>
-        <p className="text-[#0c0b0c] mb-3 text-3xl font-medium tracking-tight">
-          €{total.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-        </p>
-        <div className="flex gap-2">
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowTopUp(true)}>
-            <Plus className="w-3 h-3" /> Top Up
-          </Button>
-          <Button variant="outline" className="gap-1 border-[#E2E0ED] text-[#0c0b0c] text-xs px-3 py-1.5 h-auto font-medium" onClick={() => setShowWithdraw(true)}>
-            <ArrowDownFromLine className="w-3 h-3" /> Withdraw
-          </Button>
+    <div className="rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] overflow-hidden flex flex-col h-full">
+      {/* Top — gradient hero */}
+      <div className="px-6 py-6 flex items-start justify-between" style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}>
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
+            <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
+          </div>
+          <p className="text-white text-4xl font-bold tracking-tight leading-none mb-1">
+            €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </p>
+          <p className="text-white/70 text-sm mb-4">Available balance</p>
+          <div className="flex gap-2">
+            <button onClick={() => setShowTopUp(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-semibold transition-colors border border-white/30">
+              <Plus className="w-3 h-3" /> Top Up
+            </button>
+            <button onClick={() => setShowWithdraw(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-semibold transition-colors border border-white/30">
+              <ArrowDownFromLine className="w-3 h-3" /> Withdraw
+            </button>
+          </div>
+        </div>
+        {/* Runway card */}
+        <div className="flex flex-col justify-center px-4 py-3 rounded-xl border border-white/20 self-start ml-4 flex-shrink-0">
+          <p className="text-white/70 text-xs mb-1">Estimated runway</p>
+          <p className="text-white text-xl font-bold leading-none mb-1">
+            {runwayDays} <span className="text-sm font-semibold">days left</span>
+          </p>
+          <p className="text-white/60 text-xs">At current spend · ~May 22</p>
         </div>
       </div>
 
-      {/* Estimated runway */}
-      <div className="bg-[#F7F7F8] rounded-xl p-4">
-        <p className="text-xs text-[#5b616e] mb-1">Estimated runway</p>
-        <p className="text-2xl font-bold leading-none mb-1" style={{ color: runwayColor }}>
-          {runwayDays} <span className="text-base font-semibold">days left</span>
-        </p>
-        <p className="text-xs text-[#5b616e]">At current spend rate · ~May 22</p>
-      </div>
-
-      <div className="mt-auto pt-4">
+      {/* Bottom — white */}
+      <div className="bg-white px-6 py-4 mt-auto">
         <Link to="/wallet" className="text-xs text-[#796EB2] hover:underline block font-semibold" onClick={() => window.scrollTo(0, 0)}>
           View Moongrow Wallet →
         </Link>
