@@ -154,12 +154,14 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
           </div> :
 
         <div className="space-y-4">
-            {activeBonuses.slice(0, 2).map((b) => {
+            {activeBonuses.slice(0, 2).map((b, index) => {
             const dl = daysLeft(b.end_date);
             const warn = dl !== null && dl <= 5;
             const prizePct = b.prize_pool > 0 ? Math.min(100, Math.round((b.participants || 0) / 10 * 100)) : 0;
             return (
-              <div key={b.id} onClick={() => navigate(`/bonuses/${b.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
+              <React.Fragment key={b.id}>
+                {index > 0 && <div className="h-px bg-[#F0EFF5]" />}
+                <div onClick={() => navigate(`/bonuses/${b.id}`)} className="cursor-pointer hover:opacity-80 transition-opacity">
                    <div className="flex items-center justify-between mb-1.5">
                      <span className="text-[13px] font-bold text-[#0c0b0c] truncate max-w-[60%]">{b.name}</span>
                      <span className="text-[12px] font-semibold text-[#5b616e]">
@@ -173,7 +175,8 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
                      <span className="text-[11px] text-[#5b616e]">{b.participants || 0} participants</span>
                      <span className="text-[11px] text-[#5b616e]">€{b.prize_pool.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} pool</span>
                    </div>
-                 </div>);
+                 </div>
+              </React.Fragment>);
 
           })}
           </div>
