@@ -110,7 +110,7 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
       <div className="flex gap-2">
         <button
           onClick={() => setTab('campaigns')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'campaigns' ? 'border-[#796eb2] bg-[#F5F3FC] text-[#796eb2]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[13px] font-semibold transition-colors ${tab === 'campaigns' ? 'border-[#D1D0D8] bg-[#F7F7F7] text-[#5b616e]' : 'border-[#E2E0ED] bg-[#FAFAF9] text-[#0c0b0c]'}`}>
           <span className="w-2 h-2 rounded-full bg-[#796eb2] flex-shrink-0" />
           {active.length} Campaigns
         </button>
