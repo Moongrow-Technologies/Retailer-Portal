@@ -64,85 +64,87 @@ export default function WalletPage() {
       }
 
       <div className="space-y-4">
-        {/* Wallet Card — hero banner */}
-        <div
-          className="rounded-2xl p-6 relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}
-        >
-
-          <div className="relative z-10 flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
-                <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
-              </div>
-              <p className="text-white text-5xl font-bold tracking-tight leading-none mb-2">
-                €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </p>
-              <p className="text-white/70 text-sm">Available balance</p>
-            </div>
-            {/* Divider + Runway */}
-            <div className="flex items-stretch gap-0 self-stretch ml-6">
-              <div className="w-px bg-white/20 mx-6" />
-              <div className="flex flex-col justify-center pr-6">
-                <p className="text-white/70 text-xs mb-1">Estimated runway</p>
-                <p className="text-white text-2xl font-bold leading-none mb-1">
-                  {runwayDays} <span className="text-base font-semibold">days left</span>
+        {/* Combined Wallet Card */}
+        <div className="rounded-2xl overflow-hidden border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)]">
+          {/* Purple gradient hero */}
+          <div
+            className="p-6"
+            style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <svg className="w-4 h-4 text-white opacity-90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a1 1 0 100-2 1 1 0 000 2z" /></svg>
+                  <span className="text-[11px] font-bold tracking-[0.12em] text-white opacity-90 uppercase">Moongrow Wallet</span>
+                </div>
+                <p className="text-white text-5xl font-bold tracking-tight leading-none mb-2">
+                  €{total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
-                <p className="text-white/60 text-xs">At current spend · ~May 22</p>
+                <p className="text-white/70 text-sm">Available balance</p>
+              </div>
+              {/* Divider + Runway */}
+              <div className="flex items-stretch gap-0 self-stretch ml-6">
+                <div className="w-px bg-white/20 mx-6" />
+                <div className="flex flex-col justify-center pr-6">
+                  <p className="text-white/70 text-xs mb-1">Estimated runway</p>
+                  <p className="text-white text-2xl font-bold leading-none mb-1">
+                    {runwayDays} <span className="text-base font-semibold">days left</span>
+                  </p>
+                  <p className="text-white/60 text-xs">At current spend · ~May 22</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Allocated funds — three vertical sections */}
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_1px_4px_0_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="px-6 py-4 border-b border-[#EBEBF0]">
-            <p className="text-sm font-bold text-[#0c0b0c]">Allocated funds</p>
-          </div>
-          <div className="flex divide-x divide-[#EBEBF0]">
-            {/* Campaign Fund */}
-            <div className="flex-1 p-6">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#796eb2] flex-shrink-0" />
-                <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
-              </div>
-              <p className="text-xs text-[#5b616e] mb-3">{activeCampaigns} active campaign{activeCampaigns !== 1 ? 's' : ''}</p>
-              <p className="text-2xl font-bold text-[#0c0b0c] mb-3">€{campaignFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
-              <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-2">
-                <div className="h-full rounded-full bg-[#796eb2]" style={{ width: `${campaignPct}%` }} />
-              </div>
-              <div className="flex justify-between">
-                <p className="text-xs text-[#5b616e]">€{campaignPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
-                <p className="text-xs text-[#5b616e]">€{campaignRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
-              </div>
+          {/* Allocated funds — three vertical sections */}
+          <div className="bg-white">
+            <div className="px-6 py-4 border-b border-[#EBEBF0]">
+              <p className="text-sm font-bold text-[#0c0b0c]">Allocated funds</p>
             </div>
+            <div className="flex divide-x divide-[#EBEBF0]">
+              {/* Campaign Fund */}
+              <div className="flex-1 p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#796eb2] flex-shrink-0" />
+                  <span className="text-sm font-semibold text-[#0c0b0c]">Campaign Fund</span>
+                </div>
+                <p className="text-xs text-[#5b616e] mb-3">{activeCampaigns} active campaign{activeCampaigns !== 1 ? 's' : ''}</p>
+                <p className="text-2xl font-bold text-[#0c0b0c] mb-3">€{campaignFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
+                <div className="w-full h-1.5 bg-[#EDEAF8] rounded-full overflow-hidden mb-2">
+                  <div className="h-full rounded-full bg-[#796eb2]" style={{ width: `${campaignPct}%` }} />
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-xs text-[#5b616e]">€{campaignPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
+                  <p className="text-xs text-[#5b616e]">€{campaignRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
+                </div>
+              </div>
 
-            {/* Bonus Fund */}
-            <div className="flex-1 p-6">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
-                <span className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</span>
+              {/* Bonus Fund */}
+              <div className="flex-1 p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#F0997B] flex-shrink-0" />
+                  <span className="text-sm font-semibold text-[#0c0b0c]">Bonus Fund</span>
+                </div>
+                <p className="text-xs text-[#5b616e] mb-3">{activeBonuses} active bonus{activeBonuses !== 1 ? 'es' : ''}</p>
+                <p className="text-2xl font-bold text-[#0c0b0c] mb-3">€{bonusFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
+                <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-2">
+                  <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusPct}%` }} />
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-xs text-[#5b616e]">€{bonusPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
+                  <p className="text-xs text-[#5b616e]">€{bonusRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
+                </div>
               </div>
-              <p className="text-xs text-[#5b616e] mb-3">{activeBonuses} active bonus{activeBonuses !== 1 ? 'es' : ''}</p>
-              <p className="text-2xl font-bold text-[#0c0b0c] mb-3">€{bonusFundTotal.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
-              <div className="w-full h-1.5 bg-[#FDEADE] rounded-full overflow-hidden mb-2">
-                <div className="h-full rounded-full bg-[#F0997B]" style={{ width: `${bonusPct}%` }} />
-              </div>
-              <div className="flex justify-between">
-                <p className="text-xs text-[#5b616e]">€{bonusPaidOut.toLocaleString('en-US', { minimumFractionDigits: 0 })} paid out</p>
-                <p className="text-xs text-[#5b616e]">€{bonusRemaining.toLocaleString('en-US', { minimumFractionDigits: 0 })} remaining</p>
-              </div>
-            </div>
 
-            {/* Unbudgeted */}
-            <div className="flex-1 p-6">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#D1D0D8] flex-shrink-0" />
-                <span className="text-sm font-semibold text-[#5b616e]">Unbudgeted</span>
+              {/* Unbudgeted */}
+              <div className="flex-1 p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#D1D0D8] flex-shrink-0" />
+                  <span className="text-sm font-semibold text-[#5b616e]">Unbudgeted</span>
+                </div>
+                <p className="text-xs text-[#5b616e] mb-3">Free to budget</p>
+                <p className="text-2xl font-bold text-[#0c0b0c]">€{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
               </div>
-              <p className="text-xs text-[#5b616e] mb-3">Free to budget</p>
-              <p className="text-2xl font-bold text-[#0c0b0c]">€{available.toLocaleString('en-US', { minimumFractionDigits: 0 })}</p>
             </div>
           </div>
         </div>
