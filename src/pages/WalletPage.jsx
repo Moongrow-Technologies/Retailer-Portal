@@ -84,7 +84,7 @@ export default function WalletPage() {
             {/* Divider + Runway */}
             <div className="flex items-stretch gap-0 self-stretch ml-6">
               <div className="w-px bg-white/20 mx-6" />
-              <div className="flex flex-col justify-center pr-10">
+              <div className="flex flex-col justify-center pr-6">
                 <p className="text-white/70 text-xs mb-1">Estimated runway</p>
                 <p className="text-white text-2xl font-bold leading-none mb-1">
                   {runwayDays} <span className="text-base font-semibold">days left</span>
