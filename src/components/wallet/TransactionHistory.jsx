@@ -63,9 +63,9 @@ export default function TransactionHistory({ transactions }) {
   const filtered = filterTransactions();
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
-      {/* Header */}
-      <div className="px-6 py-5 flex items-center justify-between border-b border-[#EBEBF0]">
+    <div>
+      {/* Header — outside the card */}
+      <div className="flex items-center justify-between mb-3">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction history</h3>
         <div className="flex items-center gap-0.5 bg-[#F7F7F7] rounded-xl p-1">
           {[
@@ -89,6 +89,7 @@ export default function TransactionHistory({ transactions }) {
         </div>
       </div>
 
+    <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)]">
       {/* Table header */}
       <div className="px-6 py-3 grid grid-cols-[1fr_160px_120px] border-b border-[#EBEBF0] bg-[#F7F7F7]">
         <p className="text-xs font-semibold text-[#0c0b0c] uppercase tracking-wider">Transaction</p>
@@ -170,6 +171,7 @@ export default function TransactionHistory({ transactions }) {
           })
         )}
       </div>
+    </div>
     </div>
   );
 }
