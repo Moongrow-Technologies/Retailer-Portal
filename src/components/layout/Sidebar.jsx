@@ -4,7 +4,7 @@ import { LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { base44 } from '@/api/base44Client';
 
-const DashboardIcon = (props) => <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>;
+const DashboardIcon = (props) => <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}><rect x="2" y="2" width="8" height="8" rx="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><rect x="14" y="14" width="8" height="8" rx="1.5"/></svg>;
 const CampaignsIcon = (props) => <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M3 12c0-3.315 2.239-6.13 5.295-6.938.07-.89.789-1.592 1.68-1.592.892 0 1.611.702 1.681 1.592C13.761 5.87 16 8.685 16 12v3h2V9c0-4.418-3.582-8-8-8S2 4.582 2 9v10h2v-7z"/><circle cx="16" cy="15" r="1.5"/><rect x="18" y="14" width="1" height="3"/><rect x="20" y="13" width="1" height="4"/></svg>;
 const BonusesIcon = (props) => <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M12 2L15.09 8.26H22L17.55 12.74L19.64 19L12 14.52L4.36 19L6.45 12.74L2 8.26H8.91L12 2Z"/></svg>;
 const LeaderboardIcon = (props) => <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M12 2L14.39 9.26H22L16.12 13.88L18.51 21.1L12 16.49L5.49 21.1L7.88 13.88L2 9.26H9.61L12 2Z"/><rect x="3" y="17" width="2" height="5"/><rect x="8" y="14" width="2" height="8"/><rect x="13" y="18" width="2" height="4"/></svg>;
