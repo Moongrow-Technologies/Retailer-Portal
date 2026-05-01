@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Wallet, ArrowRight, Zap, Shield, Clock, ArrowLeft, Banknote } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import TopUpModal from '@/components/wallet/TopUpModal';
 
 export default function StepWallet({ onSkip, onBack }) {
   const navigate = useNavigate();
+  const [showTopUp, setShowTopUp] = useState(false);
 
   const handleTopUp = () => {
-    // Open MoonPay flow — for now navigate to wallet page where MoonPay modal lives
-    navigate('/wallet');
+    setShowTopUp(true);
   };
 
   const handleDone = () => {
@@ -16,7 +17,7 @@ export default function StepWallet({ onSkip, onBack }) {
   };
 
   return (
-    <div className="space-y-5">
+    <><div className="space-y-5">
       <div>
         <h2 className="text-2xl font-bold text-[#0E0D1E]">Meet your wallet</h2>
         <p className="text-sm text-[#7A7893] mt-1.5 leading-relaxed">
@@ -105,5 +106,8 @@ export default function StepWallet({ onSkip, onBack }) {
         </Button>
       </div>
     </div>
+
+    <TopUpModal open={showTopUp} onClose={() => setShowTopUp(false)} />
+    </>
   );
 }
