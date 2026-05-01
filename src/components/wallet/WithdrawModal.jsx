@@ -39,7 +39,7 @@ export default function WithdrawModal({ open, onClose }) {
               </div>
               <div className="flex-1 text-left">
                 <p className="text-[15px] font-bold text-[#0c0b0c]">Cash out via MoonPay</p>
-                <p className="text-[13px] text-[#5b616e] mt-0.5">Convert USDC to euros · Sent to your bank account</p>
+                <p className="text-[13px] text-[#5b616e] mt-0.5">Convert USDC to Euros · Sent to your bank account</p>
               </div>
               <ChevronRight className="w-5 h-5 text-[#9490AA] group-hover:text-[#796EB2] transition-colors flex-shrink-0" />
             </button>
