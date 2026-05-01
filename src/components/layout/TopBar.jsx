@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { Bell, HelpCircle, User, LogOut } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 import NotificationDropdown from '@/components/layout/NotificationDropdown';
 import HelpDropdown from '@/components/layout/HelpDropdown';
 import { subscribe, getUnreadCount, markAllRead } from '@/lib/notificationStore';
@@ -36,6 +37,7 @@ function getSection(pathname) {
 
 export default function TopBar() {
   const location = useLocation();
+  const { logout } = useAuth();
   const section = getSection(location.pathname);
   const label = getPageLabel(location.pathname);
   const [showHelp, setShowHelp] = useState(false);
@@ -163,7 +165,7 @@ export default function TopBar() {
                 Profile
               </Link>
               <button
-                onClick={() => base44.auth.logout()}
+                onClick={() => logout()}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-[#F8F7FC] transition-colors"
               >
                 <LogOut className="w-4 h-4" />

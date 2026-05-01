@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { User, LogOut } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function ProfileDropdown({ user, onClose }) {
   const ref = useRef(null);
+  const { logout } = useAuth();
 
   useEffect(() => {
     function handleClick(e) {
@@ -38,7 +39,7 @@ export default function ProfileDropdown({ user, onClose }) {
           My Profile
         </Link>
         <button
-          onClick={() => { onClose(); base44.auth.logout(); }}
+          onClick={() => { onClose(); logout(); }}
           className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-red-50 transition-colors text-sm text-red-400 w-full text-left"
         >
           <LogOut className="w-4 h-4" />

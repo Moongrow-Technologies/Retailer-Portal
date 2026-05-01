@@ -5,7 +5,7 @@ import {
   Gift, Users, Settings, LogOut, Sparkles } from
 'lucide-react';
 import { cn } from '@/lib/utils';
-import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 import WalletIcon from '@/components/shared/WalletIcon';
 
 const navItems = [
@@ -21,6 +21,7 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation();
+  const { logout } = useAuth();
 
   const isActive = (path) => {
     if (path === '/') return location.pathname === '/';
@@ -60,7 +61,7 @@ export default function Sidebar() {
       </div>
       <div className="px-5 py-3 border-t border-[#EBEBF0]">
         <button
-          onClick={() => base44.auth.logout()}
+          onClick={() => logout()}
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#7A7893] hover:bg-[#F5F3FC] hover:text-[#796EB2] transition-all w-full">
           
           <LogOut className="w-[18px] h-[18px] flex-shrink-0" />
