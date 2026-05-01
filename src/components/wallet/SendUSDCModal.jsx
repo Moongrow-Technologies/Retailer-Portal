@@ -251,7 +251,8 @@ export default function SendUSDCModal({ open, onClose }) {
               </p>
               <button
                 onClick={handleClose}
-                className="w-full py-3 rounded-xl text-[15px] font-semibold text-[#796EB2] hover:text-[#5b616e] transition-colors"
+                className="w-full py-3 rounded-xl text-[15px] font-semibold text-white transition-all"
+                style={{ background: '#796EB2' }}
               >
                 Done
               </button>
