@@ -5,7 +5,7 @@ import { ChevronRight, X } from 'lucide-react';
 export default function WithdrawModal({ open, onClose }) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md p-0 overflow-hidden border-[#EBEBF0]" hideClose>
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden border-[#EBEBF0] [&>button]:hidden">
         <div className="bg-white rounded-2xl p-7">
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
