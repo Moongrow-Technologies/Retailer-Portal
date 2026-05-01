@@ -27,7 +27,7 @@ export default function WithdrawModal({ open, onClose }) {
           <div className="space-y-3">
             {/* MoonPay Option */}
             <button
-              onClick={() => window.open('https://www.moonpay.com', '_blank')}
+              onClick={() => {}}
               className="w-full flex items-center gap-4 p-4 rounded-xl border border-[#EBEBF0] bg-[#FAFAF9] hover:bg-[#F5F3FC] hover:border-[#796EB2]/30 transition-all group"
             >
               <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden border border-[#EBEBF0]">
