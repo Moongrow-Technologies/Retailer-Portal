@@ -31,7 +31,7 @@ export default function WithdrawModal({ open, onClose }) {
             {/* MoonPay logo */}
             <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden border border-[#EBEBF0]">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW0NsmMSbUlGxz0Q5Nk7JBHZ4w8nN1B9gqwA&s"
+                src="https://media.base44.com/images/public/69dfbd88b437bcb793c2b5ca/6b4d58ceb_moonpay-logo-freelogovectorsnet_.png"
                 alt="MoonPay"
                 className="w-10 h-10 object-contain"
               />
@@ -44,13 +44,7 @@ export default function WithdrawModal({ open, onClose }) {
           </button>
 
           {/* Actions */}
-          <div className="mt-6 space-y-2">
-            <button
-              onClick={() => window.open('https://www.moonpay.com', '_blank')}
-              className="w-full py-3 text-[15px] font-semibold text-[#5b616e] hover:text-[#796EB2] transition-colors"
-            >
-              Continue to MoonPay →
-            </button>
+          <div className="mt-6">
             <button
               onClick={onClose}
               className="w-full py-3 text-[15px] font-semibold text-[#9490AA] hover:text-[#5b616e] transition-colors"
