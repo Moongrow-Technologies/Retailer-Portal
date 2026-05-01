@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { X, CheckCircle2, Delete, Wallet } from 'lucide-react';
+import { X, CheckCircle2, Delete } from 'lucide-react';
+import WalletIcon from '@/components/shared/WalletIcon';
 
 const RECENT_ADDRESSES = [
   { address: '0x4f3a...e92d', full: '0x4f3ae92d', label: 'Used 2 days ago' },
@@ -100,7 +101,7 @@ export default function SendUSDCModal({ open, onClose }) {
                       className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${address === a.full ? 'bg-[#796EB2]/20 border border-[#796EB2]/40' : 'bg-[#222230] hover:bg-[#2a2a40]'}`}
                     >
                       <div className="w-8 h-8 rounded-lg bg-[#796EB2]/20 flex items-center justify-center flex-shrink-0">
-                        <Wallet className="w-4 h-4 text-[#796EB2]" />
+                        <WalletIcon size={16} color="#796EB2" />
                       </div>
                       <div className="text-left">
                         <p className="text-[13px] font-semibold text-white">{a.address}</p>
@@ -137,7 +138,7 @@ export default function SendUSDCModal({ open, onClose }) {
               {/* Address pill */}
               <div className="flex items-center justify-between bg-[#222230] rounded-xl px-4 py-2.5 mb-4">
                 <div className="flex items-center gap-2">
-                  <Wallet className="w-4 h-4 text-[#796EB2]" />
+                  <WalletIcon size={16} color="#796EB2" />
                   <span className="text-[13px] text-white font-medium">
                     {address.length > 12 ? address.slice(0, 6) + '...' + address.slice(-4) : address}
                   </span>

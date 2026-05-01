@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  LayoutDashboard, Wallet, Megaphone, BarChart3, Trophy,
+  LayoutDashboard, Megaphone, BarChart3, Trophy,
   Gift, Users, Settings, LogOut, Sparkles } from
 'lucide-react';
 import { cn } from '@/lib/utils';
 import { base44 } from '@/api/base44Client';
+import WalletIcon from '@/components/shared/WalletIcon';
 
 const navItems = [
 { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
@@ -13,7 +14,7 @@ const navItems = [
 { icon: Gift, label: 'Bonuses', path: '/bonuses', sub: true },
 { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
 { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-{ icon: Wallet, label: 'Wallet', path: '/wallet' },
+{ icon: null, label: 'Wallet', path: '/wallet', customIcon: WalletIcon },
 { icon: Users, label: 'Staff', path: '/staff' },
 { icon: Settings, label: 'Settings', path: '/settings' }];
 
@@ -43,7 +44,10 @@ export default function Sidebar() {
                 "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#f7f7fb]"
               )}>
               
-              <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
+              {item.customIcon
+                ? <item.customIcon size={20} color={active ? '#796EB2' : '#9490AA'} className="flex-shrink-0" />
+                : <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
+              }
               <span className={cn("font-medium", active ? "text-[#796EB2]" : "text-[#4A4761]")}>{item.label}</span>
             </Link>);
 
