@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { X, CheckCircle2, Delete } from 'lucide-react';
+import { X, CheckCircle2, Delete, Wallet } from 'lucide-react';
 
 const RECENT_ADDRESSES = [
   { address: '0x4f3a...e92d', full: '0x4f3ae92d', label: 'Used 2 days ago' },
@@ -100,11 +100,7 @@ export default function SendUSDCModal({ open, onClose }) {
                       className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${address === a.full ? 'bg-[#796EB2]/20 border border-[#796EB2]/40' : 'bg-[#222230] hover:bg-[#2a2a40]'}`}
                     >
                       <div className="w-8 h-8 rounded-lg bg-[#796EB2]/20 flex items-center justify-center flex-shrink-0">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 8H4C2.9 8 2 8.9 2 10V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V10C22 8.9 21.1 8 20 8Z" stroke="#796EB2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M16 8V6C16 4.9 15.1 4 14 4H10C8.9 4 8 4.9 8 6V8" stroke="#796EB2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <circle cx="12" cy="15" r="2" fill="#796EB2"/>
-                        </svg>
+                        <Wallet className="w-4 h-4 text-[#796EB2]" />
                       </div>
                       <div className="text-left">
                         <p className="text-[13px] font-semibold text-white">{a.address}</p>
@@ -141,11 +137,7 @@ export default function SendUSDCModal({ open, onClose }) {
               {/* Address pill */}
               <div className="flex items-center justify-between bg-[#222230] rounded-xl px-4 py-2.5 mb-4">
                 <div className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 8H4C2.9 8 2 8.9 2 10V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V10C22 8.9 21.1 8 20 8Z" stroke="#796EB2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M16 8V6C16 4.9 15.1 4 14 4H10C8.9 4 8 4.9 8 6V8" stroke="#796EB2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="12" cy="15" r="2" fill="#796EB2"/>
-                  </svg>
+                  <Wallet className="w-4 h-4 text-[#796EB2]" />
                   <span className="text-[13px] text-white font-medium">
                     {address.length > 12 ? address.slice(0, 6) + '...' + address.slice(-4) : address}
                   </span>
