@@ -9,7 +9,7 @@ const RECENT_ADDRESSES = [
   { address: '0x1d9e...b03c', full: '0x1d9eb03c', label: 'Used 1 month ago' },
 ];
 
-const FEE = 1.5;
+const FEE_RATE = 0.03;
 const AVAILABLE = 284.50;
 
 function StepIndicator({ step }) {
@@ -49,7 +49,8 @@ export default function SendUSDCModal({ open, onClose }) {
   };
 
   const numericAmount = parseFloat(amount) || 0;
-  const youSend = Math.max(0, numericAmount - FEE);
+  const fee = numericAmount * FEE_RATE;
+  const youSend = Math.max(0, numericAmount - fee);
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -200,7 +201,7 @@ export default function SendUSDCModal({ open, onClose }) {
               <div className="bg-[#F7F6FB] border border-[#EBEBF0] rounded-2xl p-4 space-y-3 mb-4">
                 {[
                   { label: 'Amount', value: `${parseFloat(amount).toFixed(2)} USDC` },
-                  { label: 'Fee', value: `${FEE.toFixed(2)} USDC` },
+                  { label: 'Fee (3%)', value: `${fee.toFixed(2)} USDC` },
                   { label: 'You send', value: `${youSend.toFixed(2)} USDC`, bold: true },
                   { label: 'To', value: 'Recipient', bold: true },
                   { label: 'Address', value: address.length > 12 ? address.slice(0, 6) + '...' + address.slice(-4) : address, purple: true },
