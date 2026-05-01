@@ -1,22 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  LayoutDashboard, Megaphone, BarChart3, Trophy,
-  Gift, Users, Settings, LogOut } from 'lucide-react';
+  LayoutDashboard, Wallet, Megaphone, BarChart3, Trophy,
+  Gift, Users, Settings, LogOut, Sparkles } from
+'lucide-react';
 import { cn } from '@/lib/utils';
 import { base44 } from '@/api/base44Client';
-
-function WalletNavIcon({ active }) {
-  const color = active ? '#796EB2' : '#9490AA';
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="5" width="20" height="15" rx="3" fill={color} opacity="0.2"/>
-      <rect x="2" y="5" width="20" height="15" rx="3" stroke={color} strokeWidth="1.8"/>
-      <rect x="14" y="11" width="6" height="4" rx="1.5" fill={color}/>
-      <line x1="2" y1="9" x2="22" y2="9" stroke={color} strokeWidth="1.5"/>
-    </svg>
-  );
-}
 
 const navItems = [
 { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
@@ -24,7 +13,7 @@ const navItems = [
 { icon: Gift, label: 'Bonuses', path: '/bonuses', sub: true },
 { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
 { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-{ icon: null, label: 'Wallet', path: '/wallet' },
+{ icon: Wallet, label: 'Wallet', path: '/wallet' },
 { icon: Users, label: 'Staff', path: '/staff' },
 { icon: Settings, label: 'Settings', path: '/settings' }];
 
@@ -54,10 +43,7 @@ export default function Sidebar() {
                 "text-[#7A7893] hover:text-[#796EB2] hover:bg-[#f7f7fb]"
               )}>
               
-              {item.icon
-                ? <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
-                : <WalletNavIcon active={active} />
-              }
+              <item.icon className={cn("w-[20px] h-[20px] flex-shrink-0", active ? "text-[#796EB2]" : "text-[#9490AA]")} />
               <span className={cn("font-medium", active ? "text-[#796EB2]" : "text-[#4A4761]")}>{item.label}</span>
             </Link>);
 
