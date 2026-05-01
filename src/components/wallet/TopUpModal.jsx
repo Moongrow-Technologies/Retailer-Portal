@@ -46,7 +46,7 @@ export default function TopUpModal({ open, onClose }) {
           <div className="mt-6">
             <button
               onClick={onClose}
-              className="w-full py-3 text-[15px] font-semibold text-[#9490AA] hover:text-[#5b616e] transition-colors"
+              className="w-full py-3 text-[15px] font-semibold text-[#796EB2] hover:text-[#5b616e] transition-colors"
             >
               Cancel
             </button>
