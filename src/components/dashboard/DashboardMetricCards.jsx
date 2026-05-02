@@ -193,9 +193,11 @@ function ActiveCampaignsCard({ campaigns, bonuses, cardRef }) {
 import { Link } from 'react-router-dom';
 import { CAMPAIGNS } from '@/lib/sampleData';
 
+// This week (Apr 27–May 2): 11 OG sales today + growing all week ≈ ~44 OG (×€2) + ~38 Amnesia (×€2.50) = €88+€95 = €183
+// This month (Apr 1–May 2): OG 190×€2 = €380, Amnesia 119×€2.50 = €297.50 → total €677.50
 const commissionData = {
-  'This week': { value: '€48', trend: '11% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€28', pct: 58 }, { name: 'Amnesia Haze Launch', amount: '€20', pct: 42 }] },
-  'This month': { value: '€487', trend: '9% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€312', pct: 64 }, { name: 'Amnesia Haze Launch', amount: '€175', pct: 36 }] }
+  'This week': { value: '€183', trend: '17% vs last period', breakdown: [{ name: 'Amnesia Haze Launch', amount: '€95', pct: 52 }, { name: 'OG Kush Spring Push', amount: '€88', pct: 48 }] },
+  'This month': { value: '€678', trend: '13% vs last period', breakdown: [{ name: 'OG Kush Spring Push', amount: '€380', pct: 56 }, { name: 'Amnesia Haze Launch', amount: '€298', pct: 44 }] }
 };
 
 function CommissionCard() {
@@ -236,24 +238,25 @@ function CommissionCard() {
 }
 
 // ─── CARD 3 — Units Sold ─────────────────────────────────────────────────────
-// This week: 18+22+38+26+18+12+22 = 156 across OG + Amnesia active campaigns
-// This month total across all active campaigns: 521 units
+// This week (Apr 27 Mon – May 2 Sat): growing strongly, peaking mid-week + Saturday
+// Mon 26, Tue 32, Wed 48, Thu 37, Fri 44, Sat 52, Sun partial 38 = total ~277 this week
 const unitsWeekData = [
-{ day: 'M', units: 16 },
-{ day: 'T', units: 22 },
-{ day: 'W', units: 34 },
-{ day: 'T', units: 24 },
-{ day: 'F', units: 18 },
-{ day: 'S', units: 10 },
-{ day: 'S', units: 20 }];
+{ day: 'M', units: 26 },
+{ day: 'T', units: 32 },
+{ day: 'W', units: 48 },
+{ day: 'T', units: 37 },
+{ day: 'F', units: 44 },
+{ day: 'S', units: 52 },
+{ day: 'S', units: 38 }];
 
+// April full month (1–30): building from ~14/day to ~22/day, with strong weekends
 const unitsMonthData = [
-8, 14, 18, 12, 22, 28, 16, 20, 24, 18, 30, 22, 16, 26, 34, 20, 18, 24, 28, 16, 22, 18, 26, 20, 14, 24, 18, 22, 16, 20].
+12, 18, 14, 20, 26, 16, 22, 19, 28, 17, 24, 30, 18, 22, 34, 20, 25, 16, 28, 22, 38, 24, 18, 30, 26, 32, 20, 28, 24, 36].
 map((units, i) => ({ day: `${i + 1}`, units }));
 
 const unitsSoldData = {
-  'This week': { value: '144', trend: '8% vs last period', chart: unitsWeekData, best: { day: 'W', value: 34 }, today: { day: 'S', value: 20 } },
-  'This month': { value: '521', trend: '7% vs last period', chart: unitsMonthData, best: { day: 'W', value: 34 }, today: { day: '17', value: 20 } }
+  'This week': { value: '277', trend: '19% vs last period', chart: unitsWeekData, best: { day: 'S', value: 52 }, today: { day: 'S', value: 52 } },
+  'This month': { value: '624', trend: '11% vs last period', chart: unitsMonthData, best: { day: '22', value: 38 }, today: { day: '30', value: 36 } }
 };
 
 const CustomBar = (props) => {
@@ -357,19 +360,19 @@ function UnitsSoldCard() {
 }
 
 // ─── CARD 4 — Revenue Generated ──────────────────────────────────────────────
-// Week revenue: 144 units × avg €11.25 product price ≈ €1,620
-// Month revenue: 521 units × avg €11.73 ≈ €6,110
+// Week (Apr 27–May 2): 277 units × avg €12.17 ≈ €3,370
+// Month (Apr 1–May 2): 624 units × avg €12.10 ≈ €7,550 (includes White Widow + other product mix)
 const revenueWeekData = [
-{ day: 'M', rev: 180 }, { day: 'T', rev: 248 }, { day: 'W', rev: 382 },
-{ day: 'T', rev: 270 }, { day: 'F', rev: 202 }, { day: 'S', rev: 112 }, { day: 'S', rev: 226 }];
+{ day: 'M', rev: 312 }, { day: 'T', rev: 388 }, { day: 'W', rev: 582 },
+{ day: 'T', rev: 448 }, { day: 'F', rev: 534 }, { day: 'S', rev: 632 }, { day: 'S', rev: 474 }];
 
 const revenueMonthData = [
-90, 158, 202, 135, 248, 315, 180, 225, 270, 202, 338, 248, 180, 292, 382, 225, 202, 270, 315, 180, 248, 202, 292, 225, 157, 270, 202, 248, 180, 225].
+148, 218, 172, 244, 316, 196, 268, 232, 340, 208, 292, 364, 220, 268, 414, 244, 304, 196, 340, 268, 462, 292, 220, 364, 316, 388, 244, 340, 292, 438].
 map((rev, i) => ({ day: `${i + 1}`, rev }));
 
 const revenueData = {
-  'This week': { value: '€1,620', trend: '9% vs last period', chart: revenueWeekData },
-  'This month': { value: '€6,110', trend: '11% vs last period', chart: revenueMonthData }
+  'This week': { value: '€3,370', trend: '18% vs last period', chart: revenueWeekData },
+  'This month': { value: '€7,550', trend: '14% vs last period', chart: revenueMonthData }
 };
 
 function RevenueCard({ cardRef }) {
@@ -425,27 +428,28 @@ function RevenueCard({ cardRef }) {
 function CommissionROICard() {
   const [period, setPeriod] = useState('This week');
 
+  // ROI = revenue / commission: week €3,370/€183 = 18.4×, month €7,550/€678 = 11.1×
   const roiData = {
     'This week': {
-      roi: '6.4',
-      trend: '0.4× vs last period',
+      roi: '18.4',
+      trend: '2.1× vs last period',
       description: 'Every €1 in commission generated',
-      revenue: '€6.40 in revenue',
+      revenue: '€18.40 in revenue',
       breakdown: [
-      { label: 'Commission paid', value: '€48' },
-      { label: 'Revenue generated', value: '€1,620' },
-      { label: 'Units sold via campaigns', value: '156' }]
+      { label: 'Commission paid', value: '€183' },
+      { label: 'Revenue generated', value: '€3,370' },
+      { label: 'Units sold via campaigns', value: '277' }]
 
     },
     'This month': {
-      roi: '12.5',
-      trend: '1.2× vs last period',
+      roi: '11.1',
+      trend: '0.9× vs last period',
       description: 'Every €1 in commission generated',
-      revenue: '€12.50 in revenue',
+      revenue: '€11.10 in revenue',
       breakdown: [
-      { label: 'Commission paid', value: '€487' },
-      { label: 'Revenue generated', value: '€6,110' },
-      { label: 'Units sold via campaigns', value: '521' }]
+      { label: 'Commission paid', value: '€678' },
+      { label: 'Revenue generated', value: '€7,550' },
+      { label: 'Units sold via campaigns', value: '624' }]
 
     }
   };

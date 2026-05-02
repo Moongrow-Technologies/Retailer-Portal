@@ -8,39 +8,40 @@ import { cn } from '@/lib/utils';
 
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-// Day performance data
+// Day performance data — reflects current week (Apr 27–May 2) averages
+// Commission = OG units × €2 + Amnesia units × €2.50 (approx split 55%/45%)
 const dayData = {
-  'mon': { day: 'Monday', units: 58, revenue: 650, commission: 116, topStaff: ['s1', 's3', 's2'] },
-  'tue': { day: 'Tuesday', units: 52, revenue: 585, commission: 104, topStaff: ['s2', 's4', 's1'] },
-  'wed': { day: 'Wednesday', units: 84, revenue: 945, commission: 169, topStaff: ['s1', 's4', 's3'] },
-  'thu': { day: 'Thursday', units: 61, revenue: 687, commission: 123, topStaff: ['s3', 's2', 's1'] },
-  'fri': { day: 'Friday', units: 68, revenue: 765, commission: 137, topStaff: ['s4', 's1', 's2'] },
-  'sat': { day: 'Saturday', units: 72, revenue: 810, commission: 145, topStaff: ['s2', 's3', 's4'] },
-  'sun': { day: 'Sunday', units: 64, revenue: 720, commission: 129, topStaff: ['s1', 's2', 's3'] }
+  'mon': { day: 'Monday',    units: 68,  revenue: 828,  commission: 136, topStaff: ['s1', 's3', 's2'] },
+  'tue': { day: 'Tuesday',   units: 63,  revenue: 766,  commission: 126, topStaff: ['s2', 's4', 's1'] },
+  'wed': { day: 'Wednesday', units: 91,  revenue: 1107, commission: 182, topStaff: ['s1', 's4', 's3'] },
+  'thu': { day: 'Thursday',  units: 71,  revenue: 864,  commission: 142, topStaff: ['s3', 's2', 's1'] },
+  'fri': { day: 'Friday',    units: 82,  revenue: 998,  commission: 164, topStaff: ['s4', 's1', 's2'] },
+  'sat': { day: 'Saturday',  units: 98,  revenue: 1193, commission: 196, topStaff: ['s2', 's3', 's4'] },
+  'sun': { day: 'Sunday',    units: 77,  revenue: 937,  commission: 154, topStaff: ['s1', 's2', 's3'] }
 };
 
-// Hourly breakdown for the day
+// Hourly breakdown — realistic peaks at 12pm and late afternoon/evening
 const getHourlyData = () => [
-  { hour: '8am', units: 4 },
-  { hour: '9am', units: 6 },
-  { hour: '10am', units: 8 },
-  { hour: '11am', units: 7 },
-  { hour: '12pm', units: 9 },
-  { hour: '1pm', units: 8 },
-  { hour: '2pm', units: 6 },
-  { hour: '3pm', units: 5 },
-  { hour: '4pm', units: 7 },
-  { hour: '5pm', units: 6 },
-  { hour: '6pm', units: 8 },
-  { hour: '7pm', units: 4 }
+  { hour: '9am',  units: 5  },
+  { hour: '10am', units: 9  },
+  { hour: '11am', units: 11 },
+  { hour: '12pm', units: 14 },
+  { hour: '1pm',  units: 12 },
+  { hour: '2pm',  units: 8  },
+  { hour: '3pm',  units: 7  },
+  { hour: '4pm',  units: 10 },
+  { hour: '5pm',  units: 13 },
+  { hour: '6pm',  units: 15 },
+  { hour: '7pm',  units: 11 },
+  { hour: '8pm',  units: 6  }
 ];
 
-// Product breakdown for the day
+// Product breakdown per day — OG Kush leading (active campaign), Amnesia strong second
 const getProductBreakdown = () => [
-  { name: 'Blue Dream', units: 24, value: 24 },
-  { name: 'OG Kush', units: 18, value: 18 },
-  { name: 'White Widow', units: 12, value: 12 },
-  { name: 'Others', units: 8, value: 8 }
+  { name: 'OG Kush',      units: 31, value: 31 },
+  { name: 'Amnesia Haze', units: 26, value: 26 },
+  { name: 'Blue Dream',   units: 18, value: 18 },
+  { name: 'Others',       units: 9,  value: 9  }
 ];
 
 const COLORS = ['#796eb2', '#9b92c8', '#bcb5dd', '#dedaf0'];
