@@ -63,10 +63,10 @@ export default function HelpDropdown({ onClose }) {
           {LINKS.map((link) => (
             <button
               key={link}
-              className="flex items-center justify-between px-4 py-3 bg-[#F8F7FC] border border-[#EBEBF0] rounded-lg hover:bg-[#F0EEF9] transition-colors text-left w-full"
+              className="flex items-center justify-between px-4 py-3 bg-[#F8F7FC] border border-[#EBEBF0] rounded-lg hover:bg-[#F0EEF9] transition-colors text-left w-full opacity-70 cursor-default"
             >
               <span className="text-sm font-medium text-[#0E0D1E]">{link}</span>
-              <span className="text-[#796EB2] flex-shrink-0">→</span>
+              <span className="text-[10px] font-semibold text-[#9490AA] bg-[#EBEBF0] px-1.5 py-0.5 rounded">Coming Soon</span>
             </button>
           ))}
         </div>

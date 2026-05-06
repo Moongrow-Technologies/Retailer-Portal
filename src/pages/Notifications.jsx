@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ShoppingCart, Pause, UserPlus, Wallet, Trophy, Megaphone, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ACTIVITIES } from '@/lib/sampleData';
 import { useNavigate } from 'react-router-dom';
 import { getNotificationPrefs, getEnabledActivityTypes } from '@/lib/notificationPrefs';
-import { subscribe, getDismissed, getUnreadIds, dismissNotification, markOneRead, markAllRead } from '@/lib/notificationStore';
+import { subscribe as subscribeStore, getActivities } from '@/lib/appStore';
+import { subscribe as subscribeNotif, getDismissed, getUnreadIds, dismissNotification, markOneRead, markAllRead } from '@/lib/notificationStore';
 
 const iconMap = {
   sale: ShoppingCart,
@@ -73,14 +73,19 @@ export default function Notifications() {
   const [activeTab, setActiveTab] = useState('All');
   const [, forceUpdate] = useState(0);
 
-  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+  useEffect(() => {
+    const u1 = subscribeStore(() => forceUpdate(n => n + 1));
+    const u2 = subscribeNotif(() => forceUpdate(n => n + 1));
+    return () => { u1(); u2(); };
+  }, []);
 
   const dismissed = getDismissed();
   const unreadIds = getUnreadIds();
+  const activities = getActivities();
 
   const enabledTypes = getEnabledActivityTypes(getNotificationPrefs());
 
-  const visible = ACTIVITIES
+  const visible = activities
     .map((a, i) => ({ ...a, _id: i }))
     .filter(a => !dismissed.has(a._id))
     .filter(a => enabledTypes.has(a.type) || !['sale', 'top_up', 'payout', 'campaign_paused', 'bonus_completed'].includes(a.type))

@@ -146,7 +146,7 @@ export default function Campaigns() {
                     <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
                       <img src={PRODUCT_IMAGES[campaign.product_name] || PRODUCT_IMAGES.default} alt={campaign.product_name} className="w-full h-full object-cover" />
                     </div>
-                    <p className="text-sm font-semibold text-[#0c0b0c] truncate">{campaign.name}</p>
+                    <p className="text-sm font-semibold text-[#0c0b0c] truncate" title={campaign.name}>{campaign.name}</p>
                   </div>
 
                   {/* Product */}

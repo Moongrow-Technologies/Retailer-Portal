@@ -176,10 +176,17 @@ export default function Settings() {
               <p className="text-[11px] text-[#796EB2] font-semibold uppercase tracking-wide mb-2">Current Plan</p>
               <p className="text-2xl font-bold text-[#0E0D1E] mb-1">Growth Plan</p>
               <p className="text-sm text-[#0E0D1E]">€149/month <span className="text-[#9490AA]">billed monthly</span></p>
-              <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#E2E0ED]">
-                <p className="text-sm text-[#7A7893]">Renewal Date: <span className="font-bold text-[#0E0D1E]">May 1, 2026</span></p>
-                <button className="text-sm text-[#796EB2] font-medium hover:underline">View Invoice History</button>
-              </div>
+              {(() => {
+                const today = new Date();
+                const renewal = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+                const fmt = renewal.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                return (
+                  <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#E2E0ED]">
+                    <p className="text-sm text-[#7A7893]">Renewal Date: <span className="font-bold text-[#0E0D1E]">{fmt}</span></p>
+                    <button className="text-sm text-[#796EB2] font-medium hover:underline">View Invoice History</button>
+                  </div>
+                );
+              })()}
             </div>
             <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold rounded-full h-12">
               Change Plan

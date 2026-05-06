@@ -20,7 +20,9 @@ const revenueOverTime = {
   { label: 'Apr 21', value: 6380  },
   { label: 'Apr 25', value: 7820  },
   { label: 'Apr 28', value: 9140  },
-  { label: 'May 2',  value: 10650 }],
+  { label: 'May 2',  value: 10650 },
+  { label: 'May 4',  value: 11480 },
+  { label: 'May 6',  value: 12210 }],
 
   'This Week': [
   { label: 'Mon', value: 960  },

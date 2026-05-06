@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import EmptyState from '@/components/shared/EmptyState';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Download, Trophy, Star, ArrowUp, ArrowDown } from 'lucide-react';
-import { STAFF, CAMPAIGNS, STORE, STAFF_AVATARS } from '@/lib/sampleData';
+import { STAFF, STORE, STAFF_AVATARS } from '@/lib/sampleData';
+import { getCampaigns, subscribe } from '@/lib/appStore';
 import { cn } from '@/lib/utils';
 
 export default function Leaderboard() {
@@ -12,7 +13,11 @@ export default function Leaderboard() {
   const [campaign, setCampaign] = useState('all');
   const [store, setStore] = useState('all');
   const [timePeriod, setTimePeriod] = useState('This Month');
+  const [, forceUpdate] = useState(0);
 
+  useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
+
+  const campaigns = getCampaigns();
   const activeStaff = STAFF.filter((s) => s.status === 'active');
   const sorted = [...activeStaff].sort((a, b) => {
     if (metric === 'commission') return b.total_commissions - a.total_commissions;
@@ -51,7 +56,7 @@ export default function Leaderboard() {
           <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Campaigns</SelectItem>
-            {CAMPAIGNS.map((c) => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+            {campaigns.map((c) => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
           </SelectContent>
         </Select>
         <Select value={store} onValueChange={setStore}>

@@ -32,7 +32,18 @@ export function subscribe(fn) {
 // ─── Getters ──────────────────────────────────────────────────────────────────
 export const getState = () => state;
 export const getCampaigns = () => state.campaigns;
-export const getBonuses = () => state.bonuses;
+export function getBonuses() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return state.bonuses.map(b => {
+    if (b.status === 'active' && b.end_date) {
+      const end = new Date(b.end_date);
+      end.setHours(0, 0, 0, 0);
+      if (end < today) return { ...b, status: 'completed' };
+    }
+    return b;
+  });
+}
 export const getStaff = () => state.staff;
 export const getWallet = () => state.wallet;
 export const getTransactions = () => state.transactions;
@@ -71,9 +82,15 @@ function recalcWallet() {
   const committedCampaigns = state.campaigns
     .filter(c => c.status === 'active' || c.status === 'scheduled' || c.status === 'paused_manual')
     .reduce((s, c) => s + (c.budget - c.spent), 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   const committedBonuses = state.bonuses
-    .filter(b => b.status === 'active' || b.status === 'scheduled')
+    .filter(b => (b.status === 'active' || b.status === 'scheduled') && (!b.end_date || new Date(b.end_date) >= today))
     .reduce((s, b) => s + (b.prize_pool || 0), 0);
+
+  // campaign_fund_total = sum of all budgets ever committed (active + paused + completed + their spent)
+  const allCampaignBudgets = state.campaigns.reduce((s, c) => s + c.budget, 0);
+  const allBonusPools = state.bonuses.reduce((s, b) => s + (b.prize_pool || 0), 0);
 
   state.wallet = {
     ...state.wallet,
@@ -81,9 +98,9 @@ function recalcWallet() {
     committed_campaigns: Math.max(0, committedCampaigns),
     committed_bonuses: Math.max(0, committedBonuses),
     available: Math.max(0, totalBalance - committedCampaigns - committedBonuses),
-    campaign_fund_total: Math.max(campaignPaidOut, INIT_WALLET.campaign_fund_total),
+    campaign_fund_total: Math.max(allCampaignBudgets, INIT_WALLET.campaign_fund_total),
     campaign_paid_out: campaignPaidOut,
-    bonus_fund_total: Math.max(bonusPayouts, INIT_WALLET.bonus_fund_total),
+    bonus_fund_total: Math.max(allBonusPools, INIT_WALLET.bonus_fund_total),
     bonus_paid_out: bonusPayouts,
   };
 }
