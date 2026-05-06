@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Wallet, ArrowRight, Zap, Shield, Clock, ArrowLeft, Banknote } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Clock, ArrowLeft, Banknote } from 'lucide-react';
+import WalletIcon from '@/components/shared/WalletIcon';
 import { useNavigate } from 'react-router-dom';
 import TopUpModal from '@/components/wallet/TopUpModal';
 
@@ -28,7 +29,7 @@ export default function StepWallet({ onSkip, onBack }) {
       {/* Wallet card */}
       <div className="rounded-2xl p-6 text-white" style={{ background: 'linear-gradient(135deg, #6B63C4 0%, #8E85D4 60%, #A89ED8 100%)' }}>
         <div className="flex items-center gap-2 mb-4">
-          <Wallet className="w-4 h-4 text-white" />
+          <WalletIcon size={16} color="white" />
           <span className="text-xs font-semibold text-white/50 uppercase tracking-wide">Moongrow Wallet</span>
         </div>
         <p className="text-4xl font-bold tracking-tight">€0.00</p>
