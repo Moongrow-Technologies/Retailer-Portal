@@ -17,6 +17,7 @@ export default function EditCampaign() {
 
   const [toast, setToast] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     product: campaign?.product_name || '',
     stores: campaign?.stores || [],
@@ -36,15 +37,21 @@ export default function EditCampaign() {
     }));
   };
 
-  const canSave = () =>
-    data.product &&
-    data.stores.length > 0 &&
-    data.name &&
-    data.commission_rate && Number(data.commission_rate) > 0 &&
-    data.budget && Number(data.budget) > 0;
+  const validate = () => {
+    const e = {};
+    if (!data.name.trim()) e.name = 'Campaign name is required.';
+    if (!data.commission_rate || Number(data.commission_rate) <= 0) e.commission_rate = 'Please enter a valid commission rate greater than 0.';
+    if (!data.product) e.product = 'Please select a product.';
+    if (data.stores.length === 0) e.stores = 'Please select at least one store.';
+    if (!data.budget || Number(data.budget) <= 0) e.budget = 'Please enter a valid budget greater than 0.';
+    return e;
+  };
 
   const handleSave = () => {
-    if (!canSave() || saving) return;
+    const e = validate();
+    if (Object.keys(e).length > 0) { setErrors(e); return; }
+    if (saving) return;
+    setErrors({});
     setSaving(true);
     // Simulate async save
     setTimeout(() => {
@@ -77,10 +84,11 @@ export default function EditCampaign() {
             <Label>Campaign Name</Label>
             <Input
               value={data.name}
-              onChange={e => setData({ ...data, name: e.target.value })}
-              className="mt-1.5"
+              onChange={e => { setErrors(prev => ({ ...prev, name: undefined })); setData({ ...data, name: e.target.value }); }}
+              className={cn("mt-1.5", errors.name && "border-red-400 focus-visible:ring-red-200")}
               placeholder="e.g. OG Kush Campaign"
             />
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
           </div>
           <div>
             <Label>Commission Rate (EURC per unit)</Label>
@@ -89,12 +97,13 @@ export default function EditCampaign() {
               step="0.25"
               placeholder="e.g. 2.00"
               value={data.commission_rate}
-              onChange={e => setData({ ...data, commission_rate: e.target.value })}
-              className="mt-1.5"
+              onChange={e => { setErrors(prev => ({ ...prev, commission_rate: undefined })); setData({ ...data, commission_rate: e.target.value }); }}
+              className={cn("mt-1.5", errors.commission_rate && "border-red-400 focus-visible:ring-red-200")}
             />
-            {data.product && (
-              <p className="text-xs text-muted-foreground mt-1">Staff earn this amount for every unit of {data.product} sold.</p>
-            )}
+            {errors.commission_rate
+              ? <p className="text-sm text-red-500 mt-1">{errors.commission_rate}</p>
+              : data.product && <p className="text-xs text-muted-foreground mt-1">Staff earn this amount for every unit of {data.product} sold.</p>
+            }
           </div>
         </div>
 
@@ -105,12 +114,14 @@ export default function EditCampaign() {
             {PRODUCTS.map(p => (
               <button
                 key={p.name}
-                onClick={() => setData({ ...data, product: p.name })}
+                onClick={() => { setErrors(prev => ({ ...prev, product: undefined })); setData({ ...data, product: p.name }); }}
                 className={cn(
                   "flex items-center justify-between p-4 rounded-lg border transition-all text-left",
                   data.product === p.name
                     ? "border-[#796EB2] bg-[#F0EEF9]"
-                    : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                    : errors.product
+                      ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                      : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                 )}
               >
                 <div className="flex items-center gap-3">
@@ -133,6 +144,7 @@ export default function EditCampaign() {
               </button>
             ))}
           </div>
+          {errors.product && <p className="text-sm text-red-500">{errors.product}</p>}
         </div>
 
         {/* Stores */}
@@ -142,12 +154,14 @@ export default function EditCampaign() {
             {STORE.locations.map(store => (
               <button
                 key={store}
-                onClick={() => toggleStore(store)}
+                onClick={() => { setErrors(prev => ({ ...prev, stores: undefined })); toggleStore(store); }}
                 className={cn(
                   "flex items-center gap-3 p-4 rounded-lg border transition-all text-left",
                   data.stores.includes(store)
                     ? "border-[#796EB2] bg-[#F0EEF9]"
-                    : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                    : errors.stores
+                      ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                      : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                 )}
               >
                 <Checkbox checked={data.stores.includes(store)} />
@@ -155,6 +169,7 @@ export default function EditCampaign() {
               </button>
             ))}
           </div>
+          {errors.stores && <p className="text-sm text-red-500">{errors.stores}</p>}
         </div>
 
         {/* Budget & Dates */}
@@ -166,12 +181,13 @@ export default function EditCampaign() {
               type="number"
               placeholder="e.g. 500"
               value={data.budget}
-              onChange={e => setData({ ...data, budget: e.target.value })}
-              className="mt-1.5"
+              onChange={e => { setErrors(prev => ({ ...prev, budget: undefined })); setData({ ...data, budget: e.target.value }); }}
+              className={cn("mt-1.5", errors.budget && "border-red-400 focus-visible:ring-red-200")}
             />
-            <p className="text-xs text-muted-foreground mt-1">
-              Available: €{getWallet().available.toFixed(2)}
-            </p>
+            {errors.budget
+              ? <p className="text-sm text-red-500 mt-1">{errors.budget}</p>
+              : <p className="text-xs text-muted-foreground mt-1">Available: €{getWallet().available.toFixed(2)}</p>
+            }
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -202,7 +218,7 @@ export default function EditCampaign() {
         </Button>
         <Button
           onClick={handleSave}
-          disabled={!canSave() || saving}
+          disabled={saving}
           className="bg-primary hover:bg-primary/90 gap-2 min-w-[130px]"
         >
           {saving ? (

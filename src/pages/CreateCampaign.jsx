@@ -18,7 +18,7 @@ export default function CreateCampaign() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [toast, setToast] = useState(null);
-  const [productError, setProductError] = useState(false);
+  const [errors, setErrors] = useState({});
   const [launching, setLaunching] = useState(false);
   const [data, setData] = useState({
     product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: '', startNow: true
@@ -28,15 +28,23 @@ export default function CreateCampaign() {
   const progress = ((step + 1) / STEPS.length) * 100;
   const isScheduled = !data.startNow && data.start_date && new Date(data.start_date) > new Date();
 
-  const canNext = () => {
-    if (step === 0) return !!data.product;
-    if (step === 1) return data.stores.length > 0;
-    if (step === 2) return data.commission_rate && Number(data.commission_rate) > 0;
-    if (step === 3) return data.budget && (data.startNow || (data.start_date && data.end_date)) && Number(data.budget) > 0;
-    return true;
+  const validate = () => {
+    const e = {};
+    if (step === 0 && !data.product) e.product = 'Please select a product to continue.';
+    if (step === 1 && data.stores.length === 0) e.stores = 'Please select at least one store.';
+    if (step === 2) {
+      if (!data.commission_rate || Number(data.commission_rate) <= 0) e.commission_rate = 'Please enter a valid commission rate greater than 0.';
+    }
+    if (step === 3) {
+      if (!data.budget || Number(data.budget) <= 0) e.budget = 'Please enter a valid budget greater than 0.';
+      if (!data.startNow && !data.start_date) e.start_date = 'Please select a start date.';
+      if (!data.end_date) e.end_date = 'Please select an end date.';
+    }
+    return e;
   };
 
   const toggleStore = (store) => {
+    setErrors({});
     setData(prev => ({
       ...prev,
       stores: prev.stores.includes(store)
@@ -90,14 +98,14 @@ export default function CreateCampaign() {
                 <button
                   key={p.name}
                   onClick={() => {
-                    setProductError(false);
+                    setErrors({});
                     setData({ ...data, product: p.name, name: `${p.name} Campaign` });
                   }}
                   className={cn(
                     "flex items-center justify-between p-4 rounded-lg border transition-all text-left",
                     data.product === p.name
                       ? "border-[#796EB2] bg-[#F0EEF9]"
-                      : productError
+                      : errors.product
                         ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                         : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                   )}
@@ -108,7 +116,7 @@ export default function CreateCampaign() {
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </div>
                     ) : (
-                      <div className="w-5 h-5 rounded-full border-2 border-[#D0CDE8] flex-shrink-0" />
+                      <div className={cn("w-5 h-5 rounded-full border-2 flex-shrink-0", errors.product ? "border-red-400" : "border-[#D0CDE8]")} />
                     )}
                     <div>
                       <p className="font-medium">{p.name}</p>
@@ -119,9 +127,7 @@ export default function CreateCampaign() {
                 </button>
               ))}
             </div>
-            {productError && (
-              <p className="text-sm text-red-500 mt-1">Please select a product to continue.</p>
-            )}
+            {errors.product && <p className="text-sm text-red-500">{errors.product}</p>}
           </div>
         )}
 
@@ -135,7 +141,11 @@ export default function CreateCampaign() {
                   onClick={() => toggleStore(store)}
                   className={cn(
                     "flex items-center gap-3 p-4 rounded-lg border transition-all text-left",
-                    data.stores.includes(store) ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                    data.stores.includes(store)
+                      ? "border-[#796EB2] bg-[#F0EEF9]"
+                      : errors.stores
+                        ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                        : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                   )}
                 >
                   <Checkbox checked={data.stores.includes(store)} />
@@ -143,6 +153,7 @@ export default function CreateCampaign() {
                 </button>
               ))}
             </div>
+            {errors.stores && <p className="text-sm text-red-500">{errors.stores}</p>}
           </div>
         )}
 
@@ -154,8 +165,16 @@ export default function CreateCampaign() {
             </div>
             <div>
               <Label>Commission Rate (EURC per unit)</Label>
-              <Input type="number" step="0.25" placeholder="e.g. 2.00" value={data.commission_rate} onChange={e => setData({ ...data, commission_rate: e.target.value })} className="mt-1.5" />
-              <p className="text-xs text-muted-foreground mt-1">Staff earn this amount for every unit of {data.product} sold.</p>
+              <Input
+                type="number" step="0.25" placeholder="e.g. 2.00"
+                value={data.commission_rate}
+                onChange={e => { setErrors({}); setData({ ...data, commission_rate: e.target.value }); }}
+                className={cn("mt-1.5", errors.commission_rate && "border-red-400 focus-visible:ring-red-200")}
+              />
+              {errors.commission_rate
+                ? <p className="text-sm text-red-500 mt-1">{errors.commission_rate}</p>
+                : <p className="text-xs text-muted-foreground mt-1">Staff earn this amount for every unit of {data.product} sold.</p>
+              }
             </div>
           </div>
         )}
@@ -164,23 +183,29 @@ export default function CreateCampaign() {
           <div className="space-y-4">
             <div>
               <Label>Total Budget (EURC)</Label>
-              <Input type="number" placeholder="e.g. 500" value={data.budget} onChange={e => setData({ ...data, budget: e.target.value })} className="mt-1.5" />
-              <p className="text-xs text-muted-foreground mt-1">
-                Available: €{getWallet().available.toFixed(2)}. This amount will be committed from your wallet.
-              </p>
+              <Input
+                type="number" placeholder="e.g. 500"
+                value={data.budget}
+                onChange={e => { setErrors({}); setData({ ...data, budget: e.target.value }); }}
+                className={cn("mt-1.5", errors.budget && "border-red-400 focus-visible:ring-red-200")}
+              />
+              {errors.budget
+                ? <p className="text-sm text-red-500 mt-1">{errors.budget}</p>
+                : <p className="text-xs text-muted-foreground mt-1">Available: €{getWallet().available.toFixed(2)}. This amount will be committed from your wallet.</p>
+              }
             </div>
             {/* Start option */}
             <div>
               <Label>Start</Label>
               <div className="grid grid-cols-2 gap-2 mt-1.5">
                 <button
-                  onClick={() => setData({ ...data, startNow: true, start_date: '' })}
+                  onClick={() => { setErrors({}); setData({ ...data, startNow: true, start_date: '' }); }}
                   className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
                 >
                   Start Now
                 </button>
                 <button
-                  onClick={() => setData({ ...data, startNow: false })}
+                  onClick={() => { setErrors({}); setData({ ...data, startNow: false }); }}
                   className={cn("p-3 rounded-lg border text-sm font-medium transition-all text-left", !data.startNow ? "border-[#796EB2] bg-[#F0EEF9] text-[#534AB7]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]")}
                 >
                   Schedule for later
@@ -191,12 +216,14 @@ export default function CreateCampaign() {
               {!data.startNow && (
                 <div>
                   <Label>Start Date</Label>
-                  <Input type="date" value={data.start_date} onChange={e => setData({ ...data, start_date: e.target.value })} className="mt-1.5" />
+                  <Input type="date" value={data.start_date} onChange={e => { setErrors({}); setData({ ...data, start_date: e.target.value }); }} className={cn("mt-1.5", errors.start_date && "border-red-400")} />
+                  {errors.start_date && <p className="text-sm text-red-500 mt-1">{errors.start_date}</p>}
                 </div>
               )}
               <div>
                 <Label>End Date</Label>
-                <Input type="date" value={data.end_date} onChange={e => setData({ ...data, end_date: e.target.value })} className="mt-1.5" />
+                <Input type="date" value={data.end_date} onChange={e => { setErrors({}); setData({ ...data, end_date: e.target.value }); }} className={cn("mt-1.5", errors.end_date && "border-red-400")} />
+                {errors.end_date && <p className="text-sm text-red-500 mt-1">{errors.end_date}</p>}
               </div>
             </div>
             {isScheduled && (
@@ -255,11 +282,9 @@ export default function CreateCampaign() {
       <div className="flex justify-end mt-6">
         <Button
           onClick={() => {
-            // Step 0: validate product selection
-            if (step === 0 && !data.product) {
-              setProductError(true);
-              return;
-            }
+            const e = validate();
+            if (Object.keys(e).length > 0) { setErrors(e); return; }
+            setErrors({});
             if (step === 4) {
               setLaunching(true);
               setTimeout(() => {
@@ -284,7 +309,7 @@ export default function CreateCampaign() {
               setStep(step + 1);
             }
           }}
-          disabled={launching || (step !== 0 && !canNext())}
+          disabled={launching}
           className="bg-primary hover:bg-primary/90 gap-2 min-w-[140px]"
         >
           {launching ? (

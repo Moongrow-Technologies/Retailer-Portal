@@ -25,6 +25,7 @@ export default function CreateBonus() {
   const [done, setDone] = useState(false);
   const [toast, setToast] = useState(null);
   const [launching, setLaunching] = useState(false);
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     name: '', type: '', metric: 'units_sold', product: '',
     scope: 'chain', stores: [], duration: 'custom',
@@ -65,10 +66,26 @@ export default function CreateBonus() {
     );
   }
 
-  const canContinue = () => {
-    if (step === 0) return !!data.type;
-    if (step === 1) return !!data.name && !!data.metric;
-    return true;
+  const validate = () => {
+    const e = {};
+    if (step === 0 && !data.type) e.type = 'Please select a competition format to continue.';
+    if (step === 1) {
+      if (!data.name.trim()) e.name = 'Please enter a competition name.';
+    }
+    if (step === 3) {
+      if (data.type === 'threshold') {
+        if (!data.threshold_target || Number(data.threshold_target) <= 0) e.threshold_target = 'Please enter a valid target.';
+        if (!data.threshold_prize || Number(data.threshold_prize) <= 0) e.threshold_prize = 'Please enter a valid prize amount.';
+      }
+      if (data.type === 'sprint') {
+        if (!data.sprint_prize || Number(data.sprint_prize) <= 0) e.sprint_prize = 'Please enter a valid prize amount.';
+      }
+      if (data.type === 'ranked') {
+        const hasAtLeastOne = data.prizes.some(p => p.amount && Number(p.amount) > 0);
+        if (!hasAtLeastOne) e.prizes = 'Please enter a prize amount for at least 1st place.';
+      }
+    }
+    return e;
   };
 
   return (
@@ -96,10 +113,10 @@ export default function CreateBonus() {
           <div className="space-y-3">
             <p className="text-sm text-[#7A7893] mb-4">Choose the competition format for your team.</p>
             {typeConfig.map(t => (
-              <button key={t.value} onClick={() => setData({ ...data, type: t.value, name: `${t.label} Challenge` })}
+              <button key={t.value} onClick={() => { setErrors({}); setData({ ...data, type: t.value, name: `${t.label} Challenge` }); }}
                 className={cn(
                   "w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left",
-                  data.type === t.value ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC] bg-white"
+                  data.type === t.value ? "border-[#796EB2] bg-[#F0EEF9]" : errors.type ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC] bg-white" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC] bg-white"
                 )}>
                 <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", t.bg)}>
                   <t.icon className={cn("w-5 h-5", t.color)} />
@@ -114,6 +131,7 @@ export default function CreateBonus() {
                 </div>
               </button>
             ))}
+            {errors.type && <p className="text-sm text-red-500">{errors.type}</p>}
           </div>
         )}
 
@@ -122,7 +140,8 @@ export default function CreateBonus() {
           <div className="space-y-5">
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Competition Name</Label>
-              <Input value={data.name} onChange={e => setData({ ...data, name: e.target.value })} className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" placeholder="e.g. Top Seller Week 17" />
+              <Input value={data.name} onChange={e => { setErrors({}); setData({ ...data, name: e.target.value }); }} className={cn("mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]", errors.name && "border-red-400 focus-visible:ring-red-200")} placeholder="e.g. Top Seller Week 17" />
+              {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
             </div>
             <div>
               <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-3 block">Ranking Metric</Label>
@@ -246,18 +265,21 @@ export default function CreateBonus() {
               <>
                 <div>
                   <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Target ({data.metric === 'units_sold' ? 'units' : 'EURC'})</Label>
-                  <Input type="number" value={data.threshold_target} onChange={e => setData({ ...data, threshold_target: e.target.value })} className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" placeholder="e.g. 50" />
+                  <Input type="number" value={data.threshold_target} onChange={e => { setErrors({}); setData({ ...data, threshold_target: e.target.value }); }} className={cn("mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]", errors.threshold_target && "border-red-400")} placeholder="e.g. 50" />
+                  {errors.threshold_target && <p className="text-sm text-red-500 mt-1">{errors.threshold_target}</p>}
                 </div>
                 <div>
                   <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Prize per winner (EURC)</Label>
-                  <Input type="number" value={data.threshold_prize} onChange={e => setData({ ...data, threshold_prize: e.target.value })} className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" placeholder="e.g. 25" />
+                  <Input type="number" value={data.threshold_prize} onChange={e => { setErrors({}); setData({ ...data, threshold_prize: e.target.value }); }} className={cn("mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]", errors.threshold_prize && "border-red-400")} placeholder="e.g. 25" />
+                  {errors.threshold_prize && <p className="text-sm text-red-500 mt-1">{errors.threshold_prize}</p>}
                 </div>
               </>
             )}
             {data.type === 'sprint' && (
               <div>
                 <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide">Prize for winner (EURC)</Label>
-                <Input type="number" value={data.sprint_prize} onChange={e => setData({ ...data, sprint_prize: e.target.value })} className="mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]" placeholder="e.g. 50" />
+                <Input type="number" value={data.sprint_prize} onChange={e => { setErrors({}); setData({ ...data, sprint_prize: e.target.value }); }} className={cn("mt-1.5 bg-[#F8F7FC] border-[#E2E0ED]", errors.sprint_prize && "border-red-400")} placeholder="e.g. 50" />
+                {errors.sprint_prize && <p className="text-sm text-red-500 mt-1">{errors.sprint_prize}</p>}
               </div>
             )}
             {data.type === 'ranked' && (
@@ -298,6 +320,7 @@ export default function CreateBonus() {
                     <Plus className="w-4 h-4" /> Add Position
                   </button>
                 )}
+                {errors.prizes && <p className="text-sm text-red-500">{errors.prizes}</p>}
                 <div>
                   <Label className="text-xs font-semibold text-[#7A7893] uppercase tracking-wide mb-2 block">Tie-breaker</Label>
                   <div className="grid grid-cols-2 gap-2">
@@ -371,6 +394,9 @@ export default function CreateBonus() {
       <div className="flex justify-end mt-6">
         <Button
           onClick={() => {
+            const e = validate();
+            if (Object.keys(e).length > 0) { setErrors(e); return; }
+            setErrors({});
             if (step === 4) {
               setLaunching(true);
               setTimeout(() => {
@@ -399,7 +425,7 @@ export default function CreateBonus() {
               setStep(step + 1);
             }
           }}
-          disabled={!canContinue() || launching}
+          disabled={launching}
           className="bg-primary hover:bg-primary/90 gap-2 min-w-[140px]"
         >
           {launching ? (

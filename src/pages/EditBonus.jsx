@@ -24,6 +24,7 @@ export default function EditBonus() {
 
   const [step, setStep] = useState(0);
   const [toast, setToast] = useState(null);
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     name: bonus?.name || '',
     type: bonus?.type || '',
@@ -51,10 +52,24 @@ export default function EditBonus() {
 
   const remaining = WALLET.available - totalPrize;
 
-  const canContinue = () => {
-    if (step === 0) return !!data.type;
-    if (step === 1) return !!data.name && !!data.metric;
-    return true;
+  const validate = () => {
+    const e = {};
+    if (step === 0 && !data.type) e.type = 'Please select a competition format to continue.';
+    if (step === 1 && !data.name.trim()) e.name = 'Please enter a competition name.';
+    if (step === 3) {
+      if (data.type === 'threshold') {
+        if (!data.threshold_target || Number(data.threshold_target) <= 0) e.threshold_target = 'Please enter a valid target.';
+        if (!data.threshold_prize || Number(data.threshold_prize) <= 0) e.threshold_prize = 'Please enter a valid prize amount.';
+      }
+      if (data.type === 'sprint') {
+        if (!data.sprint_prize || Number(data.sprint_prize) <= 0) e.sprint_prize = 'Please enter a valid prize amount.';
+      }
+      if (data.type === 'ranked') {
+        const hasAtLeastOne = data.prizes.some(p => p.amount && Number(p.amount) > 0);
+        if (!hasAtLeastOne) e.prizes = 'Please enter a prize amount for at least 1st place.';
+      }
+    }
+    return e;
   };
 
   const handleSave = () => {
@@ -91,10 +106,10 @@ export default function EditBonus() {
           <div className="space-y-3">
             <p className="text-sm text-[#7A7893] mb-4">Choose the competition format for your team.</p>
             {typeConfig.map(t => (
-              <button key={t.value} onClick={() => setData({ ...data, type: t.value })}
+              <button key={t.value} onClick={() => { setErrors({}); setData({ ...data, type: t.value }); }}
                 className={cn(
                   "w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left",
-                  data.type === t.value ? "border-[#796EB2] bg-[#F5F3FC]" : "border-[#EBEBF0] hover:border-[#C8C3E0] bg-white"
+                  data.type === t.value ? "border-[#796EB2] bg-[#F5F3FC]" : errors.type ? "border-red-300 hover:border-[#C8C3E0] bg-white" : "border-[#EBEBF0] hover:border-[#C8C3E0] bg-white"
                 )}>
                 <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", t.bg)}>
                   <t.icon className={cn("w-5 h-5", t.color)} />
@@ -109,6 +124,7 @@ export default function EditBonus() {
                 </div>
               </button>
             ))}
+            {errors.type && <p className="text-sm text-red-500">{errors.type}</p>}
           </div>
         )}
 
@@ -313,8 +329,12 @@ export default function EditBonus() {
 
       <div className="flex justify-end mt-6">
         <Button
-          onClick={() => step === 4 ? handleSave() : setStep(step + 1)}
-          disabled={!canContinue()}
+          onClick={() => {
+            const e = validate();
+            if (Object.keys(e).length > 0) { setErrors(e); return; }
+            setErrors({});
+            if (step === 4) handleSave(); else setStep(step + 1);
+          }}
           className="bg-[#12121f] hover:bg-[#12121f]/90 text-white gap-2 font-semibold px-6"
         >
           {step === 4 ? 'Save Changes' : 'Continue'} <ArrowRight className="w-4 h-4" />
