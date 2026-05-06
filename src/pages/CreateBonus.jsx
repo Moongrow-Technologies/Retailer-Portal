@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Trophy, Target, Zap, Plus, Trash2, Crown, Medal, Award, Clock, Loader2 } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -24,6 +24,7 @@ export default function CreateBonus() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [toast, setToast] = useState(null);
+  const [launching, setLaunching] = useState(false);
   const [data, setData] = useState({
     name: '', type: '', metric: 'units_sold', product: '',
     scope: 'chain', stores: [], duration: 'custom',
@@ -47,8 +48,8 @@ export default function CreateBonus() {
   if (done) {
     return (
       <div className="max-w-lg mx-auto text-center py-24">
-        <div className="w-16 h-16 rounded-2xl bg-[#EDE9F8] flex items-center justify-center mx-auto mb-5">
-          <Check className="w-8 h-8 text-[#796EB2]" />
+        <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-5">
+          <Check className="w-8 h-8 text-emerald-600" />
         </div>
         <h2 className="text-2xl font-bold text-[#0E0D1E] mb-2">{isScheduled ? 'Bonus Scheduled!' : 'Bonus Launched!'}</h2>
         <p className="text-[#7A7893] mb-6">
@@ -371,33 +372,41 @@ export default function CreateBonus() {
         <Button
           onClick={() => {
             if (step === 4) {
-              addBonus({
-                id: `b_${Date.now()}`,
-                name: data.name,
-                type: data.type,
-                metric: data.metric,
-                product_name: data.product || null,
-                scope: data.scope === 'chain' ? 'chain' : 'store',
-                store: data.scope !== 'chain' ? data.scope : null,
-                status: isScheduled ? 'scheduled' : 'active',
-                start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.customStart,
-                end_date: data.customEnd || null,
-                prize_pool: totalPrize,
-                prizes: data.type === 'ranked' ? data.prizes.filter(p => p.amount).map((p, i) => ({ position: i + 1, amount: Number(p.amount), label: ['1st Place', '2nd Place', '3rd Place', '4th Place', '5th Place'][i] })) : [],
-                threshold_target: data.threshold_target ? Number(data.threshold_target) : null,
-                threshold_prize: data.threshold_prize ? Number(data.threshold_prize) : null,
-                tiebreaker: data.tiebreaker,
-                participants: 0,
-              });
-              setDone(true);
+              setLaunching(true);
+              setTimeout(() => {
+                addBonus({
+                  id: `b_${Date.now()}`,
+                  name: data.name,
+                  type: data.type,
+                  metric: data.metric,
+                  product_name: data.product || null,
+                  scope: data.scope === 'chain' ? 'chain' : 'store',
+                  store: data.scope !== 'chain' ? data.scope : null,
+                  status: isScheduled ? 'scheduled' : 'active',
+                  start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.customStart,
+                  end_date: data.customEnd || null,
+                  prize_pool: totalPrize,
+                  prizes: data.type === 'ranked' ? data.prizes.filter(p => p.amount).map((p, i) => ({ position: i + 1, amount: Number(p.amount), label: ['1st Place', '2nd Place', '3rd Place', '4th Place', '5th Place'][i] })) : [],
+                  threshold_target: data.threshold_target ? Number(data.threshold_target) : null,
+                  threshold_prize: data.threshold_prize ? Number(data.threshold_prize) : null,
+                  tiebreaker: data.tiebreaker,
+                  participants: 0,
+                });
+                setLaunching(false);
+                setDone(true);
+              }, 800);
             } else {
               setStep(step + 1);
             }
           }}
-          disabled={!canContinue()}
-          className="bg-primary hover:bg-primary/90 gap-2"
+          disabled={!canContinue() || launching}
+          className="bg-primary hover:bg-primary/90 gap-2 min-w-[140px]"
         >
-          {step === 4 ? (isScheduled ? 'Schedule Bonus' : 'Launch Bonus') : 'Continue'} <ArrowRight className="w-4 h-4" />
+          {launching ? (
+            <><Loader2 className="w-4 h-4 animate-spin" /> Launching…</>
+          ) : (
+            <>{step === 4 ? (isScheduled ? 'Schedule Bonus' : 'Launch Bonus') : 'Continue'} <ArrowRight className="w-4 h-4" /></>
+          )}
         </Button>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />

@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
-import { ArrowLeft, ArrowRight, Check, Megaphone, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Clock, Loader2 } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { PRODUCTS, STORE } from '@/lib/sampleData';
 import { cn } from '@/lib/utils';
@@ -18,6 +18,8 @@ export default function CreateCampaign() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [toast, setToast] = useState(null);
+  const [productError, setProductError] = useState(false);
+  const [launching, setLaunching] = useState(false);
   const [data, setData] = useState({
     product: '', stores: [], commission_rate: '', budget: '', start_date: '', end_date: '', name: '', startNow: true
   });
@@ -87,20 +89,39 @@ export default function CreateCampaign() {
               {PRODUCTS.map(p => (
                 <button
                   key={p.name}
-                  onClick={() => setData({ ...data, product: p.name, name: `${p.name} Campaign` })}
+                  onClick={() => {
+                    setProductError(false);
+                    setData({ ...data, product: p.name, name: `${p.name} Campaign` });
+                  }}
                   className={cn(
                     "flex items-center justify-between p-4 rounded-lg border transition-all text-left",
-                    data.product === p.name ? "border-[#796EB2] bg-[#F0EEF9]" : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                    data.product === p.name
+                      ? "border-[#796EB2] bg-[#F0EEF9]"
+                      : productError
+                        ? "border-red-300 hover:border-[#796EB2] hover:bg-[#F5F3FC]"
+                        : "border-border hover:border-[#796EB2] hover:bg-[#F5F3FC]"
                   )}
                 >
-                  <div>
-                    <p className="font-medium">{p.name}</p>
-                    <p className="text-sm text-muted-foreground">{p.sku} · {p.category}</p>
+                  <div className="flex items-center gap-3">
+                    {data.product === p.name ? (
+                      <div className="w-5 h-5 rounded-full bg-[#796EB2] flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                    ) : (
+                      <div className="w-5 h-5 rounded-full border-2 border-[#D0CDE8] flex-shrink-0" />
+                    )}
+                    <div>
+                      <p className="font-medium">{p.name}</p>
+                      <p className="text-sm text-muted-foreground">{p.sku} · {p.category}</p>
+                    </div>
                   </div>
                   <p className="text-sm font-semibold">€{p.price.toFixed(2)}</p>
                 </button>
               ))}
             </div>
+            {productError && (
+              <p className="text-sm text-red-500 mt-1">Please select a product to continue.</p>
+            )}
           </div>
         )}
 
@@ -191,6 +212,10 @@ export default function CreateCampaign() {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Review Campaign</h3>
             <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2 p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
+                <p className="text-xs text-[#9490AA]">Campaign Name</p>
+                <p className="font-medium text-[#0E0D1E]">{data.name || `${data.product} Campaign`}</p>
+              </div>
               <div className="p-3 bg-[#F8F7FC] border border-[#E2E0ED] rounded-xl">
                 <p className="text-xs text-[#9490AA]">Product</p>
                 <p className="font-medium text-[#0E0D1E]">{data.product}</p>
@@ -230,28 +255,43 @@ export default function CreateCampaign() {
       <div className="flex justify-end mt-6">
         <Button
           onClick={() => {
-            if (step === 4) {
-              addCampaign({
-                id: `c_${Date.now()}`,
-                name: data.name || `${data.product} Campaign`,
-                product_name: data.product,
-                stores: data.stores,
-                commission_rate: Number(data.commission_rate),
-                budget: Number(data.budget),
-                spent: 0,
-                units_sold: 0,
-                target_units: Math.floor(Number(data.budget) / Number(data.commission_rate)),
-                status: isScheduled ? 'scheduled' : 'active',
-                start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.start_date,
-                end_date: data.end_date,
-              });
+            // Step 0: validate product selection
+            if (step === 0 && !data.product) {
+              setProductError(true);
+              return;
             }
-            setStep(step + 1);
+            if (step === 4) {
+              setLaunching(true);
+              setTimeout(() => {
+                addCampaign({
+                  id: `c_${Date.now()}`,
+                  name: data.name || `${data.product} Campaign`,
+                  product_name: data.product,
+                  stores: data.stores,
+                  commission_rate: Number(data.commission_rate),
+                  budget: Number(data.budget),
+                  spent: 0,
+                  units_sold: 0,
+                  target_units: Math.floor(Number(data.budget) / Number(data.commission_rate)),
+                  status: isScheduled ? 'scheduled' : 'active',
+                  start_date: data.startNow ? new Date().toISOString().split('T')[0] : data.start_date,
+                  end_date: data.end_date,
+                });
+                setLaunching(false);
+                setStep(step + 1);
+              }, 800);
+            } else {
+              setStep(step + 1);
+            }
           }}
-          disabled={!canNext()}
-          className="bg-primary hover:bg-primary/90 gap-2"
+          disabled={launching || (step !== 0 && !canNext())}
+          className="bg-primary hover:bg-primary/90 gap-2 min-w-[140px]"
         >
-          {step === 4 ? (isScheduled ? 'Schedule Campaign' : 'Launch Campaign') : 'Continue'} <ArrowRight className="w-4 h-4" />
+          {launching ? (
+            <><Loader2 className="w-4 h-4 animate-spin" /> Launching…</>
+          ) : (
+            <>{step === 4 ? (isScheduled ? 'Schedule Campaign' : 'Launch Campaign') : 'Continue'} <ArrowRight className="w-4 h-4" /></>
+          )}
         </Button>
       </div>
       <SuccessToast message={toast} onDismiss={() => setToast(null)} />
