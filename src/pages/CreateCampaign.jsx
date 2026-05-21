@@ -164,7 +164,7 @@ export default function CreateCampaign() {
               <Input value={data.name} onChange={e => setData({ ...data, name: e.target.value })} className="mt-1.5" />
             </div>
             <div>
-              <Label>Commission Rate (USDC per unit)</Label>
+              <Label>Commission Rate (EURC per unit)</Label>
               <Input
                 type="number" step="0.25" placeholder="e.g. 2.00"
                 value={data.commission_rate}
@@ -182,7 +182,7 @@ export default function CreateCampaign() {
         {step === 3 && (
           <div className="space-y-4">
             <div>
-              <Label>Total Budget (USDC)</Label>
+              <Label>Total Budget (EURC)</Label>
               <Input
                 type="number" placeholder="e.g. 500"
                 value={data.budget}
