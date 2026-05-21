@@ -245,7 +245,7 @@ export const TRANSACTIONS = [
   { id: 't_r38', type: 'budget_commit', amount: -300.00, description: 'Budget committed: Gorilla Glue Promo',                 campaign_name: 'Gorilla Glue Promo',                                                            created_date: '2026-04-10T08:00:00' },
 
   // Apr 1 top-up + Amnesia budget commit
-  { id: 't02',   type: 'top_up',        amount: 2000.00, description: 'Wallet top-up via EURC transfer',                                                                                                                        created_date: '2026-04-01T09:00:00' },
+  { id: 't02',   type: 'top_up',        amount: 2000.00, description: 'Wallet top-up via USDC transfer',                                                                                                                        created_date: '2026-04-01T09:00:00' },
   { id: 't04',   type: 'budget_commit', amount: -600.00, description: 'Budget committed: Amnesia Haze Launch',                campaign_name: 'Amnesia Haze Launch',                                                           created_date: '2026-04-01T08:00:00' },
 
   // Mar bonuses + Blue Dream budget
@@ -259,7 +259,7 @@ export const TRANSACTIONS = [
   { id: 't_b5b', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Ahmed R.',      staff_name: 'Ahmed R.',  bonus_name: 'Blue Dream Challenge',                                     created_date: '2026-03-02T10:00:00' },
   { id: 't_b5c', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Sarah K.',      staff_name: 'Sarah K.',  bonus_name: 'Blue Dream Challenge',                                     created_date: '2026-03-02T10:00:00' },
   { id: 't_b5d', type: 'bonus_payout',  amount: -50.00,  description: 'Bonus payout: Blue Dream Challenge — Tom B.',        staff_name: 'Tom B.',    bonus_name: 'Blue Dream Challenge',                                     created_date: '2026-03-02T10:00:00' },
-  { id: 't08',   type: 'top_up',        amount: 3500.00, description: 'Initial wallet funding via EURC transfer',                                                                                                              created_date: '2026-02-28T09:00:00' },
+  { id: 't08',   type: 'top_up',        amount: 3500.00, description: 'Initial wallet funding via USDC transfer',                                                                                                              created_date: '2026-02-28T09:00:00' },
 ];
 
 // ─── ACTIVITIES ───────────────────────────────────────────────────────────────
@@ -284,7 +284,7 @@ export const ACTIVITIES = [
   { type: 'bonus_created',   message: 'Top Seller Week 18 bonus created — €225 pool',         actor: 'Admin',                                                                                  created_date: '2026-04-27T09:00:00' },
   { type: 'campaign_paused', message: 'Gorilla Glue Promo paused — resuming after restock',    actor: 'Admin',    campaign_name: 'Gorilla Glue Promo',                                          created_date: '2026-04-18T11:00:00' },
   { type: 'campaign_created',message: 'Amnesia Haze Launch campaign created',                  actor: 'Admin',    campaign_name: 'Amnesia Haze Launch',                                         created_date: '2026-04-01T08:00:00' },
-  { type: 'top_up',          message: 'Wallet topped up with €2,000 EURC',                     actor: 'Admin',    amount: 2000,                                                                 created_date: '2026-04-01T09:00:00' },
+  { type: 'top_up',          message: 'Wallet topped up with $2,000 USDC',                     actor: 'Admin',    amount: 2000,                                                                 created_date: '2026-04-01T09:00:00' },
   { type: 'bonus_completed', message: 'March Top Seller completed — Lisa V. won €80',          actor: 'Lisa V.',  amount: 80,                                                                   created_date: '2026-04-01T10:00:00' },
   { type: 'bonus_completed', message: 'Blue Dream Challenge completed — 4 staff qualified',    actor: 'System',   amount: 200,                                                                  created_date: '2026-03-02T10:00:00' },
   { type: 'campaign_created',message: 'Gorilla Glue Promo campaign created',                   actor: 'Admin',    campaign_name: 'Gorilla Glue Promo',                                          created_date: '2026-04-10T08:00:00' },

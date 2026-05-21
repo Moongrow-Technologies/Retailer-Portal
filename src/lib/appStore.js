@@ -112,13 +112,13 @@ export function topUpWallet(amount) {
     id: `t_${Date.now()}`,
     type: 'top_up',
     amount: Number(amount),
-    description: `Wallet top-up via EURC transfer`,
+    description: `Wallet top-up via USDC transfer`,
     created_date: new Date().toISOString(),
   };
   state = { ...state, transactions: [tx, ...state.transactions] };
   state.activities = [{
     type: 'top_up',
-    message: `Wallet topped up with €${Number(amount).toLocaleString('en-US', { minimumFractionDigits: 0 })} EURC`,
+    message: `Wallet topped up with $${Number(amount).toLocaleString('en-US', { minimumFractionDigits: 0 })} USDC`,
     actor: 'Admin',
     amount: Number(amount),
     created_date: new Date().toISOString(),

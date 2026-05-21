@@ -41,7 +41,7 @@ export default function WalletPage() {
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0c0b0c]">Moongrow Wallet</h1>
-          <p className="text-sm text-[#5b616e] mt-1">Manage your EURC funds and transaction history.</p>
+          <p className="text-sm text-[#5b616e] mt-1">Manage your USDC funds and transaction history.</p>
         </div>
         <div className="flex items-center gap-2">
           <Button onClick={() => setShowTopUp(true)} className="gap-2 font-semibold bg-[#27272b] text-white hover:bg-[#3a3a3f]">
