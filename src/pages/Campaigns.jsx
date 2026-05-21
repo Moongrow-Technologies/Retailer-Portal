@@ -21,7 +21,7 @@ const TABS = [
 
 export default function Campaigns() {
   const navigate = useNavigate();
-  const [tab, setTab] = useState('all');
+  const [tab, setTab] = useState('active');
   const [, forceUpdate] = useState(0);
 
   useEffect(() => subscribe(() => forceUpdate(n => n + 1)), []);
