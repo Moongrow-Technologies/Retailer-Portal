@@ -51,7 +51,9 @@ export default function Bonuses() {
   const bonuses = getBonuses();
   const wallet = getWallet();
 
-  const filtered = bonuses.filter((b) => tab === 'active' ? b.status === 'active' || b.status === 'paused_manual' : b.status === tab);
+  const sortByProgress = (arr) => [...arr].sort((a, b) => (b.participants || 0) - (a.participants || 0));
+
+  const filtered = sortByProgress(bonuses.filter((b) => tab === 'active' ? b.status === 'active' || b.status === 'paused_manual' : b.status === tab));
 
   const handleDelete = (bonus) => {
     deleteBonus(bonus.id);

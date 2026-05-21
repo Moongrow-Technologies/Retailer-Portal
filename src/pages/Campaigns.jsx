@@ -29,13 +29,19 @@ export default function Campaigns() {
   const campaigns = getCampaigns();
   const wallet = getWallet();
 
-  const filtered = tab === 'all' ? campaigns : campaigns.filter((c) => {
+  const sortByProgress = (arr) => [...arr].sort((a, b) => {
+    const pctA = a.target_units > 0 ? a.units_sold / a.target_units : 0;
+    const pctB = b.target_units > 0 ? b.units_sold / b.target_units : 0;
+    return pctB - pctA;
+  });
+
+  const filtered = sortByProgress(tab === 'all' ? campaigns : campaigns.filter((c) => {
     if (tab === 'active') return c.status === 'active';
     if (tab === 'paused') return c.status === 'paused_manual';
     if (tab === 'scheduled') return c.status === 'scheduled';
     if (tab === 'completed') return c.status === 'completed' || c.status === 'paused_budget';
     return true;
-  });
+  }));
 
   const handleTogglePause = (campaign) => {
     toggleCampaignStatus(campaign.id);
