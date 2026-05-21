@@ -13,6 +13,16 @@ import { cn } from '@/lib/utils';
 // This Month chart: cumulative revenue building up through May 2
 // Week (Apr 27 – May 2): daily revenue across 2 active campaigns
 const revenueOverTime = {
+  'Today': [
+  { label: '9am',  value: 320  },
+  { label: '10am', value: 680  },
+  { label: '11am', value: 1050 },
+  { label: '12pm', value: 1580 },
+  { label: '1pm',  value: 1920 },
+  { label: '2pm',  value: 2340 },
+  { label: '3pm',  value: 2780 },
+  { label: '4pm',  value: 3210 }],
+
   'This Month': [
   { label: 'Apr 1',  value: 1240  },
   { label: 'Apr 7',  value: 2680  },
@@ -59,7 +69,7 @@ filter((s) => s.status === 'active').
 sort((a, b) => b.total_commissions - a.total_commissions);
 
 export default function Analytics() {
-  const [period, setPeriod] = useState('This Month');
+  const [period, setPeriod] = useState('Today');
   const [campaign, setCampaign] = useState('all');
 
   const chartData = revenueOverTime[period];
@@ -74,7 +84,7 @@ export default function Analytics() {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-0.5 bg-[#F4F3F4] rounded-xl p-1">
-            {['This Month', 'This Week'].map((p) =>
+            {['Today', 'This Week', 'This Month'].map((p) =>
             <button
               key={p}
               onClick={() => setPeriod(p)}
