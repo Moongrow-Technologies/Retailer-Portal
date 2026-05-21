@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { format, subDays, startOfMonth, isAfter } from 'date-fns';
 import { cn } from '@/lib/utils';
-import { TrendingUp, ArrowRightLeft, Trophy, Plus } from 'lucide-react';
+import { TrendingUp, ArrowRightLeft, Trophy, Plus, ChevronDown, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CAMPAIGNS, BONUSES, STAFF } from '@/lib/sampleData';
 
@@ -46,9 +46,19 @@ function getTransactionLink(tx) {
   return null;
 }
 
+const PERIOD_LABELS = { week: 'This week', month: 'This month', all: 'All time' };
+
 export default function TransactionHistory({ transactions }) {
   const [period, setPeriod] = useState('all');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handler = (e) => { if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setDropdownOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   const filterTransactions = () => {
     const now = new Date();
@@ -67,25 +77,28 @@ export default function TransactionHistory({ transactions }) {
       {/* Header — outside the card */}
       <div className="flex items-center justify-between mb-3 mt-4">
         <h3 className="text-base font-semibold text-[#0E0D1E]">Transaction history</h3>
-        <div className="flex items-center gap-0.5 bg-[#F7F7F7] rounded-xl p-1">
-          {[
-            { value: 'week', label: 'This week' },
-            { value: 'month', label: 'This month' },
-            { value: 'all', label: 'All time' },
-          ].map(opt => (
-            <button
-              key={opt.value}
-              onClick={() => setPeriod(opt.value)}
-              className={cn(
-                'px-4 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap',
-                period === opt.value
-                  ? 'bg-white text-[#12121f] shadow-sm'
-                  : 'text-[#5b616e] hover:text-[#12121f]'
-              )}
-            >
-              {opt.label}
-            </button>
-          ))}
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(o => !o)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F4F3F4] text-sm font-semibold text-[#12121f] hover:bg-[#ECEAEC] transition-colors"
+          >
+            {PERIOD_LABELS[period]}
+            <ChevronDown className="w-3.5 h-3.5 text-[#5b616e]" />
+          </button>
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-1 w-40 bg-white border border-[#E2E0ED] rounded-xl shadow-lg z-10 overflow-hidden py-1">
+              {Object.entries(PERIOD_LABELS).map(([value, label]) => (
+                <button
+                  key={value}
+                  onClick={() => { setPeriod(value); setDropdownOpen(false); }}
+                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-[#12121f] hover:bg-[#F5F3FC] transition-colors"
+                >
+                  <Check className={cn("w-3.5 h-3.5 text-[#796EB2]", period !== value && "invisible")} />
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
