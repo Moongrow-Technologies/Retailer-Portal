@@ -111,7 +111,7 @@ export default function TransactionHistory({ transactions }) {
       </div>
 
       {/* Rows */}
-      <div className="divide-y divide-[#EBEBF0]">
+      <div className="divide-y divide-[#EBEBF0] overflow-y-auto max-h-[420px]">
         {filtered.length === 0 ? (
           <div className="text-center py-10 text-[#9490AA] text-sm">No transactions in this period</div>
         ) : (
