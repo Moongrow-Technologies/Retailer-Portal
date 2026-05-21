@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Camera } from 'lucide-react';
+import { Camera, Shield } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import { STORE } from '@/lib/sampleData';
 import ChangeEmailModal from '@/components/profile/ChangeEmailModal';
@@ -20,6 +20,7 @@ export default function Profile() {
   const [avatarUrl, setAvatarUrl] = useState('');
   const [saving, setSaving] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const [showEmailModal, setShowEmailModal] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -47,6 +48,7 @@ export default function Profile() {
     setSaving(true);
     await base44.auth.updateMe({ avatar_url: avatarUrl });
     setSaving(false);
+    setToastMessage('Profile updated successfully.');
     setShowToast(true);
   };
 
@@ -135,7 +137,26 @@ export default function Profile() {
         </div>
       </div>
 
-      <SuccessToast message={showToast ? "Profile updated successfully." : null} onDismiss={() => setShowToast(false)} />
+        {/* Security */}
+        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.012)] p-6 mt-5">
+          <h3 className="text-base font-semibold text-[#0E0D1E] mb-4">Security</h3>
+          <div className="flex items-center justify-between p-4 border border-[#E2E0ED] rounded-xl">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full border border-[#E2E0ED] flex items-center justify-center">
+                <Shield className="w-4 h-4 text-[#796EB2]" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#0E0D1E]">Password</p>
+                <p className="text-sm text-[#7A7893]">Update your account password.</p>
+              </div>
+            </div>
+            <Button onClick={() => { setToastMessage('Password changed successfully.'); setShowToast(true); }} variant="outline" size="sm" className="rounded-full border-[#E2E0ED] text-[#0E0D1E] font-semibold px-5">
+              Change Password
+            </Button>
+          </div>
+        </div>
+
+      <SuccessToast message={showToast ? toastMessage : null} onDismiss={() => setShowToast(false)} />
       {showEmailModal && <ChangeEmailModal onClose={() => setShowEmailModal(false)} />}
     </div>);
 

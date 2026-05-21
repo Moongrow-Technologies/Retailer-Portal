@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Plus, Zap, Building2, Shield } from 'lucide-react';
+import { MapPin, Plus, Zap, Building2 } from 'lucide-react';
 import SuccessToast from '@/components/shared/SuccessToast';
 import DisconnectModal from '@/components/shared/DisconnectModal';
 import { getNotificationPrefs, saveNotificationPrefs } from '@/lib/notificationPrefs';
@@ -191,34 +191,6 @@ export default function Settings() {
             <Button className="w-full bg-[#796EB2] hover:bg-[#6A5FA3] text-white font-semibold rounded-full h-12">
               Change Plan
             </Button>
-          </div>
-        </div>
-
-        {/* Security */}
-        <div className="bg-white rounded-2xl border border-[#EBEBF0] shadow-[0_2px_8px_0_rgba(0,0,0,0.02)] p-8">
-          <div className="mb-8">
-            <h2 className="text-xl font-bold text-[#0E0D1E]">Security</h2>
-            <p className="text-sm text-[#7A7893] mt-1">Control your account access and protection levels.</p>
-          </div>
-          <div className="flex items-center justify-between p-5 border border-[#E2E0ED] rounded-2xl">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-[#E2E0ED] flex items-center justify-center">
-                <Shield className="w-5 h-5 text-[#796EB2]" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[#0E0D1E]">Account Authentication</p>
-                <p className="text-sm text-[#7A7893]">Update your password or enable 2FA protection.</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#0E0D1E] font-medium">2FA Enabled</span>
-                <Switch defaultChecked className="data-[state=checked]:bg-[#796EB2]" />
-              </div>
-              <Button onClick={() => showToast("Password changed successfully.")} variant="outline" size="sm" className="rounded-full border-[#E2E0ED] text-[#0E0D1E] font-semibold px-5">
-                Change Password
-              </Button>
-            </div>
           </div>
         </div>
 
