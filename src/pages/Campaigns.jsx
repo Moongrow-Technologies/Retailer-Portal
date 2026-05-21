@@ -12,10 +12,8 @@ import { cn } from '@/lib/utils';
 import { getCampaigns, getWallet, toggleCampaignStatus, deleteCampaign, restartCampaign, subscribe } from '@/lib/appStore';
 
 const TABS = [
-{ key: 'all', label: 'All' },
 { key: 'active', label: 'Active' },
 { key: 'scheduled', label: 'Scheduled' },
-{ key: 'paused', label: 'Paused' },
 { key: 'completed', label: 'Completed' }];
 
 
@@ -35,9 +33,8 @@ export default function Campaigns() {
     return pctB - pctA;
   });
 
-  const filtered = sortByProgress(tab === 'all' ? campaigns : campaigns.filter((c) => {
-    if (tab === 'active') return c.status === 'active';
-    if (tab === 'paused') return c.status === 'paused_manual';
+  const filtered = sortByProgress(campaigns.filter((c) => {
+    if (tab === 'active') return c.status === 'active' || c.status === 'paused_manual';
     if (tab === 'scheduled') return c.status === 'scheduled';
     if (tab === 'completed') return c.status === 'completed' || c.status === 'paused_budget';
     return true;
